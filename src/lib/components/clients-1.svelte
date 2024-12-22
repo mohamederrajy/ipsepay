@@ -1,0 +1,33 @@
+<section class="bg-gradient-to-r from-gray-100/70 to-gray-100 relative xl:py-24 py-16">
+  <div class="absolute top-0 inset-x-0 hidden sm:block">
+    <img src="/images/shapes/white-wave.svg" alt="svg" class="w-full -scale-x-100" />
+  </div>
+
+  <div class="py-5">
+    <div class="container" data-aos="fade-up" data-aos-duration="300">
+      <div class="text-center">
+        <span class="text-sm font-medium py-1 px-3 rounded-full text-primary bg-primary/10">Clients</span>
+        <h1 class="text-3xl/tight font-medium mt-3 mb-4">The smart people management you need</h1>
+        <p class="text-gray-500">21,000+ organizations trust <span class="text-primary">Prompt</span> to drive perfomance & engagement</p>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center lg:gap-24 gap-10 mt-14">
+        <div>
+          <img src="/images/brands/amazon.svg" class="h-8" />
+        </div>
+        <div>
+          <img src="/images/brands/google.svg" class="h-8" />
+        </div>
+        <div>
+          <img src="/images/brands/paypal.svg" class="h-8" />
+        </div>
+        <div>
+          <img src="/images/brands/spotify.svg" class="h-8" />
+        </div>
+        <div>
+          <img src="/images/brands/shopify.svg" class="h-8" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

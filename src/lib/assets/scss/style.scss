@@ -1,0 +1,33 @@
+/*
+Template Name: Prompt - Tailwind CSS Multipurpose Landing Page Template
+Version: 1.1.0
+Author: coderthemes
+Email: support@coderthemes.com
+File: style Css File
+*/
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Custom
+@import "custom/reboot";
+@import "custom/helper";
+@import "custom/navbar";
+@import "custom/gallery";
+
+
+.bg-primary {
+   
+    background-color: rgb(57 53 210);
+}
+.navbar-nav .nav-item .nav-link:is(.active, :active, :focus, :hover) {
+    font-weight: bold;
+    color: rgb(57 53 210);
+}
+.text-primary {
+    
+    color: rgb(55 53 209);
+    font-weight: 600;
+}
