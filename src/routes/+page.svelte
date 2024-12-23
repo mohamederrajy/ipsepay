@@ -13,16 +13,189 @@
     import SaasFooter from "$lib/components/footers/saas-footer.svelte";
   </script>
   
-  <PageTitle title="Saas Application Landing Page" />
+  <PageTitle title="Ipsepay" />
   <Navbar/>
 
   <SassHero />
   
   <!-- feature Section -->
-  
+  <section class="xl:py-24 py-16">
+    <div class="container"  data-aos-duration="1000">
+      <div class="text-center">
+        <div>
+          
+          <!-- Infinite scroll container -->
+          <div class="relative overflow-hidden mt-7 w-[100vw] left-[50%] right-[50%] -mx-[50vw] h-16 md:h-20">
+            <style>
+              @keyframes slideLeft {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-100%); }
+              }
+
+              @keyframes slideRight {
+                0% { transform: translateX(100%); }
+                100% { transform: translateX(0); }
+              }
+
+              .logo-slide-left {
+                animation: slideLeft 15s linear infinite;
+              }
+
+              .logo-slide-right {
+                animation: slideRight 15s linear infinite;
+              }
+
+              .logo-container:hover .logo-slide-left,
+              .logo-container:hover .logo-slide-right {
+                animation-play-state: paused;
+              }
+
+              .logo-image {
+                width: 80px;
+                height: 32px;
+                object-fit: contain;
+              }
+
+              @media (min-width: 768px) {
+                .logo-image {
+                  width: 120px;
+                  height: 48px;
+                }
+              }
+            </style>
+
+            <div class="logo-container">
+              <!-- First set sliding left -->
+              <div class="absolute inset-0 flex gap-12 md:gap-16 mx-8 md:mx-16 logo-slide-left items-center">
+                <div class="flex-shrink-0">
+                  <img src="/images/brands/woocommerce.png" class="logo-image" alt="woocommerce" />
+                </div>
+                <div class="flex-shrink-0">
+                  <img src="/images/brands/Shopy.png" class="logo-image" alt="Shopify" />
+                </div>
+                <div class="flex-shrink-0">
+                  <img src="/images/brands/pay-payl.png" class="logo-image" alt="PayPal" />
+                </div>
+                <div class="flex-shrink-0">
+                  <img src="/images/brands/vss.png" class="logo-image" alt="visa" />
+                </div>
+                <div class="flex-shrink-0">
+                  <img src="/images/brands/mscrad.png" class="logo-image" alt="MasterCard" />
+                </div>
+                <div class="flex-shrink-0">
+                  <img src="/images/brands/usdt.png" class="logo-image" alt="usdt" />
+                </div>
+                <div class="flex-shrink-0">
+                  <img src="/images/brands/G-pay.png" class="logo-image" alt="google pay" />
+                </div>
+                <div class="flex-shrink-0">
+                  <img src="/images/brands/A-pay.png" class="logo-image" alt="apple pay" />
+                </div>
+              </div>
+
+              <!-- Second set sliding from right -->
+              <div class="absolute inset-0 flex gap-12 md:gap-16 mx-8 md:mx-16 logo-slide-right items-center">
+                <div class="flex-shrink-0">
+                  <img src="/images/brands/woocommerce.png" class="logo-image" alt="woocommerce" />
+                </div>
+                <div class="flex-shrink-0">
+                  <img src="/images/brands/Shopy.png" class="logo-image" alt="Shopify" />
+                </div>
+                <div class="flex-shrink-0">
+                  <img src="/images/brands/pay-payl.png" class="logo-image" alt="PayPal" />
+                </div>
+                <div class="flex-shrink-0">
+                  <img src="/images/brands/vss.png" class="logo-image" alt="visa" />
+                </div>
+                <div class="flex-shrink-0">
+                  <img src="/images/brands/mscrad.png" class="logo-image" alt="MasterCard" />
+                </div>
+                <div class="flex-shrink-0">
+                  <img src="/images/brands/usdt.png" class="logo-image" alt="usdt" />
+                </div>
+                <div class="flex-shrink-0">
+                  <img src="/images/brands/G-pay.png" class="logo-image" alt="google pay" />
+                </div>
+                <div class="flex-shrink-0">
+                  <img src="/images/brands/A-pay.png" class="logo-image" alt="apple pay" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<!-- How it works section -->
+<section class="py-2 xl:py-2">
+  <div class="container">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <h2 class="text-3xl md:text-4xl font-semibold mb-4">Smart Payments Simplified with IpsePay!</h2>
+      <p class="text-gray-500">Experience the best in smart payments with IpsePay—where innovation meets simplicity!</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 md:gap-12">
+      <!-- Payment Solution -->
+      <div class="text-center">
+        <div class="bg-[#3935d2]/10 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-[#3935d2]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+            <line x1="1" y1="10" x2="23" y2="10"></line>
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold mb-3">Payment Solution</h3>
+        <p class="text-gray-500">Ipsepay ensures secure, seamless payments, trusted by online stores worldwide.
+
+            .</p>
+      </div>
+
+      <!-- Growth Business -->
+      <div class="text-center relative">
+        <div class="hidden md:block absolute top-12 -left-16 w-24">
+          <img src="/images/arrow-top.png" alt="arrow" class="w-full scale-y-[-1]" />
+        </div>
+        <div class="bg-[#3935d2]/10 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-[#3935d2]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+            <polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline>
+            <polyline points="7.5 19.79 7.5 14.6 3 12"></polyline>
+            <polyline points="21 12 16.5 14.6 16.5 19.79"></polyline>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold mb-3">Growth Business</h3>
+        <p class="text-gray-500">Ipsepay ensures secure, seamless payments, trusted by online stores worldwide.
+
+            .</p>
+      </div>
+
+      <!-- Connected People -->
+      <div class="text-center relative">
+        <div class="hidden md:block absolute top-12 -left-16 w-24">
+          <img src="/images/arrow-top.png" alt="arrow" class="w-full" />
+        </div>
+        <div class="bg-[#3935d2]/10 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-[#3935d2]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold mb-3">Connected People</h3>
+        <p class="text-gray-500">Ipsepay connects people through secure and effortless payments, anytime, anywhere
+
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 
   <section class="overflow-hidden">
-    <div class="xl:py-24 py-16">
+    <div class="xl:py-24 py-1 mt-0" >
       <div class="container">
         <div class="text-center">
           <span class="text-sm font-medium py-1 px-3 rounded-full text-primary bg-primary/10">Features</span>

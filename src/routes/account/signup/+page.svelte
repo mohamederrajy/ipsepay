@@ -17,7 +17,7 @@
           <div class="bg-white shadow-md p-12 rounded-s xl:col-span-5 md:col-span-6">
             <div class="mb-12">
               <a href="/">
-                <img src="/images/logo-dark.png" alt="logo-img" class="h-8" />
+                <img src="/images/lgopis.png" alt="logo-img" class="h-8" />
               </a>
             </div>
             <h6 class="text-base/[1.6] font-semibold text-gray-600 mb-0 mt-4">Create Your Account</h6>
