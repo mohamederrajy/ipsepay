@@ -81,13 +81,13 @@
               <div class="after:w-24 after:h-24 after:absolute after:-top-10 after:end-10 2xl:after:end-0 after:rotate-45 after:bg-[url('../images/pattern/dot5.svg')]"></div>
             </div>
 
-            <div id="swiper_one" class="swiper border-[6px] border-white bg-white 2xl:w-[140%]" data-aos="fade-left" data-aos-duration="1000">
+            <div id="swiper_one" class="swiper 2xl:w-[140%]" data-aos="fade-left" data-aos-duration="1000">
               <div class="swiper-wrapper">
                 <div class="swiper-slide">
                   <div class="absolute inset-0 flex items-center justify-center">
                     
                   </div>
-                  <img src="/images/hero/saas12.png" alt="saas1" class="w-full h-full rounded-md" />
+                  <img src="/images/hero/py-ima.png" alt="saas1" class="w-full h-full rounded-md" />
                 </div>
 
                 <div class="swiper-slide">

@@ -1,90 +1,270 @@
-<script lang="ts">
-  const year = new Date().getFullYear();
+<script>
+  import { page } from '$app/stores';
+  import { goto } from '$app/navigation';
+
+  $: routeTd = $page.url.pathname;
+
+  async function navigateToSection(sectionId) {
+    if (window.location.pathname !== '/') {
+      await goto('/');
+    }
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 </script>
 
-<footer class="bg-gray-100">
-  <div class="container">
-    <div class="grid xl:grid-cols-5 gap-6 py-12">
-      <div class="xl:col-span-2">
-        <a href="index.html">
-          <img src="/images/lgopis.png" class="h-8" />
-        </a>
-        <p class="text-gray-500/80 mt-5 lg:w-4/5">Make your web application stand out with high-quality landing page</p>
-      </div>
-      <div class="xl:col-span-3 col-span-4">
-        <div class="flex flex-col sm:flex-row gap-6 flex-wrap justify-between">
-          <div>
-            <div class="flex flex-col gap-3">
-              <h5 class="mb-3 uppercase">Platform</h5>
-              <div class="text-gray-500/80"><a href="javascript:void(0);">Demo</a></div>
-              <div class="text-gray-500/80"><a href="javascript:void(0);">Pricing</a></div>
-              <div class="text-gray-500/80"><a href="javascript:void(0);">Integrations</a></div>
-              <div class="text-gray-500/80"><a href="javascript:void(0);">Status</a></div>
-            </div>
-          </div>
-          <div>
-            <div class="flex flex-col gap-3">
-              <h5 class="mb-3 uppercase">Knowledge Base</h5>
-              <div class="text-gray-500/80"><a href="javascript:void(0);">Blog</a></div>
-              <div class="text-gray-500/80"><a href="javascript:void(0);">Help Center</a></div>
-              <div class="text-gray-500/80"><a href="javascript:void(0);">Sales Tools catalog</a></div>
-              <div class="text-gray-500/80"><a href="javascript:void(0);">API</a></div>
-            </div>
-          </div>
-          <div>
-            <div class="flex flex-col gap-3">
-              <h5 class="mb-3 uppercase">Company</h5>
-              <div class="text-gray-500/80"><a href="javascript:void(0);">About us</a></div>
-              <div class="text-gray-500/80"><a href="javascript:void(0);">Career</a></div>
-              <div class="text-gray-500/80"><a href="javascript:void(0);">Contact Us</a></div>
-            </div>
-          </div>
-          <div>
-            <div class="flex flex-col gap-3">
-              <h5 class="mb-3 uppercase">Legal</h5>
-              <div class="text-gray-500/80"><a href="javascript:void(0);">Usage Policy</a></div>
-              <div class="text-gray-500/80"><a href="javascript:void(0);">Privacy Policy</a></div>
-              <div class="text-gray-500/80"><a href="javascript:void(0);">Terms of Service</a></div>
-              <div class="text-gray-500/80"><a href="javascript:void(0);">Trust</a></div>
-            </div>
-          </div>
+<footer class="bg-gray-50">
+  <div class="container mx-auto px-4 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      
+      <!-- Company Info -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">
+          <a href="/" class="flex items-center">
+            <img 
+              src="/images/lgopis.png" 
+              alt="Ipsepay" 
+              class="h-8 w-auto"
+            />
+          </a>
+        </h3>
+        <p class="text-gray-600 mb-4">IpsePay offers secure payment solutions for high-risk businesses. Reliable, fast, and built to support your growth.</p>
+        <!-- Social Links -->
+        <div class="flex space-x-4">
+          <!-- Add your social icons here -->
         </div>
+      </div>
+
+      <!-- Products -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Products</h3>
+        <ul class="space-y-2">
+          <li>
+            <button 
+              class="text-gray-600 hover:text-[#605bff]"
+              on:click={() => navigateToSection('payment-methods')}
+            >
+              Payment Methods
+            </button>
+          </li>
+          <li>
+            <button 
+              class="text-gray-600 hover:text-[#605bff]"
+              on:click={() => navigateToSection('advantages')}
+            >
+              Advantages
+            </button>
+          </li>
+          <li>
+            <button 
+              class="text-gray-600 hover:text-[#605bff]"
+              on:click={() => navigateToSection('integration')}
+            >
+              Easy Integration
+            </button>
+          </li>
+          <li>
+            <button 
+              class="text-gray-600 hover:text-[#605bff]"
+              on:click={() => navigateToSection('pricing')}
+            >
+              Pricing
+            </button>
+          </li>
+          <li>
+            <button 
+              class="text-gray-600 hover:text-[#605bff]"
+              on:click={() => navigateToSection('internationalisation')}
+            >
+              Internationalisation
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Resources -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Legal</h3>
+        <ul class="space-y-2">
+          <li>
+            <a 
+            class="nav-link text-gray-600 hover:text-[#605bff] block transition-colors" 
+            href="/privacy" 
+            class:active={routeTd === "/privacy"}
+          >
+          Privacy Policy
+          </a>
+          </li>
+          <li>
+            <a class="text-gray-600 hover:text-[#605bff]"href="/termsconditions" 
+            class:active={routeTd === "/termsconditions"}>
+              Terms & Conditions
+                        </a>
+          </li>
+          <li>
+            <a class="text-gray-600 hover:text-[#605bff]"href="/Data-Protection-Policy" 
+            class:active={routeTd === "/Data-Protection-Policy"}>
+            Data Protection Policy 
+                        </a>
+          </li>
+           
+          <li>
+            <a href="/PCI-Compliance-and-Security
+" class="text-gray-600 hover:text-[#605bff]"  class:active={routeTd === "/PCI-Compliance-and-Security"}>
+              
+PCI Compliance and Security            </a>
+          </li>
+         
+          <li>
+            <a href="/cookiepolicy" class="text-gray-600 hover:text-[#605bff]"  class:active={routeTd === "/cookiepolicy"}>
+              
+              Cookie Policy
+            </a>
+          </li>
+          
+
+        </ul>
+      </div>
+
+      <!-- Company -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Company</h3>
+        <ul class="hs-collapse overflow-hidden transition-[height] duration-300 space-y-2 w-full" aria-labelledby="hs-basic-collapse-2">
+          <!-- Dropdown item -->
+          <div class="nav-item">
+            <a 
+              class="nav-link text-gray-600 hover:text-[#605bff] block transition-colors" 
+              href="/contact" 
+              class:active={routeTd === "/contact"}
+            >
+              Contact us
+            </a>
+          </div>
+
+          <div class="nav-item">
+            <a 
+              class="nav-link text-gray-600 hover:text-[#605bff] block transition-colors" 
+              href="/company" 
+              class:active={routeTd === "/company"}
+            >
+              About Us
+            </a>
+          </div>
+
+          <div class="nav-item">
+            <button 
+              class="nav-link text-gray-600 hover:text-[#605bff] block transition-colors w-full text-left" 
+              on:click={() => navigateToSection('faqs')}
+            >
+              FAQs
+            </button>
+          </div>
+        </ul>
       </div>
     </div>
-    <div class="border-t py-6">
-      <div class="grid sm:grid-cols-2 text-center sm:text-start gap-6">
-        <div>
-          <p class="text-gray-500/80 text-sm">
-            {year}
-            © Prompt. All rights reserved. Crafted by <a href="" class="text-gray-800 hover:text-primary transition-all">Coderthemes</a>
-          </p>
+
+    <!-- Bottom Bar -->
+    <div class="border-t border-gray-200 mt-12 pt-8">
+      <!-- Mobile View -->
+      <div class="flex flex-col space-y-6 lg:hidden">
+        <!-- Payment Icons -->
+        <div class="flex flex-wrap items-center justify-center gap-4">
+          <img src="/images/brands/vss.png" alt="Visa" class="payment-icon" />
+          <img src="/images/brands/mscrad.png" alt="Mastercard" class="payment-icon" />
+          <img src="/images/brands/pay-payl.png" alt="PayPal" class="payment-icon" />
+          <img src="/images/brands/amex.png" alt="American Express" class="payment-icon" />
+          <img src="/images/brands/G-pay.png" alt="Google Pay" class="payment-icon" />
+          <img src="/images/brands/A-pay.png" alt="Apple Pay" class="payment-icon" />
+          <img src="/images/brands/pci.svg" alt="PCI Compliant" class="payment-icon" />
         </div>
-        <div class="flex justify-center sm:justify-end gap-7">
-          <div>
-            <a href="">
-              <svg class="w-5 h-5 text-gray-500 hover:text-primary transition-all" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-              </svg>
-            </a>
-          </div>
-          <div>
-            <a href="">
-              <svg class="w-5 h-5 text-gray-500 hover:text-primary transition-all" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
-              </svg>
-            </a>
-          </div>
-          <div>
-            <a href="">
-              <svg class="w-5 h-5 text-gray-500 hover:text-primary transition-all" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                <rect x="2" y="9" width="4" height="12"></rect>
-                <circle cx="4" cy="4" r="2"></circle>
-              </svg>
-            </a>
-          </div>
+
+        <!-- Links -->
+        <div class="flex justify-center space-x-4">
+          <a href="/privacy" class="text-gray-600 hover:text-[#605bff] text-sm">Privacy</a>
+          <a href="/terms" class="text-gray-600 hover:text-[#605bff] text-sm">Terms</a>
+          <a href="/cookies" class="text-gray-600 hover:text-[#605bff] text-sm">Cookies</a>
+        </div>
+
+        <!-- Copyright -->
+        <p class="text-gray-600 text-sm text-center flex items-center justify-center">
+          © {new Date().getFullYear()} 
+          <img 
+            src="/images/lgopis.png" 
+            alt="Ipsepay" 
+            class="h-5 w-auto mx-2 grayscale opacity-75"
+          /> 
+          All rights reserved.
+        </p>
+      </div>
+
+      <!-- Desktop View -->
+      <div class="hidden lg:flex items-center justify-between">
+        <!-- Copyright -->
+        <p class="text-gray-600 text-sm flex items-center">
+          © {new Date().getFullYear()} 
+          <img 
+            src="/images/lgopis.png" 
+            alt="Ipsepay" 
+            class="h-5 w-auto mx-2 grayscale opacity-75"
+          /> 
+          All rights reserved.
+        </p>
+        
+        <!-- Payment Icons -->
+        <div class="flex items-center space-x-4">
+          <img src="/images/brands/vss.png" alt="Visa" class="payment-icon" />
+          <img src="/images/brands/mscrad.png" alt="Mastercard" class="payment-icon" />
+          <img src="/images/brands/pay-payl.png" alt="PayPal" class="payment-icon" />
+          <img src="/images/brands/amex.png" alt="American Express" class="payment-icon" />
+          <img src="/images/brands/G-pay.png" alt="Google Pay" class="payment-icon" />
+          <img src="/images/brands/A-pay.png" alt="Apple Pay" class="payment-icon" />
+          <img src="/images/brands/pci.svg" alt="PCI Compliant" class="payment-icon" />
+        </div>
+
+        <!-- Links -->
+        <div class="flex space-x-6">
+          <a href="/privacy" class="text-gray-600 hover:text-[#605bff] text-sm">Privacy</a>
+          <a href="/terms" class="text-gray-600 hover:text-[#605bff] text-sm">Terms</a>
+          <a href="/cookies" class="text-gray-600 hover:text-[#605bff] text-sm">Cookies</a>
         </div>
       </div>
     </div>
   </div>
 </footer>
+
+<style>
+  .payment-icon {
+    height: 1.5rem;
+    width: auto;
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+  }
+  
+  .payment-icon:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+
+  .grayscale {
+    filter: grayscale(100%);
+  }
+
+  /* Additional mobile styles */
+  @media (max-width: 768px) {
+    .mobile-menu-links {
+      padding: 1rem;
+    }
+  }
+
+  .nav-link.active {
+    color: #605bff;
+  }
+
+  .nav-item {
+    padding: 0.25rem 0;
+  }
+</style>

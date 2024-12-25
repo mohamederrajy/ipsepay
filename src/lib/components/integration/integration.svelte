@@ -1,4 +1,9 @@
-<section class="relative py-16 md:py-24 overflow-hidden">
+<script lang="ts">
+  import {page} from "$app/stores";
+  $: routeTd = $page.route.id;
+</script>
+
+<section class="relative py-16 md:py-24 overflow-hidden bg-[#f4f4f459]" id="integration">
   <div class="absolute inset-0 bg-[#F8F9FF]">
     <div class="absolute inset-0" style="background-image: radial-gradient(#E2E7FF 1px, transparent 1px);background-size: 24px 24px;"></div>
   </div>
@@ -12,7 +17,7 @@
       <p class="text-gray-600 max-w-3xl mx-auto mb-8">
         Improve performance and unlock global coverage through a single integration of all payment methods
       </p>
-      <a href="#" class="inline-flex items-center justify-center px-6 py-3 bg-[#0f1728] text-white rounded-full hover:bg-[#0f1728]/90 transition-colors">
+      <a  class="inline-flex items-center justify-center px-6 py-3 bg-[#0f1728] text-white rounded-full hover:bg-[#0f1728]/90 transition-colors" href="/contact" class:active={routeTd === "/contact"}>
         Contact Us
       </a>
     </div>

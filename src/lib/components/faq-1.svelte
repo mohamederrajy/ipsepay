@@ -1,4 +1,4 @@
-<section class="py-16 sm:py-24">
+<section class="py-16 sm:py-24" id="faqs">
   <div class="container" data-aos="fade-up" data-aos-duration="2000">
     <div class="text-center">
       <span class="text-sm font-medium py-1 px-3 rounded-full text-primary bg-primary/10">FAQs</span>

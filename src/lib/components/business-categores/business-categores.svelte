@@ -1,4 +1,4 @@
-<section class="py-16 md:py-24 bg-white overflow-hidden">
+<section class="py-16 md:py-24 bg-white overflow-hidden" id="risk">
   <div class="container mx-auto px-4 md:px-6">
     <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
       <h2 class="text-3xl md:text-5xl font-bold mb-6 text-center">Your business needs in the spotlight</h2>

@@ -1,5 +1,5 @@
 <!-- Pricing Section -->
-<section class="py-16 xl:py-24">
+<section class="py-16 xl:py-24" id="pricing">
     <div class="container">
       <div class="text-center max-w-3xl mx-auto mb-16">
         <h2 class="text-3xl md:text-3xl font-semibold mb-4">Helping You Make Smart Financial Choices</h2>

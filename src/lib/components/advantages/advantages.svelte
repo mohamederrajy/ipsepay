@@ -1,4 +1,4 @@
-<section class="py-16 md:py-24">
+<section class="py-16 md:py-24" id="advantages">
     <div class="container mx-auto px-4 md:px-6">
       <div class="mb-12 md:mb-16">
         <span class="text-[#605bff] font-semibold mb-4 block">ADVANTAGES</span>

@@ -1,4 +1,9 @@
-<section class="py-16 md:py-24 relative overflow-hidden bg-[#f4f4f459]">
+<script lang="ts">
+  import {page} from "$app/stores";
+  $: routeTd = $page.route.id;
+</script>
+
+    <section class="py-16 md:py-24 relative overflow-hidden bg-[#f4f4f459] mt-20">
     <!-- Background dots pattern -->
     <div class="absolute right-0 top-0 w-1/2 h-full opacity-10">
       <svg width="100%" height="100%" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -24,10 +29,10 @@
           </p>
           
           <div class="flex flex-wrap gap-4">
-            <a href="/start" class=" text-white inline-flex items-center px-6 py-3 bg-[#605bff] text-white font-semibold rounded-lg hover:bg-[#3935d2]/90 transition-colors">
+            <a  class=" text-white inline-flex items-center px-6 py-3 bg-[#605bff] text-white font-semibold rounded-lg hover:bg-[#3935d2]/90 transition-colors "  href="/account/signup" class:active={routeTd === "/account/signup"}>
               Start now
             </a>
-            <a href="/pricing" class="inline-flex items-center px-6 py-3 text-[#3935d2] font-semibold hover:bg-gray-50 rounded-lg transition-colors">
+            <a href="#Pricing" class="inline-flex items-center px-6 py-3 text-[#3935d2] font-semibold hover:bg-gray-50 rounded-lg transition-colors">
               Reference pricing
               <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
@@ -40,7 +45,7 @@
         <div class="w-full lg:w-1/2 flex justify-center items-center">
           <div class="relative w-full max-w-[500px]">
             <img 
-              src="/images/imgees1.png" 
+              src="/images/py-hor.png" 
               alt="WooshPay Dashboard Interface" 
               class="w-full h-auto"
               style="mix-blend-mode: multiply;"

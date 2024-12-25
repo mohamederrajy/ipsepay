@@ -4,7 +4,9 @@
     import "swiper/css/autoplay";
     import "jarallax/dist/jarallax.min.css";
     import "$lib/assets/scss/icons.scss";
-    import "$lib/assets/scss/style.scss";
+    import "$lib/assets/scss/style.scss";  
+    import SaasFooter from '$lib/components/footers/saas-footer.svelte';
+
 
     import {onMount} from "svelte";
     import AOS from "aos";
@@ -24,3 +26,7 @@
 </svelte:head>
 
 <slot/>
+
+
+
+<!-- Replace the old footer with SaasFooter -->

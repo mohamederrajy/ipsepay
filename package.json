@@ -34,6 +34,7 @@
     "jarallax": "^2.2.0",
     "preline": "^1.9.0",
     "shufflejs": "^6.1.1",
+    "svelte-meta-tags": "^4.0.4",
     "swiper": "8.4.6"
   }
 }

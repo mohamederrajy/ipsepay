@@ -1,88 +1,312 @@
-<section class="bg-gradient-to-r from-gray-100/70 to-gray-100 relative py-16 sm:py-24">
-  <div class="absolute top-0 inset-x-0 hidden sm:block">
-    <img src="/images/shapes/white-wave.svg" alt="svg" class="w-full -scale-x-100" />
-  </div>
+<style>
+    /* Force white color for 100K plan text */
+    .text-white {
+        color: #fff !important;
+    }
+    
+    :global(.bg-\[\#605bff\]) h4,
+    :global(.bg-\[\#605bff\]) span {
+        color: #fff !important;
+    }
 
-  <div class="py-5">
-    <div class="container relative">
-      <div class="text-center">
-        <h1 class="text-3xl/tight font-medium mb-4">Pricing</h1>
-        <p class="text-gray-500">Pricing that <span class="text-primary">works </span> for everyone</p>
-      </div>
+    a:hover {
+        transform: translateY(-1px);
+    }
 
-      <div class="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-7 mt-14">
-        <!-- 1 -->
-        <div data-aos="fade-up" data-aos-duration="500">
-          <div class="transition-all duration-300 pointer-events-auto hover:shadow-[0_0_1.5rem_0_rgba(0,0,0,.12)] hover:-translate-y-1">
-            <div class="border border-gray-300 bg-white rounded w-full h-full text-center p-5">
-              <span class="text-lg text-primary">Starter</span>
-              <h1 class="text-3xl/tight font-semibold mt-3"><sup class="text-gray-500 text-sm font-normal">$</sup> 49 <sub class="text-gray-500 text-sm font-normal">/month</sub></h1>
-              <div class="border-b border-gray-200 w-full my-7"></div>
-              <div>
-                <div class="flex flex-col gap-4">
-                  <p class="flex items-center text-gray-600 gap-4"><i class="fa-solid fa-check text-green-500 text-lg"></i>Up to 600 minutes usage time</p>
-                  <p class="flex items-center text-gray-600 gap-4"><i class="fa-solid fa-check text-green-500 text-lg"></i>Use for personal only</p>
-                  <p class="flex items-center text-gray-600 gap-4"><i class="fa-solid fa-check text-green-500 text-lg"></i>Add up to 10 attendees</p>
-                  <p class="flex items-center text-gray-600 gap-4"><i class="fa-solid fa-check text-green-500 text-lg"></i>Technical support via email</p>
-                </div>
-                <div class="flex mt-[120px]">
-                  <a href="" class="bg-primary/10 text-primary/90 w-full py-3 rounded-lg border border-transparent hover:border hover:border-primary/20 transition-all duration-300">Purchase Now</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    .important-button {
+        color: #605bff !important;
+    }
+    
+    .important-button svg {
+        color: #605bff !important;
+    }
 
-        <!-- 2 -->
-        <div data-aos="fade-up" data-aos-duration="700">
-          <div class="transition-all duration-300 pointer-events-auto hover:shadow-[0_0_1.5rem_0_rgba(0,0,0,.12)] hover:-translate-y-1">
-            <div class="border border-gray-300 bg-white rounded w-full h-full text-center p-5">
-              <span class="text-lg text-primary">Professional</span>
-              <h1 class="text-3xl/tight font-semibold mt-3"><sup class="text-gray-500 text-sm font-normal">$</sup> 99 <sub class="text-gray-500 text-sm font-normal">/month</sub></h1>
-              <div class="border-b border-gray-200 w-full my-7"></div>
-              <div>
-                <div class="flex flex-col gap-4">
-                  <p class="flex items-center text-gray-600 gap-4"><i class="fa-solid fa-check text-green-500 text-lg"></i>Up to 6000 minutes usage time</p>
-                  <p class="flex items-center text-gray-600 gap-4"><i class="fa-solid fa-check text-green-500 text-lg"></i>Use for personal or a commercial</p>
-                  <p class="flex items-center text-gray-600 gap-4"><i class="fa-solid fa-check text-green-500 text-lg"></i>Add up to 100 attendees</p>
-                  <p class="flex items-center text-gray-600 gap-4"><i class="fa-solid fa-check text-green-500 text-lg"></i>Up to 5 teams</p>
-                  <p class="flex items-center text-gray-600 gap-4"><i class="fa-solid fa-check text-green-500 text-lg"></i>Technical support via email</p>
-                </div>
-                <div class="flex mt-20">
-                  <a href="" class="bg-primary text-white w-full py-3 rounded-lg border border-transparent hover:shadow-lg hover:shadow-primary/30 focus:shadow-none focus:outline focus:outline-primary/40 hover:border hover:border-primary transition-all duration-300">Purchase Now</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    .white-button span,
+    .white-button svg {
+        color: #605bff !important;
+    }
+</style>
 
-        <!-- 3 -->
-        <div data-aos="fade-up" data-aos-duration="900">
-          <div class="transition-all duration-300 pointer-events-auto hover:shadow-[0_0_1.5rem_0_rgba(0,0,0,.12)] hover:-translate-y-1">
-            <div class="border border-gray-300 bg-white rounded w-full h-full text-center p-5">
-              <span class="text-lg text-primary">Enterprise</span>
-              <h1 class="text-3xl/tight font-semibold mt-3"><sup class="text-gray-500 text-sm font-normal">$</sup> 599 <sub class="text-gray-500 text-sm font-normal">/month</sub></h1>
-              <div class="border-b border-gray-200 w-full my-7"></div>
-              <div>
-                <div class="flex flex-col gap-4">
-                  <p class="flex items-center text-gray-600 gap-4"><i class="fa-solid fa-check text-green-500 text-lg"></i>Unlimited usage time</p>
-                  <p class="flex items-center text-gray-600 gap-4"><i class="fa-solid fa-check text-green-500 text-lg"></i>Use for personal or a commercial</p>
-                  <p class="flex items-center text-gray-600 gap-4"><i class="fa-solid fa-check text-green-500 text-lg"></i>Add Unlimited attendees</p>
-                  <p class="flex items-center text-gray-600 gap-4"><i class="fa-solid fa-check text-green-500 text-lg"></i>24x7 Technical support via phone</p>
-                  <p class="flex items-center text-gray-600 gap-4"><i class="fa-solid fa-check text-green-500 text-lg"></i>Technical support via email</p>
-                </div>
-                <div class="flex mt-20">
-                  <a href="" class="bg-primary/10 text-primary/90 w-full py-3 rounded-lg border border-transparent hover:border hover:border-primary/20 transition-all duration-300">Purchase Now</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+<section class="py-16 md:py-24 relative overflow-hidden bg-[#f4f4f459]" id="Pricing">
+    <!-- Background dots pattern -->
+    <div class="absolute right-0 top-0 w-1/2 h-full opacity-10">
+        <svg width="100%" height="100%" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                <circle cx="2" cy="2" r="1" fill="#3935d2"/>
+            </pattern>
+            <rect width="100%" height="100%" fill="url(#dots)"/>
+        </svg>
     </div>
-  </div>
 
-  <div class="absolute bottom-0 inset-x-0 hidden sm:block">
-    <img src="/images/shapes/white-wave.svg" alt="svg" class="w-full scale-x-100 -scale-y-100" />
-  </div>
+    <div class="container mx-auto px-4 md:px-6">
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-5xl font-bold text-[#32325d] mb-4">Simple, transparent pricing</h2>
+            <p class="text-gray-600">Choose the plan that's right for your business</p>
+        </div>
+
+        <!-- Pricing Cards Container - Updated for responsiveness -->
+        <div class="flex flex-col md:flex-row justify-center gap-8 md:gap-4 mx-auto overflow-x-auto">
+            <!-- 10K Plan -->
+            <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100/20 hover:shadow-xl transition-all duration-300 w-full md:w-[340px] mb-8 md:mb-0">
+                <h3 class="text-[#605bff] text-2xl font-bold mb-4">10k \199$</h3>
+                <div class="border-t border-gray-100 my-4"></div>
+                
+                <div class="space-y-6">
+                    <div>
+                        <h4 class="font-semibold mb-3">Features</h4>
+                        <div class="flex items-center gap-2 text-gray-600">
+                            <svg class="w-5 h-5 text-[#605bff]" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            <span>Up to 10,000 transactions</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="font-semibold mb-3">Transaction fees</h4>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2 text-gray-600">
+                                <svg class="w-5 h-5 text-[#605bff]" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                                </svg>
+                                <span>$1 for transactions below $30</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-gray-600">
+                                <svg class="w-5 h-5 text-[#605bff]" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                                </svg>
+                                <span>$2 for transactions up to $60</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-gray-600">
+                                <svg class="w-5 h-5 text-[#605bff]" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                                </svg>
+                                <span>$3 for transactions up to $100</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="font-semibold mb-3">Withdrawal fees</h4>
+                        <div class="flex items-center gap-2 text-gray-600">
+                            <svg class="w-5 h-5 text-[#605bff]" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            <span>3% on each withdrawal</span>
+                        </div>
+                    </div>
+                </div>
+
+                <a 
+                  href="/account/signup" 
+                  class:active={routeId === "/account/signup"}
+                  class="inline-flex items-center justify-center w-full mt-8 bg-[#605bff] text-white font-semibold rounded-lg py-3.5 px-6 hover:bg-[#605bff]/90 transition-all duration-300 shadow-sm hover:shadow-md"
+                >
+                  <span>Signup now</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
+                </a>
+            </div>
+
+            <!-- 25K Plan -->
+            <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100/20 hover:shadow-xl transition-all duration-300 w-full md:w-[340px] mb-8 md:mb-0">
+                <h3 class="text-[#605bff] text-2xl font-bold mb-4">25K \299$</h3>
+                <div class="border-t border-gray-100 my-4"></div>
+                
+                <div class="space-y-6">
+                    <div>
+                        <h4 class="font-semibold mb-3">Features</h4>
+                        <div class="flex items-center gap-2 text-gray-600">
+                            <svg class="w-5 h-5 text-[#605bff]" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            <span>Up to 25,000 transactions</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="font-semibold mb-3">Transaction fees</h4>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2 text-gray-600">
+                                <svg class="w-5 h-5 text-[#605bff]" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                                </svg>
+                                <span>$1 for transactions below $30</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-gray-600">
+                                <svg class="w-5 h-5 text-[#605bff]" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                                </svg>
+                                <span>$2 for transactions up to $60</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-gray-600">
+                                <svg class="w-5 h-5 text-[#605bff]" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                                </svg>
+                                <span>$3 for transactions up to $100</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="font-semibold mb-3">Withdrawal fees</h4>
+                        <div class="flex items-center gap-2 text-gray-600">
+                            <svg class="w-5 h-5 text-[#605bff]" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            <span>3% on each withdrawal</span>
+                        </div>
+                    </div>
+                </div>
+
+                <a 
+                  href="/account/signup" 
+                  class:active={routeId === "/account/signup"}
+                  class="inline-flex items-center justify-center w-full mt-8 bg-[#605bff] text-white font-semibold rounded-lg py-3.5 px-6 hover:bg-[#605bff]/90 transition-all duration-300 shadow-sm hover:shadow-md"
+                >
+                  <span>Signup now</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
+                </a>
+            </div>
+
+            <!-- 50K Plan -->
+            <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100/20 hover:shadow-xl transition-all duration-300 w-full md:w-[340px] mb-8 md:mb-0">
+                <h3 class="text-[#605bff] text-2xl font-bold mb-4">50k \399$</h3>
+                <div class="border-t border-gray-100 my-4"></div>
+                
+                <div class="space-y-6">
+                    <div>
+                        <h4 class="font-semibold mb-3">Features</h4>
+                        <div class="flex items-center gap-2 text-gray-600">
+                            <svg class="w-5 h-5 text-[#605bff]" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            <span>Up to 50,000 transactions</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="font-semibold mb-3">Transaction fees</h4>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2 text-gray-600">
+                                <svg class="w-5 h-5 text-[#605bff]" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                                </svg>
+                                <span>$1 for transactions below $30</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-gray-600">
+                                <svg class="w-5 h-5 text-[#605bff]" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                                </svg>
+                                <span>$2 for transactions up to $60</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-gray-600">
+                                <svg class="w-5 h-5 text-[#605bff]" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                                </svg>
+                                <span>$3 for transactions up to $100</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="font-semibold mb-3">Withdrawal fees</h4>
+                        <div class="flex items-center gap-2 text-gray-600">
+                            <svg class="w-5 h-5 text-[#605bff]" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            <span>3% on each withdrawal</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative z-10">
+                    <a 
+                      href="/account/signup" 
+                      class:active={routeId === "/account/signup"}
+                      class="inline-flex items-center justify-center w-full mt-8 bg-[#605bff] text-white font-semibold rounded-lg py-3.5 px-6 hover:bg-[#605bff]/90 transition-all duration-300 shadow-sm hover:shadow-md relative z-10"
+                    >
+                      <span>Signup now</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                      </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 100K Plan -->
+            <div class="bg-[#605bff] rounded-2xl p-6 shadow-lg border border-white/5 hover:shadow-xl transition-all duration-300 w-[340px]">
+                <h3 class="text-white text-2xl font-bold mb-4">100k \499$</h3>
+                <div class="border-t border-white/20 my-4"></div>
+                
+                <div class="space-y-6">
+                    <div>
+                        <h4 class=" text-white font-semibold mb-3 text-[#fff] ">Features</h4>
+                        <div class="flex items-center gap-2 text-[#fff]">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            <span>Up to 100,000 transactions</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class=" text-white font-semibold mb-3 text-[#fff]">Transaction fees</h4>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2 text-[#fff]">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                                </svg>
+                                <span>$1 for transactions below $30</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-[#fff]">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                                </svg>
+                                <span>$2 for transactions up to $60</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-[#fff]">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                                </svg>
+                                <span>$3 for transactions up to $100</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="text-white font-semibold mb-3 text-[#fff]">Withdrawal fees</h4>
+                        <div class="flex items-center gap-2 text-[#fff]">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            <span>3% on each withdrawal</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative z-10">
+                    <a 
+                      href="/account/signup" 
+                      class:active={routeId === "/account/signup"}
+                      class="white-button inline-flex items-center justify-center w-full mt-8 bg-white rounded-lg py-3.5 px-6 hover:bg-white/90 transition-all duration-300 shadow-sm hover:shadow-md relative z-10"
+                    >
+                      <span class="text-[#605bff] font-semibold">Signup now</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 text-[#605bff]" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                      </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
+
+<script>
+  import { page } from '$app/stores';
+  $: routeId = $page.url.pathname;
+</script>
