@@ -10,8 +10,7 @@
         <div class="order-2 lg:order-1">
           <div class="lg:col-span-3 order-2 lg:order-1 text-center sm:text-start">
             <h1 class="text-3xl/tight sm:text-4xl/tight lg:text-5xl/tight font-semibold mb-7">
-              Payments for your on-demand
-              <span class="relative z-0 after:bg-yellow-200 after:-z-10 after:absolute after:h-6 after:w-full after:bottom-0 after:end-0">Customer</span>
+              Empowering High-Risk Businesses with Smart               <span class="relative z-0 after:bg-[#b2b0fb] -200 after:-z-10 after:absolute after:h-6 after:w-full after:bottom-0 after:end-0">Payment Solution</span>
             </h1>
             <p class="text-gray-500">Experience seamless transactions with IpsePay, the ultimate payment gateway designed for businesses of all sizes. Secure, reliable, and lightning-fast, IpsePay simplifies payments so you can focus on what matters most—growing your business.</p>
             <div class="flex gap-4 mt-7">
@@ -77,8 +76,7 @@
         <div class="order-1 lg:order-2">
           <div class="relative">
             <div class="hidden sm:block">
-              <div class="before:w-24 before:h-24 before:absolute before:-bottom-8 before:-start-8 before:bg-[url('../images/pattern/dot2.svg')]"></div>
-              <div class="after:w-24 after:h-24 after:absolute after:-top-10 after:end-10 2xl:after:end-0 after:rotate-45 after:bg-[url('../images/pattern/dot5.svg')]"></div>
+             
             </div>
 
             <div id="swiper_one" class="swiper 2xl:w-[140%]" data-aos="fade-left" data-aos-duration="1000">
