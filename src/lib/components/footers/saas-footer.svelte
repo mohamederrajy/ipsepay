@@ -39,7 +39,7 @@
 
       <!-- Products -->
       <div>
-        <h3 class="text-lg font-semibold mb-4">Products</h3>
+        <h3 class="text-lg font-semibold mb-4">Online Payment</h3>
         <ul class="space-y-2">
           <li>
             <button 
@@ -226,8 +226,11 @@ PCI Compliance and Security            </a>
         <!-- Links -->
         <div class="flex space-x-6">
           <a href="/privacy" class="text-gray-600 hover:text-[#605bff] text-sm">Privacy</a>
-          <a href="/terms" class="text-gray-600 hover:text-[#605bff] text-sm">Terms</a>
-          <a href="/cookies" class="text-gray-600 hover:text-[#605bff] text-sm">Cookies</a>
+          <a class="text-gray-600 hover:text-[#605bff] text-sm" href="/termsconditions" 
+          class:active={routeTd === "/termsconditions"}>Terms</a>
+
+          <a  href="/cookiepolicy"  class="text-gray-600 hover:text-[#605bff] text-sm" 
+          class:active={routeTd === "/termsconditions"}>Cookies</a>
         </div>
       </div>
     </div>

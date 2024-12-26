@@ -123,10 +123,20 @@
         
 
           <li class="nav-item">
-            <a class="nav-link" href="#risk">High risk merchant</a>
+            <button 
+              class="nav-link" 
+              on:click={() => navigateToSection('risk')}
+            >
+              High risk merchant
+            </button>
           </li>
           <li class="nav-item"> 
-            <a class="nav-link" href="#Onboarding">Onboarding fast</a>
+            <button 
+              class="nav-link" 
+              on:click={() => navigateToSection('Onboarding')}
+            >
+              Onboarding fast
+            </button>
           </li>
           
 
@@ -273,10 +283,20 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="#risk">High risk merchant</a>
+          <button 
+            class="nav-link" 
+            on:click={() => navigateToSection('risk')}
+          >
+            High risk merchant
+          </button>
         </li>
         <li class="nav-item"> 
-          <a class="nav-link" href="#Onboarding">Onboarding fast</a>
+          <button 
+            class="nav-link" 
+            on:click={() => navigateToSection('Onboarding')}
+          >
+            Onboarding fast
+          </button>
         </li>
         
 

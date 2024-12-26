@@ -10,55 +10,81 @@
       <!-- 1 -->
       <div class="hs-accordion active border border-gray-300 rounded-lg" id="hs-basic-heading-one">
         <button class="hs-accordion-toggle inline-flex p-5 items-center justify-between w-full font-semibold text-left transition" data-fc-type="collapse" aria-controls="hs-basic-collapse-one">
-          Can I use this template for my client?
+          What is IpsePay ?
           <span class="material-symbols-rounded text-xl block transition-all hs-accordion-active:rotate-180">
             <i class="fa-solid fa-angle-down"></i>
           </span>
         </button>
         <div id="hs-basic-collapse-one" class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-basic-heading-one">
-          <p class="text-gray-700 dark:text-gray-300 pt-3 p-5">Yup, the marketplace license allows you to use this theme in any end products. For more information on licenses, please refere license terms on marketplace.</p>
+          <p class="text-gray-700 dark:text-gray-300 pt-3 p-5">IpsePay is a secure and reliable payment gateway that specializes in processing payments for high-risk businesses</p>
         </div>
       </div>
 
       <!-- 2 -->
       <div class="hs-accordion border border-gray-300 rounded-lg mt-4" id="hs-basic-heading-two">
         <button class="hs-accordion-toggle inline-flex p-5 items-center justify-between w-full font-semibold text-left transition" data-fc-type="collapse" aria-controls="hs-basic-collapse-two">
-          Can this theme work with WordPress?
+          Which industries does IpsePay support?
           <span class="material-symbols-rounded text-xl block transition-all hs-accordion-active:rotate-180">
             <i class="fa-solid fa-angle-down"></i>
           </span>
         </button>
         <div id="hs-basic-collapse-two" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-basic-heading-two">
-          <p class="text-gray-700 dark:text-gray-300 pt-3 p-5">No. This is a HTML template. It won't directly with WordPress, though you can convert this into WordPress compatible theme.</p>
+          <p class="text-gray-700 dark:text-gray-300 pt-3 p-5">IpsePay supports various industries, including e-commerce, travel, gaming, subscription services, and other high-risk businesses</p>
         </div>
       </div>
 
       <!-- 3 -->
       <div class="hs-accordion border border-gray-300 rounded-lg mt-4" id="hs-basic-heading-three">
         <button class="hs-accordion-toggle inline-flex p-5 items-center justify-between w-full font-semibold text-left transition" data-fc-type="collapse" aria-controls="hs-basic-collapse-three">
-          How do I get help with the theme?
+          How does IpsePay ensure payment security?
           <span class="material-symbols-rounded text-xl block transition-all hs-accordion-active:rotate-180">
             <i class="fa-solid fa-angle-down"></i>
           </span>
         </button>
         <div id="hs-basic-collapse-three" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-basic-heading-three">
-          <p class="text-gray-700 dark:text-gray-300 pt-3 p-5">Use our dedicated support email (support@coderthemes.com) to send your issues or feedback. We are here to help anytime.</p>
+          <p class="text-gray-700 dark:text-gray-300 pt-3 p-5">We use advanced encryption, tokenization, and are fully PCI DSS compliant to safeguard all transactions and sensitive data</p>
         </div>
       </div>
 
       <!-- 4 -->
       <div class="hs-accordion border border-gray-300 rounded-lg mt-4" id="hs-basic-heading-four">
         <button class="hs-accordion-toggle inline-flex p-5 items-center justify-between w-full font-semibold text-left transition" data-fc-type="collapse" aria-controls="hs-basic-collapse-four">
-          Will you regularly give updates of Prompt?
+          Does IpsePay support refunds and chargebacks?
           <span class="material-symbols-rounded text-xl block transition-all hs-accordion-active:rotate-180">
             <i class="fa-solid fa-angle-down"></i>
           </span>
         </button>
         <div id="hs-basic-collapse-four" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-basic-heading-four">
-          <p class="text-gray-700 dark:text-gray-300 pt-3 p-5">Yes, We will update the Prompt regularly. All the future updates would be available without any cost.</p>
+          <p class="text-gray-700 dark:text-gray-300 pt-3 p-5">Yes, our intuitive dashboard allows you to process refunds and manage chargebacks efficientl</p>
         </div>
       </div>
+      <div class="hs-accordion border border-gray-300 rounded-lg mt-4" id="hs-basic-heading-four">
+        <button class="hs-accordion-toggle inline-flex p-5 items-center justify-between w-full font-semibold text-left transition" data-fc-type="collapse" aria-controls="hs-basic-collapse-four">
+          How do I sign up for IpsePay?
+                    <span class="material-symbols-rounded text-xl block transition-all hs-accordion-active:rotate-180">
+            <i class="fa-solid fa-angle-down"></i>
+          </span>
+        </button>
+        <div id="hs-basic-collapse-four" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-basic-heading-four">
+          <p class="text-gray-700 dark:text-gray-300 pt-3 p-5">Simply fill out our online application form, provide the required documentation, and we ll guide you through the onboarding process          </p>
+        </div>
+      </div>
+      <div class="hs-accordion border border-gray-300 rounded-lg mt-4" id="hs-basic-heading-four">
+        <button class="hs-accordion-toggle inline-flex p-5 items-center justify-between w-full font-semibold text-left transition" data-fc-type="collapse" aria-controls="hs-basic-collapse-four">
+          What is the payout time for transactions?
+                    <span class="material-symbols-rounded text-xl block transition-all hs-accordion-active:rotate-180">
+            <i class="fa-solid fa-angle-down"></i>
+          </span>
+        </button>
+        <div id="hs-basic-collapse-four" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-basic-heading-four">
+          <p class="text-gray-700 dark:text-gray-300 pt-3 p-5">IpsePay ensures fast payouts, with funds typically settled in just 48 hours</p>
+        </div>
+      </div>
+
     </div>
+
+     
+  
 
     <div class="text-center mt-14">
       <p class="inline-flex flex-wrap gap-1 bg-gray-100 text-sm rounded-lg py-2 px-5">Still have unanswered questions?<a href="" class="hover:text-primary transition-all"> Contact Us</a></p>
