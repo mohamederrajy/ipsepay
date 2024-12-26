@@ -160,8 +160,10 @@
   <div class="w-full lg:w-1/2 p-4">
     <div class="max-w-md mx-auto h-full flex flex-col">
       <!-- Header -->
-      <div class="flex justify-between items-center mb-4">
-        <img src="/images/lgopis.png" alt="Mollie" class="h-8" />
+      <div class="flex justify-between items-center mb-8">
+        <a href="/" class="hover:opacity-90 transition-opacity">
+          <img src="/images/lgopis.png" alt="Mollie" class="h-8" />
+        </a>
         <a href="/account/login" class="text-gray-600 hover:text-[#605bff] text-sm font-medium bg-gray-100 px-4 py-2 rounded-lg">
           Sign in
         </a>

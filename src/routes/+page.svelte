@@ -1,6 +1,6 @@
 <script lang="ts">
         import Navbar from "$lib/components/navbars/default-navbar.svelte";
-
+    import Testimonial1 from "$lib/components/testimonials/testimonial-1.svelte";
     import PageTitle from "$lib/components/page-title.svelte";
     import SassHero from "$lib/components/heros/saas-hero.svelte";
     import Clients1 from "$lib/components/clients-1.svelte";
@@ -21,6 +21,9 @@
     import Internationalisation from "$lib/components/internationalisation/internationalisation.svelte";
     import OnboardingFlow from "$lib/components/onboardingflow/onboardingflow.svelte";
     import PayMethoes from "$lib/components/payment-methos/pay-methoes.svelte";
+    import { onMount } from 'svelte';
+  
+  
   </script>
   
   <PageTitle title="Ipsepay" />
@@ -47,8 +50,10 @@
   
 <Pricing1 />
 
-  
-  
+ 
+ 
+
+<Testimonial1/>
 
   
  
