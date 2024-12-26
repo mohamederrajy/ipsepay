@@ -6,6 +6,7 @@
     import "$lib/assets/scss/icons.scss";
     import "$lib/assets/scss/style.scss";  
     import SaasFooter from '$lib/components/footers/saas-footer.svelte';
+    import TidioChat from '$lib/components/TidioChat.svelte';
 
 
     import {onMount} from "svelte";
@@ -26,6 +27,7 @@
 </svelte:head>
 
 <slot/>
+<TidioChat />
 
 
 

@@ -1,14 +1,38 @@
 <script lang="ts">
-  import {jarallax} from "jarallax";
-  import PageTitle from "$lib/components/page-title.svelte";
-  import CompanyHero from "$lib/components/heros/company-hero.svelte";
-  import {onMount} from "svelte";
+  const teamData = [
+    {
+      image: "/images/avatars/img-1.jpg",
+      name: "Ana Russo",
+      role: "CEO",
+    },
+    {
+      image: "/images/avatars/img-2.jpg",
+      name: "Danette Payne",
+      role: "CTO",
+    },
+    {
+      image: "/images/avatars/img-3.jpg",
+      name: "Tammy Ward",
+      role: "VP, Product Development",
+    },
+    {
+      image: "/images/avatars/img-4.jpg",
+      name: "Paul Moore",
+      role: "Back-End Developer",
+    },
+    {
+      image: "/images/avatars/img-5.jpg",
+      name: "Harry Burris",
+      role: "PHP Developer",
+    },
+    {
+      image: "/images/avatars/img-6.jpg",
+      name: "Patricia Ferraro",
+      role: "Web Designer",
+    }
+  ];
 
-  onMount(() => {
-    jarallax(document.querySelector(".jarallax"));
-  });
-
-  const counterData = [
+  const stats = [
     {
       count: "100+",
       text: "Products Built",
@@ -28,215 +52,86 @@
       count: "10+",
       text: "Awards Won",
       subTxt: "on Awwwards, CSS Design Awards",
-    },
-  ];
-
-  const avatar1 = "/images/avatars/img-1.jpg";
-  const avatar2 = "/images/avatars/img-2.jpg";
-  const avatar3 = "/images/avatars/img-3.jpg";
-  const avatar4 = "/images/avatars/img-4.jpg";
-  const avatar5 = "/images/avatars/img-5.jpg";
-  const avatar6 = "/images/avatars/img-6.jpg";
-  const avatar7 = "/images/avatars/img-7.jpg";
-  const avatar8 = "/images/avatars/img-8.jpg";
-
-  const teamData = [
-    {
-      image: avatar1,
-      name: "Ana Russo",
-      role: "CEO",
-    },
-    {
-      image: avatar2,
-      name: "Danette Payne",
-      role: "CTO",
-    },
-    {
-      image: avatar3,
-      name: "Tammy Ward",
-      role: "VP, Product Development",
-    },
-    {
-      image: avatar4,
-      name: "Paul Moore",
-      role: "Back-End Developer",
-    },
-    {
-      image: avatar5,
-      name: "Harry Burris",
-      role: "PHP Developer",
-    },
-    {
-      image: avatar6,
-      name: "Patricia Ferraro",
-      role: "Web Designer",
-    },
-    {
-      image: avatar7,
-      name: "Robert Smith",
-      role: "Graphic Designer",
-    },
-    {
-      image: avatar8,
-      name: "Lindsay Clark",
-      role: "Web Designer",
-    },
-    {
-      image: avatar1,
-      name: "Lindsay Clark",
-      role: "Front-End Developer",
-    },
-    {
-      image: avatar2,
-      name: "Ernest Griffith",
-      role: "PHP Developer",
-    },
-    {
-      image: avatar3,
-      name: "Cecelia Poole",
-      role: "Back-End Developer",
-    },
-    {
-      image: avatar4,
-      name: "Morris Hall",
-      role: "Graphic Designer",
-    },
+    }
   ];
 </script>
 
-<PageTitle title="About Company" />
-
-<CompanyHero />
-
-<section class="lg:py-24 py-16">
-  <div class="container" data-aos="fade-up">
-    <div class="grid lg:grid-cols-3 grid-cols-1 gap-10">
-      <div class="flex flex-col items-center lg:items-start">
-        <div class="border-t-2 border-gray-300 w-1/5 mb-7"></div>
-        <h1 class="text-3xl">About Us</h1>
-      </div>
-
-      <div>
-        <p class="text-sm/relaxed tracking-wider text-gray-600">Temporibus autem quibusdam et aut as officiis debitis aut rerum necessitatibus saepe eveniet voluptates repudiandae sint et molestiae non recusandae itaque earum rerum hic tenetur a sapiente delectus reiciendis.</p>
-      </div>
-
-      <div>
-        <p class="text-sm/relaxed tracking-wider text-gray-600">Temporibus autem quibusdam et aut as officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae itaque earum rerum hic tenetur a sapiente delectus reiciendis.</p>
-      </div>
-    </div>
-
-    <div class="lg:mt-5">
-      <div class="grid lg:grid-cols-3 grid-cols-1 gap-10">
-        <div></div>
-
-        <div class="lg:col-span-2">
-          <p class="text-sm/relaxed tracking-wider text-gray-600">Temporibus autem quibusdam et aut as officiis debitis aut rerum necessitatibus saepe eveniet voluptates repudiandae sint et molestiae non recusandae itaque earum rerum hic tenetur a sapiente delectus reiciendis.</p>
-        </div>
-      </div>
+<main class="pt-20">
+  <!-- Title Section -->
+  <div class="relative bg-cover bg-center" style="background-image: url('https://coderthemes.com/wb/appoo/images/heros/hero-2-bg.png')">
+    <div class="container mx-auto px-4 py-16 sm:py-20">
+      <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center" style="color: #32325d">About Our Company</h1>
     </div>
   </div>
-</section>
 
-<!-- Features Section -->
-<section class="lg:py-24 py-16">
-  <div class="container" data-aos="fade-up">
-    <div class="grid lg:grid-cols-2 gap-14">
-      <div class="order-2 lg:order-1">
-        <h1 class="text-3xl mb-7">Build amazing things together</h1>
-        <p class="text-sm/relaxed tracking-wider text-gray-600 mb-5">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam beatae vitae dicta sunt explicabo.</p>
-        <p class="text-sm/relaxed tracking-wider text-gray-600 mb-7">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam beatae vitae dicta sunt explicabo.</p>
-
-        <div class="flex items-center">
-          <a href="" class="text-primary">Learn more <i class="fa-solid fa-arrow-right ms-2"></i></a>
-        </div>
-      </div>
-
-      <div class="order-1 lg:order-2">
-        <img src="/images/photos/14.jpg" alt="photo-3" />
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Counter Section -->
-<section class="bg-gradient-to-r from-gray-200/50 to-gray-100/50 relative lg:py-24 py-16">
-  <div class="absolute top-0 inset-x-0 hidden sm:block">
-    <img src="/images/shapes/white-wave.svg" alt="white-wave-svg" class="w-full -scale-x-100" />
-  </div>
-
-  <div class="py-10">
-    <div class="container" data-aos="fade-up">
-      <div class="text-center">
-        <span class="text-sm bg-primary/10 text-primary rounded-full px-3 py-1">Stats</span>
-        <h1 class="text-3xl/tight font-medium mt-3">Prompt In Numbers</h1>
-      </div>
-
-      <div class="mt-14">
-        <div class="grid xl:grid-cols-4 sm:grid-cols-2 text-center gap-10 lg:gap-6">
-          {#each counterData as item, idx (idx)}
-            <div>
-              <span class="text-3xl">{item.count}</span>
-              <h1 class="mt-3 mb-1">{item.text}</h1>
-              <p class="text-gray-500">{item.subTxt}</p>
-            </div>
-          {/each}
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Our team Section -->
-<section class="lg:py-24 py-16">
-  <div class="container">
-    <div class="text-center">
-      <span class="text-sm bg-primary/10 text-primary/40 rounded-full px-3 py-1">Our Team</span>
-      <h1 class="text-3xl/tight font-medium mt-3 mb-4">Meet Our Team</h1>
-      <p class="text-gray-500">Start working with<span class="text-primary"> Prompt </span>to manage your workforce better.</p>
+  <!-- Content Section -->
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16">
+    <!-- About Section -->
+    <div class="max-w-4xl mx-auto mb-16">
+      <h2 class="text-xl sm:text-2xl font-semibold text-gray-900 mb-6">Who We Are</h2>
+      <p class="text-gray-600 mb-8">
+        IpsePay is a leading payment solutions provider specializing in high-risk merchant services. 
+        With years of experience in the industry, we've built a reputation for reliability, security, 
+        and exceptional customer service.
+      </p>
+      <p class="text-gray-600">
+        Our mission is to provide businesses with seamless payment processing solutions while ensuring 
+        the highest levels of security and compliance with international standards.
+      </p>
     </div>
 
-    <div class="mt-14">
-      <div class="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-12" data-aos="fade-up">
-        {#each teamData as member, idx (idx)}
-          <div>
-            <div class="flex gap-4 items-center">
-              <img src={member.image} alt="avatar" class="h-16 w-16 rounded-md" />
+    <!-- Stats Section -->
+    <div class="bg-gray-50 rounded-lg p-8 mb-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {#each stats as stat}
+          <div class="text-center">
+            <h3 class="text-3xl font-bold text-primary mb-2">{stat.count}</h3>
+            <p class="text-gray-900 font-medium mb-1">{stat.text}</p>
+            <p class="text-gray-500 text-sm">{stat.subTxt}</p>
+          </div>
+        {/each}
+      </div>
+    </div>
+
+    <!-- Team Section -->
+    <div class="mb-16">
+      <h2 class="text-xl sm:text-2xl font-semibold text-gray-900 mb-8 text-center">Our Leadership Team</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {#each teamData as member}
+          <div class="bg-white rounded-lg shadow-sm p-6">
+            <div class="flex items-center gap-4">
+              <img src={member.image} alt={member.name} class="w-16 h-16 rounded-lg object-cover"/>
               <div>
-                <h6 class="font-medium">{member.name}</h6>
-                <p class="text-gray-500">{member.role}</p>
+                <h3 class="font-medium text-gray-900">{member.name}</h3>
+                <p class="text-gray-500 text-sm">{member.role}</p>
               </div>
             </div>
           </div>
         {/each}
       </div>
     </div>
-  </div>
-</section>
 
-<!-- Clients logo Section -->
-<section class="lg:pb-20 py-16">
-  <div class="container">
-    <div class="text-center">
-      <span class="text-sm bg-primary/10 text-primary rounded-full px-3 py-1">Investor</span>
-      <h1 class="text-3xl/tight font-medium mt-3 mb-4">We are backed by</h1>
-      <p class="text-gray-500">100+ clients trust<span class="text-primary"> Prompt </span>to drive perfomance & engagement.</p>
-    </div>
-
-    <div class="mt-14">
-      <div class="grid md:grid-cols-4 grid-cols-2 gap-5 items-center" data-aos="fade-up">
-        <div>
-          <img src="/images/brands/amazon.svg" alt="brand-logo" class="w-32 mx-auto" />
-        </div>
-        <div>
-          <img src="/images/brands/google.svg" alt="brand-logo" class="w-32 mx-auto" />
-        </div>
-        <div>
-          <img src="/images/brands/paypal.svg" alt="brand-logo" class="w-32 mx-auto" />
-        </div>
-        <div>
-          <img src="/images/brands/shopify.svg" alt="brand-logo" class="w-32 mx-auto" />
-        </div>
+    <!-- Partners Section -->
+    <div>
+      <h2 class="text-xl sm:text-2xl font-semibold text-gray-900 mb-8 text-center">Trusted By Leading Brands</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
+        <img src="/images/brands/amex.png" alt="Amazon" class="h-8 w-auto mx-auto"/>
+        <img src="/images/brands/mscrad.png" alt="Google" class="h-8 w-auto mx-auto"/>
+        <img src="/images/brands/woocommerce.png" alt="PayPal" class="h-8 w-auto mx-auto"/>
+        <img src="/images/brands/Shopy.png" alt="Shopify" class="h-8 w-auto mx-auto"/>
       </div>
     </div>
   </div>
-</section>
+</main>
+
+<style>
+  :global(.bg-primary) {
+    background-color: #605bff;
+  }
+  :global(.text-primary) {
+    color: #605bff;
+  }
+  :global(.hover\:bg-primary:hover) {
+    background-color: #605bff;
+  }
+</style>
