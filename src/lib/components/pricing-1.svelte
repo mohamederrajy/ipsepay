@@ -25,6 +25,19 @@
     .white-button svg {
         color: #605bff !important;
     }
+
+    /* Add custom shadow for cards */
+    div[class*="bg-white"], div[class*="bg-[#605bff]"] {
+        box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.06), 
+                    0 1px 2px -1px rgba(0, 0, 0, 0.04);
+    }
+
+    /* Enhanced hover effect */
+    div[class*="bg-white"]:hover, div[class*="bg-[#605bff]"]:hover {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 
+                    0 2px 4px -1px rgba(0, 0, 0, 0.04);
+        transform: translateY(-4px);
+    }
 </style>
 
 <section class="py-16 md:py-24 relative overflow-hidden bg-[#f4f4f459]" id="Pricing">
@@ -45,10 +58,13 @@
             <p class="text-gray-600">Choose the plan that's right for your business</p>
         </div>
 
-        <!-- Pricing Cards Container - Updated for responsiveness -->
-        <div class="flex flex-col md:flex-row justify-center gap-8 md:gap-4 mx-auto overflow-x-auto">
+        <!-- Pricing Cards Container -->
+        <div class="flex flex-col md:flex-row justify-center gap-8 md:gap-6 mx-auto overflow-x-auto mb-16">
             <!-- 10K Plan -->
-            <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100/20 hover:shadow-xl transition-all duration-300 w-full md:w-[340px] mb-8 md:mb-0">
+            <div class="bg-white rounded-2xl p-8 shadow-md border border-gray-200 
+                        hover:shadow-lg hover:-translate-y-1 
+                        transition-all duration-200 ease-in-out 
+                        w-full md:w-[340px] mb-8 md:mb-0">
                 <h3 class="text-[#605bff] text-2xl font-bold mb-4">10k \199$</h3>
                 <div class="border-t border-gray-100 my-4"></div>
                 
@@ -111,7 +127,10 @@
             </div>
 
             <!-- 25K Plan -->
-            <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100/20 hover:shadow-xl transition-all duration-300 w-full md:w-[340px] mb-8 md:mb-0">
+            <div class="bg-white rounded-2xl p-8 shadow-md border border-gray-200 
+                        hover:shadow-lg hover:-translate-y-1 
+                        transition-all duration-200 ease-in-out 
+                        w-full md:w-[340px] mb-8 md:mb-0">
                 <h3 class="text-[#605bff] text-2xl font-bold mb-4">25K \299$</h3>
                 <div class="border-t border-gray-100 my-4"></div>
                 
@@ -174,7 +193,10 @@
             </div>
 
             <!-- 50K Plan -->
-            <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100/20 hover:shadow-xl transition-all duration-300 w-full md:w-[340px] mb-8 md:mb-0">
+            <div class="bg-white rounded-2xl p-8 shadow-md border border-gray-200 
+                        hover:shadow-lg hover:-translate-y-1 
+                        transition-all duration-200 ease-in-out 
+                        w-full md:w-[340px] mb-8 md:mb-0">
                 <h3 class="text-[#605bff] text-2xl font-bold mb-4">50k \399$</h3>
                 <div class="border-t border-gray-100 my-4"></div>
                 
@@ -239,7 +261,10 @@
             </div>
 
             <!-- 100K Plan -->
-            <div class="bg-[#605bff] rounded-2xl p-6 shadow-lg border border-white/5 hover:shadow-xl transition-all duration-300 w-[340px]">
+            <div class="bg-[#605bff] rounded-2xl p-8 shadow-md border border-white/10 
+                        hover:shadow-lg hover:-translate-y-1 
+                        transition-all duration-200 ease-in-out 
+                        w-[340px] mb-8 md:mb-0">
                 <h3 class="text-white text-2xl font-bold mb-4">100k \499$</h3>
                 <div class="border-t border-white/20 my-4"></div>
                 

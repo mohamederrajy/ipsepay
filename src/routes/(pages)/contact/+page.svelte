@@ -1,3 +1,51 @@
+<script>
+  import { onMount } from 'svelte';
+  
+  let sending = false;
+  let success = false;
+  let error = false;
+  let errorMessage = '';
+
+  onMount(() => {
+    // Load EmailJS SDK
+    const script = document.createElement('script');
+    script.src = "https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js";
+    document.body.appendChild(script);
+
+    script.onload = () => {
+      emailjs.init("AWnbOka0ZUhEsheWW");
+    };
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    sending = true;
+    error = false;
+    success = false;
+    errorMessage = '';
+
+    const form = e.target;
+    
+    try {
+      const result = await emailjs.sendForm(
+        'service_82d0mjf',
+        'template_3dp5m8f',
+        form,
+        'AWnbOka0ZUhEsheWW'
+      );
+      console.log('Success:', result);
+      success = true;
+      form.reset();
+    } catch (err) {
+      console.error('Failed to send email:', err);
+      error = true;
+      errorMessage = err.text || err.message || 'Unknown error occurred';
+    } finally {
+      sending = false;
+    }
+  };
+</script>
+
 <main class="pt-20">
   <!-- Title Section -->
   <div class="relative bg-cover bg-center" style="background-image: url('https://coderthemes.com/wb/appoo/images/heros/hero-2-bg.png')">
@@ -13,26 +61,28 @@
       <div class="bg-white rounded-lg shadow-sm p-6 sm:p-8 mb-8">
         <h2 class="text-xl sm:text-2xl font-semibold text-gray-900 mb-6">Get in Touch</h2>
         
-        <form class="space-y-6">
+        <form class="space-y-6" on:submit={handleSubmit}>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2" for="firstName">
+              <label class="block text-sm font-medium text-gray-700 mb-2" for="from_name">
                 First Name <span class="text-red-500">*</span>
               </label>
               <input
                 type="text"
-                id="firstName"
+                name="from_name"
+                id="from_name"
                 class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary text-sm"
                 required
               />
             </div>
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2" for="lastName">
+              <label class="block text-sm font-medium text-gray-700 mb-2" for="last_name">
                 Last Name <span class="text-red-500">*</span>
               </label>
               <input
                 type="text"
-                id="lastName"
+                name="last_name"
+                id="last_name"
                 class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary text-sm"
                 required
               />
@@ -40,12 +90,13 @@
           </div>
 
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2" for="email">
+            <label class="block text-sm font-medium text-gray-700 mb-2" for="reply_to">
               Email <span class="text-red-500">*</span>
             </label>
             <input
               type="email"
-              id="email"
+              name="reply_to"
+              id="reply_to"
               class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary text-sm"
               required
             />
@@ -57,20 +108,38 @@
             </label>
             <textarea
               id="message"
+              name="message"
               rows="4"
               class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary text-sm"
               required
             ></textarea>
           </div>
 
+          {#if success}
+            <div class="p-4 bg-green-50 text-green-700 rounded-md">
+              Thank you! Your message has been sent successfully.
+            </div>
+          {/if}
+
+          {#if error}
+            <div class="p-4 bg-red-50 text-red-700 rounded-md">
+              Sorry, there was an error sending your message: {errorMessage}
+            </div>
+          {/if}
+
           <button
             type="submit"
-            class="w-full sm:w-auto px-6 py-3 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors duration-200 text-sm font-medium flex items-center justify-center"
+            disabled={sending}
+            class="w-full sm:w-auto px-6 py-3 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors duration-200 text-sm font-medium flex items-center justify-center disabled:opacity-70"
           >
-            Send Message
-            <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M3,13.5L19,12L3,10.5V3.7732928C3,3.70255344 3.01501031,3.63261921 3.04403925,3.56811047C3.15735832,3.3162903 3.45336217,3.20401298 3.70518234,3.31733205L21.9867539,11.5440392C22.098181,11.5941815 22.1873901,11.6833905 22.2375323,11.7948177C22.3508514,12.0466378 22.2385741,12.3426417 21.9867539,12.4559608L3.70518234,20.6826679C3.64067359,20.7116969 3.57073936,20.7267072 3.5,20.7267072C3.22385763,20.7267072 3,20.5028496 3,20.2267072V13.5Z" fill="currentColor"/>
-            </svg>
+            {#if sending}
+              Sending...
+            {:else}
+              Send Message
+              <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3,13.5L19,12L3,10.5V3.7732928C3,3.70255344 3.01501031,3.63261921 3.04403925,3.56811047C3.15735832,3.3162903 3.45336217,3.20401298 3.70518234,3.31733205L21.9867539,11.5440392C22.098181,11.5941815 22.1873901,11.6833905 22.2375323,11.7948177C22.3508514,12.0466378 22.2385741,12.3426417 21.9867539,12.4559608L3.70518234,20.6826679C3.64067359,20.7116969 3.57073936,20.7267072 3.5,20.7267072C3.22385763,20.7267072 3,20.5028496 3,20.2267072V13.5Z" fill="currentColor"/>
+              </svg>
+            {/if}
           </button>
         </form>
       </div>

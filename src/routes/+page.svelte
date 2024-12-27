@@ -3,8 +3,6 @@
     import Testimonial1 from "$lib/components/testimonials/testimonial-1.svelte";
     import PageTitle from "$lib/components/page-title.svelte";
     import SassHero from "$lib/components/heros/saas-hero.svelte";
-    import Clients1 from "$lib/components/clients-1.svelte";
-    import Testimonial2 from "$lib/components/testimonials/testimonial-2.svelte";
     import Pricing1 from "$lib/components/pricing-1.svelte";
     import Faq from "$lib/components/faq-1.svelte";
     import SaasFooter from "$lib/components/footers/saas-footer.svelte";
@@ -25,41 +23,23 @@
   
   
   </script>
-  
   <PageTitle title="Ipsepay" />
   <Navbar/>
   <SassHero />
   <ScrollingImages/>
   <SmartSimple/>
   <ImageText/>
-  
-<BusinessCategores/>
-<PayMethoes/>
-
-
-
-<Advantages/>
-<Integration/>
-<OnboardingFlow/>
-
-<ImageLeft/>
-
-<Pricing/>
-
-
-  
-<Pricing1 />
-
- 
- 
-
-<Testimonial1/>
-
-  
- 
+  <BusinessCategores/>
+  <PayMethoes/>
+  <Advantages/>
+  <Integration/>
+  <OnboardingFlow/>
+  <ImageLeft/>
+  <Pricing/>
+  <Pricing1 />
+  <Testimonial1/>
   <Faq />
   <Internationalisation/>
-  
   <SaasFooter />
   
 

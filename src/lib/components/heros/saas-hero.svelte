@@ -15,7 +15,7 @@
             <p class="text-gray-500">Experience seamless transactions with IpsePay, the ultimate payment gateway designed for businesses of all sizes. Secure, reliable, and lightning-fast, IpsePay simplifies payments so you can focus on what matters most—growing your business.</p>
             <div class="flex gap-4 mt-7">
               <button class="flex items-center">
-                <a class="bg-primary text-white rounded-md hover:shadow-lg hover:shadow-primary/30 focus:shadow-none focus:outline focus:outline-primary/40 transition-all duration-500 py-2 px-4" href="/account/signup" class:active={routeTd === "/account/signup"}>Sing up now </a>
+                <a class="bg-primary text-white rounded-md hover:shadow-lg hover:shadow-primary/30 focus:shadow-none focus:outline focus:outline-primary/40 transition-all duration-500 py-2 px-4" href="/account/signup" class:active={routeTd === "/account/signup"}>Get Started</a>
               </button>
               <button class="flex items-center">
                 <a class="border border-primary text-primary rounded-md hover:bg-primary hover:text-white hover:shadow-lg hover:shadow-primary/30 focus:shadow-none focus:outline focus:outline-primary/40 transition-all duration-500 py-2 px-4" href="/account/login" class:active={routeTd === "/account/login"}>Login </a>

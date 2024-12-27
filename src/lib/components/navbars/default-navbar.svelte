@@ -242,7 +242,7 @@
 
       <!-- Download Button -->
       <div class="hidden lg:flex items-center ms-3">
-        <a class="bg-primary text-white px-4 py-2 rounded inline-flex items-center text-sm" href="/account/signup" class:active={routeTd === "/account/signup"}>Singup now </a>
+        <a class="bg-primary text-white px-4 py-2 rounded inline-flex items-center text-sm" href="/account/signup" class:active={routeTd === "/account/signup"}>Get Started</a>
       </div>
       <div class="hidden lg:flex items-center ms-3">
         <a class=" border border-primary text-primary  text-white px-4 py-2 rounded inline-flex items-center text-sm" href="/account/login" class:active={routeTd === "/account/login"}>Login  </a>
@@ -400,7 +400,7 @@
 
     <!-- Mobile Menu Download Button (Footer) -->
     <div class="p-6 flex items-center justify-center">
-      <a class="bg-primary w-full text-white p-3 rounded flex items-center justify-center text-sm" href="/account/signup" class:active={routeTd === "/account/signup"}>Singup now</a>
+      <a class="bg-primary w-full text-white p-3 rounded flex items-center justify-center text-sm" href="/account/signup" class:active={routeTd === "/account/signup"}>Get Started      </a>
     </div>
     <div class="p-6 flex items-center justify-center">
       <a  class=" border border-primary text-primary w-full text-white p-3 rounded flex items-center justify-center text-sm" href="/account/login" class:active={routeTd === "/account/login"}>Login</a>

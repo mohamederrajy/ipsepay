@@ -7,6 +7,7 @@
     import "$lib/assets/scss/style.scss";  
     import SaasFooter from '$lib/components/footers/saas-footer.svelte';
     import TidioChat from '$lib/components/TidioChat.svelte';
+    import BackToTop from '$lib/components/back-to-top.svelte';
 
 
     import {onMount} from "svelte";
@@ -29,6 +30,6 @@
 <slot/>
 <TidioChat />
 
-
+<BackToTop />
 
 <!-- Replace the old footer with SaasFooter -->

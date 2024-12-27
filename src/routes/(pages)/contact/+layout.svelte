@@ -3,6 +3,5 @@
   import BackToTop from "$lib/components/back-to-top.svelte";
 </script>
 
-<Navbar />
 <slot />
 <BackToTop />

@@ -27,6 +27,17 @@
   });
 </script>
 
-<button data-toggle="back-to-top" class="fixed text-sm rounded-full z-10 bottom-5 end-5 h-9 w-9 text-center bg-primary/20 text-primary flex justify-center items-center">
+<button 
+  data-toggle="back-to-top" 
+  class="fixed text-sm rounded-full z-10 bottom-5 start-5 h-9 w-9 text-center bg-primary/20 text-primary flex justify-center items-center hidden"
+>
   <i class="fa-solid fa-arrow-up text-base"></i>
 </button>
+
+<style>
+  /* Ensure left positioning for RTL support */
+  button {
+    left: 1.25rem;
+    right: auto;
+  }
+</style>
