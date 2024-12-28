@@ -3,5 +3,5 @@
 </script>
 
 <svelte:head>
-  <title>{title} | Prompt - Tailwind CSS Multipurpose Landing Page Template</title>
+  <title>{title} | High Risk Payment Gateway </title>
 </svelte:head>

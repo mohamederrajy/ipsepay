@@ -23,7 +23,7 @@
   
   
   </script>
-  <PageTitle title="Ipsepay" />
+  <PageTitle title="Ipsepay " />
   <Navbar/>
   <SassHero />
   <ScrollingImages/>

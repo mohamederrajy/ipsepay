@@ -28,7 +28,7 @@
     
     try {
       const result = await emailjs.sendForm(
-        'service_82d0mjf',
+        'service_bw7se4l',
         'template_3dp5m8f',
         form,
         'AWnbOka0ZUhEsheWW'

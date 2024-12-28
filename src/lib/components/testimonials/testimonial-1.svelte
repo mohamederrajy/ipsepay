@@ -113,7 +113,7 @@
   });
 </script>
 
-<section class="w-full bg-white py-16 overflow-hidden">
+<section class="w-full bg-white py-16 overflow-hidden" id="WhatOurClientsSay">
   <h2 class="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12 text-[#32325d] px-4">What Our Clients Say</h2>
   
   <div class="relative w-full overflow-hidden">

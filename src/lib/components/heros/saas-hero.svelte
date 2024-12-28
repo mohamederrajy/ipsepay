@@ -3,9 +3,14 @@
 </script>
 
 <!-- Rest of your component code -->
-<section class="bg-gradient-to-t from-slate-500/10 relative">
+<section class="bg-gradient-to-t from-slate-500/10 relative" 
+         style="background-image: url('/images/hero/hero-s-bg.png'); 
+                background-size: cover; 
+                background-position: center; 
+                background-repeat: no-repeat;">
+  <div class="absolute inset-0 bg-gradient-to-t from-white/90 to-transparent"></div>
   <section class="relative pt-44 pb-36">
-    <div class="container">
+    <div class="container relative z-10">
       <div class="grid lg:grid-cols-2 grid-cols-1 gap-16 items-center">
         <div class="order-2 lg:order-1">
           <div class="lg:col-span-3 order-2 lg:order-1 text-center sm:text-start">
@@ -121,3 +126,11 @@
     <img src="/images/shapes/white-wave.svg" alt="white-wave-svg" class="w-full -scale-x-100 -scale-y-100" />
   </div>
 </section>
+
+<style>
+  /* Optional: Add any additional styling for the background */
+  section {
+    position: relative;
+    isolation: isolate;
+  }
+</style>

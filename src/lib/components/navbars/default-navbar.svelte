@@ -199,6 +199,16 @@
                 >
                   Internationalisation
                 </button>
+                <hr class="-mx-2 my-2" />
+              </div>
+
+              <div class="nav-item">
+                <button 
+                  class="nav-link" 
+                  on:click={() => navigateToSection('WhatOurClientsSay')}
+                >
+                Customer Feedback
+                </button>
               </div>
 
             </div>
@@ -354,6 +364,14 @@
                 on:click={() => navigateToSection('internationalisation')}
               >
                 Internationalisation
+              </button>
+            </div>
+            <div class="nav-item">
+              <button 
+                class="nav-link" 
+                on:click={() => navigateToSection('WhatOurClientsSay')}
+              >
+              Customer Feedback
               </button>
             </div>
           </ul>
