@@ -123,7 +123,7 @@
           </li>
           
           <li class="nav-item hs-dropdown relative inline-flex [--trigger:hover]">
-            <a href="javascript:void(0);" class="nav-link after:absolute hover:after:-bottom-10 after:inset-0 hs-dropdown-toggle" data-fc-type="dropdown">
+            <a href="javascript:void(0);" class="nav-link after:absolute hover:after:-bottom-10 after:inset-0 hs-dropdown-toggle " data-fc-type="dropdown">
               Businesses we serve <i class="fa-solid fa-angle-down ms-2 align-middle"></i>
             </a>
 
@@ -131,34 +131,43 @@
               <div class="grid grid-cols-4 gap-16">
                 <!-- Left Column -->
                 <div>
-                  <h2 class="text-[1.9rem] text-gray-900 leading-tight mb-4">Businesses we serve</h2>
+                  <h2 class="text-[1.9rem]  leading-tight mb-4 text-[#32325d]">Businesses we serve</h2>
                   <p class="text-l text-gray-600">Explore how our platform can unlock growth for your business type.</p>
                 </div>
 
                 <!-- Middle Column -->
                 <div>
-                  <h2 class="text-xl font-semibold mb-4">Types</h2>
+                  <h2 class="text-xl font-semibold mb-4 text-[#32325d] ">Types</h2>
                   <div class="space-y-6">
                     <div>
-                      <button 
-                        class="text-[#605bff] font-medium mb-1 block hover:text-[#605bff]/80" 
-                        on:click={() => navigateToSection('digital-business')}
-                      >Digital businesses</button>
+                      <a 
+                        href="/industries/digital-businesses" 
+                        class="text-[#605bff] font-medium mb-1 block hover:text-[#605bff]/80"
+                      >Digital businesses</a>
                       <p class="text-sm text-gray-600">Software, social, gaming, digital media</p>
                     </div>
 
                     <div>
-                      <button class="text-[#605bff] font-medium mb-1 block transition-colors hover:text-[#605bff]/80" on:click={() => navigateToSection('mobility')}>Mobility</button>
+                      <a 
+                        href="/industries/mobility" 
+                        class="text-[#605bff] font-medium mb-1 block hover:text-[#605bff]/80"
+                      >Mobility</a>
                       <p class="text-sm text-gray-600">Transportation of goods and people</p>
                     </div>
 
                     <div>
-                      <button class="text-[#605bff] font-medium mb-1 block transition-colors hover:text-[#605bff]/80" on:click={() => navigateToSection('retail')}>Retail</button>
+                      <a 
+                        href="/industries/retail" 
+                        class="text-[#605bff] font-medium mb-1 block hover:text-[#605bff]/80"
+                      >Retail</a>
                       <p class="text-sm text-gray-600">Jewelry, apparel, arts, cosmetics, electronics, homeware, grocery</p>
                     </div>
 
                     <div>
-                      <button class="text-[#605bff] font-medium mb-1 block transition-colors hover:text-[#605bff]/80" on:click={() => navigateToSection('platforms')}>Platforms & Marketplaces</button>
+                      <a 
+                        href="/industries/platform-payments" 
+                        class="text-[#605bff] font-medium mb-1 block hover:text-[#605bff]/80"
+                      >Platforms & Marketplaces</a>
                       <p class="text-sm text-gray-600">Connecting buyers and sellers online</p>
                     </div>
                   </div>
@@ -168,41 +177,56 @@
                 <div class="mt-[52px]">
                   <div class="space-y-6">
                     <div>
-                      <button class="text-[#605bff] font-medium mb-1 block transition-colors hover:text-[#605bff]/80" on:click={() => navigateToSection('food-beverage')}>Food & beverage</button>
+                      <a 
+                        href="/industries/food-beverage" 
+                        class="text-[#605bff] font-medium mb-1 block hover:text-[#605bff]/80"
+                      >Food & beverage</a>
                       <p class="text-sm text-gray-600">Quick service restaurants, restaurant chains, bars</p>
                     </div>
 
                     <div>
-                      <button class="text-[#605bff] font-medium mb-1 block transition-colors hover:text-[#605bff]/80" on:click={() => navigateToSection('hospitality')}>Hospitality</button>
+                      <a 
+                        href="/industries/hospitality" 
+                        class="text-[#605bff] font-medium mb-1 block hover:text-[#605bff]/80"
+                      >Hospitality</a>
                       <p class="text-sm text-gray-600">Hotels, spas, venues, leisure parks, fitness</p>
                     </div>
 
                     <div>
-                      <button class="text-[#605bff] font-medium mb-1 block transition-colors hover:text-[#605bff]/80" on:click={() => navigateToSection('subscription')}>Subscription</button>
+                      <a 
+                        href="/industries/subscription" 
+                        class="text-[#605bff] font-medium mb-1 block hover:text-[#605bff]/80"
+                      >Subscription</a>
                       <p class="text-sm text-gray-600">Streaming, subscription boxes, memberships</p>
                     </div>
 
                     <div>
-                      <button class="text-[#605bff] font-medium mb-1 block transition-colors hover:text-[#605bff]/80" on:click={() => navigateToSection('saas')}>SaaS Platforms</button>
+                      <a 
+                        href="/industries/saas" 
+                        class="text-[#605bff] font-medium mb-1 block hover:text-[#605bff]/80"
+                      >SaaS Platforms</a>
                       <p class="text-sm text-gray-600">Cloud-based software services</p>
                     </div>
                   </div>
                 </div>
 
-                <!-- Right Column -->
+                <!-- Right Column (Customers) -->
                 <div class="bg-gray-50 -m-12 p-12">
                   <h2 class="text-xl font-semibold mb-4">Customers</h2>
                   <div class="space-y-6">
                     <div>
-                      <button 
-                        class="text-[#605bff] font-medium mb-1 block hover:text-[#605bff]/80" 
-                        on:click={() => navigateToSection('brands')}
-                      >Brands we work with</button>
+                      <a 
+                        href="/customers/brands" 
+                        class="text-[#605bff] font-medium mb-1 block hover:text-[#605bff]/80"
+                      >Brands we work with</a>
                       <p class="text-sm text-gray-600">See which leading brands are using our products</p>
                     </div>
 
                     <div>
-                      <button class="text-[#605bff] font-medium mb-1 block transition-colors hover:text-[#605bff]/80" on:click={() => navigateToSection('case-studies')}>Case studies</button>
+                      <a 
+                        href="/customers/case-studies" 
+                        class="text-[#605bff] font-medium mb-1 block hover:text-[#605bff]/80"
+                      >Case studies</a>
                       <p class="text-sm text-gray-600">Find out how businesses have grown with Adyen</p>
                     </div>
                   </div>
@@ -381,19 +405,31 @@
               <h3 class="text-sm font-semibold text-gray-800 mb-3">Types</h3>
               <div class="space-y-3">
                 <div>
-                  <button class="text-[#605bff] text-sm" on:click={() => navigateToSection('digital-business')}>Digital businesses</button>
+                  <a 
+                    href="/industries/digital-business" 
+                    class="text-[#605bff] text-sm"
+                  >Digital businesses</a>
                   <p class="text-xs text-gray-600">Software, social, gaming, digital media</p>
                 </div>
                 <div>
-                  <button class="text-[#605bff] text-sm" on:click={() => navigateToSection('mobility')}>Mobility</button>
+                  <a 
+                    href="/industries/mobility" 
+                    class="text-[#605bff] text-sm"
+                  >Mobility</a>
                   <p class="text-xs text-gray-600">Transportation of goods and people</p>
                 </div>
                 <div>
-                  <button class="text-[#605bff] text-sm" on:click={() => navigateToSection('retail')}>Retail</button>
+                  <a 
+                    href="/industries/retail" 
+                    class="text-[#605bff] text-sm"
+                  >Retail</a>
                   <p class="text-xs text-gray-600">Jewelry, apparel, arts, cosmetics, electronics</p>
                 </div>
                 <div>
-                  <button class="text-[#605bff] text-sm" on:click={() => navigateToSection('platforms')}>Platforms & Marketplaces</button>
+                  <a 
+                    href="/industries/platforms" 
+                    class="text-[#605bff] text-sm"
+                  >Platforms & Marketplaces</a>
                   <p class="text-xs text-gray-600">Connecting buyers and sellers online</p>
                 </div>
               </div>
@@ -403,19 +439,31 @@
             <li class="pt-4">
               <div class="space-y-3">
                 <div>
-                  <button class="text-[#605bff] text-sm" on:click={() => navigateToSection('food-beverage')}>Food & beverage</button>
+                  <a 
+                    href="/industries/food-beverage" 
+                    class="text-[#605bff] text-sm"
+                  >Food & beverage</a>
                   <p class="text-xs text-gray-600">Quick service restaurants, restaurant chains, bars</p>
                 </div>
                 <div>
-                  <button class="text-[#605bff] text-sm" on:click={() => navigateToSection('hospitality')}>Hospitality</button>
+                  <a 
+                    href="/industries/hospitality" 
+                    class="text-[#605bff] text-sm"
+                  >Hospitality</a>
                   <p class="text-xs text-gray-600">Hotels, spas, venues, leisure parks, fitness</p>
                 </div>
                 <div>
-                  <button class="text-[#605bff] text-sm" on:click={() => navigateToSection('subscription')}>Subscription</button>
+                  <a 
+                    href="/industries/subscription" 
+                    class="text-[#605bff] text-sm"
+                  >Subscription</a>
                   <p class="text-xs text-gray-600">Streaming, subscription boxes, memberships</p>
                 </div>
                 <div>
-                  <button class="text-[#605bff] text-sm" on:click={() => navigateToSection('saas')}>SaaS Platforms</button>
+                  <a 
+                    href="/industries/saas" 
+                    class="text-[#605bff] text-sm"
+                  >SaaS Platforms</a>
                   <p class="text-xs text-gray-600">Cloud-based software services</p>
                 </div>
               </div>
@@ -426,11 +474,17 @@
               <h3 class="text-sm font-semibold text-gray-800 mb-3">Customers</h3>
               <div class="space-y-3">
                 <div>
-                  <button class="text-[#605bff] text-sm" on:click={() => navigateToSection('brands')}>Brands we work with</button>
+                  <a 
+                    href="/customers/brands" 
+                    class="text-[#605bff] text-sm"
+                  >Brands we work with</a>
                   <p class="text-xs text-gray-600">See which leading brands are using our products</p>
                 </div>
                 <div>
-                  <button class="text-[#605bff] text-sm" on:click={() => navigateToSection('case-studies')}>Case studies</button>
+                  <a 
+                    href="/customers/case-studies" 
+                    class="text-[#605bff] text-sm"
+                  >Case studies</a>
                   <p class="text-xs text-gray-600">Find out how businesses have grown with Adyen</p>
                 </div>
               </div>

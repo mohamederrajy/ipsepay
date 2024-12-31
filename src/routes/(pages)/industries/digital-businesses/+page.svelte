@@ -1,9 +1,9 @@
-<section class="py-20 overflow-hidden bg-[#f7f7f8" >
+<section class="py-20 overflow-hidden bg-[#f7f7f8]" >
     <div class="container">
       <div class="grid lg:grid-cols-2 gap-16 items-center">
         <!-- Left Content -->
         <div>
-          <h1 class="text-[2.3rem] font-medium text-gray-900 leading-tight mb-6">
+          <h1 class="text-[2.3rem] font-medium text-[#32325d] leading-tight mb-6">
             Seamless payments for your digital business
           </h1>
           <p class="text-xl text-gray-600 mb-8">
@@ -52,16 +52,13 @@
     <div class="container">
       <!-- Header -->
       <div class="max-w-3xl mb-16">
-        <h2 class="text-[2rem] font-medium text-gray-900 leading-tight mb-4">
+        <h2 class="text-[2rem] font-medium text-[#32325d] leading-tight mb-4">
           One platform that makes it easy for customers to pay
         </h2>
         <p class="text-xl text-gray-600 mb-6">
           Optimize every stage of the payment journey, from start to finish.
         </p>
-        <a href="/revenue-optimization" class="text-[#605bff] font-medium inline-flex items-center hover:text-[#605bff]/80">
-          Learn more about revenue optimization
-          <i class="fa-solid fa-arrow-right ml-2"></i>
-        </a>
+        
       </div>
   
       <!-- Features Grid -->
@@ -109,20 +106,17 @@
     </div>
   </section>
 
-  <section class="py-20 overflow-hidden">
+  <section class="py-20 overflow-hidden bg-[#f7f7f8]">
     <div class="container">
       <!-- Risk Management Section -->
       <div class="max-w-3xl mb-16">
-        <h2 class="text-[2rem] font-medium text-gray-900 leading-tight mb-4">
+        <h2 class="text-[2rem] font-medium text-[#32325d] leading-tight mb-4">
           Fine-tune your risk management
         </h2>
         <p class="text-xl text-gray-600 mb-6">
           Protect your business from fraud without compromising customer experience.
         </p>
-        <a href="/risk-technology" class="text-[#605bff] font-medium inline-flex items-center hover:text-[#605bff]/80">
-          Explore our built-in risk technology
-          <i class="fa-solid fa-arrow-right ml-2"></i>
-        </a>
+       
       </div>
   
       <!-- Features Grid -->
@@ -143,7 +137,7 @@
             <i class="fa-solid fa-chart-line text-[#605bff] text-xl"></i>
           </div>
           <p class="text-gray-600">
-            Adyen's rich and unique data set can help distinguish genuine customers from fraudsters
+            ipsepay's rich and unique data set can help distinguish genuine customers from fraudsters
           </p>
         </div>
   
@@ -171,7 +165,7 @@
       <!-- Insights Section -->
       <div class="grid lg:grid-cols-2 gap-16 items-center">
         <div>
-          <h2 class="text-[2.8rem] font-medium text-gray-900 leading-tight mb-4">
+          <h2 class="text-[2rem] font-medium text-[#32325d] leading-tight mb-4">
             Make decisions faster with meaningful insights
           </h2>
           <p class="text-xl text-gray-600 mb-8">
@@ -207,3 +201,83 @@
       </div>
     </div>
   </section>
+
+  <!-- Global Payments Section -->
+<section class="py-20 overflow-hidden">
+  <div class="container">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <!-- Left Content -->
+      <div>
+        <h2 class="text-[2rem] font-medium text-[#32325d] leading-tight mb-4">
+          Take payments global
+        </h2>
+        <p class="text-xl text-gray-600 mb-8">
+          Easily grow into new markets with <a href="#" class="text-[#605bff] hover:text-[#605bff]/80">ipsepay's local acquiring licenses</a>.
+        </p>
+        
+        <!-- Checklist -->
+        <ul class="space-y-4">
+          <li class="flex items-center text-gray-600">
+            <i class="fa-solid fa-check text-[#605bff] mr-3"></i>
+            One provider to process and settle payments for every market
+          </li>
+
+          <li class="flex items-center text-gray-600">
+            <i class="fa-solid fa-check text-[#605bff] mr-3"></i>
+            Offer
+            all popular payment methods
+            worldwide
+          </li>  
+          
+          <li class="flex items-center text-gray-600">
+            <i class="fa-solid fa-check text-[#605bff] mr-3"></i>
+            Settle in the currency you prefer
+          </li>
+          <li class="flex items-center text-gray-600">
+            <i class="fa-solid fa-check text-[#605bff] mr-3"></i>
+            Receive hands-on support and access local expertise from our team
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right Image -->
+      <div class="relative">
+        <div class="absolute -inset-4 bg-[#605bff]/5 rounded-3xl"></div>
+        <img 
+          src="/images/photos/paydo.jpg" 
+          alt="Global Payments" 
+          class="relative rounded-xl w-full"
+        >
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Partners Section -->
+<section class="py-20 overflow-hidden bg-[#f7f7f8]">
+  <div class="container">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-[2rem] font-medium text-[#32325d] leading-tight mb-4">
+        Work with your existing partners
+      </h2>
+      <p class="text-xl text-gray-600 mb-6">
+        Integrate with leading technology solutions to give your customers the best experience.
+      </p>
+      
+    </div>
+
+    <!-- Partner Logos -->
+    <div class="flex flex-wrap items-center justify-center gap-x-16 gap-y-8">
+      <!-- Salesforce -->
+      <img src="/images/brands/opencart.png" alt="Salesforce" class="h-8 grayscale hover:grayscale-0 transition-all duration-200">
+      <!-- VTEX -->
+      <img src="/images/brands/magento.png" alt="VTEX" class="h-8 grayscale hover:grayscale-0 transition-all duration-200">
+      <!-- Recurly -->
+      <img src="/images/brands/woocommerce.png" alt="Recurly" class="h-8 grayscale hover:grayscale-0 transition-all duration-200">
+      <!-- Magento -->
+      <img src="/images/brands/vss.png" alt="Magento" class="h-8 grayscale hover:grayscale-0 transition-all duration-200">
+      <!-- Commercetools -->
+      <img src="/images/brands/Shopy.png" alt="Commercetools" class="h-8 grayscale hover:grayscale-0 transition-all duration-200">
+    </div>
+  </div>
+</section>
