@@ -20,15 +20,17 @@
     import OnboardingFlow from "$lib/components/onboardingflow/onboardingflow.svelte";
     import PayMethoes from "$lib/components/payment-methos/pay-methoes.svelte";
     import { onMount } from 'svelte';
+    import HeroIps from "$lib/components/heros/hero-ips.svelte";
+    import DashbordSection from "$lib/components/industries/sections/dashbord-section.svelte";
   
   
   </script>
   <PageTitle title="Ipsepay " />
   <Navbar/>
-  <SassHero />
+  <HeroIps/>
   <ScrollingImages/>
   <SmartSimple/>
-  <ImageText/>
+  <DashbordSection/>
   <BusinessCategores/>
   <PayMethoes/>
   <Advantages/>

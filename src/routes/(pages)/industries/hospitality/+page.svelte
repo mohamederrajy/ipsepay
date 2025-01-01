@@ -321,3 +321,144 @@ Get start now             <svg class="w-5 h-5 ml-2" viewBox="0 0 20 20" fill="cu
   </div>
 </section>
 
+<!-- Partners Section -->
+<section class="py-20">
+    <div class="container px-4 sm:px-6">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <!-- Left Content -->
+        <div>
+          <h2 class="text-[2.5rem] font-medium text-[#32325d] mb-6">
+            Work with partners you know
+          </h2>
+          
+          <p class="text-lg text-gray-600 mb-8">
+            We know hotels work with multiple suppliers and systems, so whether you're managing properties, bookings, and channels, make sure your payment partner is one less moving part. We work with leading technology partners in the hospitality sector to create an integrated solution.
+          </p>
+  
+          <a href="/account/signup" class="inline-flex items-center text-[#605bff] hover:text-[#605bff]/90 font-medium">
+start now             <svg class="w-5 h-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+            </svg>
+          </a>
+        </div>
+  
+        <!-- Right Side - Partner Logos Grid -->
+        <div class="grid grid-cols-3 gap-8">
+          <!-- Row 1 -->
+          <div class="flex items-center justify-center p-4 rounded-lg hover:bg-gray-50 transition-colors">
+            <img src="/images/brands/oracle.svg" alt="Oracle Hospitality" class="h-8 w-auto"/>
+          </div>
+          <div class="flex items-center justify-center p-4 rounded-lg hover:bg-gray-50 transition-colors">
+            <img src="/images/brands/infor.svg" alt="Infor" class="h-8 w-auto"/>
+          </div>
+          <div class="flex items-center justify-center p-4 rounded-lg hover:bg-gray-50 transition-colors">
+            <img src="/images/brands/agilysys.svg" alt="Agilysys" class="h-8 w-auto"/>
+          </div>
+  
+          <!-- Row 2 -->
+          <div class="flex items-center justify-center p-4 rounded-lg hover:bg-gray-50 transition-colors">
+            <img src="/images/brands/shiji.svg" alt="Shiji" class="h-8 w-auto"/>
+          </div>
+          <div class="flex items-center justify-center p-4 rounded-lg hover:bg-gray-50 transition-colors">
+            <img src="/images/brands/sabre.svg" alt="Sabre" class="h-8 w-auto"/>
+          </div>
+          <div class="flex items-center justify-center p-4 rounded-lg hover:bg-gray-50 transition-colors">
+            <img src="/images/brands/protel.svg" alt="Protel" class="h-8 w-auto"/>
+          </div>
+  
+          <!-- Row 3 -->
+          <div class="flex items-center justify-center p-4 rounded-lg hover:bg-gray-50 transition-colors">
+            <img src="/images/brands/clock.svg" alt="Clock PMS+" class="h-8 w-auto"/>
+          </div>
+          <div class="flex items-center justify-center p-4 rounded-lg hover:bg-gray-50 transition-colors">
+            <img src="/images/brands/apaleo.svg" alt="Apaleo" class="h-8 w-auto"/>
+          </div>
+          <div class="flex items-center justify-center p-4 rounded-lg hover:bg-gray-50 transition-colors">
+            <img src="/images/brands/travelclick.svg" alt="TravelClick" class="h-8 w-auto"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solutions Section -->
+<section class="py-20">
+    <div class="container px-4 sm:px-6">
+      <!-- Hero Image -->
+      <div class="mb-16 rounded-2xl overflow-hidden">
+        <img 
+          src="/images/photos/family-booking.jpg" 
+          alt="Family using digital devices while relaxing" 
+          class="w-full h-[400px] object-cover"
+        />
+      </div>
+  
+      <!-- Section Title -->
+      <h2 class="text-[2.5rem] font-medium text-[#32325d] mb-16">
+        A solution built for
+      </h2>
+  
+      <!-- Solutions Grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
+        <!-- Hotel chains & franchises -->
+        <div>
+          <h3 class="text-xl font-semibold text-[#32325d] mb-4">
+            Hotel chains & franchises
+          </h3>
+          <p class="text-gray-600">
+            Give your guests a consistent experience across your properties with familiar payment methods, guest journeys, and loyalty schemes.
+          </p>
+        </div>
+  
+        <!-- Luxury resorts -->
+        <div>
+          <h3 class="text-xl font-semibold text-[#32325d] mb-4">
+            Luxury resorts
+          </h3>
+          <p class="text-gray-600">
+            The VIP treatment calls for the best payment experience. Tokenized card technology means guests can present their card once, and enjoy the rest of their stay uninterrupted.
+          </p>
+        </div>
+  
+        <!-- Ownership group -->
+        <div>
+          <h3 class="text-xl font-semibold text-[#32325d] mb-4">
+            Ownership group
+          </h3>
+          <p class="text-gray-600">
+            Hoteliers often work with different systems across locations. We can help by consolidating payments into one system, offering consistency and familiarity for staff across any location.
+          </p>
+        </div>
+  
+        <!-- Entertainment resorts -->
+        <div>
+          <h3 class="text-xl font-semibold text-[#32325d] mb-4">
+            Entertainment resorts
+          </h3>
+          <p class="text-gray-600">
+            Entertainment is constantly evolving. Make sure your resorts are innovating with the payment experience; from wearable tech to QR codes.
+          </p>
+        </div>
+  
+        <!-- Vacation rentals -->
+        <div>
+          <h3 class="text-xl font-semibold text-[#32325d] mb-4">
+            Vacation rentals
+          </h3>
+          <p class="text-gray-600">
+            Flexibility is everything. For guests it's the option to save their card details for future stays. For businesses it's the ability to tokenize card details in case of damages.
+          </p>
+        </div>
+  
+        <!-- Inns and B&Bs -->
+        <div>
+          <h3 class="text-xl font-semibold text-[#32325d] mb-4">
+            Inns and B&Bs
+          </h3>
+          <p class="text-gray-600">
+            Use automation to streamline staffing requirements, while protecting against employee and customer damages through tokenized, secure payment information.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>

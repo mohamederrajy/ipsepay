@@ -202,7 +202,7 @@
 
                     <div>
                       <a 
-                        href="/industries/saas" 
+                        href="/industries/saas-platforms" 
                         class="text-[#605bff] font-medium mb-1 block hover:text-[#605bff]/80"
                       >SaaS Platforms</a>
                       <p class="text-sm text-gray-600">Cloud-based software services</p>
@@ -216,19 +216,13 @@
                   <div class="space-y-6">
                     <div>
                       <a 
-                        href="/customers/brands" 
+                        href="/industries/customers" 
                         class="text-[#605bff] font-medium mb-1 block hover:text-[#605bff]/80"
                       >Brands we work with</a>
                       <p class="text-sm text-gray-600">See which leading brands are using our products</p>
                     </div>
 
-                    <div>
-                      <a 
-                        href="/customers/case-studies" 
-                        class="text-[#605bff] font-medium mb-1 block hover:text-[#605bff]/80"
-                      >Case studies</a>
-                      <p class="text-sm text-gray-600">Find out how businesses have grown with Adyen</p>
-                    </div>
+                    
                   </div>
                 </div>
               </div>
@@ -475,18 +469,12 @@
               <div class="space-y-3">
                 <div>
                   <a 
-                    href="/customers/brands" 
+                    href="/customers/customers" 
                     class="text-[#605bff] text-sm"
                   >Brands we work with</a>
                   <p class="text-xs text-gray-600">See which leading brands are using our products</p>
                 </div>
-                <div>
-                  <a 
-                    href="/customers/case-studies" 
-                    class="text-[#605bff] text-sm"
-                  >Case studies</a>
-                  <p class="text-xs text-gray-600">Find out how businesses have grown with Adyen</p>
-                </div>
+                
               </div>
             </li>
           </ul>
