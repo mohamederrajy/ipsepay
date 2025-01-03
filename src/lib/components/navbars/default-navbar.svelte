@@ -556,13 +556,12 @@
         </ul>
       </div>
 
-      <!-- CTA Buttons -->
-      <div class="hidden lg:flex items-center gap-4 ml-6">
+      <!-- Desktop CTA Buttons -->
+      <div class="hidden lg:flex items-center gap-3">
         <!-- Login Button -->
         <a href="/account/login" 
-           class="inline-flex items-center justify-center px-4 py-2.5 text-sm font-medium text-[#605bff] hover:text-white border-2 border-[#605bff] rounded-lg hover:bg-[#605bff] transition-all duration-200 ease-in-out group"
-           class:active={routeTd === "/account/login"}>
-          <svg class="w-4 h-4 mr-2 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+           class="group flex items-center gap-2 px-6 py-2.5 text-sm font-medium text-[#605bff] hover:text-white border border-[#605bff] rounded-xl hover:bg-[#605bff] transition-all duration-300">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
           </svg>
           Login
@@ -570,10 +569,9 @@
 
         <!-- Get Started Button -->
         <a href="/account/signup" 
-           class="inline-flex items-center justify-center px-4 py-2.5 text-sm font-medium text-white bg-[#605bff] rounded-lg shadow-sm hover:bg-[#605bff]/90 hover:shadow-md transform hover:-translate-y-0.5 transition-all duration-200 ease-in-out"
-           class:active={routeTd === "/account/signup"}>
-          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+           class="flex items-center gap-2 px-6 py-2.5 text-sm font-medium text-white bg-[#605bff] rounded-xl hover:bg-[#4f4cce] transition-all duration-300 shadow-sm hover:shadow whitespace-nowrap">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0zM9 19c-4.3 0-6 1.8-6 2.5V22h12v-.5c0-.7-1.7-2.5-6-2.5zm6-11V5h4m0 0l-2-2m2 2l-2 2"/>
           </svg>
           Get Started
         </a>
@@ -1022,22 +1020,20 @@
     </div>
 
     <!-- Mobile Menu Footer Buttons -->
-    <div class="p-6 space-y-4">
+    <div class="p-6 space-y-3">
       <!-- Get Started Button -->
       <a href="/account/signup" 
-         class="flex items-center justify-center w-full px-4 py-3 text-sm font-medium text-white bg-[#605bff] rounded-lg shadow-sm hover:bg-[#605bff]/90 hover:shadow-md transform hover:-translate-y-0.5 transition-all duration-200 ease-in-out"
-         class:active={routeTd === "/account/signup"}>
-        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+         class="flex items-center justify-center gap-2 w-full px-6 py-3 text-sm font-medium text-white bg-[#605bff] rounded-xl hover:bg-[#4f4cce] transition-all duration-300 shadow-sm hover:shadow whitespace-nowrap">
+        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0zM9 19c-4.3 0-6 1.8-6 2.5V22h12v-.5c0-.7-1.7-2.5-6-2.5zm6-11V5h4m0 0l-2-2m2 2l-2 2"/>
         </svg>
         Get Started
       </a>
 
       <!-- Login Button -->
       <a href="/account/login" 
-         class="flex items-center justify-center w-full px-4 py-3 text-sm font-medium text-[#605bff] border-2 border-[#605bff] rounded-lg hover:text-white hover:bg-[#605bff] transition-all duration-200 ease-in-out group"
-         class:active={routeTd === "/account/login"}>
-        <svg class="w-4 h-4 mr-2 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+         class="group flex items-center justify-center gap-2 w-full px-6 py-3 text-sm font-medium text-[#605bff] hover:text-white border border-[#605bff] rounded-xl hover:bg-[#605bff] transition-all duration-300">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
         </svg>
         Login
