@@ -1,6 +1,6 @@
 <script lang="ts">
   import PageTitle from "$lib/components/page-title.svelte";
-  import Faq2 from "$lib/components/faq-2.svelte";
+
 </script>
 
 <PageTitle title="Pricing Page" />

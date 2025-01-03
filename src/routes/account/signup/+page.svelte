@@ -72,234 +72,337 @@
   const togglePassword = () => showPassword = !showPassword;
 </script>
 
-<div class="h-screen flex">
-  <!-- Left Section with Features -->
-  <div class="hidden lg:flex lg:w-1/2 p-8 flex-col justify-between relative overflow-hidden">
-    <!-- Background layers -->
-    <div class="absolute inset-0 bg-[#F8F9FF]">
-      <div class="absolute inset-0" 
-           style="background-image: radial-gradient(#D1D5DB 1px, transparent 1px);
+<div class="h-screen flex bg-gray-50 overflow-hidden">
+  <!-- Left Section -->
+  <div class="hidden lg:flex lg:w-[60%] p-8 flex-col justify-between relative overflow-hidden">
+    <!-- Added Header -->
+    <div class="flex justify-between items-center mb-2 ml-10 relative z-10"> <!-- Added z-10 to show above gradient -->
+      <a href="/" class="hover:opacity-90 transition-opacity">
+        <img src="/images/lgopis.png" alt="IpsePay" class="h-6" />
+      </a>
+      <a href="/account/login" 
+         class="inline-flex items-center gap-1 text-[#605bff] text-xs font-medium
+                bg-[#605bff]/10 px-2 py-3 rounded-lg">
+        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+        </svg>
+        Sign in
+      </a>
+    </div>
+
+    <!-- Modern gradient background -->
+    <div class="absolute inset-0 bg-gradient-to-br from-[#605bff]/5 to-transparent">
+      <div class="absolute inset-0 opacity-10" 
+           style="background-image: radial-gradient(#605bff 1px, transparent 1px);
                   background-size: 24px 24px;">
       </div>
     </div>
     
-    <!-- Content wrapper -->
-    <div class="relative space-y-12">
-      <!-- Star Rating -->
-      <div class="flex text-yellow-400 text-2xl">
-        ★★★★<span class="text-yellow-200">★</span>
+    <!-- Content wrapper - adjusted for larger space -->
+    <div class="relative space-y-12 max-w-3xl mx-auto w-full">
+      <!-- Trust Badge -->
+      <div class="inline-flex items-center gap-2 bg-[#605bff]/10 rounded-full px-3 py-1">
+        <svg class="w-5 h-5 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+        <span class="text-sm font-medium text-[#605bff]">Trusted by 10,000+ merchants</span>
       </div>
 
-      <!-- Features List -->
-      <div class="space-y-12">
-        <div>
-          <h3 class="text-xl font-semibold text-[#32325d] mb-2">Best in-class support</h3>
-          <p class="text-gray-600">Get industry-leading support whenever you need it.</p>
-        </div>
-
-        <div>
-          <h3 class="text-xl font-semibold text-[#32325d] mb-2">Reduce complexity</h3>
-          <p class="text-gray-600">Offer all payment methods through one integration.</p>
-          <div class="flex mt-4 space-x-2">
-            <img src="/images/brands/pay-payl.png" alt="iDeal" class="h-8" />
-            <img src="/images/brands/mscrad.png" alt="Mastercard" class="h-8" />
-            <img src="/images/brands/vss.png" alt="Visa" class="h-8" />
-            <img src="/images/brands/amex.png" alt="Amex" class="h-8" />
-            <img src="/images/brands/G-pay.png" alt="Amex" class="h-8" />
-            <img src="/images/brands/A-pay.png" alt="Amex" class="h-8" />
-
-
+      <!-- Features List - replaced with new section -->
+      <div class="space-y-8">
+        <!-- Hero Section -->
+        <div class="bg-white/40 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+          <h2 class="text-3xl font-bold text-[#32325d] mb-4">
+            Start Accepting <br/>
+            <span class="text-[#605bff]">Global Payments</span> Today
+          </h2>
+          <p class="text-gray-600 text-lg mb-6">Join thousands of businesses that trust IpsePay for their payment needs</p>
+          
+          <!-- Stats Grid -->
+          <div class="grid grid-cols-3 gap-6 mb-8">
+            <div class="bg-white/60 rounded-xl p-4 backdrop-blur-sm">
+              <div class="text-2xl font-bold text-[#605bff] mb-1">$2B+</div>
+              <div class="text-sm text-gray-600">Processed Annually</div>
+            </div>
+            <div class="bg-white/60 rounded-xl p-4 backdrop-blur-sm">
+              <div class="text-2xl font-bold text-[#605bff] mb-1">150+</div>
+              <div class="text-sm text-gray-600">Countries Served</div>
+            </div>
+            <div class="bg-white/60 rounded-xl p-4 backdrop-blur-sm">
+              <div class="text-2xl font-bold text-[#605bff] mb-1">99.9%</div>
+              <div class="text-sm text-gray-600">Uptime</div>
+            </div>
           </div>
         </div>
 
-        <div>
-          <h3 class="text-xl font-semibold text-[#32325d] mb-2">Prebuilt integrations</h3>
-          <p class="text-gray-600">Connect to your ecommerce platform and tech stack with our ready-made plugins.</p>
-          <div class="flex mt-4 space-x-2">
-            <img src="/images/brands/woocommerce.png" alt="WooCommerce" class="h-8" />
-            <img src="/images/brands/Shopy.png" alt="shopify" class="h-8" />
-            
-          </div>
-        </div>
-      </div>
-
-      <!-- Partner Logos -->
-      <div class="flex space-x-6 mt-auto">
-        
-      </div>
-
-      <!-- Add testimonials here, before the final closing div -->
-      <div class="-mt-4 overflow-hidden">
-        <div class="flex transition-transform duration-500 ease-in-out" 
-             style:transform={`translateX(-${currentIndex * 50}%)`}>
-          {#each testimonials as testimonial}
-            <div class="flex-shrink-0 w-1/2 px-2">
-              <div class="bg-white rounded-lg p-4 shadow-sm">
-                <div class="flex items-center space-x-2 mb-2">
-                  <img src={testimonial.avatar} alt={testimonial.name} class="w-8 h-8 rounded-full"/>
-                  <div>
-                    <h4 class="font-medium text-[#32325d] text-sm">{testimonial.name}</h4>
-                    <p class="text-xs text-gray-500">{testimonial.country}</p>
-                  </div>
-                </div>
-                <div class="flex text-yellow-400 text-xs mb-1">
-                  {#each Array(testimonial.rating) as _}★{/each}
-                </div>
-                <p class="text-xs text-gray-500 mb-1">{testimonial.date}</p>
-                <h5 class="font-medium text-[#32325d] text-sm mb-1">{testimonial.title}</h5>
-                <p class="text-xs text-gray-600 line-clamp-2">{testimonial.text}</p>
+        <!-- Benefits Section -->
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-white/40 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+            <div class="flex items-center gap-4 mb-4">
+              <div class="p-3 bg-[#605bff]/10 rounded-xl">
+                <svg class="w-6 h-6 text-[#605bff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                        d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-[#32325d]">Instant Payouts</h3>
+                <p class="text-sm text-gray-600">Get paid within 24 hours</p>
               </div>
             </div>
-          {/each}
+          </div>
+
+          <div class="bg-white/40 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+            <div class="flex items-center gap-4 mb-4">
+              <div class="p-3 bg-[#605bff]/10 rounded-xl">
+                <svg class="w-6 h-6 text-[#605bff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-[#32325d]">Secure Platform</h3>
+                <p class="text-sm text-gray-600">Bank-grade security</p>
+              </div>
+            </div>
+          </div>
         </div>
+
+        <!-- Integration Partners -->
+        <div class="bg-white/40 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+          <h3 class="text-sm font-medium text-gray-500 mb-4">Trusted By Leading Platforms</h3>
+          <div class="flex items-center justify-between">
+            <img src="/images/brands/Shopy.png" alt="Shopify" class="h-8 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 transition-all duration-200" />
+            <img src="/images/brands/woocommerce.png" alt="WooCommerce" class="h-8 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 transition-all duration-200" />
+            <img src="/images/brands/magento.png" alt="Magento" class="h-8  hover:opacity-100 transition-opacity grayscale hover:grayscale-0 transition-all duration-200" />
+            <img src="/images/brands/opencart.png" alt="PrestaShop" class="h-8 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 transition-all duration-200" />
+          </div>
+        </div>
+
+        <!-- Support Section - White Background -->
+        
+        
+          
+       
       </div>
     </div>
   </div>
 
-  <!-- Right Section with Form -->
-  <div class="w-full lg:w-1/2 p-4">
-    <div class="max-w-md mx-auto h-full flex flex-col">
-      <!-- Header -->
-      <div class="flex justify-between items-center mb-4">
-        <a href="/" class="hover:opacity-90 transition-opacity">
-          <img src="/images/lgopis.png" alt="Mollie" class="h-7" />
-        </a>
-        <a href="/account/login" class="text-gray-600 hover:text-[#605bff] text-sm font-medium bg-gray-100 px-3 py-2 rounded-lg">
-          Sign in
-        </a>
+  <!-- Right Section - Form Adjustments -->
+  <div class="w-full lg:w-[40%] p-4"> <!-- Reduced padding -->
+    <!-- Header - Reduced margins -->
+    
+
+    <!-- Form Container - Adjusted spacing -->
+    <div class="bg-white rounded-xl p-4 shadow-lg"> <!-- Reduced padding -->
+      <!-- Form Header - Compact -->
+      <div class="mb-3"> <!-- Reduced margin -->
+        <h1 class="text-lg font-bold mb-1 text-[#32325d]">Get Started</h1>
+        <p class="text-xs text-gray-600">Create your account to process payments</p>
       </div>
 
-      <!-- Form section -->
-      <div class="flex-1">
-        <h1 class="text-xl font-bold mb-1 text-[#32325d]">Get Started</h1>
-        <p class="text-sm text-gray-500 mb-3">Create your account and start processing payments instantly.</p>
-        
-        <form class="space-y-2.5">
-          <div class="grid grid-cols-2 gap-3">
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">First name</label>
-              <input type="text" class="w-full px-3 py-1.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#605bff]/20 focus:border-[#605bff]" required />
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Last name</label>
-              <input type="text" class="w-full px-3 py-1.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#605bff]/20 focus:border-[#605bff]" required />
-            </div>
-          </div>
-
-          <div class="space-y-2.5">
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Email address</label>
-              <input type="email" class="w-full px-3 py-1.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#605bff]/20 focus:border-[#605bff]" required />
-            </div>
-
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Phone number</label>
-              <input type="tel" class="w-full px-3 py-1.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#605bff]/20 focus:border-[#605bff]" required />
-            </div>
-
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Country</label>
-              <Select
-                items={formattedCountries}
-                bind:value={selectedCountry}
-                class="country-select"
-                placeholder="Select your country"
-                let:item
-              >
-                {Item(item)}
-              </Select>
-            </div>
-
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Address</label>
-              <input type="text" class="w-full px-3 py-1.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#605bff]/20 focus:border-[#605bff]" required />
-            </div>
-
-            <div class="grid grid-cols-2 gap-3">
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">ZIP Code</label>
-                <input type="text" class="w-full px-3 py-1.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#605bff]/20 focus:border-[#605bff]" required />
-              </div>
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Website</label>
-                <input type="url" class="w-full px-3 py-1.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#605bff]/20 focus:border-[#605bff]" placeholder="https://" />
-              </div>
-            </div>
-
+      <!-- Form - Tighter spacing -->
+      <form class="space-y-3"> <!-- Reduced gap -->
+        <!-- Name Fields in one line -->
+        <div class="grid grid-cols-2 gap-4">
+          <div class="form-group">
+            <label class="form-label">First name</label>
             <div class="relative">
-              <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-              <input type={showPassword ? "text" : "password"} class="w-full px-3 py-1.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#605bff]/20 focus:border-[#605bff]" required />
-              <button type="button" class="absolute right-3 top-[55%] text-gray-400 hover:text-gray-600" on:click={togglePassword}>
-                {#if showPassword}
-                  <i class="fa-regular fa-eye-slash"></i>
-                {:else}
-                  <i class="fa-regular fa-eye"></i>
-                {/if}
-              </button>
+              <svg class="input-icon" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
+              </svg>
+              <input type="text" class="form-input pl-10" placeholder="John" required />
             </div>
           </div>
-
-          <div class="flex items-start mt-2">
-            <div class="flex items-center h-5">
-              <input
-                id="terms"
-                name="terms"
-                type="checkbox"
-                required
-                class="h-4 w-4 text-[#605bff] border-gray-300 rounded focus:ring-[#605bff]"
-              />
-            </div>
-            <div class="ml-2">
-              <label for="terms" class="text-sm text-gray-600">
-                By signing up, you agree to our 
-                <a href="/terms" class="text-primary hover:text-primary/80 font-medium">Terms & Conditions</a>
-                {" and "}
-                <a href="/privacy" class="text-primary hover:text-primary/80 font-medium">Privacy Policy</a>
-              </label>
+          <div class="form-group">
+            <label class="form-label">Last name</label>
+            <div class="relative">
+              <svg class="input-icon" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
+              </svg>
+              <input type="text" class="form-input pl-10" placeholder="Doe" required />
             </div>
           </div>
+        </div>
 
-          <button type="submit" class="w-full bg-[#605bff] text-white py-2 rounded-lg hover:bg-[#605bff]/90 transition-colors font-medium text-base flex items-center justify-center gap-2">
-            <i class="fas fa-user-plus"></i>
-            Sign up
+        <!-- Single line fields -->
+        <div class="form-group">
+          <label class="form-label">Email address</label>
+          <div class="relative">
+            <svg class="input-icon" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+              <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+            </svg>
+            <input type="email" class="form-input pl-10" placeholder="you@example.com" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Phone number</label>
+          <div class="relative">
+            <svg class="input-icon" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+            </svg>
+            <input type="tel" class="form-input pl-10" placeholder="+1 (555) 000-0000" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Country</label>
+          <Select
+            items={formattedCountries}
+            bind:value={selectedCountry}
+            class="country-select"
+            placeholder="Select your country"
+            let:item
+          >
+            <div class="flex items-center gap-2 px-2">
+              <span class="text-lg">{item.flag}</span>
+              <span class="text-gray-700">{item.label}</span>
+            </div>
+          </Select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Address</label>
+          <div class="relative">
+            <svg class="input-icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+            </svg>
+            <input type="text" class="form-input pl-10" placeholder="Enter your full address" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">ZIP Code</label>
+          <div class="relative">
+            <svg class="input-icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+            </svg>
+            <input type="text" class="form-input pl-10" placeholder="Enter ZIP code" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <div class="relative">
+            <svg class="input-icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+            </svg>
+            <input 
+              type={showPassword ? "text" : "password"} 
+              class="form-input pl-10 pr-10" 
+              placeholder="Create a secure password" 
+              required 
+            />
+            <button 
+              type="button" 
+              class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              on:click={togglePassword}
+            >
+              {#if showPassword}
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+              {:else}
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                </svg>
+              {/if}
+            </button>
+          </div>
+        </div>
+
+        <!-- Terms and Submit Button -->
+        <div class="space-y-6 pt-4">
+          <div class="flex items-start space-x-3">
+            <input
+              id="terms"
+              type="checkbox"
+              class="mt-1 h-4 w-4 rounded border-gray-300 text-[#605bff] focus:ring-[#605bff]"
+              required
+            />
+            <label for="terms" class="text-sm text-gray-600">
+              By signing up, you agree to our 
+              <a href="/terms" class="text-[#605bff] hover:text-[#605bff]/80 font-medium">Terms & Conditions</a>
+              {" and "}
+              <a href="/privacy" class="text-[#605bff] hover:text-[#605bff]/80 font-medium">Privacy Policy</a>
+            </label>
+          </div>
+
+          <button 
+            type="submit" 
+            class="w-full bg-[#605bff] text-white py-3.5 rounded-xl hover:bg-[#605bff]/90 
+                   transition-all duration-300 font-medium text-base flex items-center 
+                   justify-center gap-2 shadow-lg shadow-[#605bff]/25 hover:shadow-xl 
+                   hover:shadow-[#605bff]/20"
+          >
+            Create Account
+            <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
           </button>
-
-          <div class="flex justify-center space-x-4">
-            <a href="/termsconditions" class="text-sm text-gray-500 hover:text-[#605bff]">Terms & conditions</a>
-            <a href="/privacy" class="text-sm text-gray-500 hover:text-[#605bff]">Privacy policy</a>
-          </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   </div>
 </div>
 
 <style>
+  /* Improved input and icon styles */
+  .form-input {
+    @apply w-full h-11 px-4 py-2 text-base bg-gray-50 border border-gray-200 rounded-xl
+           focus:outline-none focus:ring-2 focus:ring-[#605bff]/20 focus:border-[#605bff]
+           placeholder-gray-400 transition-all duration-200 pl-11; /* Increased left padding for icon */
+  }
+
+  .input-icon {
+    @apply w-5 h-5 text-gray-400 absolute left-4 top-1/2 transform -translate-y-1/2;
+    /* Improved icon positioning */
+  }
+
+  .form-label {
+    @apply text-sm font-medium text-gray-700 mb-1; /* Slightly larger labels */
+  }
+
+  /* Adjust select height to match inputs */
   :global(.country-select) {
-    --border-radius: 0.5rem;
+    --height: 2.75rem; /* Match input height */
+    --border-radius: 0.75rem;
     --border-color: #e5e7eb;
     --border-hover-color: #605bff;
+    --background: #f9fafb;
+    font-size: 1rem;
   }
+
   :global(.selectContainer) {
-    --border-radius: 0.5rem;
+    --border-radius: 0.75rem;
     --border: 1px solid #e5e7eb;
-    --padding: 0.5rem 0.75rem;
-  }
-  :global(.selectContainer:hover) {
-    --border: 1px solid #605bff;
+    --padding: 0.5rem 1rem 0.5rem 2.75rem; /* Adjusted padding for icon alignment */
   }
 
-  @keyframes pulse {
-    0% { opacity: 0.3; }
-    50% { opacity: 0.6; }
-    100% { opacity: 0.3; }
+  /* Maintain compact form but with larger inputs */
+  .form-group {
+    @apply space-y-1;
   }
 
-  :global(.bg-\[#F8F9FF\] div) {
-    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  /* Adjust spacing between form elements */
+  :global(.space-y-6) {
+    @apply space-y-4;
   }
 
-  :global(.text-primary) {
-    color: #605bff;
+  :global(.space-y-8) {
+    @apply space-y-4;
+  }
+
+  /* Make form container more compact but accommodate larger inputs */
+  :global(.p-8) {
+    @apply p-5;
+  }
+
+  /* Larger button to match inputs */
+  :global(.py-3\.5) {
+    @apply py-3;
   }
 </style>

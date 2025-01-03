@@ -1,145 +1,99 @@
 <script lang="ts">
-  import {page} from "$app/stores";
+  import { page } from "$app/stores";
   $: routeTd = $page.route.id;
+
+  const paymentMethods = [
+    { name: 'Credit Card', icon: 'credit-card', description: 'Visa, Mastercard, Amex' },
+    { name: 'Digital Wallets', icon: 'wallet', description: 'Apple Pay, Google Pay' },
+    { name: 'Bank Transfer', icon: 'bank', description: 'ACH, Wire, SEPA' },
+    { name: 'Cryptocurrency', icon: 'crypto', description: 'Bitcoin, USDT, ETH' },
+    { name: 'Local Methods', icon: 'globe', description: 'iDEAL, Sofort, GiroPay' },
+    { name: 'Buy Now Pay Later', icon: 'calendar', description: 'Klarna, Affirm, Afterpay' }
+  ];
 </script>
 
-<section class="py-16 md:py-24 relative overflow-hidden bg-[#f4f4f459]" id="payment-methods">
-    <!-- Background dots pattern -->
-    <div class="absolute right-0 top-0 w-1/2 h-full opacity-10">
-        <svg width="100%" height="100%" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                <circle cx="2" cy="2" r="1" fill="#605bff"/>
-            </pattern>
-            <rect width="100%" height="100%" fill="url(#dots)"/>
-        </svg>
+<section class="py-20 bg-[#f7f7f8]/70  pb-20 border-b border-gray-200">
+  <div class="container px-4 sm:px-6 mx-auton ">
+    <!-- Header -->
+    <div class="max-w-3xl mx-auto text-center mb-16">
+      <h2 class="text-[2.5rem] font-medium text-[#32325d] mb-6">
+        Accept payments everywhere
+      </h2>
+      <p class="text-gray-600 text-lg">
+        Enable your business to accept payments globally with our comprehensive payment solution.
+      </p>
     </div>
 
-    <div class="container mx-auto px-4 md:px-6">
-        <div class="flex flex-col lg:flex-row items-center gap-12">
-            <!-- Left content -->
-            <div class="w-full lg:w-1/2">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-[#32325d]">
-                    Accept All Payment Methods
-                    <span class="text-[#605bff]">To Grow Your Business Globally</span>
-                </h2>
-                
-                <p class="text-gray-600 mb-8 leading-relaxed">
-                    Ipsepay enables your business to accept payments from customers worldwide through multiple payment methods including credit cards, digital wallets, and cryptocurrencies. Our platform supports all major payment providers to ensure you never miss a sale.
-                </p>
-                
-                <p class="text-gray-600 mb-8 leading-relaxed">
-                    From traditional payment methods to the latest digital solutions, we've got you covered. Integrate once and access a comprehensive suite of payment options that cater to your customers' preferences, wherever they are.
-                </p>
-
-                <div class="flex flex-wrap gap-4">
-                    <a class=" text-white inline-flex items-center px-6 py-3 bg-[#605bff] text-white font-semibold rounded-lg hover:bg-[#605bff]/90 transition-colors" href="/account/signup" class:active={routeTd === "/account/signup"}>
-                        Start Accepting Payments →
-                    </a>
-                    <a class=" text- inline-flex items-center px-6 py-3 text-[#605bff] font-semibold rounded-lg hover:bg-[#605bff]/5 transition-colors" href="/contact" class:active={routeTd === "/contact"}>
-                        Contact Us →
-                    </a>
-                </div>
+    <!-- Payment Methods Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto bg-[#f7f7f8]/70 ">
+      {#each paymentMethods as method}
+        <div class="group bg-white rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-lg hover:border-[#605bff]/20 transition-all duration-300">
+          <!-- Icon -->
+          <div class="mb-5">
+            <div class="w-12 h-12 bg-[#605bff]/10 rounded-xl flex items-center justify-center group-hover:bg-[#605bff]/20 transition-colors">
+              {#if method.icon === 'credit-card'}
+                <svg class="w-6 h-6 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="5" width="20" height="14" rx="2"/>
+                  <path d="M2 10h20M7 15h2"/>
+                </svg>
+              {:else if method.icon === 'wallet'}
+                <svg class="w-6 h-6 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M19 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2z"/>
+                  <path d="M16 12h.01"/>
+                </svg>
+              {:else if method.icon === 'bank'}
+                <svg class="w-6 h-6 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11m4-11v11m4-11v11m4-11v11m4-11v11"/>
+                </svg>
+              {:else if method.icon === 'crypto'}
+                <svg class="w-6 h-6 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M15 9.354a4 4 0 100 5.292"/>
+                </svg>
+              {:else if method.icon === 'globe'}
+                <svg class="w-6 h-6 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+                </svg>
+              {:else}
+                <svg class="w-6 h-6 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                  <path d="M16 2v4M8 2v4M3 10h18"/>
+                </svg>
+              {/if}
             </div>
+          </div>
 
-            <!-- Right side - Scattered partner logos -->
-            <div class="w-full lg:w-1/2 relative h-[600px] hidden lg:block">
-                <!-- A-pay -->
-                <div class="absolute left-0 top-0">
-                    <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-all">
-                        <img src="/images/brands/A-pay.png" alt="Apple Pay" class="h-8 w-auto"/>
-                    </div>
-                </div>
-                
-                <!-- Maestro -->
-                <div class="absolute right-20 top-10">
-                    <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-all">
-                        <img src="/images/brands/maestro.png" alt="Maestro" class="h-8 w-auto"/>
-                    </div>
-                </div>
+          <!-- Content -->
+          <h3 class="text-lg font-medium text-gray-900 mb-2 group-hover:text-[#605bff] transition-colors">
+            {method.name}
+          </h3>
+          <p class="text-gray-600 text-sm">
+            {method.description}
+          </p>
 
-                <!-- G-pay -->
-                <div class="absolute left-20 top-32">
-                    <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-all">
-                        <img src="/images/brands/G-pay.png" alt="Google Pay" class="h-8 w-auto"/>
-                    </div>
-                </div>
-
-                <!-- Mastercard -->
-                <div class="absolute right-10 top-40">
-                    <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-all">
-                        <img src="/images/brands/mscrad.png" alt="Mastercard" class="h-8 w-auto"/>
-                    </div>
-                </div>
-
-                <!-- Visa -->
-                <div class="absolute left-10 top-64">
-                    <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-all">
-                        <img src="/images/brands/vss.png" alt="Visa" class="h-8 w-auto"/>
-                    </div>
-                </div>
-
-                <!-- PayPal -->
-                <div class="absolute right-20 top-72">
-                    <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-all">
-                        <img src="/images/brands/pay-payl.png" alt="PayPal" class="h-8 w-auto"/>
-                    </div>
-                </div>
-
-                <!-- USDT -->
-                <div class="absolute left-0 bottom-20">
-                    <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-all">
-                        <img src="/images/brands/usdt.png" alt="USDT" class="h-8 w-auto"/>
-                    </div>
-                </div>
-
-                <!-- Amex -->
-                <div class="absolute right-32 bottom-10">
-                    <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-all">
-                        <img src="/images/brands/amex.png" alt="American Express" class="h-8 w-auto"/>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Mobile view grid -->
-            <div class="w-full lg:w-1/2 grid grid-cols-2 md:grid-cols-3 gap-6 lg:hidden">
-                <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                    <img src="/images/brands/A-pay.png" alt="Apple Pay" class="h-8 w-auto"/>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                    <img src="/images/brands/maestro.png" alt="Maestro" class="h-8 w-auto"/>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                    <img src="/images/brands/G-pay.png" alt="Google Pay" class="h-8 w-auto"/>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                    <img src="/images/brands/mscrad.png" alt="Mastercard" class="h-8 w-auto"/>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                    <img src="/images/brands/vss.png" alt="Visa" class="h-8 w-auto"/>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                    <img src="/images/brands/pay-payl.png" alt="PayPal" class="h-8 w-auto"/>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                    <img src="/images/brands/usdt.png" alt="USDT" class="h-8 w-auto"/>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                    <img src="/images/brands/amex.png" alt="American Express" class="h-8 w-auto"/>
-                </div>
-            </div>
+          <!-- Hover State Indicator -->
+          <div class="mt-4 flex items-center gap-2 text-[#605bff] opacity-0 group-hover:opacity-100 transition-opacity">
+            <span class="text-sm font-medium">Learn more</span>
+            <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"/>
+            </svg>
+          </div>
         </div>
+      {/each}
     </div>
+
+    <!-- CTA -->
+    <div class="text-center mt-16">
+      <a href="/account/signup" class="inline-flex items-center px-6 py-3 bg-[#605bff] text-white font-medium rounded-lg hover:bg-[#605bff]/90 transition-colors">
+        Start Accepting Payments →
+      </a>
+    </div>
+  </div>
 </section>
 
 <style>
-    .text-white{
-        color: #fff;
-    }
-    img {
-        transition: transform 0.3s ease;
-    }
-    
-    img:hover {
-        transform: translateY(-5px);
-    }
+  .container {
+    max-width: 1280px;
+  }
 </style>

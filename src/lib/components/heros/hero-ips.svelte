@@ -164,7 +164,7 @@ login               <svg class="w-5 h-5 ml-2" viewBox="0 0 20 20" fill="currentC
       <!-- Partner Logos -->
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center mb-20">
         <img 
-          src="/images/brands/EBay_logo.png" 
+          src="/images/brands/wise.svg" 
           alt="eBay" 
           class="h-8 w-auto grayscale hover:grayscale-0 transition-all duration-200"
         >
@@ -189,7 +189,7 @@ login               <svg class="w-5 h-5 ml-2" viewBox="0 0 20 20" fill="currentC
           class="h-8 w-auto grayscale hover:grayscale-0 transition-all duration-200"
         >
         <img 
-          src="/images/brands/A-pay.png" 
+          src="/images/brands/payonner.png" 
           alt="Wix" 
           class="h-8 w-auto grayscale hover:grayscale-0 transition-all duration-200"
         >

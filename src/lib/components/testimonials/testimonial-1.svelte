@@ -113,47 +113,76 @@
   });
 </script>
 
-<section class="w-full bg-white py-16 overflow-hidden" id="WhatOurClientsSay">
-  <h2 class="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12 text-[#32325d] px-4">What Our Clients Say</h2>
-  
-  <div class="relative w-full overflow-hidden">
-    <div class="flex gap-4 sm:gap-6 px-4 animate-scroll">
-      {#each [...testimonials, ...testimonials] as testimonial}
-        <div class="flex-none w-[85%] sm:w-[50%] md:w-[40%] lg:w-[calc(20%-1rem)]">
-          <div class="bg-white rounded-xl p-4 sm:p-6 h-full transition-all duration-300 ease-in-out
-                      ring-1 ring-black/5
-                      hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]
-                      transform hover:-translate-y-1">
-            <div class="flex items-center gap-3 sm:gap-4 mb-4">
-              <div class="text-3xl sm:text-4xl">{testimonial.avatar}</div>
-              <div>
-                <h3 class="font-semibold text-base sm:text-lg text-[#32325d]">{testimonial.name}</h3>
-                <p class="text-gray-500 text-xs sm:text-sm">{testimonial.country}</p>
+<section class="py-16 md:py-24 relative overflow-hidden pb-20 border-b border-gray-200 w-full">
+  <!-- Background Pattern -->
+  <div class="absolute inset-0 bg-gradient-to-br from-[#605bff]/5 to-transparent"></div>
+
+  <div class="container-fluid px-4 md:px-6 relative">
+    <!-- Header -->
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 bg-[#605bff]/10 rounded-full px-3 py-1 mb-6">
+        <svg class="w-5 h-5 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+        <span class="text-sm font-medium text-[#605bff]">Testimonials</span>
+      </div>
+      <h2 class="text-3xl md:text-4xl font-bold text-[#32325d] mb-4">What Our Clients Say</h2>
+      <p class="text-gray-600">Trusted by businesses worldwide</p>
+    </div>
+
+    <!-- Testimonials Slider -->
+    <div class="relative w-full overflow-hidden -mx-4">
+      <div class="flex gap-6 animate-scroll px-4">
+        {#each [...testimonials, ...testimonials] as testimonial}
+          <div class="flex-none w-[280px] sm:w-[320px] md:w-[340px] lg:w-[380px]">
+            <div class="bg-white rounded-2xl p-6 h-full transition-all duration-300
+                        shadow-sm hover:shadow-xl border border-gray-100
+                        transform hover:-translate-y-1">
+              <!-- Header -->
+              <div class="flex items-center gap-4 mb-4">
+                <div class="w-12 h-12 bg-[#605bff]/10 rounded-full flex items-center justify-center text-2xl">
+                  {testimonial.avatar}
+                </div>
+                <div>
+                  <h3 class="font-semibold text-[#32325d]">{testimonial.name}</h3>
+                  <p class="text-sm text-gray-500">{testimonial.country}</p>
+                </div>
+              </div>
+              
+              <!-- Rating -->
+              <div class="flex text-[#605bff] mb-3">
+                {#each Array(testimonial.rating) as _}
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                  </svg>
+                {/each}
+              </div>
+              
+              <!-- Content -->
+              <h4 class="font-semibold text-[#32325d] mb-2">{testimonial.title}</h4>
+              <p class="text-gray-600 text-sm leading-relaxed mb-4">{testimonial.text}</p>
+              
+              <!-- Footer -->
+              <div class="pt-4 border-t border-gray-100">
+                <p class="text-sm text-[#605bff]">{testimonial.date}</p>
               </div>
             </div>
-            
-            <div class="flex text-yellow-400 mb-2 sm:mb-3">
-              {#each Array(testimonial.rating) as _}
-                <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                </svg>
-              {/each}
-            </div>
-            
-            <h4 class="font-semibold text-[#32325d] mb-2 text-sm sm:text-base">{testimonial.title}</h4>
-            <p class="text-gray-600 text-xs sm:text-sm leading-relaxed line-clamp-3">{testimonial.text}</p>
-            
-            <p class="text-gray-400 text-xs sm:text-sm mt-3 sm:mt-4">{testimonial.date}</p>
           </div>
-        </div>
-      {/each}
+        {/each}
+      </div>
     </div>
   </div>
 </section>
 
 <style>
+  .container-fluid {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
   .animate-scroll {
-    animation: scroll 50s linear infinite;
+    animation: scroll 60s linear infinite;
   }
   
   .animate-scroll:hover {
@@ -169,23 +198,32 @@
     }
   }
 
-  /* Hide scrollbar */
+  /* Smooth transitions */
+  .transition-all {
+    transition: all 0.3s ease-in-out;
+  }
+
+  /* Hide scrollbar but keep functionality */
   .flex::-webkit-scrollbar {
     display: none;
   }
 
-  /* Ensure smooth animation */
   .flex {
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    will-change: transform;
   }
 
-  /* Smooth transition for hover states */
-  .flex > div > div {
-    backface-visibility: hidden;
-    -webkit-font-smoothing: subpixel-antialiased;
-    border: 1px solid rgba(0, 0, 0, 0.08);
+  /* Ensure cards are visible on all screen sizes */
+  @media (min-width: 1536px) {
+    .animate-scroll {
+      animation-duration: 80s;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .animate-scroll {
+      animation-duration: 40s;
+    }
   }
 </style>

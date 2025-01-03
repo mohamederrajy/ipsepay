@@ -15,28 +15,37 @@
     import SmartSimple from "$lib/components/samrt-simple/smart-simple.svelte";
     import ImageText from "$lib/components/image-text/image-text.svelte";
     import ImageLeft from "$lib/components/image-left/image-left.svelte";
-       
+    import OnlinePayments from "$lib/components/online-payments/online-payments.svelte";
     import Internationalisation from "$lib/components/internationalisation/internationalisation.svelte";
     import OnboardingFlow from "$lib/components/onboardingflow/onboardingflow.svelte";
     import PayMethoes from "$lib/components/payment-methos/pay-methoes.svelte";
     import { onMount } from 'svelte';
     import HeroIps from "$lib/components/heros/hero-ips.svelte";
     import DashbordSection from "$lib/components/industries/sections/dashbord-section.svelte";
-  
-  
+    import PayoutMethodes from "$lib/components/payout-methodes/payout-methodes.svelte";
+    import PayoutTime from "$lib/components/payout-time/payout-time.svelte";
+    import CommerceSolutions from "$lib/components/commerce-solutions/commerce-solutions.svelte";
+    import CustomerExpectations from "$lib/components/customer-expectations/customer-expectations.svelte";
   </script>
   <PageTitle title="Ipsepay " />
   <Navbar/>
   <HeroIps/>
-  <ScrollingImages/>
-  <SmartSimple/>
-  <DashbordSection/>
-  <BusinessCategores/>
+  <!--<ScrollingImages/>-->
+    <!--<SmartSimple/>-->
+  <OnlinePayments/>
   <PayMethoes/>
-  <Advantages/>
-  <Integration/>
+  <PayoutTime/>
+     <!-- <DashbordSection/>-->
+   <!-- <BusinessCategores/>-->
+   <Integration/>
+   <CommerceSolutions/>
+  <PayoutMethodes/>
+   <!-- <Advantages/>-->
+ 
+
   <OnboardingFlow/>
-  <ImageLeft/>
+  <CustomerExpectations/>
+  <!--<ImageLeft/>-->
   <Pricing/>
   <Pricing1 />
   <Testimonial1/>
