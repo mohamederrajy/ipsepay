@@ -1,136 +1,308 @@
 <script lang="ts">
-    const transactions = [
-      { amount: 223.00, date: '23/03/2022', status: 'Queued' },
-      { amount: 899.00, date: '23/03/2022', status: 'Queued' },
-      { amount: 988.00, date: '23/03/2022', status: 'Queued' },
-      { amount: 443.00, date: '23/03/2022', status: 'Queued' }
-    ];
-  </script>
+  import { onMount } from 'svelte';
   
-  <section class="py-16 md:py-24 relative overflow-hidden  pb-20 border-b border-gray-200" >
-    <div class="container mx-auto px-4 md:px-6">
-      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-        <!-- Payout Interface (Now on Left) -->
-        <div class="relative">
-          <div class="absolute inset-0 bg-gradient-to-br from-[#605bff]/5 to-transparent rounded-3xl"></div>
-          <div class="relative">
-            <!-- Available Balance Card -->
-            <div class="bg-gray/100 text-white p-6 rounded-2xl mb-4">
-              <p class="text-gray-400 mb-2">Available to withdraw</p>
-              <h2 class="text-3xl font-semibold mb-4">AED 991.00</h2>
-              <div class="bg-[#fff] rounded-xl p-4 mb-4 border border-gray-200">
-                <p class="text-3xl font-bold text-center mb-2 text-[#605bff]">AED 223</p>
+  const features = [
+    {
+      icon: 'bolt',
+      title: 'Instant Transfers',
+      description: 'Get paid in seconds, not days'
+    },
+    {
+      icon: 'globe',
+      title: 'Global Coverage',
+      description: 'Send money to 150+ countries'
+    },
+    {
+      icon: 'shield',
+      title: 'Secure & Reliable',
+      description: 'Bank-grade encryption'
+    }
+  ];
+
+  let isVisible = false;
+  onMount(() => isVisible = true);
+</script>
+
+<section class="relative py-32 overflow-hidden">
+  <!-- Enhanced Modern Dark Background -->
+  <div class="absolute inset-0">
+    <!-- Main gradient with richer colors -->
+    <div class="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-[#0A0A0A]"></div>
+    
+    <!-- Subtle patterns and effects -->
+    <div class="absolute inset-0 bg-[url('/images/grid.svg')] opacity-[0.07]"></div>
+    
+    <!-- Enhanced glow effects -->
+    <div class="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-[120px]"></div>
+    <div class="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[120px]"></div>
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#605bff]/5 rounded-full blur-[100px]"></div>
+  </div>
+
+  <div class="relative container mx-auto px-4">
+    <!-- Enhanced Header -->
+    <div class="max-w-3xl mx-auto text-center mb-32">
+      <!-- Improved badge design -->
+      <div class="inline-flex items-center gap-3 rounded-full bg-white/[0.03] backdrop-blur-xl 
+                  p-1.5 pr-6 border border-white/[0.08] mb-8 animate-float shadow-2xl shadow-black/20
+                  hover:bg-white/[0.05] transition-all duration-300">
+        <span class="rounded-full bg-[#605bff] px-4 py-1.5 text-sm font-semibold text-white
+                     shadow-lg shadow-[#605bff]/20">
+          Real-time
+        </span>
+        <span class="text-sm font-semibold text-white/95 flex items-center gap-2">
+          Instant Payouts
+          <div class="relative flex">
+            <span class="absolute inline-flex h-2 w-2 rounded-full bg-[#605bff] 
+                        animate-ping opacity-75"></span>
+            <span class="relative inline-flex h-2 w-2 rounded-full bg-[#605bff]"></span>
+          </div>
+        </span>
+      </div>
+
+      <!-- Enhanced title with better contrast -->
+      <h2 class="text-6xl font-bold leading-tight mb-8 bg-clip-text">
+        <span class="text-white">Get Your Money</span>
+        <span class="relative inline-block ml-3">
+          <span class="relative z-10 bg-gradient-to-r from-[#605bff] to-[#8b7fff] 
+                       bg-clip-text text-transparent font-extrabold">Instantly</span>
+          <div class="absolute -bottom-2 left-0 right-0 h-3 bg-[#605bff]/20 
+                      -rotate-1 blur-sm"></div>
+        </span>
+      </h2>
+      
+      <p class="text-xl text-white/80 max-w-2xl mx-auto leading-relaxed font-medium">
+        Experience lightning-fast payouts with our advanced payment infrastructure. 
+        No more waiting – get your money when you need it.
+      </p>
+    </div>
+
+    <!-- Enhanced Feature Grid -->
+    <div class="grid lg:grid-cols-2 gap-20 items-center max-w-6xl mx-auto">
+      <!-- Left: Feature Cards -->
+      <div class="grid gap-6">
+        {#each features as feature}
+          <div class="group relative bg-white/[0.02] backdrop-blur-xl rounded-2xl p-7
+                      transition-all duration-500 hover:bg-white/[0.04] border border-white/[0.05]
+                      hover:border-white/[0.08] shadow-2xl shadow-black/20">
+            <div class="flex items-start gap-6">
+              <div class="flex-shrink-0">
+                <div class="w-14 h-14 rounded-xl bg-[#605bff]/10 flex items-center justify-center
+                            transition-all duration-500 group-hover:bg-[#605bff]
+                            shadow-lg shadow-[#605bff]/10 group-hover:shadow-[#605bff]/20">
+                  <svg class="w-7 h-7 text-[#605bff] group-hover:text-white
+                            transition-colors duration-500" 
+                       fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    {#if feature.icon === 'bolt'}
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                            d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                    {:else if feature.icon === 'globe'}
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                            d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    {:else}
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                    {/if}
+                  </svg>
+                </div>
               </div>
-              <button class="w-full bg-[#605bff] text-white py-3 rounded-xl hover:bg-[#605bff]/90 transition-colors">
-                Withdraw
-              </button>
+              <div class="flex-1 pt-1">
+                <h3 class="text-xl font-semibold text-white mb-3 tracking-tight">{feature.title}</h3>
+                <p class="text-white/60 leading-relaxed text-[15px]">{feature.description}</p>
+              </div>
             </div>
-  
-            <!-- Transaction List -->
-            <div class="bg-white rounded-2xl border border-gray-200 shadow-sm">
-              <div class="p-4 border-b border-gray-200">
-                <div class="flex items-center justify-between">
-                  <div class="flex items-center gap-2">
-                    <span class="text-gray-900 font-medium">Source:</span>
-                    <span class="bg-gray-100 px-3 py-1 rounded-lg text-gray-600">MDL Business</span>
-                  </div>
-                  <button class="text-[#605bff] bg-[#605bff]/5 px-4 py-2 rounded-lg hover:bg-[#605bff]/10 transition-colors">
-                    Authorize (24)
-                  </button>
+
+            <!-- Enhanced hover effect -->
+            <div class="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#605bff]/20 
+                        to-transparent opacity-0 group-hover:opacity-100 transition-opacity 
+                        duration-500 pointer-events-none"></div>
+          </div>
+        {/each}
+      </div>
+
+      <!-- Right: Enhanced Timer Display -->
+      <div class="relative">
+        <div class="relative mx-auto w-[480px] h-[480px] flex items-center justify-center">
+          <!-- Improved background layers -->
+          <div class="absolute inset-0 rounded-full bg-gradient-to-br from-[#605bff]/5 via-white/[0.02] to-transparent 
+                      backdrop-blur-xl border border-white/[0.08] shadow-2xl shadow-black/20"></div>
+          
+          <!-- Added subtle rotating ring -->
+          <div class="absolute inset-2 rounded-full border border-white/[0.05] animate-spin-slow"></div>
+          
+          <!-- Timer Content -->
+          <div class="relative text-center z-10 px-8">
+            <div class="space-y-10">
+              <!-- Enhanced timer display -->
+              <div class="relative transform hover:scale-105 transition-transform duration-300">
+                <div class="flex items-baseline justify-center">
+                  <span class="text-[140px] font-bold text-transparent bg-gradient-to-r 
+                               from-white to-white/90 bg-clip-text leading-none tracking-tight
+                               drop-shadow-2xl">0.1</span>
+                  <span class="text-6xl font-bold text-[#605bff] ml-4 drop-shadow-lg">s</span>
+                </div>
+                <div class="mt-6 text-lg font-medium text-white/80">
+                  Average Processing Time
                 </div>
               </div>
-  
-              <div class="p-4">
-                <div class="grid grid-cols-4 text-sm text-gray-500 mb-2">
-                  <span>Amount</span>
-                  <span>Created</span>
-                  <span>Status</span>
-                  <span></span>
-                </div>
-  
-                {#each transactions as tx}
-                  <div class="grid grid-cols-4 items-center py-3 border-t border-gray-100 text-sm">
-                    <span class="font-medium text-gray-900">AED {tx.amount.toFixed(2)}</span>
-                    <span class="text-gray-500">{tx.date}</span>
-                    <span class="text-blue-600">{tx.status}</span>
-                    <button class="justify-self-end text-[#605bff] hover:text-[#605bff]/80">
-                      <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"/>
-                      </svg>
-                    </button>
+
+              <!-- Enhanced stats with hover effects -->
+              <div class="flex justify-center gap-16 mt-12">
+                {#each [
+                  { value: '99.9%', label: 'Success Rate', color: 'from-green-400 to-emerald-500' },
+                  { value: '24/7', label: 'Support', color: 'from-[#605bff] to-blue-500' }
+                ] as stat}
+                  <div class="text-center group cursor-pointer transform hover:scale-105 transition-all duration-300">
+                    <div class="text-3xl font-bold bg-gradient-to-r {stat.color} 
+                                bg-clip-text text-transparent mb-2">{stat.value}</div>
+                    <div class="text-sm text-white/70 group-hover:text-white/90 
+                                transition-colors duration-300">{stat.label}</div>
                   </div>
                 {/each}
               </div>
             </div>
           </div>
-        </div>
-  
-        <!-- Content Section (Now on Right) -->
-        <div class="max-w-xl">
-          <div class="flex items-center gap-2 mb-6">
-            <svg class="w-5 h-5 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-            </svg>
-            <span class="text-sm text-gray-600">Instant Payouts</span>
-          </div>
-  
-          <h1 class="text-4xl md:text-5xl font-bold text-[#32325d] mb-6">
-            Get your money 
-            <span class="block">instantly</span>
-          </h1>
-  
-          <p class="text-lg text-gray-600 mb-8">
-            Access your earnings immediately with our instant payout system. No more waiting for traditional banking hours or processing delays. Transfer your money when you need it, 24/7.
-          </p>
-  
-          <div class="space-y-4 mb-8">
-            <div class="flex items-start gap-3">
-              <div class="w-6 h-6 rounded-full bg-[#605bff]/10 flex items-center justify-center mt-1">
-                <svg class="w-4 h-4 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 13l4 4L19 7"/>
-                </svg>
-              </div>
-              <div>
-                <h3 class="text-gray-900 font-medium mb-1">24/7 Availability</h3>
-                <p class="text-gray-600">Withdraw your funds any time, any day</p>
+
+          <!-- Enhanced floating payouts -->
+          {#each Array(4) as _, i}
+            <div class="absolute animate-payout"
+                 style="animation-delay: -{i * 2}s; {i === 0 ? 'top: 15%; right: -80px;' : 
+                                                      i === 1 ? 'top: 65%; right: -80px;' :
+                                                      i === 2 ? 'top: 25%; left: -80px;' :
+                                                               'top: 75%; left: -80px;'}">
+              <div class="bg-gradient-to-br from-white/[0.03] to-white/[0.01] backdrop-blur-xl 
+                          rounded-xl p-4 border border-white/[0.08] shadow-2xl shadow-black/20
+                          hover:bg-white/[0.05] transition-all duration-300 hover:scale-105
+                          hover:border-white/[0.12]">
+                <div class="flex items-center gap-4">
+                  <div class="w-10 h-10 rounded-lg bg-[#605bff]/20 flex items-center 
+                              justify-center shadow-lg shadow-[#605bff]/10">
+                    <svg class="w-5 h-5 text-[#605bff]" viewBox="0 0 24 24" 
+                         fill="none" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" 
+                            stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="text-base font-semibold text-white">
+                      ${(Math.random() * 10000).toFixed(2)}
+                    </div>
+                    <div class="text-sm text-[#605bff] font-medium">Instant Payout</div>
+                  </div>
+                </div>
               </div>
             </div>
-  
-            <div class="flex items-start gap-3">
-              <div class="w-6 h-6 rounded-full bg-[#605bff]/10 flex items-center justify-center mt-1">
-                <svg class="w-4 h-4 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-              </div>
-              <div>
-                <h3 class="text-gray-900 font-medium mb-1">Instant Processing</h3>
-                <p class="text-gray-600">No delays, funds arrive in minutes</p>
-              </div>
-            </div>
-  
-            <div class="flex items-start gap-3">
-              <div class="w-6 h-6 rounded-full bg-[#605bff]/10 flex items-center justify-center mt-1">
-                <svg class="w-4 h-4 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                </svg>
-              </div>
-              <div>
-                <h3 class="text-gray-900 font-medium mb-1">Secure Transfers</h3>
-                <p class="text-gray-600">Bank-grade security for all transactions</p>
-              </div>
+          {/each}
+
+          <!-- Added live processing indicator -->
+          <div class="absolute top-8 left-8">
+            <div class="flex items-center gap-2 bg-white/[0.03] rounded-full px-4 py-2 
+                        border border-white/[0.08] shadow-lg">
+              <span class="relative flex h-2 w-2">
+                <span class="absolute inline-flex h-full w-full rounded-full bg-green-400 
+                            animate-ping opacity-75"></span>
+                <span class="relative inline-flex h-2 w-2 rounded-full bg-green-400"></span>
+              </span>
+              <span class="text-sm font-medium text-white/90">Processing Live</span>
             </div>
           </div>
-  
-          <a href="/account/withdraw" class="inline-flex items-center px-6 py-3 bg-[#605bff] text-white font-medium rounded-lg hover:bg-[#605bff]/90 transition-colors">
-            Start withdrawing →
-          </a>
         </div>
       </div>
     </div>
-  </section>
-  
-  <style>
-    .container {
-      max-width: 1280px;
+  </div>
+</section>
+
+<style>
+  @keyframes payout {
+    0% {
+      opacity: 0;
+      transform: translateX(0) translateY(0);
     }
-  </style>
+    20% {
+      opacity: 1;
+      transform: translateX(-10px) translateY(-10px);
+    }
+    80% {
+      opacity: 1;
+      transform: translateX(-20px) translateY(-20px);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(-30px) translateY(-30px);
+    }
+  }
+
+  .animate-payout {
+    animation: payout 4s ease-out infinite;
+  }
+
+  @keyframes wave-flow {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  @keyframes float-card {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(1deg); }
+  }
+
+  .animate-float-card {
+    animation: float-card 3s ease-in-out infinite;
+  }
+
+  @keyframes success-move {
+    0% { 
+      transform: translate(0, 0) scale(0.8);
+      opacity: 0;
+    }
+    20% { 
+      transform: translate(-20px, -20px) scale(1);
+      opacity: 1;
+    }
+    80% { 
+      transform: translate(20px, -40px) scale(1);
+      opacity: 1;
+    }
+    100% { 
+      transform: translate(40px, -60px) scale(0.8);
+      opacity: 0;
+    }
+  }
+
+  .animate-success-move {
+    animation: success-move 8s ease-in-out infinite;
+  }
+
+  @keyframes progress {
+    0% { width: 0; }
+    50% { width: 70%; }
+    100% { width: 100%; }
+  }
+
+  .animate-progress {
+    animation: progress 2s ease-in-out;
+    width: 100%;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Add text shadow utility */
+  .text-shadow-lg {
+    text-shadow: 0 0 40px rgba(0,0,0,0.3);
+  }
+
+  .animate-spin-slow {
+    animation: spin 20s linear infinite;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+</style>

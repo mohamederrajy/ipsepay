@@ -26,10 +26,19 @@
     import PayoutTime from "$lib/components/payout-time/payout-time.svelte";
     import CommerceSolutions from "$lib/components/commerce-solutions/commerce-solutions.svelte";
     import CustomerExpectations from "$lib/components/customer-expectations/customer-expectations.svelte";
+    import Futeurs from "$lib/components/brands-partners/brands-partner.svelte";
+    import Prtners from "$lib/components/partners/partners.svelte";
+ 
+
+
   </script>
   <PageTitle title="Ipsepay " />
   <Navbar/>
   <HeroIps/>
+
+  <Prtners/>
+ <!--<<Futeurs/>-->
+
   <!--<ScrollingImages/>-->
     <!--<SmartSimple/>-->
   <OnlinePayments/>
@@ -46,7 +55,7 @@
   <OnboardingFlow/>
   <CustomerExpectations/>
   <!--<ImageLeft/>-->
-  <Pricing/>
+    <!--<<Pricing/>-->
   <Pricing1 />
   <Testimonial1/>
   <Faq />

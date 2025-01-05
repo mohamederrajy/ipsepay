@@ -171,23 +171,23 @@
                       </div>
                     </a>
 
-                    <a href="/payments/cross-channel" class="group flex items-start p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                    <a href="/payments/payments-link" class="group flex items-start p-3 rounded-lg hover:bg-gray-50 transition-colors">
                       <svg class="w-5 h-5 text-[#605bff] mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
                       </svg>
                       <div>
-                        <span class="text-[#605bff] font-medium block group-hover:text-[#605bff]/80">Cross channel</span>
-                        <span class="text-sm text-gray-600">Build journeys across sales channels</span>
+                        <span class="text-[#605bff] font-medium block group-hover:text-[#605bff]/80">Payments Links</span>
+                        <span class="text-sm text-gray-600">Accept payments on any channel</span>
                       </div>
                     </a>
 
-                    <a href="/payments/platforms" class="group flex items-start p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                    <a href="/payments/checkout" class="group flex items-start p-3 rounded-lg hover:bg-gray-50 transition-colors">
                       <svg class="w-5 h-5 text-[#605bff] mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
                       </svg>
                       <div>
-                        <span class="text-[#605bff] font-medium block group-hover:text-[#605bff]/80">Adyen for Platforms</span>
-                        <span class="text-sm text-gray-600">Embed payments into your platform or marketplace</span>
+                        <span class="text-[#605bff] font-medium block group-hover:text-[#605bff]/80">Checkout</span>
+                        <span class="text-sm text-gray-600">Streamline checkout with integrated payments</span>
                       </div>
                     </a>
                   </div>
@@ -668,8 +668,8 @@
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
                     </svg>
                     <div>
-                      <span class="text-[#605bff] font-medium block">Cross channel</span>
-                      <span class="text-xs text-gray-600">Build journeys across channels</span>
+                      <span class="text-[#605bff] font-medium block">Payments Links</span>
+                      <span class="text-xs text-gray-600">Accept payments on any channel</span>
                     </div>
                   </a>
 
@@ -678,8 +678,8 @@
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
                     </svg>
                     <div>
-                      <span class="text-[#605bff] font-medium block">Adyen for Platforms</span>
-                      <span class="text-xs text-gray-600">Embed payments into your platform</span>
+                      <span class="text-[#605bff] font-medium block">Checkout</span>
+                      <span class="text-xs text-gray-600">Streamline checkout with integrated payments</span>
                     </div>
                   </a>
                 </div>
