@@ -103,13 +103,26 @@
 
 <!-- =========== Navbar Start =========== -->
 <header id="navbar" class="{isDark ? 'dark' : 'light'} fixed top-0 inset-x-0 flex items-center z-40 w-full lg:bg-transparent bg-white transition-all py-5">
-  <div class="container">
+  <div class="container mx-auto px-6">
     <nav class="flex items-center justify-between">
       <!-- Logo -->
-      <a href="/" class="flex-shrink-0 mr-8">
+      <a href="/" class="flex-shrink-0">
         <img src="/images/lgopis.png" class="h-8 logo-dark" alt="Logo Dark" />
         <img src="/images/lgopis.png" class="h-8 logo-light" alt="Logo Light" />
       </a>
+
+      <!-- Mobile Menu Toggle -->
+      <button 
+        type="button"
+        class="lg:hidden p-2 -mr-2"
+        aria-label="Toggle menu"
+        data-fc-target="mobileMenu" 
+        data-hs-overlay="#mobileMenu"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
 
       <!-- Desktop Navigation -->
       <div class="hidden lg:block">
@@ -575,16 +588,6 @@
           </svg>
           Get Started
         </a>
-      </div>
-
-      <!-- Mobile Menu Toggle -->
-      <div class="lg:hidden">
-        <button type="button" 
-                class="p-2 text-gray-500 hover:text-gray-600"
-                data-fc-target="mobileMenu" 
-                data-hs-overlay="#mobileMenu">
-          <i class="fa-solid fa-bars text-2xl"></i>
-        </button>
       </div>
     </nav>
   </div>

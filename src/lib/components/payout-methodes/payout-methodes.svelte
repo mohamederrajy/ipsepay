@@ -56,7 +56,7 @@
   ];
 </script>
 
-<section class="relative overflow-hidden py-32">
+<section class="relative overflow-hidden py-16 sm:py-24 lg:py-32">
   <!-- Enhanced Modern iOS-style Background -->
   <div class="absolute inset-0">
     <!-- Dynamic Base Layer -->
@@ -107,45 +107,50 @@
   </div>
 
   <!-- Content Container -->
-  <div class="relative container mx-auto px-4">
+  <div class="relative container mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Title Section -->
-    <div class="max-w-3xl mx-auto text-center mb-24">
-      <div class="inline-flex items-center gap-3 rounded-full bg-white/90 p-1.5 pr-6 
-                  backdrop-blur-xl border border-white/20 shadow-xl hover:shadow-2xl 
-                  transition-all duration-300 mb-8 animate-float">
+    <div class="max-w-3xl mx-auto text-center mb-12 sm:mb-16 lg:mb-24">
+      <div class="inline-flex items-center gap-2 sm:gap-3 rounded-full bg-white/90 
+                  p-1.5 pr-4 sm:pr-6 backdrop-blur-xl border border-white/20 
+                  shadow-xl hover:shadow-2xl transition-all duration-300 
+                  mb-6 sm:mb-8 animate-float">
         <span class="rounded-full bg-gradient-to-r from-[#605bff] to-[#605bff]/90 
-                     px-4 py-1.5 text-sm font-medium text-white relative overflow-hidden">
+                     px-3 sm:px-4 py-1.5 text-xs sm:text-sm font-medium text-white 
+                     relative overflow-hidden">
           <span class="relative z-10">Global</span>
           <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 
                       to-transparent animate-shimmer"></div>
         </span>
-        <span class="text-sm font-medium text-[#32325d]">Payout Options</span>
+        <span class="text-xs sm:text-sm font-medium text-[#32325d]">Payout Options</span>
       </div>
 
-      <h2 class="text-5xl font-bold leading-tight mb-8 text-[#32325d]">
-        Choose Your
-        <span class="relative inline-block">
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4 sm:mb-8 
+                 text-[#32325d]">
+        <span class="whitespace-nowrap">Choose Your</span>
+        <span class="relative inline-block ml-2">
           <span class="bg-gradient-to-r from-[#605bff] to-[#32325d] bg-clip-text 
                        text-transparent animate-gradient">Payout Method</span>
         </span>
       </h2>
       
-      <p class="text-xl text-[#32325d]/70 max-w-2xl mx-auto leading-relaxed">
+      <p class="text-base sm:text-lg lg:text-xl text-[#32325d]/70 max-w-2xl mx-auto 
+                leading-relaxed px-4 sm:px-0">
         Get paid your way with our flexible payout solutions. Fast, secure, and reliable 
         options for global transactions.
       </p>
     </div>
 
     <!-- Updated Payment Methods Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-10 
+                max-w-7xl mx-auto">
       {#each payoutMethods as method, i}
-        <div class="group bg-white/95 backdrop-blur-xl rounded-3xl border border-white/20 
-                    shadow-xl hover:shadow-2xl transition-all duration-500 
-                    hover:-translate-y-1 relative overflow-hidden p-8
-                    animate-fade-up" style="animation-delay: {i * 200}ms">
+        <div class="group bg-white/95 backdrop-blur-xl rounded-2xl sm:rounded-3xl 
+                    border border-white/20 shadow-xl hover:shadow-2xl transition-all 
+                    duration-500 hover:-translate-y-1 relative overflow-hidden 
+                    p-6 sm:p-8 animate-fade-up" style="animation-delay: {i * 200}ms">
           <!-- Reduced Size Image Display -->
-          <div class="relative mb-6">
-            <div class="h-16 rounded-xl overflow-hidden relative 
+          <div class="relative mb-4 sm:mb-6">
+            <div class="h-14 sm:h-16 rounded-xl overflow-hidden relative 
                         transition-all duration-500">
               <!-- Simple Gradient Background -->
               <div class="absolute inset-0 bg-gradient-to-br {method.bgColor} 
@@ -156,7 +161,7 @@
                 <img 
                   src={method.icon} 
                   alt={method.name}
-                  class="h-10 w-auto object-contain drop-shadow-lg 
+                  class="h-8 sm:h-10 w-auto object-contain drop-shadow-lg 
                          transform group-hover:scale-110 transition-all duration-500"
                   loading="lazy"
                 />
@@ -164,20 +169,23 @@
             </div>
           </div>
 
-          <h3 class="text-xl font-bold mb-4 text-[#32325d] group-hover:{method.textColor}
-                     transition-all duration-300 text-center">
+          <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-[#32325d] 
+                     group-hover:{method.textColor} transition-all duration-300 
+                     text-center">
             {method.name}
           </h3>
           
-          <p class="text-[#32325d]/60 text-base mb-6 leading-relaxed text-center">
+          <p class="text-sm sm:text-base text-[#32325d]/60 mb-4 sm:mb-6 
+                    leading-relaxed text-center">
             {method.description}
           </p>
 
-          <div class="space-y-2 mb-8">
+          <div class="space-y-1.5 sm:space-y-2 mb-6 sm:mb-8">
             {#each method.features as feature}
-              <div class="flex items-center gap-2 text-sm text-[#32325d]/70 
+              <div class="flex items-center gap-2 text-xs sm:text-sm text-[#32325d]/70 
                           hover:text-[#32325d] transition-colors duration-300">
-                <svg class="w-4 h-4 {method.textColor}" viewBox="0 0 20 20" fill="currentColor">
+                <svg class="w-3.5 sm:w-4 h-3.5 sm:h-4 {method.textColor}" 
+                     viewBox="0 0 20 20" fill="currentColor">
                   <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
                 </svg>
                 <span>{feature}</span>
@@ -185,12 +193,15 @@
             {/each}
           </div>
 
-          <div class="flex items-center justify-center gap-3 pt-4 border-t border-gray-100">
-            <span class="text-3xl font-bold {method.textColor} transition-all duration-300
-                         group-hover:scale-110">
+          <div class="flex items-center justify-center gap-2 sm:gap-3 pt-4 
+                      border-t border-gray-100">
+            <span class="text-2xl sm:text-3xl font-bold {method.textColor} 
+                         transition-all duration-300 group-hover:scale-110">
               {method.stat}
             </span>
-            <span class="text-sm text-[#32325d]/50 font-medium">{method.label}</span>
+            <span class="text-xs sm:text-sm text-[#32325d]/50 font-medium">
+              {method.label}
+            </span>
           </div>
 
           <!-- Enhanced hover indicator -->

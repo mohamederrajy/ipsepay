@@ -49,155 +49,223 @@
       rating: 5
     }
   ];
+
+  let mouseX = 0;
+  let mouseY = 0;
+
+  function handleMouseMove(event) {
+    mouseX = event.clientX / window.innerWidth;
+    mouseY = event.clientY / window.innerHeight;
+  }
 </script>
 
-<div class="min-h-screen bg-gray-50">
-  <div class="flex flex-col lg:flex-row h-screen">
-    <!-- Left Section -->
-    <div class="hidden lg:flex lg:w-[60%] p-6 flex-col relative overflow-hidden">
-      <!-- Header - Reduced top margin -->
-      <div class="flex justify-between items-center mb-4 relative z-10">
-        <a href="/" class="hover:opacity-90 transition-opacity">
-          <img src="/images/lgopis.png" alt="IpsePay" class="h-5" />
-        </a>
-        <a href="/account/login" 
-           class="inline-flex items-center gap-1 text-[#605bff] text-xs font-medium
-                  bg-[#605bff]/10 px-2 py-2 rounded-lg">
-          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
-          </svg>
-          Sign in
-        </a>
+<div class="min-h-screen flex relative overflow-hidden" on:mousemove={handleMouseMove}>
+  <!-- Left Section -->
+  <div class="hidden lg:flex lg:w-[60%] relative">
+    <!-- Interactive Background -->
+    <div class="absolute inset-0 pointer-events-none">
+      <!-- Gradient Orbs -->
+      <div class="absolute inset-0 opacity-50"
+           style="background: radial-gradient(circle at {mouseX * 100}% {mouseY * 100}%, 
+                  rgba(96, 91, 255, 0.1), 
+                  transparent 40%),
+                  radial-gradient(circle at {100 - mouseX * 100}% {100 - mouseY * 100}%, 
+                  rgba(111, 76, 255, 0.1), 
+                  transparent 40%);">
       </div>
+      
+      <!-- Animated Grid -->
+      <div class="absolute inset-0 opacity-[0.07]"
+           style="background-image: linear-gradient(#605bff 1px, transparent 1px),
+                  linear-gradient(to right, #605bff 1px, transparent 1px);
+                  background-size: 40px 40px;
+                  transform: perspective(1000px) rotateX({mouseY * 5}deg) rotateY({mouseX * 5}deg);
+                  transition: transform 0.1s ease-out;">
+      </div>
+    </div>
 
-      <!-- Content wrapper - Adjusted spacing -->
-      <div class="relative space-y-4 max-w-3xl mx-auto w-full mt-2">
-        <!-- Trust Badge -->
-        <div class="inline-flex items-center gap-2 bg-[#605bff]/10 rounded-full px-3 py-1">
-          <svg class="w-4 h-4 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-          </svg>
-          <span class="text-xs font-medium text-[#605bff]">Secure Account Recovery</span>
-        </div>
+    <!-- Content -->
+    <div class="w-full p-12 flex flex-col relative z-10">
+      <div class="w-full flex flex-col h-full">
+        <!-- Header -->
+        <nav class="flex justify-between items-center mb-8">
+          <img src="/images/lgopis.png" alt="IpsePay" class="h-8" />
+          <a href="/account/login" 
+             class="group flex items-center gap-2 px-5 py-2.5 bg-white/80 backdrop-blur-md 
+                    rounded-xl border border-white/20 hover:border-[#605bff]/20 
+                    transition-all duration-300 shadow-lg shadow-[#605bff]/5">
+            <span class="text-sm font-medium text-gray-600">Back to</span>
+            <span class="text-[#605bff] font-medium relative">
+              Sign in
+              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#605bff] 
+                           group-hover:w-full transition-all duration-300"></span>
+            </span>
+            <svg class="w-4 h-4 text-[#605bff] transform group-hover:translate-x-1 transition-transform" 
+                 viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                    d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
+        </nav>
 
-        <!-- New Security Features Section -->
-        <div class="bg-white/40 backdrop-blur-sm rounded-xl p-5 border border-white/20">
-          <h2 class="text-2xl font-bold text-[#32325d] mb-3">
-            Secure Password <br/>
-            <span class="text-[#605bff]">Recovery Process</span>
-          </h2>
-          <p class="text-gray-600 text-base mb-4">Our advanced security measures ensure your account remains protected</p>
-          
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col justify-between max-w-xl h-full">
+          <!-- Title Section -->
+          <div class="mb-6">
+            <!-- Animated Badge -->
+            <div class="inline-flex items-center gap-3 px-4 py-2 bg-gradient-to-r from-[#605bff]/5 to-purple-500/5 
+                        rounded-full mb-5 border border-[#605bff]/10">
+              <div class="flex items-center gap-2">
+                <svg class="w-3 h-3 text-[#605bff]" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                  <path fill="white" d="M11 14.414L7.586 11 6 12.586l5 5 8-8L17.586 8z"/>
+                </svg>
+                <div class="h-3 w-[1px] bg-[#605bff]/20"></div>
+                <span class="text-sm font-medium bg-gradient-to-r from-[#605bff] to-purple-500 
+                             bg-clip-text text-transparent">Account Recovery</span>
+              </div>
+            </div>
+
+            <!-- Title -->
+            <div class="space-y-3">
+              <div class="relative">
+                <h1 class="text-[3.25rem] font-bold tracking-tight leading-[1.1]">
+                  <span class="text-gray-900/80">Reset Your</span>
+                  <br />
+                  <div class="relative inline-flex items-center">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-[#605bff] to-purple-500">Password</span>
+                    <div class="absolute -right-12 top-0 flex items-center gap-1">
+                      <span class="text-2xl animate-bounce-slow delay-100">🔐</span>
+                      <span class="text-xl animate-bounce-slow delay-300">✨</span>
+                    </div>
+                  </div>
+                </h1>
+              </div>
+            </div>
+          </div>
+
+          <!-- Enhanced Description -->
+          <p class="text-lg text-gray-600 mb-12 relative">
+            We'll help you recover your account with our
+            <span class="inline-flex items-center px-2 py-1 bg-green-50 text-green-700 rounded-md text-sm font-medium">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+              secure
+            </span>
+            recovery process.
+          </p>
+
           <!-- Security Features Grid -->
-          <div class="grid grid-cols-2 gap-4 mb-4">
-            <div class="bg-white/60 rounded-xl p-4 backdrop-blur-sm">
-              <div class="flex items-center gap-3 mb-2">
-                <div class="p-2 bg-[#605bff]/10 rounded-lg">
-                  <svg class="w-5 h-5 text-[#605bff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                          d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+          <div class="grid grid-cols-2 gap-4 mb-6">
+            <!-- Security feature cards (same structure as login page) -->
+            <div class="p-5 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:border-[#605bff]/20 transition-all duration-300 group">
+              <div class="flex items-start space-x-4">
+                <div class="w-12 h-12 rounded-full bg-[#605bff]/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <svg class="w-6 h-6 text-[#605bff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </div>
                 <div>
-                  <h3 class="font-semibold text-[#32325d] text-sm">Verified Email</h3>
-                  <p class="text-xs text-gray-600">Secure link sent to your email</p>
+                  <h3 class="text-base font-semibold text-gray-900 mb-1">Email Verification</h3>
+                  <p class="text-sm text-gray-600">Secure link sent to your inbox</p>
                 </div>
               </div>
             </div>
-            <div class="bg-white/60 rounded-xl p-4 backdrop-blur-sm">
-              <div class="flex items-center gap-3 mb-2">
-                <div class="p-2 bg-[#605bff]/10 rounded-lg">
-                  <svg class="w-5 h-5 text-[#605bff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+
+            <div class="p-5 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:border-[#605bff]/20 transition-all duration-300 group">
+              <div class="flex items-start space-x-4">
+                <div class="w-12 h-12 rounded-full bg-[#605bff]/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <svg class="w-6 h-6 text-[#605bff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
                 <div>
-                  <h3 class="font-semibold text-[#32325d] text-sm">Time-Limited</h3>
-                  <p class="text-xs text-gray-600">Links expire in 30 minutes</p>
+                  <h3 class="text-base font-semibold text-gray-900 mb-1">Quick Recovery</h3>
+                  <p class="text-sm text-gray-600">Reset within minutes</p>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- Steps Section -->
-        <div class="bg-white/40 backdrop-blur-sm rounded-xl p-5 border border-white/20">
-          <h3 class="text-sm font-medium text-gray-500 mb-4">Recovery Steps</h3>
-          <div class="space-y-3">
-            <div class="flex items-center gap-3">
-              <div class="w-6 h-6 rounded-full bg-[#605bff]/10 flex items-center justify-center text-xs font-medium text-[#605bff]">1</div>
-              <p class="text-sm text-gray-600">Enter your registered email address</p>
+          <!-- Trust Badge -->
+          <div class="flex items-center gap-2 mb-6">
+            <div class="flex -space-x-2">
+              {#each Array(4) as _, i}
+                <div class="w-8 h-8 rounded-full bg-gradient-to-r from-[#605bff] to-purple-500 border-2 border-white flex items-center justify-center text-white text-xs">
+                  ✓
+                </div>
+              {/each}
             </div>
-            <div class="flex items-center gap-3">
-              <div class="w-6 h-6 rounded-full bg-[#605bff]/10 flex items-center justify-center text-xs font-medium text-[#605bff]">2</div>
-              <p class="text-sm text-gray-600">Check your inbox for recovery link</p>
-            </div>
-            <div class="flex items-center gap-3">
-              <div class="w-6 h-6 rounded-full bg-[#605bff]/10 flex items-center justify-center text-xs font-medium text-[#605bff]">3</div>
-              <p class="text-sm text-gray-600">Create your new secure password</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Integration Partners - Kept but moved up -->
-        <div class="bg-white/40 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-          <h3 class="text-sm font-medium text-gray-500 mb-4">Trusted By Leading Platforms</h3>
-          <div class="flex items-center justify-between">
-            <img src="/images/brands/Shopy.png" alt="Shopify" class="h-8 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 transition-all duration-200" />
-            <img src="/images/brands/woocommerce.png" alt="WooCommerce" class="h-8 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 transition-all duration-200" />
-            <img src="/images/brands/magento.png" alt="Magento" class="h-8 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 transition-all duration-200" />
-            <img src="/images/brands/opencart.png" alt="PrestaShop" class="h-8 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 transition-all duration-200" />
+            <p class="text-sm text-gray-600">
+              Trusted by <span class="font-semibold text-gray-900">10,000+</span> businesses worldwide
+            </p>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Right Section - Password Recovery Form -->
-    <div class="w-full lg:w-[40%] h-screen p-4 lg:p-6 flex flex-col justify-center items-center">
-      <!-- Mobile Header - Moved outside form container -->
-      <div class="lg:hidden w-full flex justify-between items-center mb-4 absolute top-4 left-4 right-4">
-        <a href="/" class="hover:opacity-90 transition-opacity">
-          <img src="/images/lgopis.png" alt="IpsePay" class="h-5" />
-        </a>
+  <!-- Right Section - Password Recovery Form -->
+  <div class="w-full lg:w-[40%] p-3 flex items-center justify-center min-h-screen bg-gradient-to-b from-white to-gray-50/50">
+    <div class="w-full max-w-[500px] pt-3 px-6 relative">
+      <!-- Enhanced Header -->
+      <div class="text-center mb-8">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#605bff]/10 to-purple-500/10 
+                    rounded-full mb-3 hover:from-[#605bff]/20 hover:to-purple-500/20 transition-all duration-300">
+          <div class="flex space-x-1">
+            {#each Array(3) as _, i}
+              <div class="w-1.5 h-1.5 rounded-full bg-[#605bff] animate-pulse" 
+                   style="animation-delay: {i * 200}ms"></div>
+            {/each}
+          </div>
+          <span class="text-sm font-semibold text-[#605bff]">Password Recovery</span>
+        </div>
+        
+        <h2 class="text-3xl font-bold mb-2 text-gray-900">Reset Password</h2>
+        <p class="text-sm text-gray-600">Enter your email to receive recovery instructions</p>
       </div>
 
-      <!-- Form Container - Now centered -->
-      <div class="bg-white rounded-xl p-4 shadow-lg w-full max-w-md">
-        <div class="mb-4">
-          <h1 class="text-lg font-bold mb-1 text-[#32325d]">Reset Password</h1>
-          <p class="text-xs text-gray-600">Enter your email to receive recovery instructions</p>
-        </div>
-
-        <form class="space-y-4">
+      <!-- Form Card -->
+      <div class="bg-white shadow-lg rounded-2xl border border-gray-100 p-8">
+        <form class="space-y-6">
+          <!-- Email Input -->
           <div class="form-group">
-            <label class="form-label">Email address</label>
+            <label class="text-gray-900 text-sm font-semibold mb-2 block">Email address</label>
             <div class="relative">
-              <svg class="input-icon" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-              </svg>
-              <input type="email" class="form-input" placeholder="you@example.com" required />
+              <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                <svg class="h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                </svg>
+              </div>
+              <input type="email" class="modern-input" placeholder="you@example.com" required />
             </div>
           </div>
 
+          <!-- Submit Button -->
           <button 
             type="submit" 
-            class="w-full bg-[#605bff] text-white py-3 rounded-xl hover:bg-[#605bff]/90 
-                   transition-all duration-300 font-medium text-base flex items-center 
-                   justify-center gap-2 shadow-lg shadow-[#605bff]/25 hover:shadow-xl 
-                   hover:shadow-[#605bff]/20"
+            class="w-full bg-gradient-to-r from-[#605bff] to-[#8b7aff] text-white px-7 py-3 rounded-xl
+                   font-medium flex items-center justify-center gap-2 shadow-lg shadow-[#605bff]/25
+                   hover:shadow-xl hover:shadow-[#605bff]/30 transform hover:-translate-y-0.5
+                   transition-all duration-300 group text-sm"
           >
             Send Recovery Link
-            <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-              <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+            <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" 
+                 viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
           </button>
 
-          <div class="text-center">
-            <a href="/account/login" class="text-sm text-[#605bff] hover:text-[#605bff]/80">
+          <!-- Back to Login Link -->
+          <div class="mt-6 pt-6 text-center border-t border-gray-100">
+            <a 
+              href="/account/login" 
+              class="text-[#605bff] font-medium hover:text-[#605bff]/80 relative inline-flex items-center group"
+            >
               Back to Sign In
+              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#605bff] 
+                         group-hover:w-full transition-all duration-300"></span>
             </a>
           </div>
         </form>
@@ -207,22 +275,24 @@
 </div>
 
 <style>
-  /* Same styles as signup page */
-  .form-input {
-    @apply w-full h-9 lg:h-10 px-3 py-1.5 text-sm bg-gray-50 border border-gray-200 rounded-lg
-           focus:outline-none focus:ring-2 focus:ring-[#605bff]/20 focus:border-[#605bff]
-           placeholder-gray-400 transition-all duration-200 pl-9;
+  .modern-input {
+    @apply w-full h-11 px-4 pl-12 bg-white border border-gray-200 rounded-lg
+           focus:outline-none focus:ring-1 focus:ring-[#605bff]/10 focus:border-[#605bff]
+           text-gray-800 placeholder-gray-500 transition-all duration-200
+           hover:border-[#605bff]/40 text-[14px] leading-normal tracking-tight
+           hover:bg-white focus:bg-white font-medium;
   }
 
-  .input-icon {
-    @apply w-4 h-4 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2;
+  .modern-input::placeholder {
+    @apply text-gray-400 text-[14px] font-normal;
   }
 
-  .form-label {
-    @apply text-xs font-medium text-gray-700 mb-1;
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
   }
 
-  .form-group {
-    @apply space-y-1;
+  .animate-pulse {
+    animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 </style>

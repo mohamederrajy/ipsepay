@@ -1,255 +1,290 @@
 <script lang="ts">
-    import { spring } from 'svelte/motion';
-    import { fade, fly } from 'svelte/transition';
-    import { onMount } from 'svelte';
+  import { onMount } from 'svelte';
+  import { spring } from 'svelte/motion';
   
-    let isVisible = false;
-    let timer: NodeJS.Timer;
-  
-    const steps = [
-      {
-        title: 'Create Link',
-        icon: `<svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" 
-                      d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"/>
-              </svg>`,
-        description: 'Generate instant payment links',
-        points: ['One-click generation', 'Custom amounts', 'Shareable links']
-      },
-      {
-        title: 'Share & Accept',
-        icon: `<svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" 
-                      d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/>
-              </svg>`,
-        description: 'Share via any channel',
-        points: ['Email & SMS', 'Social media', 'Direct messages']
-      },
-      {
-        title: 'Get Paid',
-        icon: `<svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" 
-                      d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-              </svg>`,
-        description: 'Instant payments',
-        points: ['Secure transactions', 'Multiple currencies', 'Instant settlement']
-      }
-    ];
-  
-    let currentStep = 0;
-  
-    function startAutoSlide() {
-      timer = setInterval(() => {
-        currentStep = (currentStep + 1) % steps.length;
-      }, 4000);
+  const paymentExamples = [
+    { type: 'One-time', amount: '$99.00', period: 'Single payment', color: 'from-[#605bff] to-[#8b7fff]' },
+    { type: 'Subscription', amount: '$29.00', period: 'Monthly', color: 'from-purple-500 to-indigo-500' },
+    { type: 'Custom', amount: 'Flexible', period: 'Any amount', color: 'from-blue-500 to-cyan-500' }
+  ];
+
+  const features = [
+    {
+      title: 'Smart Links',
+      description: "Links that adapt to your customer's location and currency",
+      icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                    d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+            </svg>`
+    },
+    {
+      title: 'Instant Checkout',
+      description: 'One-click payments with smart form autofill',
+      icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                    d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>`
+    },
+    {
+      title: 'Analytics',
+      description: 'Track conversions and payment success rates',
+      icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+            </svg>`
     }
-  
-    onMount(() => {
-      isVisible = true;
-      startAutoSlide();
-      return () => clearInterval(timer);
-    });
-  </script>
-  
-  <section class="relative py-32">
-    <div class="relative container mx-auto px-4">
-      <!-- Modern Header with Enhanced Animation -->
-      <div class="max-w-3xl mx-auto text-center mb-24">
-        <div class="inline-flex items-center gap-3 rounded-full bg-white/90 p-1.5 pr-6 
-                    backdrop-blur-xl border border-white/20 shadow-xl hover:shadow-2xl 
-                    transition-all duration-300 mb-8 animate-float">
-          <span class="rounded-full bg-gradient-to-r from-[#605bff] to-[#605bff]/90 
-                       px-4 py-1.5 text-sm font-medium text-white relative overflow-hidden">
-            <span class="relative z-10">Payment Links</span>
-            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 
-                        to-transparent animate-shimmer"></div>
-          </span>
-          <span class="text-sm font-medium text-[#32325d] flex items-center gap-2">
-            Simplified Payments
-            <div class="relative flex">
-              <span class="absolute inline-flex h-2.5 w-2.5 animate-ping rounded-full 
-                           bg-[#605bff] opacity-75"></span>
-              <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#605bff]"></span>
-            </div>
-          </span>
-        </div>
-  
-        <h2 class="text-5xl font-bold leading-tight mb-8 text-[#32325d]">
-          Payment Links Made
-          <span class="relative inline-block">
-            <span class="bg-gradient-to-r from-[#605bff] to-[#32325d] bg-clip-text 
-                         text-transparent animate-gradient">Simple</span>
-          </span>
-        </h2>
-        
-        <p class="text-xl text-[#32325d]/70 max-w-2xl mx-auto leading-relaxed">
-          Create and share payment links instantly. Accept payments from anywhere in the world.
-        </p>
+  ];
+
+  let selectedType = 0;
+  let isVisible = false;
+  let linkPreview = spring({ x: 0, y: 0, scale: 1 });
+  let copyText = 'Copy Link';
+  let notifications = [
+    'New payment received',
+    'Link shared 5 times',
+    'Analytics updated'
+  ];
+  let currentNotification = 0;
+
+  const handleCopy = () => {
+    copyText = 'Copied!';
+    linkPreview.set({ scale: 0.95 })
+      .then(() => linkPreview.set({ scale: 1 }));
+    setTimeout(() => copyText = 'Copy Link', 2000);
+  };
+
+  onMount(() => {
+    isVisible = true;
+    setInterval(() => {
+      selectedType = (selectedType + 1) % paymentExamples.length;
+      currentNotification = (currentNotification + 1) % notifications.length;
+      linkPreview.set({ x: 10, y: -10 })
+        .then(() => linkPreview.set({ x: 0, y: 0 }));
+    }, 3000);
+  });
+</script>
+
+<section class="relative py-8 sm:py-16 lg:py-32 overflow-hidden px-4 sm:px-6 lg:px-8">
+  <!-- Enhanced Modern Background -->
+  <div class="absolute inset-0">
+    <div class="absolute inset-0 bg-[#0A0A0A]"></div>
+    <div class="absolute inset-0 bg-gradient-to-tr from-[#605bff]/20 via-transparent to-purple-500/10"></div>
+    <div class="absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l from-[#605bff]/5 to-transparent"></div>
+    <div class="absolute inset-0 bg-[url('/images/grid.svg')] opacity-[0.05]"></div>
+  </div>
+
+  <div class="relative container mx-auto">
+    <!-- Enhanced Header with better mobile spacing -->
+    <div class="max-w-4xl mx-auto text-center mb-8 sm:mb-16 lg:mb-24">
+      <!-- Notification Badge - Mobile optimized -->
+      <div class="inline-flex items-center gap-1.5 sm:gap-3 rounded-full 
+                  bg-white/[0.08] hover:bg-white/[0.12] backdrop-blur-xl 
+                  p-1.5 pr-3 sm:pr-6 border border-white/[0.15] mb-4 sm:mb-8 
+                  shadow-xl shadow-black/20 transition-all duration-300
+                  text-[11px] sm:text-sm">
+        <span class="rounded-full bg-[#605bff] px-2 sm:px-4 py-1 sm:py-1.5 
+                     font-semibold text-white shadow-lg shadow-[#605bff]/20 
+                     relative overflow-hidden">
+          <span class="relative z-10">New</span>
+          <div class="absolute inset-0 bg-gradient-to-r from-transparent 
+                      via-white/20 to-transparent animate-shimmer"></div>
+        </span>
+        <span class="font-bold text-white flex items-center gap-1 sm:gap-2 tracking-wide">
+          Payment Links 2.0
+          <div class="relative flex">
+            <span class="absolute inline-flex h-1.5 w-1.5 sm:h-2 sm:w-2 
+                         rounded-full bg-[#605bff] animate-ping opacity-75"></span>
+            <span class="relative inline-flex h-1.5 w-1.5 sm:h-2 sm:w-2 
+                         rounded-full bg-[#605bff]"></span>
+          </div>
+        </span>
       </div>
-  
-      <!-- Content Grid -->
-      <div class="max-w-6xl mx-auto">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-          <!-- Enhanced Left: Features List -->
-          <div class="space-y-8">
-            <!-- Step Title -->
-            <div class="flex items-center gap-4 mb-6">
-              <div class="w-12 h-12 rounded-2xl bg-[#605bff]/10 flex items-center justify-center text-[#605bff]">
-                {@html steps[currentStep].icon}
-              </div>
-              <div>
-                <h3 class="text-2xl font-bold text-[#32325d] mb-1">{steps[currentStep].title}</h3>
-                <p class="text-gray-500">{steps[currentStep].description}</p>
+
+      <!-- Title - Mobile optimized -->
+      <h1 class="text-3xl sm:text-5xl lg:text-7xl font-bold text-white mb-4 sm:mb-8 
+                 tracking-tight leading-[1.1] px-4 sm:px-0">
+        Create Payment Links
+        <span class="relative inline-block mt-1 sm:mt-0 sm:ml-2">
+          <span class="relative z-10 bg-gradient-to-r {paymentExamples[selectedType].color} 
+                       bg-clip-text text-transparent">Instantly</span>
+          <div class="absolute -bottom-2 left-0 right-0 h-3 
+                      bg-gradient-to-r {paymentExamples[selectedType].color} 
+                      opacity-20 blur-lg transform -rotate-1"></div>
+        </span>
+      </h1>
+    </div>
+
+    <!-- Content Grid - Mobile optimized -->
+    <div class="grid lg:grid-cols-2 gap-6 sm:gap-12 lg:gap-20 max-w-6xl mx-auto">
+      <!-- Left: Payment Link Generator - Mobile optimized -->
+      <div class="space-y-4 sm:space-y-8">
+        <div class="bg-white/[0.03] backdrop-blur-xl rounded-xl sm:rounded-2xl 
+                    border border-white/10 p-4 sm:p-6">
+          <!-- Amount Input - Mobile optimized -->
+          <div class="space-y-4 sm:space-y-6">
+            <div class="relative group">
+              <input type="text" 
+                     value={paymentExamples[selectedType].amount}
+                     class="w-full bg-white/5 border border-white/10 rounded-lg 
+                            px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white 
+                            placeholder-white/40 focus:outline-none focus:ring-2 
+                            focus:ring-[#605bff]/50 focus:border-[#605bff]"
+                     placeholder="Enter amount">
+              <div class="absolute right-3 top-1/2 -translate-y-1/2">
+                <select class="bg-transparent text-white/60 text-sm sm:text-base 
+                             border-none focus:outline-none">
+                  <option value="USD">USD</option>
+                  <option value="EUR">EUR</option>
+                  <option value="GBP">GBP</option>
+                </select>
               </div>
             </div>
 
-            <!-- Enhanced Feature Points -->
-            {#each steps[currentStep].points as point, i}
-              <div class="transform hover:-translate-y-1 transition-all duration-300">
-                <div class="flex items-start gap-4 p-6 rounded-2xl bg-white 
-                            border border-gray-100 shadow-sm hover:shadow-lg 
-                            hover:border-[#605bff]/20 group transition-all duration-300">
-                  <!-- Animated Number -->
-                  <div class="flex-shrink-0 w-8 h-8 rounded-xl bg-[#605bff]/10 
-                              group-hover:bg-[#605bff] text-[#605bff] group-hover:text-white 
-                              flex items-center justify-center font-semibold transition-all duration-300">
-                    {i + 1}
-                  </div>
-                  
-                  <!-- Feature Content -->
-                  <div class="space-y-2">
-                    <h4 class="font-semibold text-[#32325d] group-hover:text-[#605bff] 
-                               transition-colors duration-300">
-                      {point}
-                    </h4>
-                    <!-- Dynamic descriptions based on points -->
-                    <p class="text-sm text-gray-500 leading-relaxed">
-                      {#if i === 0}
-                        Generate secure payment links in seconds with custom amounts and descriptions.
-                      {:else if i === 1}
-                        Share your payment links across any platform or communication channel.
-                      {:else}
-                        Track payments in real-time with instant notifications and detailed analytics.
-                      {/if}
-                    </p>
-                  </div>
+            <!-- Payment Type Selector - Mobile optimized -->
+            <div class="grid grid-cols-3 gap-2 sm:gap-3">
+              {#each ['One-time', 'Recurring', 'Subscription'] as type}
+                <button class="relative group bg-white/5 rounded-lg p-2 sm:p-3 
+                             border border-white/10 hover:bg-white/10 
+                             transition-all duration-300 text-xs sm:text-sm
+                             {selectedType === 0 ? 'border-[#605bff] bg-[#605bff]/10' : ''}">
+                  <span class="font-medium text-white">{type}</span>
+                </button>
+              {/each}
+            </div>
 
-                  <!-- Hover Arrow -->
-                  <div class="ml-auto transform translate-x-2 opacity-0 group-hover:opacity-100 
-                              group-hover:translate-x-0 transition-all duration-300">
-                    <svg class="w-5 h-5 text-[#605bff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                            d="M9 5l7 7-7 7"/>
-                    </svg>
+            <!-- Features Toggle - Mobile optimized -->
+            <div class="space-y-2 sm:space-y-3">
+              {#each [
+                { name: 'Custom branding', icon: '🎨' },
+                { name: 'Payment reminder', icon: '⏰' },
+                { name: 'Analytics tracking', icon: '📊' }
+              ] as feature}
+                <label class="flex items-center justify-between p-2.5 sm:p-3 
+                             bg-white/5 rounded-lg hover:bg-white/10 
+                             transition-all duration-300 cursor-pointer group">
+                  <div class="flex items-center gap-2 sm:gap-3">
+                    <span class="text-base sm:text-lg">{feature.icon}</span>
+                    <span class="text-xs sm:text-sm text-white">{feature.name}</span>
                   </div>
-                </div>
-              </div>
-            {/each}
+                  <div class="relative">
+                    <div class="w-10 h-6 bg-white/10 rounded-full transition-colors 
+                               group-hover:bg-white/20">
+                      <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full 
+                                 transition-transform duration-200 transform"></div>
+                    </div>
+                  </div>
+                </label>
+              {/each}
+            </div>
 
-            <!-- Action Button -->
-            <div class="pt-4">
-              <button class="inline-flex items-center gap-2 px-6 py-3 bg-[#605bff]/10 
-                             text-[#605bff] font-medium rounded-xl hover:bg-[#605bff] 
-                             hover:text-white transition-all duration-300 group">
-                Learn More
-                <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" 
-                     fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                        d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                </svg>
+            <!-- Action Buttons - Mobile optimized -->
+            <div class="flex gap-2 sm:gap-3 mt-4">
+              <button class="flex-1 bg-[#605bff] text-white rounded-xl px-4 sm:px-6 
+                             py-2.5 sm:py-3 text-sm sm:text-base font-medium 
+                             hover:bg-[#605bff]/90 transition-all duration-300">
+                Create Link
+              </button>
+              <button class="flex-1 bg-white/5 text-white rounded-xl px-4 sm:px-6 
+                             py-2.5 sm:py-3 text-sm sm:text-base font-medium 
+                             hover:bg-white/10 transition-all duration-300 
+                             border border-white/10">
+                Preview
               </button>
             </div>
           </div>
-  
-          <!-- Right: Interactive Payment Link Demo -->
-          <div class="relative">
-            <div class="relative bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-              <div class="mb-8 space-y-4">
-                <div class="flex items-center justify-between">
-                  <div class="text-2xl font-bold text-[#32325d]">
-                    {steps[currentStep].title}
-                  </div>
-                  <div class="text-[#605bff]">
-                    {@html steps[currentStep].icon}
-                  </div>
-                </div>
-                <p class="text-gray-600">
-                  {steps[currentStep].description}
+        </div>
+
+        <!-- Quick Stats - Mobile optimized -->
+        <div class="grid grid-cols-3 gap-2 sm:gap-4">
+          {#each [
+            { label: 'Total Links', value: '2,431' },
+            { label: 'Active Links', value: '1,823' },
+            { label: 'Success Rate', value: '98.3%' }
+          ] as stat}
+            <div class="bg-white/[0.03] backdrop-blur-xl rounded-lg sm:rounded-xl 
+                        p-3 sm:p-4 border border-white/10">
+              <div class="text-lg sm:text-2xl font-bold text-white mb-0.5 sm:mb-1">
+                {stat.value}
+              </div>
+              <div class="text-xs sm:text-sm text-white/60">{stat.label}</div>
+            </div>
+          {/each}
+        </div>
+      </div>
+
+      <!-- Right side preview remains the same but with mobile optimization -->
+      <div class="relative lg:h-[600px] flex items-center justify-center mt-8 lg:mt-0">
+        <div style="transform: translate({$linkPreview.x}px, {$linkPreview.y}px) 
+                    scale({$linkPreview.scale})"
+             class="w-full max-w-md bg-gradient-to-b from-white/10 to-white/5 
+                    backdrop-blur-xl rounded-2xl border border-white/20 p-8 
+                    shadow-2xl shadow-black/20 transition-all duration-300">
+          <div class="space-y-6">
+            <!-- Header -->
+            <div class="flex items-center justify-between">
+              <div class="space-y-1">
+                <h3 class="text-xl font-bold text-white">
+                  {paymentExamples[selectedType].type} Payment
+                </h3>
+                <p class="text-white/60 text-sm">
+                  {paymentExamples[selectedType].period}
                 </p>
               </div>
-  
-              <!-- Interactive Elements -->
-              <div class="space-y-4">
-                <div class="p-4 rounded-xl bg-[#605bff]/5 border border-[#605bff]/10">
-                  <div class="flex items-center justify-between">
-                    <span class="text-sm font-medium text-[#32325d]">Payment Amount</span>
-                    <span class="text-[#605bff] font-bold">$99.00</span>
-                  </div>
-                </div>
-                
-                <button class="w-full py-3 px-4 bg-[#605bff] text-white rounded-xl 
-                             hover:bg-[#605bff]/90 transition-all duration-300 
-                             shadow-lg shadow-[#605bff]/25 hover:shadow-xl 
-                             hover:shadow-[#605bff]/30">
-                  Create Payment Link
-                </button>
+              <div class="text-2xl font-bold text-white">
+                {paymentExamples[selectedType].amount}
               </div>
             </div>
-  
-            <!-- Navigation dots -->
-            <div class="flex justify-center gap-2 mt-8">
-              {#each steps as _, i}
-                <button
-                  class="w-2 h-2 rounded-full transition-all duration-300 
-                         {currentStep === i ? 'bg-[#605bff] w-8' : 'bg-gray-300'}"
-                  on:click={() => currentStep = i}
-                ></button>
+
+            <!-- Payment Methods -->
+            <div class="grid grid-cols-3 gap-3">
+              {#each ['Visa', 'Mastercard', 'PayPal'] as method}
+                <div class="bg-white/5 rounded-lg p-3 text-center text-white/60 
+                          text-sm hover:bg-white/10 transition-colors duration-300">
+                  {method}
+                </div>
               {/each}
+            </div>
+
+            <!-- Security Info -->
+            <div class="flex items-center justify-center gap-2 text-white/40 text-sm">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+              </svg>
+              Secured & Encrypted
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
-  
-  <style>
-    @keyframes shimmer {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(100%); }
-    }
-  
-    .animate-shimmer {
-      animation: shimmer 2.5s infinite;
-    }
-  
-    @keyframes gradient {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-  
-    .animate-gradient {
-      background-size: 200% auto;
-      animation: gradient 4s ease infinite;
-    }
-  
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-  
-    .animate-float {
-      animation: float 3s ease-in-out infinite;
-    }
-  
-    /* Add new animation for number hover effect */
-    @keyframes number-pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
-    }
-  
-    .number-animate {
-      animation: number-pulse 1s ease-in-out infinite;
-    }
-  </style>
+  </div>
+</section>
+
+<style>
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2.5s infinite;
+  }
+
+  @keyframes slide-up {
+    0% { transform: translateY(10px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.5s ease-out forwards;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+</style>

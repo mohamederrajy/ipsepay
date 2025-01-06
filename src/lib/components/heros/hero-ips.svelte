@@ -1,285 +1,387 @@
-<section class="relative min-h-[90vh] overflow-hidden py-20 lg:py-24">
-  <!-- Ultra Modern Payment Gateway Background -->
+<section class="relative min-h-[85vh] overflow-hidden pt-20">
+  <!-- Enhanced Modern Background -->
   <div class="absolute inset-0">
-    <!-- Modern Base Layer -->
-    <div class="absolute inset-0 bg-gradient-to-br from-[#fcfcfd] via-[#f8fafc] to-[#f1f5f9]">
-      <!-- Enhanced gradient background -->
-      <div class="absolute inset-0 bg-gradient-to-br from-[#fcfcfd] via-[#f8fafc] to-[#f1f5f9]">
-        <!-- Improved noise texture -->
-        <div class="absolute inset-0 opacity-[0.15] mix-blend-overlay bg-noise"></div>
-      </div>
+    <!-- Professional Gradient Base -->
+    <div class="absolute inset-0 bg-gradient-to-tr from-[#f8f9ff] via-white to-[#f0f4ff]"></div>
+    
+    <!-- Strategic Light Effects -->
+    <div class="absolute inset-0">
+      <!-- Main Highlight Area -->
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full
+                  bg-[radial-gradient(70%_50%_at_50%_0%,rgba(96,91,255,0.06)_0%,transparent_100%)]"></div>
+      
+      <!-- Accent Light -->
+      <div class="absolute top-20 right-[20%] w-[600px] h-[600px]
+                  bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.03)_0%,transparent_60%)]
+                  animate-pulse-slow"></div>
+    </div>
 
-      <!-- Enhanced Payment Processing Waves -->
-      <div class="absolute inset-0">
-        {#each Array(5) as _, i}
-          <div class="absolute w-full h-40 opacity-[0.04] transform-gpu"
-               style="top: {10 + i * 20}%;
-                      background: url('data:image/svg+xml,%3Csvg viewBox=%220 0 1000 150%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cpath d=%22M0,50 C250,0 350,100 500,50 C650,0 750,100 1000,50 L1000,150 L0,150 Z%22 fill=%22%23666%22/%3E%3C/svg%3E') repeat-x;
-                      animation: wave-animation 18s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-                      animation-delay: -{i * 4}s">
+    <!-- Modern Geometric Patterns -->
+    <div class="absolute inset-0">
+      <!-- Diagonal Grid -->
+      <div class="absolute inset-0 opacity-[0.03]"
+           style="background-image: 
+             repeating-linear-gradient(
+               -45deg,
+               #605bff 0px,
+               #605bff 1px,
+               transparent 1px,
+               transparent 40px
+             );"></div>
+
+      <!-- Horizontal Lines -->
+      <div class="absolute inset-0 opacity-[0.02]"
+           style="background-image: 
+             repeating-linear-gradient(
+               0deg,
+               #605bff 0px,
+               #605bff 1px,
+               transparent 1px,
+               transparent 80px
+             );"></div>
+    </div>
+
+    <!-- Dynamic Elements -->
+    <div class="absolute inset-0 overflow-hidden">
+      <!-- Security Circles -->
+      {#each Array(3) as _, i}
+        <div class="absolute rounded-full border border-[#605bff]/10
+                    animate-security-pulse"
+             style="width: ${300 + i * 100}px;
+                    height: ${300 + i * 100}px;
+                    left: ${50 + i * 5}%;
+                    top: ${20 + i * 10}%;
+                    transform: translateX(-50%);
+                    animation-delay: ${i * 1}s;"></div>
+      {/each}
+
+      <!-- Tech Wave -->
+      <svg class="absolute w-full h-40 left-0 top-[20%] opacity-[0.04]" 
+           viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+              fill="currentColor" class="animate-wave">
+        </path>
+      </svg>
+
+      <!-- Payment Icons Grid -->
+      <div class="absolute inset-0 grid grid-cols-6 gap-20 p-10 opacity-[0.04]">
+        {#each Array(18) as _, i}
+          <div class="relative animate-fade-in-out"
+               style="animation-delay: ${i * 0.2}s">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              {#if i % 3 === 0}
+                <!-- Shield -->
+                <path d="M12 2L3 7v6a12 12 0 0 0 9 11.66A12 12 0 0 0 21 13V7l-9-5z" 
+                      stroke-width="1.5"/>
+              {:else if i % 3 === 1}
+                <!-- Lock -->
+                <rect x="3" y="11" width="18" height="11" rx="2" stroke-width="1.5"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" stroke-width="1.5"/>
+              {:else}
+                <!-- Check -->
+                <path d="M20 6L9 17l-5-5" stroke-width="1.5"/>
+              {/if}
+            </svg>
           </div>
         {/each}
       </div>
-
-      <!-- Digital Network Lines -->
-      {#each Array(8) as _, i}
-        <div class="absolute h-screen w-px bg-gradient-to-b from-transparent via-[#605bff]/20 to-transparent animate-scan-line"
-             style="left: {5 + i * 12}%; animation-delay: -{i * 1.2}s">
-        </div>
-      {/each}
-
-      <!-- Enhanced Grid Overlay -->
-      <div class="absolute inset-0 opacity-[0.02]"
-           style="background-image: 
-             linear-gradient(to right, rgb(96 91 255 / 0.2) 1px, transparent 1px),
-             linear-gradient(to bottom, rgb(96 91 255 / 0.2) 1px, transparent 1px);
-             background-size: 64px 64px;">
-      </div>
-
-      <!-- Modernized Light Effects -->
-      <div class="absolute inset-0">
-        <div class="absolute inset-0 bg-[radial-gradient(80%_50%_at_50%_0%,rgba(255,255,255,0.9),transparent)]"></div>
-        <div class="absolute inset-0 bg-[radial-gradient(80%_50%_at_50%_100%,rgba(255,255,255,0.9),transparent)]"></div>
-      </div>
-    </div>
-
-    <!-- Modern Payment Cards -->
-    {#each Array(3) as _, i}
-      <div class="absolute"
-           style="top: {15 + i * 25}%; right: {5 + i * 15}%;">
-        <div class="w-72 h-44 bg-gradient-to-br from-white/95 to-gray-50/90 rounded-[2rem] 
-                    backdrop-blur-xl border border-white/20 shadow-2xl animate-float-card 
-                    hover:shadow-3xl hover:scale-105 transition-all duration-500">
-          <!-- Add glass effect -->
-          <div class="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-white/10 to-transparent"></div>
-          
-          <!-- Add subtle glow -->
-          <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-500/20 to-purple-500/20 
-                      rounded-[2.25rem] blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-          </div>
-          <div class="p-6 space-y-4">
-            <div class="flex justify-between">
-              <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-gray-100 to-white flex items-center justify-center">
-                <svg class="w-8 h-8 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
-                </svg>
-              </div>
-              <div class="flex space-x-1">
-                {#each Array(4) as _}
-                  <div class="w-1.5 h-6 bg-gradient-to-b from-gray-200 to-gray-100 rounded-full"></div>
-                {/each}
-              </div>
-            </div>
-            <div class="space-y-3">
-              <div class="w-full h-2 bg-gradient-to-r from-gray-200 to-transparent rounded-full"></div>
-              <div class="w-2/3 h-2 bg-gradient-to-r from-gray-200 to-transparent rounded-full"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    {/each}
-
-    <!-- Digital Transaction Flows -->
-    {#each Array(6) as _, i}
-      <div class="absolute left-0 h-screen w-px bg-gradient-to-b from-transparent 
-                  via-blue-400/30 to-transparent animate-scan-line"
-           style="left: {10 + i * 15}%; animation-delay: -${i * 1.5}s">
-      </div>
-    {/each}
-
-    <!-- Payment Success Indicators -->
-    {#each Array(15) as _, i}
-      <div class="absolute animate-pulse-fade"
-           style="top: {Math.random() * 100}%; left: {Math.random() * 100}%; animation-delay: -${Math.random() * 5}s">
-        <div class="w-2 h-2 bg-gradient-to-br from-emerald-300/50 to-emerald-200/50 
-                    rounded-full shadow-lg shadow-emerald-500/20">
-        </div>
-      </div>
-    {/each}
-
-    <!-- Modern Grid Overlay -->
-    <div class="absolute inset-0 opacity-[0.02]"
-         style="background-image: 
-           linear-gradient(to right, rgb(148 163 184 / 0.3) 1px, transparent 1px),
-           linear-gradient(to bottom, rgb(148 163 184 / 0.3) 1px, transparent 1px);
-           background-size: 100px 100px;">
-    </div>
-
-    <!-- Light Effects -->
-    <div class="absolute inset-0">
-      <div class="absolute inset-0 bg-[radial-gradient(70%_50%_at_50%_0%,rgba(255,255,255,0.8),transparent)]"></div>
-      <div class="absolute inset-0 bg-[radial-gradient(70%_50%_at_50%_100%,rgba(255,255,255,0.8),transparent)]"></div>
     </div>
   </div>
 
-  <div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex min-h-[80vh] items-center">
-      <div class="relative w-full">
-        <!-- Badge with better spacing -->
-        <div class="mb-12 inline-flex items-center gap-2.5 rounded-2xl bg-white/80 p-2 pr-5 backdrop-blur-sm border border-white/60 shadow-lg">
-          <span class="rounded-xl bg-[#605bff] px-3.5 py-1.5 text-sm font-medium text-white relative overflow-hidden">
-            <span class="relative z-10">New</span>
-            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
-          </span>
-          <span class="text-sm font-medium text-[#32325d] flex items-center gap-2.5">
-            Next-Gen Payment Platform v2.0
-            <span class="flex h-2 w-2">
-              <span class="absolute inline-flex h-2 w-2 animate-ping rounded-full bg-[#605bff] opacity-75"></span>
-              <span class="relative inline-flex h-2 w-2 rounded-full bg-[#605bff]"></span>
-            </span>
-          </span>
-        </div>
-
-        <!-- Content Grid with improved spacing -->
-        <div class="grid lg:grid-cols-12 gap-16 items-center">
-          <!-- Left Content with better vertical rhythm -->
-          <div class="lg:col-span-5 space-y-8">
-            <h1 class="text-5xl lg:text-6xl font-bold tracking-tight text-[#32325d] leading-[1.1]">
-              Revolutionize Your <span class="relative inline-block animate-gradient-text bg-gradient-to-r from-[#605bff] via-purple-600 to-[#605bff] bg-[length:200%_auto] bg-clip-text text-transparent">
-                Payments
-                <svg class="absolute -bottom-2 left-0 w-full" viewBox="0 0 385 12" fill="none">
-                  <path class="animate-draw" d="M1 5.5C1 5.5 88 -1.5 193.5 3.5C299 8.5 384 5.5 384 5.5" 
-                        stroke="url(#gradient-line)" 
-                        stroke-width="10" 
-                        stroke-linecap="round"/>
-                  <defs>
-                    <linearGradient id="gradient-line" x1="0" y1="0" x2="100%" y2="0">
-                      <stop offset="0%" stop-color="#605bff"/>
-                      <stop offset="100%" stop-color="#a855f7"/>
-                    </linearGradient>
-                  </defs>
-                </svg>
-              </span>
-            </h1>
-
-            <p class="text-xl text-[#32325d]/70 leading-relaxed max-w-xl">
-              Experience lightning-fast, secure payments with AI-powered fraud detection and seamless integration.
-            </p>
-
-            <!-- Stats Grid with improved spacing -->
-            <div class="grid grid-cols-3 gap-6 py-8">
-              {#each stats as stat}
-                <div class="group relative overflow-hidden rounded-xl bg-white/90 p-5 shadow-lg transition-all duration-300 hover:-translate-y-1">
-                  <div class="relative z-10">
-                    <div class="text-2xl lg:text-3xl font-bold text-[#32325d]">{stat.value}</div>
-                    <div class="text-sm text-[#32325d]/70 mt-1">{stat.label}</div>
-                  </div>
-                  <div class="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-[#605bff] to-purple-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+  <!-- Main Content -->
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="grid lg:grid-cols-3 gap-24 items-center max-w-[1400px] mx-auto">
+      <!-- Left Section - Extended Left -->
+      <div class="hidden lg:block relative h-[400px]">
+        <div class="absolute -left-24 w-full">
+          <!-- Background Card -->
+          <div class="absolute top-20 -left-4 w-[280px] h-[180px] rounded-2xl 
+                      bg-gradient-to-br from-purple-600 to-purple-800
+                      transform -rotate-12 opacity-40 blur-sm">
+          </div>
+          
+          <!-- Main Card -->
+          <div class="absolute top-10 w-[280px] h-[180px] rounded-2xl 
+                      bg-gradient-to-br from-[#605bff] to-purple-600
+                      shadow-xl hover:shadow-2xl transition-all duration-500 
+                      transform hover:-translate-y-2 animate-float">
+            <div class="relative p-6 text-white">
+              <div class="flex justify-between">
+                <div class="space-y-1">
+                  <div class="text-sm font-medium opacity-80">Premium</div>
+                  <div class="text-lg font-bold">ipsepay</div>
+                  
                 </div>
-              {/each}
-            </div>
-
-            <!-- CTA Buttons with better spacing -->
-            <div class="grid grid-cols-2 gap-6 pt-4">
-              <a href="/start" 
-                 class="group relative overflow-hidden rounded-xl bg-[#605bff] px-8 py-4 transition-all duration-300 hover:-translate-y-0.5">
-                <div class="relative z-10 flex items-center justify-center gap-2">
-                  <span class="font-medium text-white">Get Started Free</span>
-                  <svg class="h-5 w-5 text-white transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                  <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                          d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                   </svg>
                 </div>
-              </a>
-
-              <a href="/login" 
-                 class="group flex items-center justify-center gap-3 rounded-xl border border-gray-200 px-8 py-4 font-medium text-gray-600 transition-all duration-300 hover:border-gray-400 hover:text-gray-900">
-                <svg class="h-5 w-5 transition-transform duration-300 group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2v6a2 2 0 01-2 2H9a2 2 0 01-2-2V9a2 2 0 012-2h6zM19 7v5m0 0l-2-2m2 2l2-2"/>
-                </svg>
-                <span>Login</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Right Content with adjusted positioning -->
-          <div class="lg:col-span-7 lg:-mr-20">
-            <div class="relative perspective-1000">
-              <!-- Main Dashboard with Enhanced Effects -->
-              <div class="rounded-3xl bg-white p-2 shadow-2xl transition-all duration-500 hover:scale-[1.02] group">
-                <div class="relative overflow-hidden rounded-2xl">
-                  <img 
-                    src="/images/photos/paydo.jpg" 
-                    alt="Dashboard Preview" 
-                    class="w-full transition-transform duration-700 group-hover:scale-105"
-                  />
-                  
-                  <!-- Small Payment Card - Bottom Left -->
-                  <div class="absolute bottom-4 left-4 z-20">
-                    <div class="relative w-44 h-28 group">
-                      <div class="absolute inset-0 bg-gradient-to-br from-white/95 via-gray-50/90 to-gray-100/80 rounded-xl backdrop-blur-sm border border-white/20 shadow-lg transform transition-all duration-500 hover:-translate-y-1 hover:rotate-2">
-                        <div class="h-full p-3 flex flex-col justify-between">
-                          <!-- Top Section -->
-                          <div class="flex justify-between items-center">
-                            <div class="flex items-center space-x-1.5">
-                              <div class="w-5 h-5 rounded-md bg-gradient-to-br from-gray-100 to-white shadow-sm flex items-center justify-center">
-                                <svg class="w-3 h-3 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                                </svg>
-                              </div>
-                              <span class="text-gray-600 font-medium text-[10px]">IPSEPAY</span>
-                            </div>
-                          </div>
-
-                          <!-- Middle Section -->
-                          <div class="flex justify-center space-x-1.5">
-                            {#each Array(4) as _}
-                              <div class="w-4 h-0.5 bg-gradient-to-r from-gray-300 to-gray-200 rounded-full"></div>
-                            {/each}
-                          </div>
-
-                          <!-- Bottom Section -->
-                          <div class="flex justify-between items-end">
-                            <div class="space-y-0.5">
-                              <div class="text-[8px] text-gray-400">Secure Pay</div>
-                              <div class="text-[10px] text-gray-600 font-medium">Active</div>
-                            </div>
-                            <div class="flex items-center space-x-1">
-                              <div class="w-1 h-1 bg-green-400 rounded-full animate-pulse"></div>
-                              <span class="text-[8px] text-gray-400">Live</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div class="absolute inset-0 bg-gradient-to-t from-[#32325d]/10 to-transparent"></div>
+              </div>
+              
+              <div class="mt-6 space-y-4">
+                <div class="flex justify-between text-base tracking-widest">
+                  <span>****</span>
+                  <span>****</span>
+                  <span>****</span>
+                  <span>4242</span>
                 </div>
-
-                <!-- Floating Cards -->
-                <div class="absolute -left-8 top-1/4 animate-float">
-                  <div class="group rounded-2xl bg-white p-4 shadow-2xl transition-all hover:scale-105">
-                    <div class="flex items-center gap-4">
-                      <div class="rounded-xl bg-gradient-to-br from-green-400 to-green-500 p-3">
-                        <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                      </div>
-                      <div>
-                        <div class="font-medium text-[#32325d]">Payment Success</div>
-                        <div class="text-sm text-[#32325d]/70">$8,942 processed</div>
-                      </div>
-                    </div>
+                
+                <div class="flex justify-between text-sm">
+                  <div>
+                    <div class="opacity-70">Card Holder</div>
+                    <div>JOHN DOE</div>
                   </div>
-                </div>
-
-                <div class="absolute -right-8 bottom-1/4 animate-float-delay">
-                  <div class="group rounded-2xl bg-white p-4 shadow-2xl transition-all hover:scale-105">
-                    <div class="flex items-center gap-4">
-                      <div class="rounded-xl bg-gradient-to-br from-[#605bff] to-purple-500 p-3">
-                        <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
-                        </svg>
-                      </div>
-                      <div>
-                        <div class="font-medium text-[#32325d]">Real-time Analytics</div>
-                        <div class="text-sm text-[#605bff]">+28.14% today</div>
-                      </div>
-                    </div>
+                  <div class="text-right">
+                    <div class="opacity-70">Expires</div>
+                    <div>12/25</div>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+
+          <!-- Floating Transaction Notifications -->
+          {#each Array(2) as _, i}
+            <div class="absolute right-0 w-48 p-3 bg-white/90 backdrop-blur-sm rounded-lg
+                        shadow-lg border border-white/50 transform
+                        animate-notification"
+                 style="top: {140 + i * 80}px; animation-delay: {i * 2}s">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-[#605bff]/10 flex items-center justify-center">
+                  <svg class="w-4 h-4 text-[#605bff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d={i === 0 ? "M12 6v6m0 0v6m0-6h6m-6 0H6" : "M9 12l2 2 4-4"}/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="text-xs font-medium text-[#32325d]">
+                    {i === 0 ? 'Payment Sent' : 'Transfer Complete'}
+                  </div>
+                  <div class="text-xs text-[#605bff]">${(100 + Math.random() * 900).toFixed(2)}</div>
+                </div>
+              </div>
+            </div>
+          {/each}
+        </div>
+      </div>
+
+      <!-- Center Section -->
+      <div class="lg:col-span-1 px-8">
+        <div class="flex flex-col items-center text-center max-w-6xl mx-auto">
+          <!-- Enhanced Title Section -->
+          <div class="space-y-8 mb-16">
+            <!-- Modernized Badge -->
+            <div class="inline-flex items-center gap-3 px-6 py-3 rounded-full 
+                        bg-white/95 backdrop-blur-xl border border-[#605bff]/20 
+                        shadow-lg hover:shadow-xl transition-all duration-500
+                        animate-badge-slide-in hover:-translate-y-1">
+              <div class="flex items-center gap-2">
+                <!-- Enhanced Status Indicator -->
+                <div class="relative flex items-center">
+                  <span class="animate-ping absolute h-2.5 w-2.5 rounded-full 
+                              bg-[#605bff] opacity-75"></span>
+                  <span class="relative h-2.5 w-2.5 rounded-full bg-[#605bff]"></span>
+                  <div class="ml-2 h-3 w-px bg-gradient-to-b from-transparent via-[#605bff]/30 to-transparent"></div>
+                </div>
+                <!-- Modern Icon -->
+                <div class="relative group">
+                  <svg class="w-5 h-5 text-[#605bff] transform transition-transform duration-300 
+                            group-hover:rotate-12" 
+                       fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                          d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                  </svg>
+                </div>
+              </div>
+              <!-- Enhanced Badge Text -->
+              <span class="text-sm font-semibold bg-gradient-to-r from-[#32325d] via-[#605bff] to-purple-600 
+                         bg-clip-text text-transparent bg-size-200 animate-gradient-x">
+                Powering Next-Gen Payments
+              </span>
+            </div>
+
+            <!-- Enhanced Creative Title -->
+            <h1 class="text-5xl md:text-6xl lg:text-[4.5rem] font-bold leading-tight mt-6">
+              <div class="flex items-center gap-4">
+                <span class="text-[#32325d]">Ipsepay</span>
+                <span class="bg-gradient-to-r from-[#605bff] to-purple-600 
+                             bg-clip-text text-transparent">
+                  Payment
+                </span>
+              </div>
+              <span class="bg-gradient-to-r from-[#605bff] to-purple-600 
+                           bg-clip-text text-transparent typewriter">
+                {currentWord}
+              </span>
+            </h1>
+
+            <!-- Replace carousel with static subtitle and buttons -->
+            <div class="space-y-8">
+              <!-- Static Subtitle -->
+              <p class="text-lg text-[#32325d]/70 font-normal max-w-2xl mx-auto leading-relaxed tracking-wide relative">
+                <span class="inline-flex items-center gap-2">
+                  Experience next-gen payment solutions
+                  <span class="animate-float-sparkle">✨</span>
+                </span> 
+                with instant global payouts, 
+                <span class="inline-flex items-center gap-2 text-[#32325d]/90">
+                  secure processing
+                  <span class="animate-float-sparkle-delay-1">✨</span>
+                </span>, and 
+                <span class="inline-flex items-center gap-2 text-[#32325d]/90">
+                  24/7 support
+                  <span class="animate-float-sparkle-delay-2">✨</span>
+                </span>.
+              </p>
+
+              <!-- Action Buttons -->
+              <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <!-- Primary Button -->
+                <button class="group relative px-8 py-4 bg-[#605bff] rounded-xl text-white
+                             shadow-lg shadow-[#605bff]/20 hover:shadow-xl hover:shadow-[#605bff]/30
+                             transform hover:-translate-y-1 transition-all duration-300 min-w-[200px]">
+                  <div class="absolute inset-0 bg-gradient-to-r from-[#605bff] to-purple-600
+                            rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+                  <div class="relative flex items-center justify-center gap-3">
+                    <span class="font-medium">Get Started</span>
+                    <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300"
+                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                    </svg>
+                  </div>
+                </button>
+
+                <!-- Secondary Button -->
+                <button class="group px-8 py-4 bg-white/80 backdrop-blur-xl rounded-xl
+                             border border-[#605bff]/20 text-[#32325d]
+                             shadow-lg hover:shadow-xl transform hover:-translate-y-1
+                             transition-all duration-300 min-w-[200px]">
+                  <div class="flex items-center justify-center gap-3">
+                    <svg class="w-5 h-5 text-[#605bff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <span class="font-medium">Learn More</span>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            <div class="mt-12 text-center">
+              <!-- Enhanced Trust Badge with Multiple Checkmarks - Refined Size -->
+              <div class="mt-6 inline-flex items-center gap-3">
+                <!-- Checkmark Icons -->
+                <div class="flex -space-x-1.5">
+                  {#each Array(4) as _}
+                    <div class="w-6 h-6 rounded-full bg-[#7C3AED] flex items-center justify-center">
+                      <svg class="w-3 h-3 text-white" viewBox="0 0 12 12" fill="none">
+                        <path d="M10 3L4.5 8.5L2 6" 
+                              stroke="currentColor" 
+                              stroke-width="2" 
+                              stroke-linecap="round" 
+                              stroke-linejoin="round"/>
+                      </svg>
+                    </div>
+                  {/each}
+                </div>
+                
+                <!-- Text -->
+                <div class="flex items-center gap-1.5 text-[#1E293B] text-sm">
+                  <span class="font-normal">Trusted by</span>
+                  <span class="font-bold">10,000+</span>
+                  <span class="font-normal">businesses worldwide</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+         
+        </div>
+      </div>
+
+      <!-- Right Section - Extended Right -->
+      <div class="hidden lg:block relative h-[400px]">
+        <div class="absolute -right-24 w-full">
+          <!-- Main Dashboard Panel -->
+          <div class="absolute top-10 right-0 w-[320px] bg-white/95 backdrop-blur-xl 
+                      rounded-2xl p-5 border border-white/50 shadow-xl animate-float-reverse">
+            <div class="space-y-4">
+              <!-- Dashboard Header -->
+              <div class="flex items-center justify-between">
+                <div>
+                  <div class="text-sm font-medium text-[#32325d]/70">Analytics Overview</div>
+                  <div class="text-lg font-bold text-[#32325d]">$48,562.20</div>
+                </div>
+                <div class="flex gap-2">
+                  {#each ['1H', '1D', '1W'] as period}
+                    <button class="px-2 py-1 text-xs rounded-md 
+                               {period === '1D' ? 'bg-[#605bff] text-white' : 'text-[#32325d]/70 hover:bg-[#605bff]/10'}
+                               transition-all duration-300">
+                      {period}
+                    </button>
+                  {/each}
+                </div>
+              </div>
+
+              <!-- Dynamic Chart -->
+              <div class="relative h-32">
+                <!-- Gradient Background -->
+                <div class="absolute inset-0 bg-gradient-to-t from-[#605bff]/5 to-transparent rounded-lg"></div>
+                
+                <!-- Chart Lines -->
+                <svg class="w-full h-full" viewBox="0 0 100 40">
+                  <!-- Grid Lines -->
+                  {#each Array(5) as _, i}
+                    <line x1="0" y1={i * 10} x2="100" y2={i * 10} 
+                          stroke="#605bff" stroke-width="0.1" stroke-dasharray="1 1"/>
+                  {/each}
+                  
+                  <!-- Main Chart Line -->
+                  <path d="M0 30 Q 20 25, 30 15 T 45 20 T 60 10 T 75 25 T 100 20"
+                        fill="none" stroke="#605bff" stroke-width="0.5"
+                        class="animate-draw"/>
+                  
+                  <!-- Chart Area -->
+                  <path d="M0 30 Q 20 25, 30 15 T 45 20 T 60 10 T 75 25 T 100 20 L 100 40 L 0 40 Z"
+                        fill="url(#gradient)" opacity="0.2"/>
+                          
+                  <!-- Animated Dot -->
+                  <circle r="1" fill="#605bff" class="animate-move-dot">
+                    <animateMotion dur="4s" repeatCount="indefinite"
+                                  path="M0 30 Q 20 25, 30 15 T 45 20 T 60 10 T 75 25 T 100 20"/>
+                  </circle>
+                </svg>
+                
+                <!-- Gradient Definition -->
+                <defs>
+                  <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" style="stop-color:#605bff;stop-opacity:0.3"/>
+                    <stop offset="100%" style="stop-color:#605bff;stop-opacity:0"/>
+                  </linearGradient>
+                </defs>
+              </div>
+
+              
+              <!-- Activity Indicators -->
+              <div class="flex items-center justify-between px-2">
+                {#each Array(6) as _, i}
+                  <div class="w-1.5 h-6 rounded-full bg-[#605bff]/20 overflow-hidden">
+                    <div class="w-full bg-[#605bff] animate-activity"
+                         style="height: {30 + Math.random() * 70}%; animation-delay: {i * 0.2}s">
+                    </div>
+                  </div>
+                {/each}
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating Elements -->
+          <div class="absolute bottom-20 right-10 w-32 h-32 rounded-full 
+                      bg-gradient-to-br from-[#605bff]/10 to-purple-600/10 
+                      blur-2xl animate-pulse-slow">
           </div>
         </div>
       </div>
@@ -287,245 +389,339 @@
   </div>
 </section>
 
+<script>
+  const stats = [
+    { value: '99.9%', label: 'Success Rate' },
+    { value: '0.1s', label: 'Processing' },
+    { value: '150+', label: 'Methods' }
+  ];
+
+  let currentWord = "Flow";
+  const words = [
+    "Flow",
+    "Payouts",
+    "Instant",
+    "Global",
+    "Solutions",
+    "Processing",
+    "Gateway",
+    "Network"
+  ];
+  let currentIndex = 0;
+
+  // Auto-typing effect
+  const typeNextWord = () => {
+    currentIndex = (currentIndex + 1) % words.length;
+    currentWord = "";
+    let wordToType = words[currentIndex];
+    let charIndex = 0;
+
+    const typeChar = () => {
+      if (charIndex < wordToType.length) {
+        currentWord += wordToType[charIndex];
+        charIndex++;
+        setTimeout(typeChar, 100); // Typing speed
+      } else {
+        setTimeout(() => {
+          // Start erasing after word is fully typed
+          const eraseChar = () => {
+            if (currentWord.length > 0) {
+              currentWord = currentWord.slice(0, -1);
+              setTimeout(eraseChar, 50); // Erasing speed
+            } else {
+              setTimeout(typeNextWord, 500); // Delay before typing next word
+            }
+          };
+          setTimeout(eraseChar, 2000); // Wait before starting to erase
+        }, 1000); // How long to show complete word
+      }
+    };
+
+    typeChar();
+  };
+
+  // Start the animation
+  setTimeout(typeNextWord, 3000); // Initial delay
+</script>
+
 <style>
-  @keyframes float {
-    0%, 100% { transform: translate(0, 0); }
-    50% { transform: translate(0, -20px); }
+  @keyframes grid-move {
+    0% { transform: translateY(0) scale(1); }
+    100% { transform: translateY(-38px) scale(1); }
   }
 
-  @keyframes float-delay {
-    0%, 100% { transform: translate(0, 0); }
-    50% { transform: translate(0, 20px); }
+  .animate-blob-float {
+    animation: blob-float 8s ease-in-out infinite;
   }
 
-  @keyframes mesh {
-    0%, 100% { transform: translate(0, 0) rotate(0deg); }
-    50% { transform: translate(20px, -20px) rotate(1deg); }
+  @keyframes blob-float {
+    0%, 100% { 
+      transform: translate(0, 0) scale(1);
+      filter: blur(3xl);
+    }
+    50% { 
+      transform: translate(20px, -30px) scale(1.1);
+      filter: blur(4xl);
+    }
   }
 
-  @keyframes gradient-text {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+  .animate-shape-float {
+    animation: shape-float 12s ease-in-out infinite;
   }
 
-  @keyframes shimmer {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
+  @keyframes shape-float {
+    0%, 100% { 
+      transform: translate(0, 0) rotate(0deg);
+      opacity: 0.07;
+    }
+    50% { 
+      transform: translate(-15px, -20px) rotate(45deg);
+      opacity: 0.1;
+    }
   }
 
-  @keyframes draw {
-    from { stroke-dashoffset: 400; }
-    to { stroke-dashoffset: 0; }
+  .animate-badge-slide-in {
+    animation: badge-slide-in 0.6s ease-out;
   }
 
-  .animate-mesh {
-    animation: mesh 15s ease-in-out infinite;
+  @keyframes badge-slide-in {
+    0% { transform: translateY(-20px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
   }
 
-  .animate-mesh-reverse {
-    animation: mesh 15s ease-in-out infinite reverse;
+  .animate-fade-in-up {
+    animation: fade-in-up 0.8s ease-out forwards;
+    opacity: 0;
   }
 
-  .animate-gradient-text {
-    animation: gradient-text 3s linear infinite;
+  @keyframes fade-in-up {
+    0% { transform: translateY(20px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
   }
 
-  .animate-draw {
-    stroke-dasharray: 400;
-    stroke-dashoffset: 400;
-    animation: draw 1.5s ease-in-out forwards;
+  .bg-size-200 {
+    background-size: 200% 100%;
   }
 
-  .animate-shimmer {
-    animation: shimmer 2s infinite;
+  .animate-gradient-x {
+    animation: gradient-x 15s linear infinite;
   }
 
-  .perspective-1000 {
+  @keyframes gradient-x {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 0%; }
+    100% { background-position: 0% 0%; }
+  }
+
+  .perspective {
     perspective: 1000px;
+  }
+
+  .rotate-y-12 {
+    transform: rotateY(12deg);
   }
 
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }
 
-  .animate-float-delay {
-    animation: float-delay 6s ease-in-out infinite;
-    animation-delay: 1s;
+  .animate-float-reverse {
+    animation: float 6s ease-in-out infinite reverse;
   }
 
-  @keyframes pulse-slow {
-    0%, 100% { opacity: 0.4; }
-    50% { opacity: 0.7; }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .animate-chart {
+    animation: chart 2s ease-in-out infinite;
+  }
+
+  @keyframes chart {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(0.85); }
+  }
+
+  .animate-notification {
+    animation: notification 4s ease-in-out infinite;
+  }
+
+  @keyframes notification {
+    0% { opacity: 0; transform: translateX(20px); }
+    10% { opacity: 1; transform: translateX(0); }
+    90% { opacity: 1; transform: translateX(0); }
+    100% { opacity: 0; transform: translateX(-20px); }
   }
 
   .animate-pulse-slow {
-    animation: pulse-slow 8s ease-in-out infinite;
+    animation: pulse-slow 4s ease-in-out infinite;
   }
 
-  .delay-1000 {
-    animation-delay: 1s;
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
   }
 
-  .bg-radial-gradient {
-    background: radial-gradient(circle at center, transparent 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0.8) 100%);
+  .animate-draw {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: draw 3s ease-out forwards;
   }
 
-  @keyframes float-line {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(10px); }
+  @keyframes draw {
+    to {
+      stroke-dashoffset: 0;
+    }
   }
 
-  .animate-float-line {
-    animation: float-line 4s ease-in-out infinite;
+  .animate-activity {
+    animation: activity 2s ease-in-out infinite;
+    transform-origin: bottom;
   }
 
-  @keyframes slow-pulse {
-    0%, 100% { opacity: 0.5; transform: scale(1); }
-    50% { opacity: 0.7; transform: scale(1.05); }
+  @keyframes activity {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(0.7); }
   }
 
-  @keyframes glow-line {
-    0% { opacity: 0; transform: translateX(-100%); }
-    50% { opacity: 1; }
-    100% { opacity: 0; transform: translateX(100%); }
+  .animate-move-dot {
+    animation: pulse 1s ease-in-out infinite;
   }
 
-  @keyframes scan-vertical {
-    0% { transform: scaleY(0); opacity: 0; }
-    50% { transform: scaleY(1); opacity: 1; }
-    100% { transform: scaleY(0); opacity: 0; }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.5); }
   }
 
-  @keyframes float-particle {
-    0%, 100% { transform: translate(0, 0); opacity: 0.3; }
-    50% { transform: translate(20px, -20px); opacity: 1; }
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
   }
 
-  .animate-slow-pulse {
-    animation: slow-pulse 8s ease-in-out infinite;
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
-  .animate-glow-line {
-    animation: glow-line 4s ease-in-out infinite;
+  .typewriter {
+    display: inline-block;
+    min-width: 8ch;
+    border-right: 3px solid #605bff;
+    animation: blink 0.8s step-end infinite;
   }
 
-  .animate-scan-vertical {
-    animation: scan-vertical 8s ease-in-out infinite;
+  @keyframes blink {
+    from, to { border-color: transparent }
+    50% { border-color: #605bff }
   }
 
-  .bg-noise {
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  .animate-float-sparkle {
+    display: inline-block;
+    animation: floatSparkle 2s ease-in-out infinite;
   }
 
-  @keyframes beam-slide {
-    0% { transform: translateY(-100%) scaleY(0.5); opacity: 0; }
-    50% { transform: translateY(100%) scaleY(1); opacity: 1; }
-    100% { transform: translateY(200%) scaleY(0.5); opacity: 0; }
+  .animate-float-sparkle-delay-1 {
+    display: inline-block;
+    animation: floatSparkle 2s ease-in-out infinite;
+    animation-delay: 0.3s;
   }
 
-  @keyframes float-modern {
-    0%, 100% { transform: translate(0, 0) rotate(0deg); }
-    50% { transform: translate(-10px, -20px) rotate(2deg); }
+  .animate-float-sparkle-delay-2 {
+    display: inline-block;
+    animation: floatSparkle 2s ease-in-out infinite;
+    animation-delay: 0.6s;
   }
 
-  @keyframes pulse-subtle {
-    0%, 100% { opacity: 0.2; }
-    50% { opacity: 0.4; }
+  @keyframes floatSparkle {
+    0%, 100% { 
+      transform: translateY(0) rotate(0deg);
+      opacity: 1;
+    }
+    50% { 
+      transform: translateY(-4px) rotate(20deg);
+      opacity: 0.7;
+    }
   }
 
-  .animate-beam-slide {
-    animation: beam-slide 6s ease-in-out infinite;
+  @keyframes beam-float {
+    0%, 100% { 
+      transform-origin: top;
+      transform: scaleY(1) translateY(0);
+      opacity: 0.5;
+    }
+    50% { 
+      transform-origin: top;
+      transform: scaleY(1.2) translateY(20px);
+      opacity: 0.8;
+    }
   }
 
-  .animate-float-modern {
-    animation: float-modern 8s ease-in-out infinite;
+  .animate-beam-float {
+    animation: beam-float 8s ease-in-out infinite;
   }
 
-  .animate-pulse-subtle {
-    animation: pulse-subtle 8s ease-in-out infinite;
+  /* Enhanced animations */
+  @keyframes premium-float {
+    0%, 100% { 
+      transform: translate(0, 0) scale(1);
+      filter: blur(3xl) brightness(1);
+    }
+    50% { 
+      transform: translate(25px, -35px) scale(1.1);
+      filter: blur(4xl) brightness(1.2);
+    }
   }
 
-  @keyframes float-slow {
-    0%, 100% { transform: translate(0, 0) rotate(0deg); }
-    50% { transform: translate(-10px, -10px) rotate(3deg); }
+  .animate-premium-float {
+    animation: premium-float 14s ease-in-out infinite;
   }
 
-  .animate-float-slow {
-    animation: float-slow 20s ease-in-out infinite;
+  @keyframes glass-float {
+    0%, 100% { 
+      transform: translate(0, 0) rotate(0deg) scale(1);
+      opacity: 0.05;
+    }
+    50% { 
+      transform: translate(-18px, -25px) rotate(45deg) scale(1.05);
+      opacity: 0.08;
+    }
   }
 
-  @keyframes transaction-line {
-    0% { transform: translateX(-100%) scaleY(0.5); opacity: 0; }
-    50% { transform: translateX(0) scaleY(1); opacity: 1; }
-    100% { transform: translateX(100%) scaleY(0.5); opacity: 0; }
+  .animate-glass-float {
+    animation: glass-float 10s ease-in-out infinite;
   }
 
-  .animate-transaction-line {
-    animation: transaction-line 8s linear infinite;
+  @keyframes ray-float {
+    0%, 100% { 
+      transform-origin: top;
+      transform: scaleY(1) translateY(0) rotate(var(--rotation));
+      opacity: 0.4;
+    }
+    50% { 
+      transform-origin: top;
+      transform: scaleY(1.3) translateY(30px) rotate(var(--rotation));
+      opacity: 0.7;
+    }
   }
 
-  @keyframes mesh-flow {
-    0%, 100% { transform: translate(0, 0) rotate(0deg); opacity: 0.5; }
-    50% { transform: translate(-30px, 30px) rotate(3deg); opacity: 0.7; }
+  .animate-ray-float {
+    animation: ray-float 12s ease-in-out infinite;
   }
 
-  @keyframes mesh-flow-reverse {
-    0%, 100% { transform: translate(0, 0) rotate(0deg); opacity: 0.5; }
-    50% { transform: translate(30px, -30px) rotate(-3deg); opacity: 0.7; }
+  /* Cleaner animations */
+  @keyframes float-0 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(30px, -20px) scale(1.05); }
   }
 
-  @keyframes float-payment {
-    0%, 100% { transform: translate(0, 0) rotate(0deg); }
-    50% { transform: translate(-20px, -20px) rotate(5deg); }
+  @keyframes float-1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-20px, -30px) scale(1.03); }
   }
 
-  @keyframes flow-line {
-    0% { transform: translateX(-100%); opacity: 0; }
-    50% { opacity: 1; }
-    100% { transform: translateX(100%); opacity: 0; }
-  }
-
-  @keyframes spin-slow {
-    to { transform: rotate(360deg); }
-  }
-
-  .animate-mesh-flow {
-    animation: mesh-flow 15s ease-in-out infinite;
-  }
-
-  .animate-mesh-flow-reverse {
-    animation: mesh-flow-reverse 15s ease-in-out infinite;
-  }
-
-  .animate-float-payment {
-    animation: float-payment 10s ease-in-out infinite;
-  }
-
-  .animate-flow-line {
-    animation: flow-line 8s linear infinite;
-  }
-
-  .animate-spin-slow {
-    animation: spin-slow 3s linear infinite;
-  }
-
-  @keyframes slow-drift {
-    0%, 100% { transform: translate(0, 0) rotate(0deg); }
-    50% { transform: translate(-20px, 20px) rotate(1deg); }
-  }
-
-  @keyframes slow-drift-reverse {
-    0%, 100% { transform: translate(0, 0) rotate(0deg); }
-    50% { transform: translate(20px, -20px) rotate(-1deg); }
-  }
-
-  .animate-slow-drift {
-    animation: slow-drift 20s ease-in-out infinite;
-  }
-
-  .animate-slow-drift-reverse {
-    animation: slow-drift-reverse 20s ease-in-out infinite;
+  @keyframes float-2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(25px, -25px) scale(1.02); }
   }
 
   @keyframes slow-spin {
@@ -533,88 +729,221 @@
     to { transform: rotate(360deg); }
   }
 
-  @keyframes slow-spin-reverse {
-    from { transform: rotate(360deg); }
-    to { transform: rotate(0deg); }
-  }
-
   .animate-slow-spin {
     animation: slow-spin 60s linear infinite;
   }
 
-  .animate-slow-spin-reverse {
-    animation: slow-spin-reverse 45s linear infinite;
+  @keyframes orb-float {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+      opacity: 0.07;
+    }
+    50% {
+      transform: translate(-30px, 30px) scale(1.1);
+      opacity: 0.05;
+    }
   }
 
-  .bg-gradient-radial-light {
-    background: radial-gradient(
-      circle at center,
-      rgba(255,255,255,0.8) 0%,
-      rgba(255,255,255,0.4) 50%,
-      transparent 100%
-    );
+  .animate-orb-float {
+    animation: orb-float 20s ease-in-out infinite;
   }
 
-  @keyframes float-card {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(1deg); }
+  @keyframes line-float {
+    0%, 100% {
+      transform: translateY(0) rotate(var(--rotation, 0deg));
+      opacity: 0.05;
+    }
+    50% {
+      transform: translateY(-30px) rotate(var(--rotation, 0deg));
+      opacity: 0.08;
+    }
   }
 
-  @keyframes flow-payment {
-    0% { transform: translateX(-100%); opacity: 0; }
-    50% { opacity: 1; }
-    100% { transform: translateX(100%); opacity: 0; }
+  .animate-line-float {
+    animation: line-float 15s ease-in-out infinite;
   }
 
-  @keyframes pulse-fade {
-    0%, 100% { transform: scale(1); opacity: 0.3; }
-    50% { transform: scale(1.5); opacity: 0.7; }
+  @keyframes particle {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 0;
+    }
+    50% {
+      transform: translateY(-100px) scale(1.5);
+      opacity: 0.5;
+    }
+    100% {
+      transform: translateY(-200px) scale(1);
+      opacity: 0;
+    }
   }
 
-  .animate-float-card {
-    animation: float-card 6s ease-in-out infinite;
+  .animate-particle {
+    animation: particle 15s ease-in-out infinite;
   }
 
-  @keyframes flow-digital {
-    0% { transform: translateX(-100%); opacity: 0; }
-    50% { opacity: 1; }
-    100% { transform: translateX(100%); opacity: 0; }
+  @keyframes glow-pulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.2); }
   }
 
-  @keyframes float-particle {
-    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.4; }
-    50% { transform: translate(20px, -20px) scale(1.2); opacity: 0.8; }
+  .animate-glow-pulse {
+    animation: glow-pulse 10s ease-in-out infinite;
   }
 
-  .animate-float-particle {
-    animation: float-particle 8s ease-in-out infinite;
+  .animate-glow-pulse-delayed {
+    animation: glow-pulse 10s ease-in-out infinite;
+    animation-delay: 5s;
   }
 
-  @keyframes wave-animation {
-    0% { transform: translateX(0) translateY(0); }
-    50% { transform: translateX(-25px) translateY(-15px); }
-    100% { transform: translateX(0) translateY(0); }
+  @keyframes glass-float {
+    0%, 100% {
+      transform: translate(0, 0) rotate(var(--rotation, 0deg));
+      opacity: 0.05;
+    }
+    50% {
+      transform: translate(-20px, 20px) rotate(calc(var(--rotation, 0deg) + 5deg));
+      opacity: 0.08;
+    }
   }
 
-  @keyframes scan-line {
-    0% { transform: scaleY(0) translateY(-100%); opacity: 0; }
-    50% { transform: scaleY(1) translateY(0); opacity: 1; }
-    100% { transform: scaleY(0) translateY(100%); opacity: 0; }
+  .animate-glass-float {
+    animation: glass-float 20s ease-in-out infinite;
   }
 
-  .animate-scan-line {
-    animation: scan-line 4s ease-in-out infinite;
+  @keyframes streak {
+    0% { transform: translateY(-100%) scaleY(0); opacity: 0; }
+    50% { transform: translateY(100%) scaleY(2); opacity: 0.5; }
+    100% { transform: translateY(300%) scaleY(0); opacity: 0; }
   }
 
-  .animate-pulse-fade {
-    animation: pulse-fade 3s ease-in-out infinite;
+  .animate-streak {
+    animation: streak 7s ease-in-out infinite;
   }
-</style><script>
-  const stats = [
-    { value: '99.9%', label: 'Uptime' },
-    { value: '0.1s', label: 'Processing' },
-    { value: '150+', label: 'Countries' }
-  ];
-</script>
+
+  @keyframes float-dot {
+    0%, 100% {
+      transform: translate(0, 0);
+      opacity: var(--initial-opacity, 0.05);
+    }
+    50% {
+      transform: translate(
+        calc(var(--x-offset, 0) * 30px),
+        calc(var(--y-offset, 0) * 30px)
+      );
+      opacity: calc(var(--initial-opacity, 0.05) * 1.5);
+    }
+  }
+
+  .animate-float-dot {
+    --x-offset: calc(random() * 2 - 1);
+    --y-offset: calc(random() * 2 - 1);
+    --initial-opacity: calc(0.03 + random() * 0.05);
+  }
+
+  @keyframes card-float {
+    0%, 100% {
+      transform: translate(0, 0) rotate(var(--rotation, 15deg));
+      opacity: 0.07;
+    }
+    50% {
+      transform: translate(-15px, 15px) rotate(calc(var(--rotation, 15deg) + 3deg));
+      opacity: 0.09;
+    }
+  }
+
+  .animate-card-float {
+    animation: card-float 18s ease-in-out infinite;
+  }
+
+  @keyframes icon-float {
+    0%, 100% {
+      transform: translate(0, 0) rotate(0deg);
+      opacity: 0.06;
+    }
+    50% {
+      transform: translate(-10px, 10px) rotate(5deg);
+      opacity: 0.08;
+    }
+  }
+
+  .animate-icon-float {
+    animation: icon-float 15s ease-in-out infinite;
+  }
+
+  @keyframes flow-line {
+    0% { transform: translateY(-100%) scaleY(0); opacity: 0; }
+    50% { transform: translateY(100%) scaleY(1.5); opacity: 0.4; }
+    100% { transform: translateY(300%) scaleY(0); opacity: 0; }
+  }
+
+  .animate-flow-line {
+    animation: flow-line 8s ease-in-out infinite;
+  }
+
+  @keyframes data-point {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+      opacity: var(--initial-opacity, 0.04);
+    }
+    50% {
+      transform: translate(
+        calc(var(--x-offset, 0) * 25px),
+        calc(var(--y-offset, 0) * 25px)
+      ) scale(1.2);
+      opacity: calc(var(--initial-opacity, 0.04) * 1.5);
+    }
+  }
+
+  .animate-data-point {
+    --x-offset: calc(random() * 2 - 1);
+    --y-offset: calc(random() * 2 - 1);
+    --initial-opacity: calc(0.04 + random() * 0.04);
+  }
+
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 0.03; transform: scale(1); }
+    50% { opacity: 0.05; transform: scale(1.1); }
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 10s ease-in-out infinite;
+  }
+
+  @keyframes security-pulse {
+    0% { transform: translateX(-50%) scale(0.95); opacity: 0.1; }
+    50% { transform: translateX(-50%) scale(1); opacity: 0.05; }
+    100% { transform: translateX(-50%) scale(0.95); opacity: 0.1; }
+  }
+
+  .animate-security-pulse {
+    animation: security-pulse 8s ease-in-out infinite;
+  }
+
+  @keyframes wave {
+    0% { transform: translateX(0) translateY(0) scale(1); }
+    50% { transform: translateX(-2%) translateY(10px) scale(1.02); }
+    100% { transform: translateX(0) translateY(0) scale(1); }
+  }
+
+  .animate-wave {
+    animation: wave 15s ease-in-out infinite;
+  }
+
+  @keyframes fade-in-out {
+    0%, 100% { opacity: 0.04; transform: translateY(0); }
+    50% { opacity: 0.08; transform: translateY(-5px); }
+  }
+
+  .animate-fade-in-out {
+    animation: fade-in-out 6s ease-in-out infinite;
+  }
+
+  @media (max-width: 768px) {
+    .security-circles {
+      transform: scale(0.7);
+    }
+  }
+</style>
 
 

@@ -4,327 +4,338 @@
   import { onMount } from 'svelte';
 
   let isVisible = false;
+  let activeSection = 0;
 
-  onMount(() => {
-    isVisible = true;
-  });
-
-  const steps = [
+  const onboardingFlow = [
     {
-      title: 'Store Setup',
+      title: 'Account Setup',
       icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" 
-                    d="M20 11.5v-1a2.5 2.5 0 00-2.5-2.5h-15A2.5 2.5 0 000 10.5v1m20 0v7.5a2.5 2.5 0 01-2.5 2.5h-15A2.5 2.5 0 010 19v-7.5m20 0h-20m17.5 3.75h-15m15 3.75h-15"/>
+                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
             </svg>`,
-      description: 'Create your digital storefront',
-      points: [
-        'Custom domain setup',
-        'Brand customization',
-        'Product catalog'
+      features: [
+        {
+          title: 'IpsePay Dashboard',
+          description: 'Your command center for payments',
+          progress: 85,
+          status: 'active',
+          highlight: 'Real-time Analytics'
+        },
+        {
+          title: 'Business Profile',
+          description: 'Smart profile setup wizard',
+          progress: 60,
+          status: 'active',
+          highlight: 'AI-Assisted'
+        },
+        {
+          title: 'Security Shield',
+          description: 'Advanced security protocols',
+          progress: 40,
+          status: 'pending',
+          highlight: 'Bank-Grade'
+        }
       ],
-      color: '#605bff'
+      bgGradient: 'from-[#605bff]/5 to-[#605bff]/10',
+      color: '#605bff',
+      stats: { completed: '85%', timeLeft: '~5 mins' }
     },
     {
-      title: 'Payment Integration',
+      title: 'Smart Verification',
+      icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" 
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>`,
+      features: [
+        {
+          title: 'Instant KYC',
+          description: 'AI-powered verification',
+          progress: 30,
+          status: 'pending',
+          highlight: '2-Min Process'
+        },
+        {
+          title: 'Smart Docs',
+          description: 'Automated document processing',
+          progress: 0,
+          status: 'pending',
+          highlight: 'Auto-Scan'
+        },
+        {
+          title: 'Global Compliance',
+          description: 'Multi-region support',
+          progress: 0,
+          status: 'pending',
+          highlight: '200+ Countries'
+        }
+      ],
+      bgGradient: 'from-[#32325d]/5 to-[#32325d]/10',
+      color: '#32325d',
+      stats: { completed: '30%', timeLeft: '~10 mins' }
+    },
+    {
+      title: 'Payment Suite',
       icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" 
                     d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/>
             </svg>`,
-      description: 'Set up your payment methods',
-      points: [
-        'Multiple payment gateways',
-        'Subscription billing',
-        'Global currencies'
+      features: [
+        {
+          title: 'Smart Payments',
+          description: 'Intelligent routing system',
+          progress: 0,
+          status: 'locked',
+          highlight: 'Auto-Optimize'
+        },
+        {
+          title: 'Instant Payouts',
+          description: 'Real-time settlements',
+          progress: 0,
+          status: 'locked',
+          highlight: '24/7 Active'
+        },
+        {
+          title: 'Dynamic Pricing',
+          description: 'Smart fee optimization',
+          progress: 0,
+          status: 'locked',
+          highlight: 'Save Up to 30%'
+        }
       ],
-      color: '#0A2540'
-    },
-    {
-      title: 'Launch & Grow',
-      icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" 
-                    d="M13 10V3L4 14h7v7l9-11h-7zm-2 4l-2 2m4-4l2 2m-6-6l2 2m2-2l2 2"/>
-            </svg>`,
-      description: 'Start selling globally',
-      points: [
-        'Analytics dashboard',
-        'Marketing tools',
-        'Growth insights'
-      ],
-      color: '#00A3FF'
+      bgGradient: 'from-[#00A3FF]/5 to-[#00A3FF]/10',
+      color: '#00A3FF',
+      stats: { completed: '0%', timeLeft: '~15 mins' }
     }
   ];
 
+  const progress = spring(0);
   let currentStep = 0;
-  const progress = spring(0, { stiffness: 0.1, damping: 0.4 });
 
-  function nextStep() {
-    if (currentStep < steps.length - 1) {
-      currentStep++;
-      progress.set(currentStep / (steps.length - 1));
-    }
+  function updateProgress(index: number) {
+    currentStep = index;
+    progress.set(index / (onboardingFlow.length - 1));
   }
 
-  function prevStep() {
-    if (currentStep > 0) {
-      currentStep--;
-      progress.set(currentStep / (steps.length - 1));
-    }
-  }
+  onMount(() => {
+    isVisible = true;
+  });
 </script>
 
-<section class="relative overflow-hidden py-32">
-  <!-- Enhanced Background -->
+<section class="relative overflow-hidden py-8 sm:py-16 lg:py-24">
+  <!-- Enhanced Modern iOS-style Background -->
   <div class="absolute inset-0">
-    <div class="absolute inset-0 bg-gradient-to-b from-gray-50 via-white to-gray-50/90"></div>
+    <!-- Dynamic Base Layer -->
+    <div class="absolute inset-0 bg-gradient-to-br from-gray-50/90 via-white/95 to-gray-50/90"></div>
+    
+    <!-- Enhanced Blur Elements -->
+    <div class="absolute inset-0 overflow-hidden">
+      <!-- Primary Glow -->
+      <div class="absolute top-0 -right-1/4 w-[1200px] h-[1200px]
+                  bg-gradient-to-br from-[#605bff]/20 via-purple-400/10 to-transparent 
+                  rounded-full blur-[120px] backdrop-blur-3xl animate-slow-spin"></div>
+      
+      <!-- Secondary Glow -->
+      <div class="absolute -bottom-1/4 -left-1/4 w-[1200px] h-[1200px]
+                  bg-gradient-to-tr from-[#32325d]/15 via-blue-300/10 to-transparent 
+                  rounded-full blur-[150px] backdrop-blur-3xl animate-slow-spin-reverse"></div>
+      
+      <!-- Accent Glows -->
+      <div class="absolute top-1/4 left-1/4 w-[600px] h-[600px]
+                  bg-gradient-to-tr from-pink-500/10 via-purple-300/10 to-transparent 
+                  rounded-full blur-[80px] animate-pulse-slow"></div>
+      
+      <div class="absolute bottom-1/4 right-1/4 w-[500px] h-[500px]
+                  bg-gradient-to-br from-blue-400/10 via-cyan-300/10 to-transparent 
+                  rounded-full blur-[100px] animate-pulse-slow-delay"></div>
+    </div>
+
+    <!-- Modern Frosted Glass -->
     <div class="absolute inset-0">
-      <div class="absolute top-0 right-0 w-[800px] h-[800px] 
-                  bg-gradient-to-br from-[#605bff]/10 via-purple-400/5 to-transparent 
-                  rounded-full blur-3xl animate-slow-float"></div>
-      <div class="absolute bottom-0 left-0 w-[600px] h-[600px] 
-                  bg-gradient-to-tr from-[#32325d]/10 via-blue-400/5 to-transparent 
-                  rounded-full blur-2xl animate-slow-float-reverse"></div>
+      <div class="absolute inset-0 backdrop-blur-[100px] bg-white/30"></div>
+      <div class="absolute inset-0 bg-gradient-to-br from-white/50 via-transparent to-white/50 
+                  backdrop-blur-3xl"></div>
+    </div>
+    
+    <!-- Enhanced Grid -->
+    <div class="absolute inset-0">
+      <div class="absolute inset-0 bg-[url('/images/grid.svg')] opacity-[0.03]"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-white/80 via-transparent to-white/80"></div>
+    </div>
+
+    <!-- Light Rays -->
+    <div class="absolute inset-0">
+      <div class="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b 
+                  from-transparent via-purple-500/10 to-transparent blur-[2px]"></div>
+      <div class="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b 
+                  from-transparent via-blue-500/10 to-transparent blur-[2px]"></div>
     </div>
   </div>
 
-  <div class="relative container mx-auto px-4 transition-all duration-1000 
-              {isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}">
-    <!-- Modern Header with Enhanced Animation -->
-    <div class="max-w-3xl mx-auto text-center mb-24">
-      <div class="inline-flex items-center gap-3 rounded-full bg-white/90 p-1.5 pr-6 
-                  backdrop-blur-xl border border-white/20 shadow-xl hover:shadow-2xl 
-                  transition-all duration-300 mb-8 animate-float">
+  <div class="relative container mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Title Section -->
+    <div class="max-w-3xl mx-auto text-center mb-8 sm:mb-12 lg:mb-16">
+      <div class="inline-flex items-center gap-1.5 sm:gap-3 rounded-full bg-white/90 
+                  p-1 sm:p-1.5 pr-3 sm:pr-4 backdrop-blur-xl border border-white/20 
+                  shadow-xl hover:shadow-2xl transition-all duration-300 
+                  mb-4 sm:mb-6 animate-float">
         <span class="rounded-full bg-gradient-to-r from-[#605bff] to-[#605bff]/90 
-                     px-4 py-1.5 text-sm font-medium text-white relative overflow-hidden">
-          <span class="relative z-10">E-commerce Ready</span>
+                     px-2 sm:px-3 py-1 text-xs sm:text-sm font-medium text-white 
+                     relative overflow-hidden">
+          <span class="relative z-10">IpsePay</span>
           <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 
                       to-transparent animate-shimmer"></div>
         </span>
-        <span class="text-sm font-medium text-[#32325d] flex items-center gap-2">
-          Start Selling Online Today
-          <svg class="w-4 h-4 text-[#605bff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
-          </svg>
-        </span>
+        <span class="text-[10px] sm:text-xs font-medium text-[#32325d]">Gateway Setup</span>
       </div>
 
-      <h2 class="text-5xl font-bold leading-tight mb-8 text-[#32325d]">
-        Build Your
-        <span class="relative inline-block">
+      <h2 class="text-2xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-3 sm:mb-4 
+                 text-[#32325d] px-2">
+        <span class="whitespace-normal sm:whitespace-nowrap">Activate Your</span>
+        <span class="relative inline-block mt-1 sm:mt-0 sm:ml-2">
           <span class="bg-gradient-to-r from-[#605bff] to-[#32325d] bg-clip-text 
-                       text-transparent animate-gradient">Online Store</span>
-          <svg class="absolute -bottom-2 left-0 w-full" height="10" viewBox="0 0 100 10" 
-               preserveAspectRatio="none">
-            <path d="M0 0L50 10L100 0" fill="url(#gradient)" opacity="0.2"></path>
-          </svg>
+                       text-transparent animate-gradient">IpsePay Account</span>
         </span>
       </h2>
       
-      <p class="text-xl text-[#32325d]/70 max-w-2xl mx-auto leading-relaxed">
-        Launch your e-commerce business with our powerful platform. 
-        Built for modern merchants, designed for growth.
+      <p class="text-sm sm:text-base lg:text-lg text-[#32325d]/70 max-w-2xl mx-auto 
+                leading-relaxed px-4">
+        Get started with IpsePay's global payment solutions
       </p>
     </div>
 
-    <!-- Rest of the content remains the same -->
-    <div class="max-w-4xl mx-auto">
-      <!-- Steps Timeline -->
-      <div class="flex justify-between mb-12 relative">
+    <!-- Steps Section -->
+    <div class="max-w-5xl mx-auto">
+      <div class="relative">
         <!-- Progress Line -->
-        <div class="absolute top-1/2 left-0 right-0 h-px bg-gray-200 -translate-y-1/2">
+        <div class="absolute left-[20px] sm:left-[45px] top-0 bottom-0 w-px bg-gray-200">
           <div class="h-full bg-[#605bff] transition-all duration-500"
-               style="width: {$progress * 100}%">
-          </div>
+               style="height: {$progress * 100}%"></div>
         </div>
 
-        {#each steps as step, i}
-          <button 
-            class="relative z-10 group"
-            on:click={() => {
-              currentStep = i;
-              progress.set(i / (steps.length - 1));
-            }}
-          >
-            <div class="icon-container w-12 h-12 rounded-full flex items-center justify-center
-                        transition-all duration-300 
-                        {i <= currentStep ? 'bg-[#605bff] text-white' : 'bg-white text-gray-400 border-2 border-gray-200'}
-                        hover:scale-110">
-              {@html step.icon}
-            </div>
-            <div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 
-                        whitespace-nowrap text-sm font-medium
-                        {i <= currentStep ? 'text-[#605bff]' : 'text-gray-400'}">
-              {step.title}
-            </div>
-          </button>
-        {/each}
-      </div>
-
-      <!-- Content Area -->
-      <div class="relative min-h-[400px] bg-white/80 backdrop-blur-xl rounded-3xl 
-                  shadow-xl overflow-hidden border border-white/20">
-        {#each [steps[currentStep]] as step (currentStep)}
-          <div
-            in:fly={{ x: 50, duration: 400 }}
-            out:fly={{ x: -50, duration: 400 }}
-            class="absolute inset-0 p-8 flex"
-          >
-            <!-- Left Content -->
-            <div class="w-1/2 pr-8 border-r border-gray-100">
-              <div class="w-16 h-16 rounded-2xl bg-[#605bff]/10 flex items-center 
-                          justify-center text-[#605bff] mb-6 icon-container
-                          hover:bg-[#605bff]/20 transition-all duration-300">
-                {@html step.icon}
-              </div>
-              <h2 class="text-3xl font-bold text-[#32325d] mb-4">{step.title}</h2>
-              <p class="text-gray-600 mb-8">{step.description}</p>
-              
-              <div class="space-y-4">
-                {#each step.points as point}
-                  <div class="flex items-center gap-3 text-gray-700">
-                    <svg class="w-5 h-5 text-[#605bff]" viewBox="0 0 20 20" fill="currentColor">
-                      <path fill-rule="evenodd" 
-                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
-                    </svg>
-                    {point}
+        <!-- Steps -->
+        <div class="relative space-y-6 sm:space-y-8">
+          {#each onboardingFlow as section, index}
+            <div class="relative pl-12 sm:pl-24 pb-6 sm:pb-8 group"
+                 in:fly={{ y: 20, duration: 400, delay: index * 100 }}>
+              <!-- Interactive Step Header -->
+              <button class="group w-full text-left mb-4 sm:mb-6 transition-all duration-300
+                           hover:transform hover:-translate-y-1"
+                      on:click={() => updateProgress(index)}>
+                <div class="flex items-center gap-3 sm:gap-4">
+                  <div class="absolute left-0 flex items-center justify-center 
+                             w-8 h-8 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl 
+                             bg-white/95 shadow-xl border border-white/20
+                             backdrop-blur-xl transition-all duration-300
+                             group-hover:shadow-2xl group-hover:scale-110
+                             {index <= currentStep ? `text-[${section.color}]` : 'text-gray-400'}">
+                    {@html section.icon}
                   </div>
-                {/each}
-              </div>
-            </div>
-
-            <!-- Right Visual -->
-            <div class="w-1/2 pl-8 flex items-center justify-center">
-              <div class="relative w-72 h-72">
-                <!-- Animated Background -->
-                <div class="absolute inset-0">
-                  <div class="absolute inset-0 bg-gradient-to-br from-[{step.color}]/10 
-                              via-transparent to-transparent rounded-full animate-spin-slow"></div>
-                  <div class="absolute inset-8 bg-gradient-to-tr from-[{step.color}]/15 
-                              via-transparent to-transparent rounded-full animate-spin-slow-reverse"></div>
+                  <div>
+                    <h3 class="text-base sm:text-xl font-semibold text-[#32325d] 
+                               group-hover:text-[#605bff] transition-colors duration-300">
+                      {section.title}
+                    </h3>
+                    <p class="text-xs sm:text-sm text-[#32325d]/60">
+                      {section.stats.completed} complete • {section.stats.timeLeft} remaining
+                    </p>
+                  </div>
                 </div>
+              </button>
 
-                <!-- Main Icon -->
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <div class="relative group">
-                    <div class="absolute inset-0 bg-white/50 rounded-2xl blur-xl 
-                                group-hover:bg-[{step.color}]/20 transition-all duration-500"></div>
-                    <div class="relative w-24 h-24 rounded-2xl bg-white/80 backdrop-blur-xl 
-                                shadow-xl border border-white/20 flex items-center justify-center 
-                                text-[{step.color}] transform group-hover:scale-110 
-                                group-hover:rotate-3 transition-all duration-500">
-                      {@html step.icon}
+              <!-- Enhanced Feature Grid -->
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+                {#each section.features as feature}
+                  <div class="relative bg-white/95 rounded-lg sm:rounded-xl p-4 sm:p-6 
+                             shadow-xl border border-white/20 backdrop-blur-xl
+                             transition-all duration-500 group/card
+                             hover:shadow-2xl hover:-translate-y-1">
+                    <div class="mb-3 sm:mb-4">
+                      <h4 class="text-sm sm:text-base font-medium text-[#32325d] 
+                                group-hover/card:text-[#605bff] transition-colors duration-300">
+                        {feature.title}
+                      </h4>
+                      <p class="text-xs sm:text-sm text-[#32325d]/60">{feature.description}</p>
                     </div>
-                  </div>
-                </div>
 
-                <!-- Floating Elements -->
-                {#each step.points as point, i}
-                  <div class="absolute"
-                       style="
-                         top: {50 + 40 * Math.sin(2 * Math.PI * i / 3)}%;
-                         left: {50 + 40 * Math.cos(2 * Math.PI * i / 3)}%;
-                         transform: translate(-50%, -50%) rotate({i * 120}deg)
-                       ">
-                    <div class="w-12 h-12 rounded-xl bg-white/80 backdrop-blur-xl shadow-lg 
-                                border border-white/20 flex items-center justify-center 
-                                text-[{step.color}] animate-float"
-                         style="animation-delay: {i * 0.5}s">
-                      <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" 
-                              d="M5 13l4 4L19 7"/>
-                      </svg>
+                    <!-- Progress Bar -->
+                    <div class="h-1 sm:h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                      <div class="h-full bg-gradient-to-r from-[#605bff] to-[#8b7fff] 
+                                transition-all duration-500 shadow-lg shadow-[#605bff]/20"
+                           style="width: {feature.progress}%"></div>
+                    </div>
+
+                    <!-- Status Badge -->
+                    <div class="absolute top-2 sm:top-4 right-2 sm:right-4">
+                      {#if feature.status === 'active'}
+                        <span class="px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs 
+                                   font-medium bg-[#605bff]/10 text-[#605bff] animate-pulse">
+                          Active
+                        </span>
+                      {:else if feature.status === 'locked'}
+                        <span class="px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs 
+                                   font-medium bg-[#32325d]/10 text-[#32325d]/40">
+                          Locked
+                        </span>
+                      {/if}
+                    </div>
+
+                    <!-- Feature Highlight -->
+                    <div class="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 
+                               text-[10px] sm:text-xs font-medium text-[#605bff]/60
+                               opacity-0 group-hover/card:opacity-100 transition-opacity duration-300">
+                      {feature.highlight}
                     </div>
                   </div>
                 {/each}
               </div>
             </div>
-          </div>
-        {/each}
+          {/each}
+        </div>
       </div>
+    </div>
 
-      <!-- Navigation -->
-      <div class="flex justify-between mt-8">
-        <button
-          class="px-6 py-3 rounded-xl border-2 border-[#605bff] text-[#605bff] 
-                 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#605bff]/5 
-                 transition-colors"
-          on:click={prevStep}
-          disabled={currentStep === 0}
-        >
-          Previous
-        </button>
-        <button
-          class="px-6 py-3 rounded-xl bg-[#605bff] text-white 
-                 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#605bff]/90 
-                 transition-colors"
-          on:click={nextStep}
-          disabled={currentStep === steps.length - 1}
-        >
-          Next
-        </button>
-      </div>
+    <!-- Navigation -->
+    <div class="flex justify-between max-w-5xl mx-auto mt-8 sm:mt-12 pt-6 sm:pt-8 
+                border-t border-white/10 px-4 sm:px-0">
+      <button class="px-4 sm:px-6 py-2 text-sm sm:text-base rounded-lg border-2 
+                     border-[#605bff] text-[#605bff] font-medium transition-all duration-300
+                     hover:bg-[#605bff]/5 hover:shadow-lg hover:shadow-[#605bff]/10
+                     disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={currentStep === 0}
+              on:click={() => updateProgress(currentStep - 1)}>
+        Previous
+      </button>
+      <button class="px-4 sm:px-6 py-2 text-sm sm:text-base rounded-lg 
+                     bg-gradient-to-r from-[#605bff] to-[#8b7fff]
+                     text-white font-medium transition-all duration-300
+                     hover:shadow-lg hover:shadow-[#605bff]/20 hover:-translate-y-0.5
+                     disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={currentStep === onboardingFlow.length - 1}
+              on:click={() => updateProgress(currentStep + 1)}>
+        Continue
+      </button>
     </div>
   </div>
 </section>
 
 <style>
-  @keyframes slow-float {
-    0%, 100% { transform: translate(0, 0); }
-    50% { transform: translate(-20px, 20px); }
+  @keyframes ping {
+    75%, 100% {
+      transform: scale(2);
+      opacity: 0;
+    }
   }
 
-  .animate-slow-float {
-    animation: slow-float 20s ease-in-out infinite;
+  .animate-ping {
+    animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
   }
 
-  .animate-slow-float-reverse {
-    animation: slow-float 25s ease-in-out infinite reverse;
+  @keyframes glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(96, 91, 255, 0.3); }
+    50% { box-shadow: 0 0 40px rgba(96, 91, 255, 0.6); }
   }
 
-  @keyframes pulse-slow {
-    0%, 100% { transform: scale(1); opacity: 0.5; }
-    50% { transform: scale(1.1); opacity: 0.3; }
-  }
-
-  .animate-pulse-slow {
-    animation: pulse-slow 3s ease-in-out infinite;
-  }
-
-  @keyframes shimmer {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
-  }
-
-  .animate-shimmer {
-    animation: shimmer 2.5s infinite;
-  }
-
-  @keyframes gradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-
-  .animate-gradient {
-    background-size: 200% auto;
-    animation: gradient 4s ease infinite;
-  }
-
-  @keyframes spin-slow {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-
-  @keyframes spin-slow-reverse {
-    from { transform: rotate(360deg); }
-    to { transform: rotate(0deg); }
-  }
-
-  .animate-spin-slow {
-    animation: spin-slow 20s linear infinite;
-  }
-
-  .animate-spin-slow-reverse {
-    animation: spin-slow 25s linear infinite reverse;
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite;
   }
 </style>

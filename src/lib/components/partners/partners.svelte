@@ -27,7 +27,7 @@
     ];
   </script>
   
-  <section class="py-12 relative overflow-hidden">
+  <section class="py-8 sm:py-10 lg:py-12 relative overflow-hidden">
     <div class="absolute inset-0 bg-[#F6F9FC]">
       <div class="absolute inset-0 bg-gradient-to-br from-gray-50/90 via-[#F6F9FC] to-gray-100/80"></div>
     </div>
@@ -35,13 +35,16 @@
     <!-- Infinite Scroll Container -->
     <div class="relative">
       <!-- First Row -->
-      <div class="flex space-x-12 animate-scroll">
+      <div class="flex space-x-4 xs:space-x-6 sm:space-x-8 lg:space-x-12 animate-scroll">
         {#each [...partners, ...partners] as partner}
-          <div class="flex items-center justify-center min-w-[160px] h-16 bg-white/90 backdrop-blur-xl rounded-xl border border-white/20 shadow-sm px-6 hover:shadow-md transition-shadow">
+          <div class="flex items-center justify-center min-w-[120px] xs:min-w-[140px] sm:min-w-[160px] 
+                      h-12 xs:h-14 sm:h-16 bg-white/90 backdrop-blur-xl rounded-lg sm:rounded-xl 
+                      border border-white/20 shadow-sm px-3 xs:px-4 sm:px-6 hover:shadow-md transition-shadow">
             <img 
               src={partner.logo} 
               alt={partner.name} 
-              class="h-9 w-auto object-contain filter hover:brightness-110 transition-all duration-300 transform hover:scale-105"
+              class="h-6 xs:h-7 sm:h-8 lg:h-9 w-auto object-contain filter hover:brightness-110 
+                     transition-all duration-300 transform hover:scale-105"
               style="image-rendering: -webkit-optimize-contrast;"
             />
           </div>
@@ -49,13 +52,16 @@
       </div>
   
       <!-- Second Row (Reverse Direction) -->
-      <div class="flex space-x-12 animate-scroll-reverse mt-6">
+      <div class="flex space-x-4 xs:space-x-6 sm:space-x-8 lg:space-x-12 animate-scroll-reverse mt-4 sm:mt-6">
         {#each [...partners, ...partners] as partner}
-          <div class="flex items-center justify-center min-w-[160px] h-16 bg-white/90 backdrop-blur-xl rounded-xl border border-white/20 shadow-sm px-6 hover:shadow-md transition-shadow">
+          <div class="flex items-center justify-center min-w-[120px] xs:min-w-[140px] sm:min-w-[160px] 
+                      h-12 xs:h-14 sm:h-16 bg-white/90 backdrop-blur-xl rounded-lg sm:rounded-xl 
+                      border border-white/20 shadow-sm px-3 xs:px-4 sm:px-6 hover:shadow-md transition-shadow">
             <img 
               src={partner.logo} 
               alt={partner.name} 
-              class="h-9 w-auto object-contain filter hover:brightness-110 transition-all duration-300 transform hover:scale-105"
+              class="h-6 xs:h-7 sm:h-8 lg:h-9 w-auto object-contain filter hover:brightness-110 
+                     transition-all duration-300 transform hover:scale-105"
               style="image-rendering: -webkit-optimize-contrast;"
             />
           </div>
@@ -84,11 +90,20 @@
     }
   
     .animate-scroll {
-      animation: scroll 30s linear infinite;
+      animation: scroll 20s linear infinite;
     }
   
     .animate-scroll-reverse {
-      animation: scroll-reverse 30s linear infinite;
+      animation: scroll-reverse 20s linear infinite;
+    }
+  
+    @media (max-width: 640px) {
+      .animate-scroll {
+        animation: scroll 15s linear infinite;
+      }
+      .animate-scroll-reverse {
+        animation: scroll-reverse 15s linear infinite;
+      }
     }
   
     .animate-scroll:hover,

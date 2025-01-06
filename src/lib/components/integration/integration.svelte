@@ -124,7 +124,7 @@
   ];
 </script>
 
-<section class="relative overflow-hidden py-32">
+<section class="relative overflow-hidden py-16 sm:py-24 lg:py-32">
   <!-- Background -->
   <div class="absolute inset-0 bg-[#fafafa]">
     <div class="absolute inset-0 bg-[url('/images/grid.svg')] opacity-[0.3]"></div>
@@ -139,23 +139,27 @@
   </div>
 
   <!-- Content Container -->
-  <div class="relative container mx-auto px-4 transition-all duration-1000 
+  <div class="relative container mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000 
               {isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}">
     <!-- Header -->
-    <div class="max-w-3xl mx-auto text-center mb-24">
-      <div class="inline-flex items-center gap-3 rounded-full bg-white/90 p-1.5 pr-6 
-                  backdrop-blur-xl border border-white/20 shadow-xl hover:shadow-2xl 
-                  transition-all duration-300 mb-8 animate-float">
+    <div class="max-w-3xl mx-auto text-center mb-12 sm:mb-16 lg:mb-24">
+      <div class="inline-flex items-center gap-2 sm:gap-3 rounded-full bg-white/90 
+                  p-1.5 pr-4 sm:pr-6 backdrop-blur-xl border border-white/20 
+                  shadow-xl hover:shadow-2xl transition-all duration-300 mb-6 sm:mb-8">
         <span class="rounded-full bg-gradient-to-r from-[#605bff] to-[#605bff]/90 
-                     px-4 py-1.5 text-sm font-medium text-white relative overflow-hidden">
+                     px-3 sm:px-4 py-1.5 text-xs sm:text-sm font-medium text-white 
+                     relative overflow-hidden">
           <span class="relative z-10">Developer-First</span>
           <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 
                       to-transparent animate-shimmer"></div>
         </span>
-        <span class="text-sm font-medium text-[#32325d]">Integration Options</span>
+        <span class="text-xs sm:text-sm font-medium text-[#32325d]">
+          Integration Options
+        </span>
       </div>
 
-      <h2 class="text-5xl font-bold leading-tight mb-8 text-[#32325d]">
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-6 sm:mb-8 
+                 text-[#32325d]">
         Integration
         <span class="relative inline-block">
           <span class="bg-gradient-to-r from-[#605bff] to-[#32325d] bg-clip-text 
@@ -163,18 +167,19 @@
         </span>
       </h2>
       
-      <p class="text-xl text-[#32325d]/70 max-w-2xl mx-auto leading-relaxed">
+      <p class="text-lg sm:text-xl text-[#32325d]/70 max-w-2xl mx-auto leading-relaxed">
         Start accepting payments in minutes with our flexible integration options
       </p>
     </div>
 
     <!-- Integration Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 
+                max-w-7xl mx-auto">
       {#each integrations as integration, i}
-        <div class="group bg-white/95 backdrop-blur-xl rounded-3xl border border-white/20 
-                    shadow-xl hover:shadow-2xl transition-all duration-500 
-                    hover:-translate-y-1 relative overflow-hidden p-8
-                    animate-fade-up" style="animation-delay: {i * 200}ms">
+        <div class="group bg-white/95 backdrop-blur-xl rounded-2xl sm:rounded-3xl 
+                    border border-white/20 shadow-xl hover:shadow-2xl transition-all 
+                    duration-500 hover:-translate-y-1 relative overflow-hidden 
+                    p-6 sm:p-8 animate-fade-up" style="animation-delay: {i * 200}ms">
           <!-- Gradient Background -->
           <div class="absolute inset-0 bg-gradient-to-br from-white/80 via-transparent 
                       to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500">
@@ -183,21 +188,20 @@
           <!-- Content -->
           <div class="relative">
             <!-- Icon Container -->
-            <div class="flex items-center gap-4 mb-8">
-              <div class="p-4 rounded-2xl transition-all duration-500
-                          {integration.bgColor} {integration.hoverBg} relative overflow-hidden
-                          hover:scale-105 transform">
+            <div class="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
+              <div class="p-3 sm:p-4 rounded-xl sm:rounded-2xl transition-all duration-500
+                          {integration.bgColor} {integration.hoverBg}">
                 {#if integration.icon === 'code'}
-                  <svg class="w-12 h-12 text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <svg class="w-8 sm:w-12 h-8 sm:h-12 text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M16 18l6-6-6-6M8 6l-6 6 6 6" />
                   </svg>
                 {:else if integration.icon === 'link'}
-                  <svg class="w-12 h-12 text-purple-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <svg class="w-8 sm:w-12 h-8 sm:h-12 text-purple-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101" />
                     <path d="M10.172 13.828a4 4 0 005.656 0l4-4a4 4 0 10-5.656-5.656l-1.102 1.101" />
                   </svg>
                 {:else if integration.icon === 'shop'}
-                  <svg class="w-12 h-12 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <svg class="w-8 sm:w-12 h-8 sm:h-12 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M3 3h18a2 2 0 012 2v14a2 2 0 01-2 2H3a2 2 0 01-2-2V5a2 2 0 012-2z" />
                     <path d="M3 9h18" />
                     <path d="M9 21V9" />
@@ -208,7 +212,8 @@
               </div>
 
               {#if integration.additionalIcons}
-                <div class="flex -space-x-2 animate-slide-in" style="animation-delay: {i * 300}ms">
+                <div class="flex -space-x-1 sm:-space-x-2 animate-slide-in" 
+                     style="animation-delay: {i * 300}ms">
                   {#if integration.name === 'Payment Links'}
                     {#each integration.additionalIcons as icon}
                       <div class="w-10 h-10 rounded-full bg-white backdrop-blur-sm p-1.5 
@@ -254,18 +259,18 @@
               {/if}
             </div>
 
-            <h3 class="text-xl font-bold mb-4 text-[#32325d] 
+            <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-[#32325d] 
                        group-hover:{integration.textColor} transition-all duration-300">
               {integration.name}
             </h3>
-            <p class="text-[#32325d]/60 text-base mb-6 leading-relaxed">
+            <p class="text-sm sm:text-base text-[#32325d]/60 mb-4 sm:mb-6 leading-relaxed">
               {integration.description}
             </p>
 
             <!-- Features -->
-            <div class="space-y-2 mb-8">
+            <div class="space-y-1.5 sm:space-y-2 mb-6 sm:mb-8">
               {#each integration.features as feature}
-                <div class="flex items-center gap-2 text-sm text-[#32325d]/70">
+                <div class="flex items-center gap-2 text-xs sm:text-sm text-[#32325d]/70">
                   <svg class="w-4 h-4 text-[#605bff]" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
                   </svg>
@@ -275,12 +280,14 @@
             </div>
 
             <!-- Stats -->
-            <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
-              <span class="text-3xl font-bold {integration.textColor} transition-all 
+            <div class="flex items-center gap-2 sm:gap-3 pt-4 border-t border-gray-100">
+              <span class="text-2xl sm:text-3xl font-bold {integration.textColor} transition-all 
                            duration-300 group-hover:scale-110">
                 {integration.stat}
               </span>
-              <span class="text-sm text-[#32325d]/50 font-medium">{integration.label}</span>
+              <span class="text-xs sm:text-sm text-[#32325d]/50 font-medium">
+                {integration.label}
+              </span>
             </div>
           </div>
         </div>
