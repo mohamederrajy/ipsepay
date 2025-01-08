@@ -36,11 +36,11 @@
   <Navbar/>
   <HeroIps/>
 
-  <Prtners/>
+   <!--<Prtners/>-->
  <!--<<Futeurs/>-->
 
   <!--<ScrollingImages/>-->
-    <!--<SmartSimple/>-->
+    <SmartSimple/>
   <OnlinePayments/>
   <PayMethoes/>
   <PayoutTime/>

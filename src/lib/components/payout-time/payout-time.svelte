@@ -1,5 +1,8 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { tweened } from 'svelte/motion';
+  import { cubicOut } from 'svelte/easing';
+  import { fade, fly } from 'svelte/transition';
   
   const features = [
     {
@@ -19,8 +22,26 @@
     }
   ];
 
+  // Animated counter for processing time
+  const processingTime = tweened(1, {
+    duration: 2000,
+    easing: cubicOut
+  });
+
+  // Mock transaction data
+  const transactions = [
+    { amount: 2459.42, currency: 'USD', type: 'Instant Payout' },
+    { amount: 1837.89, currency: 'EUR', type: 'Express Transfer' },
+    { amount: 5940.23, currency: 'GBP', type: 'Quick Payment' },
+    { amount: 3298.67, currency: 'USD', type: 'Rapid Transfer' }
+  ];
+
   let isVisible = false;
-  onMount(() => isVisible = true);
+  
+  onMount(() => {
+    isVisible = true;
+    processingTime.set(0.1);
+  });
 </script>
 
 <section class="relative py-16 sm:py-24 lg:py-32 overflow-hidden">
@@ -129,98 +150,69 @@
         {/each}
       </div>
 
-      <!-- Right: Enhanced Timer Display -->
+      <!-- Right: Modern Analytics Display -->
       <div class="relative mt-8 lg:mt-0">
-        <div class="relative mx-auto w-full max-w-[320px] sm:max-w-[380px] lg:max-w-[480px] 
-                    aspect-square flex items-center justify-center">
-          <!-- Background layers - Adjusted for mobile -->
-          <div class="absolute inset-0 rounded-full bg-gradient-to-br from-[#605bff]/5 
-                      via-white/[0.02] to-transparent backdrop-blur-xl border border-white/[0.08] 
-                      shadow-2xl shadow-black/20"></div>
-          
-          <!-- Rotating ring - Adjusted visibility -->
-          <div class="absolute inset-4 sm:inset-2 rounded-full border border-white/[0.05] 
-                      animate-spin-slow"></div>
-          
-          <!-- Timer Content - Improved mobile layout -->
-          <div class="relative text-center z-10 px-4 sm:px-8">
-            <div class="space-y-6 sm:space-y-10">
-              <!-- Timer display - Better scaling -->
-              <div class="relative transform hover:scale-105 transition-transform duration-300">
-                <div class="flex items-baseline justify-center">
-                  <span class="text-6xl sm:text-[100px] lg:text-[140px] font-bold text-transparent 
-                               bg-gradient-to-r from-white to-white/90 bg-clip-text leading-none 
-                               tracking-tight drop-shadow-2xl">0.1</span>
-                  <span class="text-2xl sm:text-4xl lg:text-6xl font-bold text-[#605bff] 
-                               ml-2 sm:ml-4 drop-shadow-lg">s</span>
+        <div class="relative mx-auto w-full max-w-[480px]">
+          <!-- Simple Modern Display -->
+          <div class="relative aspect-square">
+            <!-- Clean Background -->
+            <div class="absolute inset-0">
+              <div class="absolute inset-[5%] rounded-full border border-white/5"></div>
+              <div class="absolute inset-[10%] rounded-full border border-white/5"></div>
+            </div>
+
+            <!-- Central Display -->
+            <div class="absolute inset-[15%] rounded-full bg-black/40 backdrop-blur-xl 
+                        border border-white/[0.08] flex items-center justify-center
+                        hover:scale-105 transition-transform duration-500">
+              <div class="text-center">
+                <div class="relative mb-4">
+                  <div class="flex items-baseline justify-center">
+                    <span class="text-7xl font-bold bg-gradient-to-r from-white to-white/80 
+                                bg-clip-text text-transparent">
+                      {$processingTime.toFixed(1)}
+                    </span>
+                    <span class="text-3xl font-medium text-[#605bff] ml-2">s</span>
+                  </div>
+                  <div class="text-sm text-white/60 mt-2">Instant Payout</div>
                 </div>
-                <div class="mt-3 sm:mt-6 text-base sm:text-lg font-medium text-white/80">
-                  Average Processing Time
+                
+                <!-- Simple Progress Indicator -->
+                <div class="w-32 h-1 mx-auto bg-white/10 rounded-full overflow-hidden">
+                  <div class="h-full bg-[#605bff] animate-progress"></div>
                 </div>
               </div>
+            </div>
 
-              <!-- Stats - Improved mobile layout -->
-              <div class="flex justify-center gap-8 sm:gap-16 mt-6 sm:mt-12">
-                {#each [
-                  { value: '99.9%', label: 'Success Rate', color: 'from-green-400 to-emerald-500' },
-                  { value: '24/7', label: 'Support', color: 'from-[#605bff] to-blue-500' }
-                ] as stat}
-                  <div class="text-center group cursor-pointer transform hover:scale-105 
-                              transition-all duration-300">
-                    <div class="text-2xl sm:text-3xl font-bold bg-gradient-to-r {stat.color} 
-                                bg-clip-text text-transparent mb-1 sm:mb-2">{stat.value}</div>
-                    <div class="text-xs sm:text-sm text-white/70 group-hover:text-white/90 
-                                transition-colors duration-300">{stat.label}</div>
+            <!-- Simplified Transaction Cards -->
+            {#each transactions as tx, i}
+              <div class="transaction-card" 
+                   style="--delay: {i * 0.2}s; --tx: {-50 + i * 20}px; --ty: {-50 + i * 20}px;"
+                   in:fly={{ y: 20, duration: 500, delay: i * 200 }}>
+                <div class="flex items-center gap-3 p-3 rounded-xl 
+                            bg-black/40 backdrop-blur-md border border-white/10">
+                  <div class="text-base font-medium text-white">
+                    {tx.currency} {tx.amount.toFixed(2)}
                   </div>
-                {/each}
+                </div>
+              </div>
+            {/each}
+
+            <!-- Simple Stats -->
+            <div class="absolute -left-12 top-1/3 animate-float" style="--delay: 0s">
+              <div class="px-4 py-2 rounded-xl bg-black/40 backdrop-blur-md 
+                          border border-white/10">
+                <span class="text-lg font-bold text-white">99.9%</span>
+              </div>
+            </div>
+
+            <div class="absolute -right-12 bottom-1/3 animate-float" style="--delay: 0.3s">
+              <div class="px-4 py-2 rounded-xl bg-black/40 backdrop-blur-md 
+                          border border-white/10">
+                <span class="text-lg font-bold text-white">150+</span>
               </div>
             </div>
           </div>
-
-          <!-- Live processing indicator - Adjusted for mobile -->
-          <div class="absolute top-4 sm:top-8 left-4 sm:left-8">
-            <div class="flex items-center gap-2 bg-white/[0.03] rounded-full px-3 sm:px-4 
-                        py-1.5 sm:py-2 border border-white/[0.08] shadow-lg">
-              <span class="relative flex h-1.5 sm:h-2 w-1.5 sm:w-2">
-                <span class="absolute inline-flex h-full w-full rounded-full bg-green-400 
-                            animate-ping opacity-75"></span>
-                <span class="relative inline-flex h-1.5 sm:h-2 w-1.5 sm:w-2 rounded-full 
-                            bg-green-400"></span>
-              </span>
-              <span class="text-xs sm:text-sm font-medium text-white/90">Processing Live</span>
-            </div>
-          </div>
-
-          <!-- Floating payouts - Hide on mobile, show on larger screens -->
-          {#each Array(4) as _, i}
-            <div class="hidden sm:block absolute animate-payout"
-                 style="animation-delay: -{i * 2}s; {i === 0 ? 'top: 15%; right: -80px;' : 
-                                                  i === 1 ? 'top: 65%; right: -80px;' :
-                                                  i === 2 ? 'top: 25%; left: -80px;' :
-                                                           'top: 75%; left: -80px;'}">
-              <div class="bg-gradient-to-br from-white/[0.03] to-white/[0.01] backdrop-blur-xl 
-                          rounded-xl p-4 border border-white/[0.08] shadow-2xl shadow-black/20
-                          hover:bg-white/[0.05] transition-all duration-300 hover:scale-105
-                          hover:border-white/[0.12]">
-                <div class="flex items-center gap-4">
-                  <div class="w-10 h-10 rounded-lg bg-[#605bff]/20 flex items-center 
-                              justify-center shadow-lg shadow-[#605bff]/10">
-                    <svg class="w-5 h-5 text-[#605bff]" viewBox="0 0 24 24" 
-                         fill="none" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" 
-                            stroke-width="2" d="M5 13l4 4L19 7"/>
-                    </svg>
-                  </div>
-                  <div>
-                    <div class="text-base font-semibold text-white">
-                      ${(Math.random() * 10000).toFixed(2)}
-                    </div>
-                    <div class="text-sm text-[#605bff] font-medium">Instant Payout</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          {/each}
         </div>
       </div>
     </div>
@@ -228,97 +220,597 @@
 </section>
 
 <style>
-  @keyframes payout {
+  /* Modern Base Styles */
+  :global(.modern-blur) {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  /* Enhanced Animations */
+  @keyframes float-up {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(2deg); }
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+
+  @keyframes slide-in {
+    from { transform: translateX(-100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+
+  @keyframes rotate-3d {
+    0% { transform: perspective(1000px) rotateY(0deg); }
+    100% { transform: perspective(1000px) rotateY(360deg); }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+
+  /* Modern Card Effects */
+  .neo-card {
+    @apply relative overflow-hidden rounded-2xl;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.03) 0%,
+      rgba(255, 255, 255, 0.01) 100%
+    );
+    box-shadow: 
+      0 4px 24px -1px rgba(0, 0, 0, 0.2),
+      0 0 1px 0 rgba(255, 255, 255, 0.1) inset;
+  }
+
+  .neo-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.05),
+      transparent
+    );
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+  }
+
+  /* Glassmorphism Effects */
+  .glass-effect {
+    @apply backdrop-blur-xl bg-white/[0.02] border border-white/[0.05];
+  }
+
+  /* Modern Gradient Text */
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(
+      135deg,
+      #fff 0%,
+      rgba(255, 255, 255, 0.7) 100%
+    );
+  }
+
+  /* Animated Icons */
+  .icon-container {
+    @apply relative rounded-xl p-3 transition-all duration-300;
+    background: linear-gradient(
+      135deg,
+      rgba(96, 91, 255, 0.1) 0%,
+      rgba(96, 91, 255, 0.05) 100%
+    );
+  }
+
+  .icon-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px -4px rgba(96, 91, 255, 0.2);
+  }
+
+  /* Floating Elements */
+  .float-element {
+    animation: float-up 3s ease-in-out infinite;
+  }
+
+  /* Glowing Effects */
+  .glow-effect {
+    @apply relative;
+  }
+
+  .glow-effect::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    background: linear-gradient(
+      45deg,
+      #605bff20,
+      transparent,
+      #605bff10
+    );
+    filter: blur(20px);
+    z-index: -1;
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+
+  /* Modern Button Styles */
+  .neo-button {
+    @apply relative overflow-hidden rounded-full px-6 py-2 
+           transition-all duration-300;
+    background: linear-gradient(
+      135deg,
+      rgba(96, 91, 255, 0.2) 0%,
+      rgba(96, 91, 255, 0.1) 100%
+    );
+  }
+
+  .neo-button:hover {
+    @apply transform -translate-y-0.5;
+    box-shadow: 0 8px 20px -4px rgba(96, 91, 255, 0.3);
+  }
+
+  /* Progress Indicators */
+  .progress-bar {
+    @apply relative h-1 rounded-full overflow-hidden;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 30%;
+    background: linear-gradient(
+      90deg,
+      #605bff,
+      #8b7fff
+    );
+    animation: progress 2s ease-in-out infinite;
+  }
+
+  /* 3D Transform Effects */
+  .transform-3d {
+    transform-style: preserve-3d;
+    animation: rotate-3d 20s linear infinite;
+  }
+
+  /* Responsive Design Utilities */
+  @media (max-width: 640px) {
+    .neo-card {
+      @apply rounded-xl;
+    }
+
+    .gradient-text {
+      background-image: linear-gradient(
+        135deg,
+        #fff 0%,
+        rgba(255, 255, 255, 0.8) 100%
+      );
+    }
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(96, 91, 255, 0.3);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(96, 91, 255, 0.5);
+  }
+
+  /* Animation Utilities */
+  .animate-slide-in {
+    animation: slide-in 0.6s ease-out forwards;
+  }
+
+  .animate-float {
+    animation: float-up 3s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+
+  .stat-card {
+    @apply flex items-center gap-3 p-3 rounded-xl bg-white/[0.03] 
+           backdrop-blur-sm border border-white/10 shadow-lg;
+  }
+
+  .stat-icon {
+    @apply w-10 h-10 rounded-lg flex items-center justify-center;
+  }
+
+  .transaction-pill {
+    @apply absolute transition-all duration-500;
+    animation: float-out 4s ease-out infinite;
+    animation-delay: var(--tx-delay);
+  }
+
+  @keyframes float-out {
     0% {
       opacity: 0;
-      transform: translateX(0) translateY(0);
+      transform: translate(0, 0);
     }
     20% {
       opacity: 1;
-      transform: translateX(-10px) translateY(-10px);
+      transform: translate(var(--tx-x, -20px), var(--tx-y, -20px));
     }
     80% {
       opacity: 1;
-      transform: translateX(-20px) translateY(-20px);
+      transform: translate(var(--tx-x, -40px), var(--tx-y, -40px));
     }
     100% {
       opacity: 0;
-      transform: translateX(-30px) translateY(-30px);
+      transform: translate(var(--tx-x, -60px), var(--tx-y, -60px));
     }
-  }
-
-  .animate-payout {
-    animation: payout 4s ease-out infinite;
-  }
-
-  @keyframes wave-flow {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-100%); }
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-  }
-
-  @keyframes float-card {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-8px) rotate(1deg); }
-  }
-
-  .animate-float-card {
-    animation: float-card 3s ease-in-out infinite;
-  }
-
-  @keyframes success-move {
-    0% { 
-      transform: translate(0, 0) scale(0.8);
-      opacity: 0;
-    }
-    20% { 
-      transform: translate(-20px, -20px) scale(1);
-      opacity: 1;
-    }
-    80% { 
-      transform: translate(20px, -40px) scale(1);
-      opacity: 1;
-    }
-    100% { 
-      transform: translate(40px, -60px) scale(0.8);
-      opacity: 0;
-    }
-  }
-
-  .animate-success-move {
-    animation: success-move 8s ease-in-out infinite;
   }
 
   @keyframes progress {
-    0% { width: 0; }
-    50% { width: 70%; }
-    100% { width: 100%; }
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
   }
 
   .animate-progress {
-    animation: progress 2s ease-in-out;
-    width: 100%;
+    animation: progress 2s ease-in-out infinite;
   }
 
   .animate-float {
     animation: float 3s ease-in-out infinite;
+    animation-delay: var(--float-delay);
   }
 
-  /* Add text shadow utility */
-  .text-shadow-lg {
-    text-shadow: 0 0 40px rgba(0,0,0,0.3);
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
   }
 
   .animate-spin-slow {
     animation: spin 20s linear infinite;
   }
 
+  .animate-spin-reverse {
+    animation: spin 30s linear infinite reverse;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.05); }
+  }
+
+  /* Enhanced Base Styles */
+  .bg-hub-gradient {
+    background: radial-gradient(circle at center,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(255, 255, 255, 0.02) 50%,
+      transparent 100%
+    );
+  }
+
+  .shadow-hub {
+    box-shadow: 
+      0 0 60px -12px rgba(96, 91, 255, 0.2),
+      0 0 1px 0 rgba(255, 255, 255, 0.1) inset;
+  }
+
+  .text-shadow-glow {
+    text-shadow: 0 0 20px rgba(96, 91, 255, 0.3);
+  }
+
+  .text-shadow-glow-intense {
+    text-shadow: 0 0 30px rgba(96, 91, 255, 0.5);
+  }
+
+  /* Particle System */
+  .particle {
+    @apply absolute rounded-full bg-white;
+    width: var(--particle-size);
+    height: var(--particle-size);
+    animation: particle-float var(--particle-speed) linear infinite;
+    animation-delay: var(--particle-delay);
+    opacity: 0.2;
+  }
+
+  @keyframes particle-float {
+    0% {
+      transform: translate(0, 0) scale(1);
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      transform: translate(var(--tx, 100px), var(--ty, -100px)) scale(0);
+      opacity: 0;
+    }
+  }
+
+  /* Enhanced Progress Line */
+  .progress-line {
+    @apply absolute inset-0 bg-gradient-to-r from-[#605bff] via-blue-400 to-[#605bff];
+    background-size: 200% 100%;
+    animation: progress-slide 2s linear infinite;
+  }
+
+  @keyframes progress-slide {
+    0% { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+  }
+
+  /* Orbital Effects */
+  .orbital-ring {
+    @apply transition-all duration-500;
+  }
+
+  .orbital-ring:hover {
+    @apply border-white/20;
+    filter: drop-shadow(0 0 10px rgba(96, 91, 255, 0.3));
+  }
+
+  /* Enhanced Transaction Pills */
+  .transaction-pill-enhanced {
+    @apply absolute transition-all duration-700;
+    animation: enhanced-float-out 5s ease-out infinite;
+    animation-delay: var(--tx-delay);
+  }
+
+  .pill-content {
+    @apply flex items-center gap-3 p-3 rounded-xl bg-white/[0.03] 
+           backdrop-blur-sm border border-white/10 shadow-lg
+           hover:bg-white/[0.05] transition-all duration-300
+           hover:scale-105 hover:border-white/20;
+  }
+
+  /* Additional Animations */
+  @keyframes enhanced-float-out {
+    0% {
+      opacity: 0;
+      transform: translate(0, 0) scale(0.9);
+    }
+    10% {
+      opacity: 1;
+      transform: translate(var(--tx-x, -20px), var(--tx-y, -20px)) scale(1);
+    }
+    80% {
+      opacity: 1;
+      transform: translate(var(--tx-x, -60px), var(--tx-y, -60px)) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(var(--tx-x, -80px), var(--tx-y, -80px)) scale(0.9);
+    }
+  }
+
+  .transaction-card {
+    @apply absolute transition-all duration-500;
+    animation: float-out 4s ease-out infinite;
+    animation-delay: var(--delay);
+  }
+
+  .stat-indicator {
+    @apply flex flex-col items-center p-3 rounded-xl 
+           bg-black/40 backdrop-blur-md border border-white/10;
+  }
+
+  @keyframes float-out {
+    0% {
+      opacity: 0;
+      transform: translate(0, 0);
+    }
+    20% {
+      opacity: 1;
+      transform: translate(var(--tx, -20px), var(--ty, -20px));
+    }
+    80% {
+      opacity: 1;
+      transform: translate(var(--tx, -40px), var(--ty, -40px));
+    }
+    100% {
+      opacity: 0;
+      transform: translate(var(--tx, -60px), var(--ty, -60px));
+    }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+    animation-delay: var(--delay);
+  }
+
+  .animate-spin-slow {
+    animation: spin 30s linear infinite;
+  }
+
+  .animate-spin-reverse {
+    animation: spin 20s linear infinite reverse;
+  }
+
+  .animate-progress {
+    width: 0%;
+    animation: progress 2s ease-out infinite;
+  }
+
+  @keyframes progress {
+    0% { width: 0%; }
+    100% { width: 100%; }
+  }
+
   @keyframes spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
+  }
+
+  /* Add these new animations to your existing styles */
+  @keyframes bounce-subtle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-2px); }
+  }
+
+  @keyframes ping-slow {
+    0% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 0.25; }
+    100% { transform: scale(1); opacity: 0.5; }
+  }
+
+  @keyframes shrink {
+    from { transform: scaleX(1); }
+    to { transform: scaleX(0); }
+  }
+
+  .animate-bounce-subtle {
+    animation: bounce-subtle 2s ease-in-out infinite;
+  }
+
+  .animate-ping-slow {
+    animation: ping-slow 2s ease-in-out infinite;
+  }
+
+  .animate-shrink {
+    animation: shrink 4s linear forwards;
+  }
+
+  @keyframes pulse-subtle {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(0.95); }
+  }
+
+  @keyframes ping-slow {
+    0% { transform: scale(1); opacity: 0.2; }
+    50% { transform: scale(1.2); opacity: 0.1; }
+    100% { transform: scale(1); opacity: 0.2; }
+  }
+
+  @keyframes shrink-smooth {
+    from { transform: scaleX(1); }
+    to { transform: scaleX(0); }
+  }
+
+  @keyframes particle {
+    0% {
+      opacity: 0;
+      transform: translate(0, 0) scale(0);
+    }
+    50% {
+      opacity: 1;
+      transform: translate(
+        calc(var(--particle-index) * 10px - 30px),
+        calc(var(--particle-index) * -5px + 15px)
+      ) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(
+        calc(var(--particle-index) * 20px - 60px),
+        calc(var(--particle-index) * -10px + 30px)
+      ) scale(0);
+    }
+  }
+
+  .animate-pulse-subtle {
+    animation: pulse-subtle 2s ease-in-out infinite;
+  }
+
+  .animate-ping-slow {
+    animation: ping-slow 3s ease-in-out infinite;
+  }
+
+  .animate-shrink-smooth {
+    animation: shrink-smooth 4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .animate-particle {
+    animation: particle 2s ease-out infinite;
+    animation-delay: calc(var(--particle-index) * 200ms);
+  }
+
+  @keyframes gradient-x {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .animate-gradient-x {
+    animation: gradient-x 3s linear infinite;
+    background-size: 200% 100%;
+  }
+
+  .transaction-card {
+    animation: float-out 4s ease-out infinite;
+    animation-delay: var(--delay);
+  }
+
+  @keyframes float-out {
+    0% {
+      opacity: 0;
+      transform: translate(0, 0) scale(0.9);
+    }
+    20% {
+      opacity: 1;
+      transform: translate(calc(var(--tx) * 0.2), calc(var(--ty) * 0.2)) scale(1);
+    }
+    80% {
+      opacity: 1;
+      transform: translate(calc(var(--tx) * 0.8), calc(var(--ty) * 0.8)) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(var(--tx), var(--ty)) scale(0.9);
+    }
+  }
+
+  /* Simplified animations */
+  .transaction-card {
+    @apply absolute transition-all duration-500;
+    animation: simple-float 4s ease-out infinite;
+    animation-delay: var(--delay);
+  }
+
+  @keyframes simple-float {
+    0% {
+      opacity: 0;
+      transform: translate(0, 0);
+    }
+    20% {
+      opacity: 1;
+      transform: translate(var(--tx), var(--ty));
+    }
+    80% {
+      opacity: 1;
+      transform: translate(var(--tx), var(--ty));
+    }
+    100% {
+      opacity: 0;
+      transform: translate(calc(var(--tx) * 2), calc(var(--ty) * 2));
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+    animation-delay: var(--delay);
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
   }
 </style>

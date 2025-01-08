@@ -99,6 +99,18 @@
       backdrop.remove();
     }
   });
+
+  // Add to your existing script
+  let isSticky = false;
+  
+  onMount(() => {
+    const handleScroll = () => {
+      isSticky = window.scrollY > 20;
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  });
 </script>
 
 <!-- =========== Navbar Start =========== -->
@@ -174,15 +186,7 @@
                       </div>
                     </a>
 
-                    <a href="/payments/in-person" class="group flex items-start p-3 rounded-lg hover:bg-gray-50 transition-colors">
-                      <svg class="w-5 h-5 text-[#605bff] mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v4m-6-4v4m0-11v-4m6 4v-4m-6 4h6m-6 6h6"/>
-                      </svg>
-                      <div>
-                        <span class="text-[#605bff] font-medium block group-hover:text-[#605bff]/80">In-person payments</span>
-                        <span class="text-sm text-gray-600">Accept payments with terminals and devices</span>
-                      </div>
-                    </a>
+                    
 
                     <a href="/payments/payments-link" class="group flex items-start p-3 rounded-lg hover:bg-gray-50 transition-colors">
                       <svg class="w-5 h-5 text-[#605bff] mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -276,25 +280,7 @@
                       </div>
                     </a>
 
-                    <a href="/financial/capital" class="group flex items-start p-3 rounded-lg hover:bg-gray-50 transition-colors">
-                      <svg class="w-5 h-5 text-[#605bff] mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                      </svg>
-                      <div>
-                        <span class="text-[#605bff] font-medium block group-hover:text-[#605bff]/80">Capital</span>
-                        <span class="text-sm text-gray-600">Enable fast business financing for your users</span>
-                      </div>
-                    </a>
-
-                    <a href="/financial/issuing" class="group flex items-start p-3 rounded-lg hover:bg-gray-50 transition-colors">
-                      <svg class="w-5 h-5 text-[#605bff] mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
-                      </svg>
-                      <div>
-                        <span class="text-[#605bff] font-medium block group-hover:text-[#605bff]/80">Issuing</span>
-                        <span class="text-sm text-gray-600">Create physical and virtual cards</span>
-                      </div>
-                    </a>
+                    
 
                     <a href="/financial/payouts" class="group flex items-start p-3 rounded-lg hover:bg-gray-50 transition-colors">
                       <svg class="w-5 h-5 text-[#605bff] mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -493,100 +479,82 @@
             </div>
           </li>
 
-          <!-- Onboarding fast -->
+          <!-- About Us -->
           <li class="nav-item">
-            <button class="nav-link hover:text-[#605bff] transition-colors flex items-center gap-1.5"
-                    on:click={() => navigateToSection('Onboarding')}>
+            <a href="/about" class="nav-link flex items-center gap-1.5">
               <svg class="w-4 h-4 text-[#605bff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
               </svg>
-              <span class="whitespace-nowrap">Onboarding fast</span>
-            </button>
-          </li>
-
-          <!-- Online Payment -->
-          <li class="nav-item hs-dropdown relative [--trigger:hover]">
-            <a href="javascript:void(0);" 
-               class="nav-link after:absolute hover:after:-bottom-10 after:inset-0 hs-dropdown-toggle group" 
-               data-fc-type="dropdown">
-              <span class="flex items-center gap-1.5">
-                <svg class="w-4 h-4 text-[#605bff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/>
-                </svg>
-                <span class="whitespace-nowrap">Online Payment</span>
-                <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                </svg>
-              </span>
+              <span class="whitespace-nowrap">About Us</span>
             </a>
-
-            <div class="hs-dropdown-menu hs-dropdown-open:opacity-100 z-10 transition-[margin,opacity] duration-300 hidden mt-4 hs-dropdown-open:translate-y-0 translate-y-3 origin-left bg-white rounded-lg shadow-lg border p-4 w-56">
-              <!-- Keep existing dropdown items with enhanced styling -->
-              {#each ['Payment Methods', 'Advantages', 'Easy Integration', 'Pricing', 'Internationalisation', 'Customer Feedback'] as item}
-                <div class="nav-item">
-                  <button class="nav-link w-full text-left px-4 py-2 hover:bg-gray-50 rounded-lg transition-colors"
-                          on:click={() => navigateToSection(item.toLowerCase().replace(' ', '-'))}>
-                    {item}
-                  </button>
-                  {#if item !== 'Customer Feedback'}
-                    <hr class="my-2 border-gray-100" />
-                  {/if}
-                </div>
-              {/each}
-            </div>
           </li>
 
-          <!-- Company -->
-          <li class="nav-item hs-dropdown relative [--trigger:hover]">
-            <a href="javascript:void(0);" 
-               class="nav-link after:absolute hover:after:-bottom-10 after:inset-0 hs-dropdown-toggle group" 
-               data-fc-type="dropdown">
-              <span class="flex items-center gap-1.5">
-                <svg class="w-4 h-4 text-[#605bff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-                </svg>
-                <span class="whitespace-nowrap">Company</span>
-                <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                </svg>
-              </span>
+          <!-- Contact Us -->
+          <li class="nav-item">
+            <a href="/contact" class="nav-link flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-[#605bff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+              <span class="whitespace-nowrap">Contact Us</span>
             </a>
-
-            <div class="hs-dropdown-menu hs-dropdown-open:opacity-100 z-10 transition-[margin,opacity] duration-300 hidden mt-4 hs-dropdown-open:translate-y-0 translate-y-3 origin-left bg-white rounded-lg shadow-lg border p-4 w-56">
-              <div class="nav-item">
-                <a class="nav-link block px-4 py-2 hover:bg-gray-50 rounded-lg transition-colors" 
-                   href="/contact" 
-                   class:active={routeTd === "/contact"}>
-                  Contact us
-                </a>
-                <hr class="-mx-2 my-2" />
-              </div>
-              <!-- ... other company menu items ... -->
-            </div>
           </li>
 
-       
+          <!-- Pricing -->
+          <li class="nav-item">
+            <a href="/pricing" class="nav-link flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-[#605bff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              <span class="whitespace-nowrap">Pricing</span>
+            </a>
+          </li>
         </ul>
       </div>
 
       <!-- Desktop CTA Buttons -->
-      <div class="hidden lg:flex items-center gap-3">
+      <div class="hidden lg:flex items-center gap-4">
         <!-- Login Button -->
         <a href="/account/login" 
-           class="group flex items-center gap-2 px-6 py-2.5 text-sm font-medium text-[#605bff] hover:text-white border border-[#605bff] rounded-xl hover:bg-[#605bff] transition-all duration-300">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
-          </svg>
-          Login
+           class="inline-flex items-center justify-center gap-2 
+                  px-6 py-2.5 text-sm font-medium
+                  text-[#605bff] hover:text-white
+                  border border-[#605bff] hover:border-transparent
+                  rounded-xl 
+                  shadow-[0_4px_12px_-6px_rgba(96,91,255,0.2)]
+                  hover:shadow-[0_12px_20px_-4px_rgba(96,91,255,0.3)]
+                  transform hover:-translate-y-0.5 active:translate-y-0
+                  transition-all duration-300 ease-out
+                  relative overflow-hidden group">
+          <span class="relative z-10 flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
+            </svg>
+            Login
+          </span>
+          <div class="absolute inset-0 bg-[#605bff] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></div>
         </a>
 
         <!-- Get Started Button -->
         <a href="/account/signup" 
-           class="flex items-center gap-2 px-6 py-2.5 text-sm font-medium text-white bg-[#605bff] rounded-xl hover:bg-[#4f4cce] transition-all duration-300 shadow-sm hover:shadow whitespace-nowrap">
-          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0zM9 19c-4.3 0-6 1.8-6 2.5V22h12v-.5c0-.7-1.7-2.5-6-2.5zm6-11V5h4m0 0l-2-2m2 2l-2 2"/>
-          </svg>
-          Get Started
+           class="inline-flex items-center justify-center gap-2
+                  px-6 py-2.5 text-sm font-medium text-white
+                  bg-gradient-to-r from-[#605bff] to-[#4f4cce] 
+                  hover:from-[#4f4cce] hover:to-[#605bff]
+                  rounded-xl
+                  shadow-[0_8px_16px_-6px_rgba(96,91,255,0.3)]
+                  hover:shadow-[0_20px_40px_-8px_rgba(96,91,255,0.5)]
+                  transform hover:-translate-y-0.5 active:translate-y-0
+                  transition-all duration-300 ease-out
+                  group">
+          <span class="flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0zM9 19c-4.3 0-6 1.8-6 2.5V22h12v-.5c0-.7-1.7-2.5-6-2.5zm6-11V5h4m0 0l-2-2m2 2l-2 2"/>
+            </svg>
+            Get Started
+            <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </span>
         </a>
       </div>
     </nav>
@@ -656,15 +624,7 @@
                     </div>
                   </a>
 
-                  <a href="/payments/in-person" class="flex items-start p-2 rounded-lg hover:bg-white transition-colors">
-                    <svg class="w-4 h-4 text-[#605bff] mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v4m-6-4v4m0-11v-4m6 4v-4m-6 4h6m-6 6h6"/>
-                    </svg>
-                    <div>
-                      <span class="text-[#605bff] font-medium block">In-person payments</span>
-                      <span class="text-xs text-gray-600">Accept payments with terminals</span>
-                    </div>
-                  </a>
+                 
 
                   <a href="/payments/cross-channel" class="flex items-start p-2 rounded-lg hover:bg-white transition-colors">
                     <svg class="w-4 h-4 text-[#605bff] mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -748,25 +708,9 @@
                     </div>
                   </a>
 
-                  <a href="/financial/capital" class="flex items-start p-2 rounded-lg hover:bg-white transition-colors">
-                    <svg class="w-4 h-4 text-[#605bff] mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-                    <div>
-                      <span class="text-[#605bff] font-medium block">Capital</span>
-                      <span class="text-xs text-gray-600">Business financing</span>
-                    </div>
-                  </a>
+                 
 
-                  <a href="/financial/issuing" class="flex items-start p-2 rounded-lg hover:bg-white transition-colors">
-                    <svg class="w-4 h-4 text-[#605bff] mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
-                    </svg>
-                    <div>
-                      <span class="text-[#605bff] font-medium block">Issuing</span>
-                      <span class="text-xs text-gray-600">Create cards</span>
-                    </div>
-                  </a>
+                 
 
                   <a href="/financial/payouts" class="flex items-start p-2 rounded-lg hover:bg-white transition-colors">
                     <svg class="w-4 h-4 text-[#605bff] mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -945,101 +889,82 @@
           </div>
         </li>
 
-        <!-- Onboarding fast -->
+        <!-- About Us -->
         <li class="nav-item">
-          <button class="nav-link w-full flex items-center gap-1.5 p-2 rounded-lg hover:bg-gray-50"
-                  on:click={() => navigateToSection('Onboarding')}>
+          <a href="/about" class="nav-link flex items-center gap-1.5 p-2 rounded-lg hover:bg-gray-50">
             <svg class="w-4 h-4 text-[#605bff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
-            <span class="whitespace-nowrap">Onboarding fast</span>
-          </button>
+            <span class="whitespace-nowrap">About Us</span>
+          </a>
         </li>
 
-        <!-- Online Payment Dropdown -->
+        <!-- Contact Us -->
         <li class="nav-item">
-          <a href="javascript:void(0)" 
-             data-fc-type="collapse" 
-             class="nav-link flex items-center justify-between p-2 rounded-lg hover:bg-gray-50" 
-             id="mobile-payments" 
-             data-hs-collapse="#mobile-payments-menu">
-            <span class="flex items-center gap-1.5">
-              <svg class="w-4 h-4 text-[#605bff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/>
-              </svg>
-              <span class="whitespace-nowrap">Online Payment</span>
-            </span>
-            <svg class="w-3.5 h-3.5 transition-transform duration-200 hs-collapse-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          <a href="/contact" class="nav-link flex items-center gap-1.5 p-2 rounded-lg hover:bg-gray-50">
+            <svg class="w-4 h-4 text-[#605bff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
             </svg>
+            <span class="whitespace-nowrap">Contact Us</span>
           </a>
-
-          <div id="mobile-payments-menu" class="hs-collapse hidden overflow-hidden transition-[height] duration-300">
-            <div class="p-4 bg-gray-50 rounded-lg mt-2 space-y-3">
-              {#each ['Payment Methods', 'Advantages', 'Easy Integration', 'Pricing', 'Internationalisation', 'Customer Feedback'] as item}
-                <button class="w-full text-left p-2 rounded-lg hover:bg-white transition-colors text-[#605bff]"
-                        on:click={() => navigateToSection(item.toLowerCase().replace(' ', '-'))}>
-                  {item}
-                </button>
-              {/each}
-            </div>
-          </div>
         </li>
 
-        <!-- Company Dropdown -->
+        <!-- Pricing -->
         <li class="nav-item">
-          <a href="javascript:void(0)" 
-             data-fc-type="collapse" 
-             class="nav-link flex items-center justify-between p-2 rounded-lg hover:bg-gray-50" 
-             id="mobile-company" 
-             data-hs-collapse="#mobile-company-menu">
-            <span class="flex items-center gap-1.5">
-              <svg class="w-4 h-4 text-[#605bff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-              </svg>
-              <span class="whitespace-nowrap">Company</span>
-            </span>
-            <svg class="w-3.5 h-3.5 transition-transform duration-200 hs-collapse-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          <a href="/pricing" class="nav-link flex items-center gap-1.5 p-2 rounded-lg hover:bg-gray-50">
+            <svg class="w-4 h-4 text-[#605bff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
+            <span class="whitespace-nowrap">Pricing</span>
           </a>
-
-          <div id="mobile-company-menu" class="hs-collapse hidden overflow-hidden transition-[height] duration-300">
-            <div class="p-4 bg-gray-50 rounded-lg mt-2 space-y-3">
-              <a href="/contact" class="block p-2 rounded-lg hover:bg-white transition-colors text-[#605bff]">
-                Contact us
-              </a>
-              <a href="/company" class="block p-2 rounded-lg hover:bg-white transition-colors text-[#605bff]">
-                About Us
-              </a>
-              <button class="w-full text-left p-2 rounded-lg hover:bg-white transition-colors text-[#605bff]"
-                      on:click={() => navigateToSection('faqs')}>
-                FAQs
-              </button>
-            </div>
-          </div>
         </li>
       </ul>
     </div>
 
     <!-- Mobile Menu Footer Buttons -->
-    <div class="p-6 space-y-3">
+    <div class="p-6 space-y-4">
       <!-- Get Started Button -->
       <a href="/account/signup" 
-         class="flex items-center justify-center gap-2 w-full px-6 py-3 text-sm font-medium text-white bg-[#605bff] rounded-xl hover:bg-[#4f4cce] transition-all duration-300 shadow-sm hover:shadow whitespace-nowrap">
-        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0zM9 19c-4.3 0-6 1.8-6 2.5V22h12v-.5c0-.7-1.7-2.5-6-2.5zm6-11V5h4m0 0l-2-2m2 2l-2 2"/>
-        </svg>
-        Get Started
+         class="w-full inline-flex items-center justify-center gap-2
+                px-6 py-3 text-sm font-medium text-white
+                bg-gradient-to-r from-[#605bff] to-[#4f4cce] 
+                hover:from-[#4f4cce] hover:to-[#605bff]
+                rounded-xl
+                shadow-[0_8px_16px_-6px_rgba(96,91,255,0.3)]
+                hover:shadow-[0_20px_40px_-8px_rgba(96,91,255,0.5)]
+                transform hover:-translate-y-0.5 active:translate-y-0
+                transition-all duration-300 ease-out
+                group">
+        <span class="flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0zM9 19c-4.3 0-6 1.8-6 2.5V22h12v-.5c0-.7-1.7-2.5-6-2.5zm6-11V5h4m0 0l-2-2m2 2l-2 2"/>
+          </svg>
+          Get Started
+          <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </span>
       </a>
 
       <!-- Login Button -->
       <a href="/account/login" 
-         class="group flex items-center justify-center gap-2 w-full px-6 py-3 text-sm font-medium text-[#605bff] hover:text-white border border-[#605bff] rounded-xl hover:bg-[#605bff] transition-all duration-300">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
-        </svg>
-        Login
+         class="w-full inline-flex items-center justify-center gap-2
+                px-6 py-3 text-sm font-medium
+                text-[#605bff] hover:text-white
+                border border-[#605bff] hover:border-transparent
+                rounded-xl
+                shadow-[0_4px_12px_-6px_rgba(96,91,255,0.2)]
+                hover:shadow-[0_12px_20px_-4px_rgba(96,91,255,0.3)]
+                transform hover:-translate-y-0.5 active:translate-y-0
+                transition-all duration-300 ease-out
+                relative overflow-hidden group">
+        <span class="relative z-10 flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
+          </svg>
+          Login
+        </span>
+        <div class="absolute inset-0 bg-[#605bff] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></div>
       </a>
     </div>
   </div>
@@ -1047,25 +972,119 @@
 <!-- =========== Mobile Menu End =========== -->
 
 <style>
-  /* Enhanced styling */
+  /* Modern Navbar Styling */
+  .nav-container {
+    @apply fixed top-0 inset-x-0 z-40 transition-all duration-300;
+  }
+
   .nav-sticky {
-    @apply bg-white shadow-sm;
+    @apply backdrop-blur-xl bg-white/95 dark:bg-gray-900/95 shadow-lg;
+    animation: slideDown 0.4s ease-out;
+  }
+
+  @keyframes slideDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  /* Modern Nav Items */
+  .nav-item {
+    @apply relative;
   }
 
   .nav-link {
-    @apply relative px-3 py-2 text-gray-600 hover:text-[#605bff] transition-colors;
+    @apply flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-300
+           hover:text-[#605bff] dark:hover:text-[#605bff] transition-all duration-200
+           relative before:absolute before:inset-0 before:bg-[#605bff]/5 
+           before:rounded-lg before:scale-90 before:opacity-0 hover:before:scale-100 
+           hover:before:opacity-100 before:transition-all before:duration-200;
   }
 
   .nav-link.active {
-    @apply text-[#605bff];
+    @apply text-[#605bff] before:opacity-100 before:scale-100;
   }
 
-  /* Dropdown animations */
-  .hs-dropdown-menu {
-    @apply transform opacity-0 transition-all duration-200;
+  /* Modern Dropdowns */
+  .dropdown-menu {
+    @apply absolute top-full left-0 mt-2 w-64 rounded-2xl bg-white/95 dark:bg-gray-800/95
+           shadow-[0_10px_40px_-15px_rgba(0,0,0,0.2)] backdrop-blur-xl
+           transform opacity-0 -translate-y-2 pointer-events-none scale-95
+           transition-all duration-200 ease-out;
   }
 
-  .hs-dropdown:hover .hs-dropdown-menu {
-    @apply opacity-100 translate-y-0;
+  .nav-item:hover .dropdown-menu {
+    @apply opacity-100 translate-y-0 pointer-events-auto scale-100;
+  }
+
+  .dropdown-item {
+    @apply flex items-center gap-3 px-4 py-3 text-sm text-gray-600 dark:text-gray-300
+           hover:bg-[#605bff]/5 hover:text-[#605bff] rounded-lg mx-2 my-1
+           transition-all duration-200 relative overflow-hidden;
+  }
+
+  /* Modern Mega Menu */
+  .mega-menu {
+    @apply absolute top-full left-1/2 -translate-x-1/2 w-[90vw] max-w-7xl
+           bg-white/95 dark:bg-gray-800/95 rounded-2xl shadow-[0_10px_40px_-15px_rgba(0,0,0,0.2)]
+           backdrop-blur-xl transform opacity-0 -translate-y-2 pointer-events-none scale-95
+           transition-all duration-200 ease-out p-8;
+  }
+
+  .nav-item:hover .mega-menu {
+    @apply opacity-100 translate-y-0 pointer-events-auto scale-100;
+  }
+
+  /* Modern Buttons */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-2.5 text-sm font-medium text-white
+           bg-gradient-to-r from-[#605bff] to-[#4f4cce] hover:from-[#4f4cce] hover:to-[#605bff]
+           rounded-xl shadow-[0_8px_16px_-6px_rgba(96,91,255,0.2)]
+           hover:shadow-[0_12px_20px_-4px_rgba(96,91,255,0.3)]
+           transform hover:-translate-y-0.5 active:translate-y-0
+           transition-all duration-200;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-6 py-2.5 text-sm font-medium
+           text-[#605bff] hover:text-white
+           bg-[#605bff]/5 hover:bg-[#605bff]
+           rounded-xl shadow-[0_4px_12px_-6px_rgba(96,91,255,0.2)]
+           hover:shadow-[0_12px_20px_-4px_rgba(96,91,255,0.3)]
+           transform hover:-translate-y-0.5 active:translate-y-0
+           transition-all duration-200;
+  }
+
+  /* Mobile Menu */
+  .mobile-menu {
+    @apply fixed inset-y-0 right-0 w-full max-w-sm bg-white/95 dark:bg-gray-900/95
+           shadow-2xl backdrop-blur-xl transform translate-x-full 
+           transition-transform duration-300 ease-out;
+  }
+
+  .mobile-menu.open {
+    @apply translate-x-0;
+  }
+
+  .mobile-nav-item {
+    @apply flex items-center gap-2 px-4 py-3 text-sm font-medium text-gray-600 dark:text-gray-300
+           hover:bg-[#605bff]/5 hover:text-[#605bff] transition-all duration-200
+           relative overflow-hidden rounded-lg mx-2;
+  }
+
+  /* Modern Icons Animation */
+  .icon-wrapper {
+    @apply relative overflow-hidden rounded-lg p-2 transition-colors duration-200
+           bg-[#605bff]/5 text-[#605bff] group-hover:bg-[#605bff] group-hover:text-white;
+  }
+
+  /* Hover Effects */
+  .hover-lift {
+    @apply transition-all duration-200 ease-out
+           hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0;
+  }
+
+  .hover-glow {
+    @apply transition-all duration-200
+           hover:shadow-[0_0_20px_rgba(96,91,255,0.3)];
   }
 </style>

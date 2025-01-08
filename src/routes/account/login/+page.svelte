@@ -129,7 +129,9 @@
       <div class="w-full flex flex-col h-full">
         <!-- Header -->
         <nav class="flex justify-between items-center mb-8">
-          <img src="/images/lgopis.png" alt="IpsePay" class="h-8" />
+          <a href="/" class="transition-transform hover:scale-[1.02] active:scale-[0.98] duration-200">
+            <img src="/images/lgopis.png" alt="IpsePay" class="h-8" />
+          </a>
           <a href="/account/signup" 
              class="group flex items-center gap-2 px-5 py-2.5 bg-white/80 backdrop-blur-md 
                     rounded-xl border border-white/20 hover:border-[#605bff]/20 
@@ -417,10 +419,14 @@
 <style>
   /* Include all the styles from the signup page */
   .modern-input {
-    @apply w-full h-11 px-4 pl-12 bg-white border border-gray-200 rounded-lg
-           focus:outline-none focus:ring-1 focus:ring-[#605bff]/10 focus:border-[#605bff]
-           text-gray-800 placeholder-gray-500 transition-all duration-200
-           hover:border-[#605bff]/40 text-[14px] leading-normal tracking-tight
+    @apply w-full h-[60px] pl-14 pr-12 bg-white
+           border border-gray-200 rounded-xl
+           focus:outline-none focus:ring-2 
+           focus:ring-[#605bff]/20 focus:border-[#605bff]
+           text-gray-900 placeholder-gray-400 
+           transition-all duration-200
+           hover:border-[#605bff]/40 text-[16px] 
+           leading-normal tracking-tight
            hover:bg-white focus:bg-white font-medium;
   }
 

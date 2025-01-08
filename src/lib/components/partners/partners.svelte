@@ -28,10 +28,6 @@
   </script>
   
   <section class="py-8 sm:py-10 lg:py-12 relative overflow-hidden">
-    <div class="absolute inset-0 bg-[#F6F9FC]">
-      <div class="absolute inset-0 bg-gradient-to-br from-gray-50/90 via-[#F6F9FC] to-gray-100/80"></div>
-    </div>
-  
     <!-- Infinite Scroll Container -->
     <div class="relative">
       <!-- First Row -->

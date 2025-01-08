@@ -1,3 +1,585 @@
+<script>
+  import Prtners from "$lib/components/partners/partners.svelte";
+
+const stats = [
+{ value: '99.9%', label: 'Success Rate' },
+{ value: '0.1s', label: 'Processing' },
+{ value: '150+', label: 'Methods' }
+];
+
+let currentWord = "Flow";
+const words = [
+"Flow",
+"Payouts",
+"Instant",
+"Global",
+"Solutions",
+"Processing",
+"Gateway",
+"Network"
+];
+let currentIndex = 0;
+
+// Auto-typing effect
+const typeNextWord = () => {
+currentIndex = (currentIndex + 1) % words.length;
+currentWord = "";
+let wordToType = words[currentIndex];
+let charIndex = 0;
+
+const typeChar = () => {
+  if (charIndex < wordToType.length) {
+    currentWord += wordToType[charIndex];
+    charIndex++;
+    setTimeout(typeChar, 100); // Typing speed
+  } else {
+    setTimeout(() => {
+      // Start erasing after word is fully typed
+      const eraseChar = () => {
+        if (currentWord.length > 0) {
+          currentWord = currentWord.slice(0, -1);
+          setTimeout(eraseChar, 50); // Erasing speed
+        } else {
+          setTimeout(typeNextWord, 500); // Delay before typing next word
+        }
+      };
+      setTimeout(eraseChar, 2000); // Wait before starting to erase
+    }, 1000); // How long to show complete word
+  }
+};
+
+typeChar();
+};
+
+// Start the animation
+setTimeout(typeNextWord, 3000); // Initial delay
+</script>
+
+<style>
+@keyframes grid-move {
+0% { transform: translateY(0) scale(1); }
+100% { transform: translateY(-38px) scale(1); }
+}
+
+.animate-blob-float {
+animation: blob-float 8s ease-in-out infinite;
+}
+
+@keyframes blob-float {
+0%, 100% { 
+  transform: translate(0, 0) scale(1);
+  filter: blur(3xl);
+}
+50% { 
+  transform: translate(20px, -30px) scale(1.1);
+  filter: blur(4xl);
+}
+}
+
+.animate-shape-float {
+animation: shape-float 12s ease-in-out infinite;
+}
+
+@keyframes shape-float {
+0%, 100% { 
+  transform: translate(0, 0) rotate(0deg);
+  opacity: 0.07;
+}
+50% { 
+  transform: translate(-15px, -20px) rotate(45deg);
+  opacity: 0.1;
+}
+}
+
+.animate-badge-slide-in {
+animation: badge-slide-in 0.6s ease-out;
+}
+
+@keyframes badge-slide-in {
+0% { transform: translateY(-20px); opacity: 0; }
+100% { transform: translateY(0); opacity: 1; }
+}
+
+.animate-fade-in-up {
+animation: fade-in-up 0.8s ease-out forwards;
+opacity: 0;
+}
+
+@keyframes fade-in-up {
+0% { transform: translateY(20px); opacity: 0; }
+100% { transform: translateY(0); opacity: 1; }
+}
+
+.bg-size-200 {
+background-size: 200% 100%;
+}
+
+.animate-gradient-x {
+animation: gradient-x 15s linear infinite;
+}
+
+@keyframes gradient-x {
+0% { background-position: 0% 0%; }
+50% { background-position: 100% 0%; }
+100% { background-position: 0% 0%; }
+}
+
+.perspective {
+perspective: 1000px;
+}
+
+.rotate-y-12 {
+transform: rotateY(12deg);
+}
+
+.animate-float {
+animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+animation: float 6s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+0%, 100% { transform: translateY(0); }
+50% { transform: translateY(-12px); }
+}
+
+.animate-chart {
+animation: chart 2s ease-in-out infinite;
+}
+
+@keyframes chart {
+0%, 100% { transform: scaleY(1); }
+50% { transform: scaleY(0.85); }
+}
+
+.animate-notification {
+animation: notification 4s ease-in-out infinite;
+}
+
+@keyframes notification {
+0% { opacity: 0; transform: translateX(20px); }
+10% { opacity: 1; transform: translateX(0); }
+90% { opacity: 1; transform: translateX(0); }
+100% { opacity: 0; transform: translateX(-20px); }
+}
+
+.animate-pulse-slow {
+animation: pulse-slow 4s ease-in-out infinite;
+}
+
+@keyframes pulse-slow {
+0%, 100% { opacity: 0.3; }
+50% { opacity: 0.6; }
+}
+
+.animate-draw {
+stroke-dasharray: 100;
+stroke-dashoffset: 100;
+animation: draw 3s ease-out forwards;
+}
+
+@keyframes draw {
+to {
+  stroke-dashoffset: 0;
+}
+}
+
+.animate-activity {
+animation: activity 2s ease-in-out infinite;
+transform-origin: bottom;
+}
+
+@keyframes activity {
+0%, 100% { transform: scaleY(1); }
+50% { transform: scaleY(0.7); }
+}
+
+.animate-move-dot {
+animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+0%, 100% { transform: scale(1); }
+50% { transform: scale(1.5); }
+}
+
+.animate-fade-in {
+animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+from { opacity: 0; transform: translateY(10px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+.typewriter {
+display: inline-block;
+min-width: 8ch;
+border-right: 3px solid #605bff;
+animation: blink 0.8s step-end infinite;
+}
+
+@keyframes blink {
+from, to { border-color: transparent }
+50% { border-color: #605bff }
+}
+
+.animate-float-sparkle {
+display: inline-block;
+animation: floatSparkle 2s ease-in-out infinite;
+}
+
+.animate-float-sparkle-delay-1 {
+display: inline-block;
+animation: floatSparkle 2s ease-in-out infinite;
+animation-delay: 0.3s;
+}
+
+.animate-float-sparkle-delay-2 {
+display: inline-block;
+animation: floatSparkle 2s ease-in-out infinite;
+animation-delay: 0.6s;
+}
+
+@keyframes floatSparkle {
+0%, 100% { 
+  transform: translateY(0) rotate(0deg);
+  opacity: 1;
+}
+50% { 
+  transform: translateY(-4px) rotate(20deg);
+  opacity: 0.7;
+}
+}
+
+@keyframes beam-float {
+0%, 100% { 
+  transform-origin: top;
+  transform: scaleY(1) translateY(0);
+  opacity: 0.5;
+}
+50% { 
+  transform-origin: top;
+  transform: scaleY(1.2) translateY(20px);
+  opacity: 0.8;
+}
+}
+
+.animate-beam-float {
+animation: beam-float 8s ease-in-out infinite;
+}
+
+/* Enhanced animations */
+@keyframes premium-float {
+0%, 100% { 
+  transform: translate(0, 0) scale(1);
+  filter: blur(3xl) brightness(1);
+}
+50% { 
+  transform: translate(25px, -35px) scale(1.1);
+  filter: blur(4xl) brightness(1.2);
+}
+}
+
+.animate-premium-float {
+animation: premium-float 14s ease-in-out infinite;
+}
+
+@keyframes glass-float {
+0%, 100% { 
+  transform: translate(0, 0) rotate(0deg) scale(1);
+  opacity: 0.05;
+}
+50% { 
+  transform: translate(-18px, -25px) rotate(45deg) scale(1.05);
+  opacity: 0.08;
+}
+}
+
+.animate-glass-float {
+animation: glass-float 10s ease-in-out infinite;
+}
+
+@keyframes ray-float {
+0%, 100% { 
+  transform-origin: top;
+  transform: scaleY(1) translateY(0) rotate(var(--rotation));
+  opacity: 0.4;
+}
+50% { 
+  transform-origin: top;
+  transform: scaleY(1.3) translateY(30px) rotate(var(--rotation));
+  opacity: 0.7;
+}
+}
+
+.animate-ray-float {
+animation: ray-float 12s ease-in-out infinite;
+}
+
+/* Cleaner animations */
+@keyframes float-0 {
+0%, 100% { transform: translate(0, 0) scale(1); }
+50% { transform: translate(30px, -20px) scale(1.05); }
+}
+
+@keyframes float-1 {
+0%, 100% { transform: translate(0, 0) scale(1); }
+50% { transform: translate(-20px, -30px) scale(1.03); }
+}
+
+@keyframes float-2 {
+0%, 100% { transform: translate(0, 0) scale(1); }
+50% { transform: translate(25px, -25px) scale(1.02); }
+}
+
+@keyframes slow-spin {
+from { transform: rotate(0deg); }
+to { transform: rotate(360deg); }
+}
+
+.animate-slow-spin {
+animation: slow-spin 60s linear infinite;
+}
+
+@keyframes orb-float {
+0%, 100% {
+  transform: translate(0, 0) scale(1);
+  opacity: 0.07;
+}
+50% {
+  transform: translate(-30px, 30px) scale(1.1);
+  opacity: 0.05;
+}
+}
+
+.animate-orb-float {
+animation: orb-float 20s ease-in-out infinite;
+}
+
+@keyframes line-float {
+0%, 100% {
+  transform: translateY(0) rotate(var(--rotation, 0deg));
+  opacity: 0.05;
+}
+50% {
+  transform: translateY(-30px) rotate(var(--rotation, 0deg));
+  opacity: 0.08;
+}
+}
+
+.animate-line-float {
+animation: line-float 15s ease-in-out infinite;
+}
+
+@keyframes particle {
+0% {
+  transform: translateY(0) scale(1);
+  opacity: 0;
+}
+50% {
+  transform: translateY(-100px) scale(1.5);
+  opacity: 0.5;
+}
+100% {
+  transform: translateY(-200px) scale(1);
+  opacity: 0;
+}
+}
+
+.animate-particle {
+animation: particle 15s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+0%, 100% { opacity: 0.5; transform: scale(1); }
+50% { opacity: 0.7; transform: scale(1.2); }
+}
+
+.animate-glow-pulse {
+animation: glow-pulse 10s ease-in-out infinite;
+}
+
+.animate-glow-pulse-delayed {
+animation: glow-pulse 10s ease-in-out infinite;
+animation-delay: 5s;
+}
+
+@keyframes glass-float {
+0%, 100% {
+  transform: translate(0, 0) rotate(var(--rotation, 0deg));
+  opacity: 0.05;
+}
+50% {
+  transform: translate(-20px, 20px) rotate(calc(var(--rotation, 0deg) + 5deg));
+  opacity: 0.08;
+}
+}
+
+.animate-glass-float {
+animation: glass-float 20s ease-in-out infinite;
+}
+
+@keyframes streak {
+0% { transform: translateY(-100%) scaleY(0); opacity: 0; }
+50% { transform: translateY(100%) scaleY(2); opacity: 0.5; }
+100% { transform: translateY(300%) scaleY(0); opacity: 0; }
+}
+
+.animate-streak {
+animation: streak 7s ease-in-out infinite;
+}
+
+@keyframes float-dot {
+0%, 100% {
+  transform: translate(0, 0);
+  opacity: var(--initial-opacity, 0.05);
+}
+50% {
+  transform: translate(
+    calc(var(--x-offset, 0) * 30px),
+    calc(var(--y-offset, 0) * 30px)
+  );
+  opacity: calc(var(--initial-opacity, 0.05) * 1.5);
+}
+}
+
+.animate-float-dot {
+--x-offset: calc(random() * 2 - 1);
+--y-offset: calc(random() * 2 - 1);
+--initial-opacity: calc(0.03 + random() * 0.05);
+}
+
+@keyframes card-float {
+0%, 100% {
+  transform: translate(0, 0) rotate(var(--rotation, 15deg));
+  opacity: 0.07;
+}
+50% {
+  transform: translate(-15px, 15px) rotate(calc(var(--rotation, 15deg) + 3deg));
+  opacity: 0.09;
+}
+}
+
+.animate-card-float {
+animation: card-float 18s ease-in-out infinite;
+}
+
+@keyframes icon-float {
+0%, 100% {
+  transform: translate(0, 0) rotate(0deg);
+  opacity: 0.06;
+}
+50% {
+  transform: translate(-10px, 10px) rotate(5deg);
+  opacity: 0.08;
+}
+}
+
+.animate-icon-float {
+animation: icon-float 15s ease-in-out infinite;
+}
+
+@keyframes flow-line {
+0% { transform: translateY(-100%) scaleY(0); opacity: 0; }
+50% { transform: translateY(100%) scaleY(1.5); opacity: 0.4; }
+100% { transform: translateY(300%) scaleY(0); opacity: 0; }
+}
+
+.animate-flow-line {
+animation: flow-line 8s ease-in-out infinite;
+}
+
+@keyframes data-point {
+0%, 100% {
+  transform: translate(0, 0) scale(1);
+  opacity: var(--initial-opacity, 0.04);
+}
+50% {
+  transform: translate(
+    calc(var(--x-offset, 0) * 25px),
+    calc(var(--y-offset, 0) * 25px)
+  ) scale(1.2);
+  opacity: calc(var(--initial-opacity, 0.04) * 1.5);
+}
+}
+
+.animate-data-point {
+--x-offset: calc(random() * 2 - 1);
+--y-offset: calc(random() * 2 - 1);
+--initial-opacity: calc(0.04 + random() * 0.04);
+}
+
+@keyframes pulse-slow {
+0%, 100% { opacity: 0.03; transform: scale(1); }
+50% { opacity: 0.05; transform: scale(1.1); }
+}
+
+.animate-pulse-slow {
+animation: pulse-slow 10s ease-in-out infinite;
+}
+
+@keyframes security-pulse {
+0% { transform: translateX(-50%) scale(0.95); opacity: 0.1; }
+50% { transform: translateX(-50%) scale(1); opacity: 0.05; }
+100% { transform: translateX(-50%) scale(0.95); opacity: 0.1; }
+}
+
+.animate-security-pulse {
+animation: security-pulse 8s ease-in-out infinite;
+}
+
+@keyframes wave {
+0% { transform: translateX(0) translateY(0) scale(1); }
+50% { transform: translateX(-2%) translateY(10px) scale(1.02); }
+100% { transform: translateX(0) translateY(0) scale(1); }
+}
+
+.animate-wave {
+animation: wave 15s ease-in-out infinite;
+}
+
+@keyframes fade-in-out {
+0%, 100% { opacity: 0.04; transform: translateY(0); }
+50% { opacity: 0.08; transform: translateY(-5px); }
+}
+
+.animate-fade-in-out {
+animation: fade-in-out 6s ease-in-out infinite;
+}
+
+@media (max-width: 768px) {
+.security-circles {
+  transform: scale(0.7);
+}
+}
+
+/* Additional mobile optimizations */
+@media (max-width: 640px) {
+  /* Further reduce title size */
+  h1 {
+    font-size: 2rem !important;
+  }
+
+  /* Stack badges and icons */
+  .inline-flex {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* Adjust sparkle animations */
+  .animate-float-sparkle,
+  .animate-float-sparkle-delay-1,
+  .animate-float-sparkle-delay-2 {
+    display: none;
+  }
+}
+</style>
+
+
+
 <section class="relative min-h-[85vh] overflow-hidden pt-20">
   <!-- Enhanced Modern Background -->
   <div class="absolute inset-0">
@@ -90,59 +672,81 @@
 
   <!-- Main Content -->
   <div class="container mx-auto px-4 relative z-10">
-    <div class="grid lg:grid-cols-3 gap-24 items-center max-w-[1400px] mx-auto">
-      <!-- Left Section - Extended Left -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-24 items-center max-w-[1400px] mx-auto">
+      <!-- Left Section - Card -->
       <div class="hidden lg:block relative h-[400px]">
         <div class="absolute -left-24 w-full">
-          <!-- Background Card -->
-          <div class="absolute top-20 -left-4 w-[280px] h-[180px] rounded-2xl 
-                      bg-gradient-to-br from-purple-600 to-purple-800
-                      transform -rotate-12 opacity-40 blur-sm">
-          </div>
+          <!-- Card Stack Effect -->
+          <div class="absolute top-20 -left-4 w-[320px] h-[200px] rounded-2xl 
+                      bg-gradient-to-br from-purple-600/20 to-purple-800/20
+                      transform -rotate-12 blur-xl"></div>
+          
+          <div class="absolute top-16 -left-2 w-[320px] h-[200px] rounded-2xl 
+                      bg-gradient-to-br from-purple-600/40 to-purple-800/40
+                      transform -rotate-6 blur-md"></div>
           
           <!-- Main Card -->
-          <div class="absolute top-10 w-[280px] h-[180px] rounded-2xl 
-                      bg-gradient-to-br from-[#605bff] to-purple-600
+          <div class="absolute top-10 w-[320px] h-[200px] rounded-2xl 
+                      bg-gradient-to-br from-[#605bff] via-[#7b66ff] to-[#8b7fff]
                       shadow-xl hover:shadow-2xl transition-all duration-500 
-                      transform hover:-translate-y-2 animate-float">
-            <div class="relative p-6 text-white">
-              <div class="flex justify-between">
+                      transform hover:-translate-y-2 hover:scale-105 animate-float
+                      backdrop-blur-xl border border-white/20">
+            <div class="relative p-6 text-white h-full">
+              <!-- Card Header -->
+              <div class="flex justify-between items-start">
                 <div class="space-y-1">
-                  <div class="text-sm font-medium opacity-80">Premium</div>
-                  <div class="text-lg font-bold">ipsepay</div>
-                  
+                  <div class="text-sm font-medium opacity-80">Premium Card</div>
+                  <div class="text-xl font-bold tracking-wide">ipsepay</div>
                 </div>
-                <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
-                  <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                          d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                  </svg>
+                
+                <!-- EMV Chip -->
+                <div class="w-12 h-9 rounded-md bg-[#FFD700]/80 
+                            flex items-center justify-center relative overflow-hidden">
+                  <div class="absolute inset-0 bg-gradient-to-br from-yellow-400/40 to-yellow-600/40"></div>
+                  <div class="grid grid-cols-3 gap-0.5">
+                    {#each Array(6) as _}
+                      <div class="w-1 h-1 bg-yellow-900/30 rounded-sm"></div>
+                    {/each}
+                  </div>
                 </div>
               </div>
               
-              <div class="mt-6 space-y-4">
-                <div class="flex justify-between text-base tracking-widest">
+              <!-- Card Number -->
+              <div class="mt-8">
+                <div class="flex justify-between items-center text-xl tracking-[0.25em] font-light">
                   <span>****</span>
                   <span>****</span>
                   <span>****</span>
-                  <span>4242</span>
+                  <span class="tracking-wider">4242</span>
                 </div>
-                
-                <div class="flex justify-between text-sm">
+              </div>
+              
+              <!-- Card Footer -->
+              <div class="absolute bottom-6 left-6 right-6">
+                <div class="flex justify-between items-end text-sm">
                   <div>
-                    <div class="opacity-70">Card Holder</div>
-                    <div>JOHN DOE</div>
+                    <div class="opacity-70 text-xs mb-1">Card Holder</div>
+                    <div class="font-medium tracking-wider">JOHN DOE</div>
                   </div>
                   <div class="text-right">
-                    <div class="opacity-70">Expires</div>
-                    <div>12/25</div>
+                    <div class="opacity-70 text-xs mb-1">Expires</div>
+                    <div class="font-medium tracking-wider">12/25</div>
                   </div>
                 </div>
               </div>
+              
+              <!-- Decorative Elements -->
+              <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-3xl"></div>
+              <div class="absolute bottom-0 left-0 w-24 h-24 bg-black/10 rounded-full blur-2xl"></div>
             </div>
           </div>
 
-          <!-- Floating Transaction Notifications -->
+          <!-- Card Reflections -->
+          <div class="absolute top-[4.5rem] w-[320px] h-[200px] rounded-2xl 
+                      bg-gradient-to-br from-white/5 to-white/10
+                      blur-2xl transform -rotate-x-12 scale-95 opacity-40"></div>
+
+          <!-- Original Floating Transaction Notifications -->
           {#each Array(2) as _, i}
             <div class="absolute right-0 w-48 p-3 bg-white/90 backdrop-blur-sm rounded-lg
                         shadow-lg border border-white/50 transform
@@ -167,44 +771,59 @@
         </div>
       </div>
 
-      <!-- Center Section -->
-      <div class="lg:col-span-1 px-8">
+      <!-- Center Section - Full width on mobile -->
+      <div class="col-span-1 lg:col-span-1 px-4 lg:px-8">
         <div class="flex flex-col items-center text-center max-w-6xl mx-auto">
           <!-- Enhanced Title Section -->
           <div class="space-y-8 mb-16">
-            <!-- Modernized Badge -->
-            <div class="inline-flex items-center gap-3 px-6 py-3 rounded-full 
-                        bg-white/95 backdrop-blur-xl border border-[#605bff]/20 
-                        shadow-lg hover:shadow-xl transition-all duration-500
-                        animate-badge-slide-in hover:-translate-y-1">
+            <!-- Refined Badge -->
+            <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full 
+                        bg-white/80 backdrop-blur-sm border border-[#605bff]/10 
+                        shadow-sm hover:shadow transition-all duration-500
+                        animate-badge-slide-in hover:-translate-y-0.5">
               <div class="flex items-center gap-2">
-                <!-- Enhanced Status Indicator -->
+                <!-- Subtle Status Indicator -->
                 <div class="relative flex items-center">
-                  <span class="animate-ping absolute h-2.5 w-2.5 rounded-full 
-                              bg-[#605bff] opacity-75"></span>
-                  <span class="relative h-2.5 w-2.5 rounded-full bg-[#605bff]"></span>
-                  <div class="ml-2 h-3 w-px bg-gradient-to-b from-transparent via-[#605bff]/30 to-transparent"></div>
+                  <div class="flex space-x-1">
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#605bff]/40 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-[#605bff]/60"></span>
+                    </span>
+                  </div>
+                  <div class="ml-2 h-3 w-px bg-gradient-to-b from-transparent via-[#605bff]/20 to-transparent"></div>
                 </div>
-                <!-- Modern Icon -->
+
+                <!-- Refined Icon -->
                 <div class="relative group">
-                  <svg class="w-5 h-5 text-[#605bff] transform transition-transform duration-300 
-                            group-hover:rotate-12" 
+                  <div class="absolute -inset-1 bg-gradient-to-r from-[#605bff]/20 to-purple-600/20 
+                              rounded-full blur opacity-0 group-hover:opacity-20 transition duration-500"></div>
+                  <svg class="relative w-4 h-4 text-[#605bff]/70 transform transition-all duration-300 
+                              group-hover:rotate-12 group-hover:scale-110" 
                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" 
                           d="M13 10V3L4 14h7v7l9-11h-7z"/>
                   </svg>
                 </div>
               </div>
-              <!-- Enhanced Badge Text -->
-              <span class="text-sm font-semibold bg-gradient-to-r from-[#32325d] via-[#605bff] to-purple-600 
-                         bg-clip-text text-transparent bg-size-200 animate-gradient-x">
-                Powering Next-Gen Payments
-              </span>
+
+              <!-- Lighter Text -->
+              <div class="flex items-center gap-2">
+                <span class="text-sm font-normal text-[#32325d]/70 tracking-wide">
+                  Seamless Payment Solutions
+                </span>
+                <!-- Subtle Sparkle -->
+                <span class="inline-flex animate-float-sparkle opacity-60">
+                  <svg class="w-3.5 h-3.5 text-[#605bff]/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                          d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                  </svg>
+                </span>
+              </div>
             </div>
 
             <!-- Enhanced Creative Title -->
-            <h1 class="text-5xl md:text-6xl lg:text-[4.5rem] font-bold leading-tight mt-6">
-              <div class="flex items-center gap-4">
+            <h1 class="text-4xl sm:text-5xl lg:text-[4.5rem] font-bold leading-tight mt-6 text-center">
+              <div class="flex items-center gap-4 justify-center">
                 <span class="text-[#32325d]">Ipsepay</span>
                 <span class="bg-gradient-to-r from-[#605bff] to-purple-600 
                              bg-clip-text text-transparent">
@@ -217,57 +836,56 @@
               </span>
             </h1>
 
-            <!-- Replace carousel with static subtitle and buttons -->
-            <div class="space-y-8">
-              <!-- Static Subtitle -->
-              <p class="text-lg text-[#32325d]/70 font-normal max-w-2xl mx-auto leading-relaxed tracking-wide relative">
-                <span class="inline-flex items-center gap-2">
-                  Experience next-gen payment solutions
-                  <span class="animate-float-sparkle">✨</span>
-                </span> 
-                with instant global payouts, 
-                <span class="inline-flex items-center gap-2 text-[#32325d]/90">
-                  secure processing
-                  <span class="animate-float-sparkle-delay-1">✨</span>
-                </span>, and 
-                <span class="inline-flex items-center gap-2 text-[#32325d]/90">
-                  24/7 support
-                  <span class="animate-float-sparkle-delay-2">✨</span>
-                </span>.
-              </p>
+            <!-- Static Subtitle with animated sparkles - visible on all screens -->
+            <p class="text-lg text-[#32325d]/70 font-normal max-w-2xl mx-auto leading-relaxed tracking-wide relative text-center">
+              <span class="inline-flex items-center gap-2 justify-center">
+                Experience next-gen payment solutions
+                <span class="animate-float-sparkle inline-block">✨</span>
+              </span> 
+              with instant global payouts, 
+              <span class="inline-flex items-center gap-2 text-[#32325d]/90 justify-center">
+                secure processing
+                <span class="animate-float-sparkle-delay-1 inline-block">✨</span>
+              </span>, and 
+              <span class="inline-flex items-center gap-2 text-[#32325d]/90 justify-center">
+                24/7 support
+                <span class="animate-float-sparkle-delay-2 inline-block">✨</span>
+              </span>.
+            </p>
 
-              <!-- Action Buttons -->
-              <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <!-- Primary Button -->
-                <button class="group relative px-8 py-4 bg-[#605bff] rounded-xl text-white
-                             shadow-lg shadow-[#605bff]/20 hover:shadow-xl hover:shadow-[#605bff]/30
-                             transform hover:-translate-y-1 transition-all duration-300 min-w-[200px]">
-                  <div class="absolute inset-0 bg-gradient-to-r from-[#605bff] to-purple-600
-                            rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
-                  <div class="relative flex items-center justify-center gap-3">
-                    <span class="font-medium">Get Started</span>
-                    <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300"
-                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                    </svg>
-                  </div>
-                </button>
+            <!-- Action Buttons - Centered for all screens -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
+              <!-- Get Started Button - Links to signup -->
+              <a href="/account/signup" 
+                 class="w-full sm:w-auto group relative px-8 py-4 bg-[#605bff] rounded-xl text-white
+                        shadow-lg shadow-[#605bff]/20 hover:shadow-xl hover:shadow-[#605bff]/30
+                        transform hover:-translate-y-1 transition-all duration-300">
+                <div class="absolute inset-0 bg-gradient-to-r from-[#605bff] to-purple-600
+                             rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+                <div class="relative flex items-center justify-center gap-3">
+                  <span class="font-medium">Get Started</span>
+                  <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300"
+                       fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                  </svg>
+                </div>
+              </a>
 
-                <!-- Secondary Button -->
-                <button class="group px-8 py-4 bg-white/80 backdrop-blur-xl rounded-xl
-                             border border-[#605bff]/20 text-[#32325d]
-                             shadow-lg hover:shadow-xl transform hover:-translate-y-1
-                             transition-all duration-300 min-w-[200px]">
-                  <div class="flex items-center justify-center gap-3">
-                    <svg class="w-5 h-5 text-[#605bff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-                    <span class="font-medium">Learn More</span>
-                  </div>
-                </button>
-              </div>
+              <!-- Login Button -->
+              <a href="/account/login"
+                 class="w-full sm:w-auto group px-8 py-4 bg-white/80 backdrop-blur-xl rounded-xl
+                        border border-[#605bff]/20 text-[#32325d]
+                        shadow-lg hover:shadow-xl transform hover:-translate-y-1
+                        transition-all duration-300">
+                <div class="flex items-center justify-center gap-3">
+                  <svg class="w-5 h-5 text-[#605bff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
+                  </svg>
+                  <span class="font-medium">Login</span>
+                </div>
+              </a>
             </div>
 
             <div class="mt-12 text-center">
@@ -295,14 +913,148 @@
                   <span class="font-normal">businesses worldwide</span>
                 </div>
               </div>
+
+              <!-- Mobile-only sections -->
+              <div class="lg:hidden mt-8 mb-6 sm:mt-10 sm:mb-8 px-4 sm:px-6">
+                <!-- Container for side-by-side layout with offset positioning -->
+                <div class="flex flex-row justify-center gap-10 sm:gap-12 md:gap-16 w-full relative">
+                  <!-- Left Section - Mobile Version -->
+                  <div class="relative h-[140px] sm:h-[160px] w-full max-w-[160px] sm:max-w-[180px] -translate-x-4 sm:-translate-x-6 md:-translate-x-8">
+                    <div class="relative w-full transform scale-[0.8] sm:scale-[0.85] origin-center hover:scale-[0.9] transition-transform duration-300">
+                      <!-- Background Card -->
+                      <div class="absolute top-6 left-1/2 -translate-x-1/2 w-[160px] sm:w-[180px] h-[120px] sm:h-[140px] rounded-xl 
+                                  bg-gradient-to-br from-purple-600 to-purple-800
+                                  transform -rotate-12 opacity-40 blur-sm">
+                      </div>
+                      
+                      <!-- Main Card -->
+                      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[160px] sm:w-[180px] h-[120px] sm:h-[140px] rounded-xl 
+                                  bg-gradient-to-br from-[#605bff] to-purple-600
+                                  shadow-xl transition-all duration-500 
+                                  transform animate-float">
+                        <div class="relative p-3 sm:p-4 text-white">
+                          <div class="flex justify-between">
+                            <div class="space-y-0.5">
+                              <div class="text-[10px] sm:text-xs font-medium opacity-80">Premium</div>
+                              <div class="text-xs sm:text-sm font-bold">ipsepay</div>
+                            </div>
+                            <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-white/10 flex items-center justify-center">
+                              <svg class="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                      d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                              </svg>
+                            </div>
+                          </div>
+                          
+                          <div class="mt-3 sm:mt-4 space-y-2">
+                            <div class="flex justify-between text-xs tracking-wider">
+                              <span>****</span>
+                              <span>4242</span>
+                            </div>
+                            
+                            <div class="flex justify-between text-[10px] sm:text-xs">
+                              <div>
+                                <div class="opacity-70">Card Holder</div>
+                                <div>J. DOE</div>
+                              </div>
+                              <div class="text-right">
+                                <div class="opacity-70">Exp</div>
+                                <div>12/25</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Right Section - Mobile Version -->
+                  <div class="relative h-[140px] sm:h-[160px] w-full max-w-[180px] sm:max-w-[200px] translate-x-4 sm:translate-x-6 md:translate-x-8">
+                    <div class="relative w-full transform scale-[0.8] sm:scale-[0.85] origin-center hover:scale-[0.9] transition-transform duration-300">
+                      <!-- Main Dashboard Panel -->
+                      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[180px] sm:w-[200px] bg-white/95 backdrop-blur-xl 
+                                  rounded-xl p-3 sm:p-4 border border-white/50 shadow-xl">
+                        <div class="space-y-2 sm:space-y-3">
+                          <!-- Dashboard Header -->
+                          <div class="flex items-center justify-between">
+                            <div>
+                              <div class="text-[10px] sm:text-xs font-medium text-[#32325d]/70">Analytics Overview</div>
+                              <div class="text-xs sm:text-sm font-bold text-[#32325d]">$48,562.20</div>
+                            </div>
+                            <div class="flex gap-1">
+                              {#each ['1H', '1D', '1W'] as period}
+                                <button class="px-1.5 py-0.5 text-[8px] sm:text-[10px] rounded 
+                                           {period === '1D' ? 'bg-[#605bff] text-white' : 'text-[#32325d]/70 hover:bg-[#605bff]/10'}
+                                           transition-all duration-300">
+                                  {period}
+                                </button>
+                              {/each}
+                            </div>
+                          </div>
+
+                          <!-- Dynamic Chart - Same as Desktop -->
+                          <div class="relative h-16 sm:h-20">
+                            <!-- Gradient Background -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#605bff]/5 to-transparent rounded-lg"></div>
+                            
+                            <!-- Chart Lines -->
+                            <svg class="w-full h-full" viewBox="0 0 100 40">
+                              <!-- Grid Lines -->
+                              {#each Array(5) as _, i}
+                                <line x1="0" y1={i * 10} x2="100" y2={i * 10} 
+                                      stroke="#605bff" stroke-width="0.1" stroke-dasharray="1 1"/>
+                              {/each}
+                              
+                              <!-- Main Chart Line -->
+                              <path d="M0 30 Q 20 25, 30 15 T 45 20 T 60 10 T 75 25 T 100 20"
+                                    fill="none" stroke="#605bff" stroke-width="0.5"
+                                    class="animate-draw"/>
+                              
+                              <!-- Chart Area -->
+                              <path d="M0 30 Q 20 25, 30 15 T 45 20 T 60 10 T 75 25 T 100 20 L 100 40 L 0 40 Z"
+                                    fill="url(#gradient)" opacity="0.2"/>
+                                      
+                              <!-- Animated Dot -->
+                              <circle r="1" fill="#605bff" class="animate-move-dot">
+                                <animateMotion dur="4s" repeatCount="indefinite"
+                                              path="M0 30 Q 20 25, 30 15 T 45 20 T 60 10 T 75 25 T 100 20"/>
+                              </circle>
+                            </svg>
+                            
+                            <!-- Gradient Definition -->
+                            <defs>
+                              <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#605bff;stop-opacity:0.3"/>
+                                <stop offset="100%" style="stop-color:#605bff;stop-opacity:0"/>
+                              </linearGradient>
+                            </defs>
+                          </div>
+
+                          <!-- Activity Indicators -->
+                          <div class="flex items-center justify-between px-2">
+                            {#each Array(6) as _, i}
+                              <div class="w-1 sm:w-1.5 h-3 sm:h-4 rounded-full bg-[#605bff]/20 overflow-hidden">
+                                <div class="w-full bg-[#605bff] animate-activity"
+                                     style="height: {30 + Math.random() * 70}%; animation-delay: {i * 0.2}s">
+                                </div>
+                              </div>
+                            {/each}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+          <Prtners/>
 
          
         </div>
       </div>
 
-      <!-- Right Section - Extended Right -->
+      <!-- Right Section - Hidden on mobile -->
       <div class="hidden lg:block relative h-[400px]">
         <div class="absolute -right-24 w-full">
           <!-- Main Dashboard Panel -->
@@ -387,563 +1139,9 @@
       </div>
     </div>
   </div>
+
+
 </section>
 
-<script>
-  const stats = [
-    { value: '99.9%', label: 'Success Rate' },
-    { value: '0.1s', label: 'Processing' },
-    { value: '150+', label: 'Methods' }
-  ];
-
-  let currentWord = "Flow";
-  const words = [
-    "Flow",
-    "Payouts",
-    "Instant",
-    "Global",
-    "Solutions",
-    "Processing",
-    "Gateway",
-    "Network"
-  ];
-  let currentIndex = 0;
-
-  // Auto-typing effect
-  const typeNextWord = () => {
-    currentIndex = (currentIndex + 1) % words.length;
-    currentWord = "";
-    let wordToType = words[currentIndex];
-    let charIndex = 0;
-
-    const typeChar = () => {
-      if (charIndex < wordToType.length) {
-        currentWord += wordToType[charIndex];
-        charIndex++;
-        setTimeout(typeChar, 100); // Typing speed
-      } else {
-        setTimeout(() => {
-          // Start erasing after word is fully typed
-          const eraseChar = () => {
-            if (currentWord.length > 0) {
-              currentWord = currentWord.slice(0, -1);
-              setTimeout(eraseChar, 50); // Erasing speed
-            } else {
-              setTimeout(typeNextWord, 500); // Delay before typing next word
-            }
-          };
-          setTimeout(eraseChar, 2000); // Wait before starting to erase
-        }, 1000); // How long to show complete word
-      }
-    };
-
-    typeChar();
-  };
-
-  // Start the animation
-  setTimeout(typeNextWord, 3000); // Initial delay
-</script>
-
-<style>
-  @keyframes grid-move {
-    0% { transform: translateY(0) scale(1); }
-    100% { transform: translateY(-38px) scale(1); }
-  }
-
-  .animate-blob-float {
-    animation: blob-float 8s ease-in-out infinite;
-  }
-
-  @keyframes blob-float {
-    0%, 100% { 
-      transform: translate(0, 0) scale(1);
-      filter: blur(3xl);
-    }
-    50% { 
-      transform: translate(20px, -30px) scale(1.1);
-      filter: blur(4xl);
-    }
-  }
-
-  .animate-shape-float {
-    animation: shape-float 12s ease-in-out infinite;
-  }
-
-  @keyframes shape-float {
-    0%, 100% { 
-      transform: translate(0, 0) rotate(0deg);
-      opacity: 0.07;
-    }
-    50% { 
-      transform: translate(-15px, -20px) rotate(45deg);
-      opacity: 0.1;
-    }
-  }
-
-  .animate-badge-slide-in {
-    animation: badge-slide-in 0.6s ease-out;
-  }
-
-  @keyframes badge-slide-in {
-    0% { transform: translateY(-20px); opacity: 0; }
-    100% { transform: translateY(0); opacity: 1; }
-  }
-
-  .animate-fade-in-up {
-    animation: fade-in-up 0.8s ease-out forwards;
-    opacity: 0;
-  }
-
-  @keyframes fade-in-up {
-    0% { transform: translateY(20px); opacity: 0; }
-    100% { transform: translateY(0); opacity: 1; }
-  }
-
-  .bg-size-200 {
-    background-size: 200% 100%;
-  }
-
-  .animate-gradient-x {
-    animation: gradient-x 15s linear infinite;
-  }
-
-  @keyframes gradient-x {
-    0% { background-position: 0% 0%; }
-    50% { background-position: 100% 0%; }
-    100% { background-position: 0% 0%; }
-  }
-
-  .perspective {
-    perspective: 1000px;
-  }
-
-  .rotate-y-12 {
-    transform: rotateY(12deg);
-  }
-
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  .animate-float-reverse {
-    animation: float 6s ease-in-out infinite reverse;
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-12px); }
-  }
-
-  .animate-chart {
-    animation: chart 2s ease-in-out infinite;
-  }
-
-  @keyframes chart {
-    0%, 100% { transform: scaleY(1); }
-    50% { transform: scaleY(0.85); }
-  }
-
-  .animate-notification {
-    animation: notification 4s ease-in-out infinite;
-  }
-
-  @keyframes notification {
-    0% { opacity: 0; transform: translateX(20px); }
-    10% { opacity: 1; transform: translateX(0); }
-    90% { opacity: 1; transform: translateX(0); }
-    100% { opacity: 0; transform: translateX(-20px); }
-  }
-
-  .animate-pulse-slow {
-    animation: pulse-slow 4s ease-in-out infinite;
-  }
-
-  @keyframes pulse-slow {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 0.6; }
-  }
-
-  .animate-draw {
-    stroke-dasharray: 100;
-    stroke-dashoffset: 100;
-    animation: draw 3s ease-out forwards;
-  }
-
-  @keyframes draw {
-    to {
-      stroke-dashoffset: 0;
-    }
-  }
-
-  .animate-activity {
-    animation: activity 2s ease-in-out infinite;
-    transform-origin: bottom;
-  }
-
-  @keyframes activity {
-    0%, 100% { transform: scaleY(1); }
-    50% { transform: scaleY(0.7); }
-  }
-
-  .animate-move-dot {
-    animation: pulse 1s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.5); }
-  }
-
-  .animate-fade-in {
-    animation: fadeIn 0.6s ease-out;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .typewriter {
-    display: inline-block;
-    min-width: 8ch;
-    border-right: 3px solid #605bff;
-    animation: blink 0.8s step-end infinite;
-  }
-
-  @keyframes blink {
-    from, to { border-color: transparent }
-    50% { border-color: #605bff }
-  }
-
-  .animate-float-sparkle {
-    display: inline-block;
-    animation: floatSparkle 2s ease-in-out infinite;
-  }
-
-  .animate-float-sparkle-delay-1 {
-    display: inline-block;
-    animation: floatSparkle 2s ease-in-out infinite;
-    animation-delay: 0.3s;
-  }
-
-  .animate-float-sparkle-delay-2 {
-    display: inline-block;
-    animation: floatSparkle 2s ease-in-out infinite;
-    animation-delay: 0.6s;
-  }
-
-  @keyframes floatSparkle {
-    0%, 100% { 
-      transform: translateY(0) rotate(0deg);
-      opacity: 1;
-    }
-    50% { 
-      transform: translateY(-4px) rotate(20deg);
-      opacity: 0.7;
-    }
-  }
-
-  @keyframes beam-float {
-    0%, 100% { 
-      transform-origin: top;
-      transform: scaleY(1) translateY(0);
-      opacity: 0.5;
-    }
-    50% { 
-      transform-origin: top;
-      transform: scaleY(1.2) translateY(20px);
-      opacity: 0.8;
-    }
-  }
-
-  .animate-beam-float {
-    animation: beam-float 8s ease-in-out infinite;
-  }
-
-  /* Enhanced animations */
-  @keyframes premium-float {
-    0%, 100% { 
-      transform: translate(0, 0) scale(1);
-      filter: blur(3xl) brightness(1);
-    }
-    50% { 
-      transform: translate(25px, -35px) scale(1.1);
-      filter: blur(4xl) brightness(1.2);
-    }
-  }
-
-  .animate-premium-float {
-    animation: premium-float 14s ease-in-out infinite;
-  }
-
-  @keyframes glass-float {
-    0%, 100% { 
-      transform: translate(0, 0) rotate(0deg) scale(1);
-      opacity: 0.05;
-    }
-    50% { 
-      transform: translate(-18px, -25px) rotate(45deg) scale(1.05);
-      opacity: 0.08;
-    }
-  }
-
-  .animate-glass-float {
-    animation: glass-float 10s ease-in-out infinite;
-  }
-
-  @keyframes ray-float {
-    0%, 100% { 
-      transform-origin: top;
-      transform: scaleY(1) translateY(0) rotate(var(--rotation));
-      opacity: 0.4;
-    }
-    50% { 
-      transform-origin: top;
-      transform: scaleY(1.3) translateY(30px) rotate(var(--rotation));
-      opacity: 0.7;
-    }
-  }
-
-  .animate-ray-float {
-    animation: ray-float 12s ease-in-out infinite;
-  }
-
-  /* Cleaner animations */
-  @keyframes float-0 {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(30px, -20px) scale(1.05); }
-  }
-
-  @keyframes float-1 {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(-20px, -30px) scale(1.03); }
-  }
-
-  @keyframes float-2 {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(25px, -25px) scale(1.02); }
-  }
-
-  @keyframes slow-spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-
-  .animate-slow-spin {
-    animation: slow-spin 60s linear infinite;
-  }
-
-  @keyframes orb-float {
-    0%, 100% {
-      transform: translate(0, 0) scale(1);
-      opacity: 0.07;
-    }
-    50% {
-      transform: translate(-30px, 30px) scale(1.1);
-      opacity: 0.05;
-    }
-  }
-
-  .animate-orb-float {
-    animation: orb-float 20s ease-in-out infinite;
-  }
-
-  @keyframes line-float {
-    0%, 100% {
-      transform: translateY(0) rotate(var(--rotation, 0deg));
-      opacity: 0.05;
-    }
-    50% {
-      transform: translateY(-30px) rotate(var(--rotation, 0deg));
-      opacity: 0.08;
-    }
-  }
-
-  .animate-line-float {
-    animation: line-float 15s ease-in-out infinite;
-  }
-
-  @keyframes particle {
-    0% {
-      transform: translateY(0) scale(1);
-      opacity: 0;
-    }
-    50% {
-      transform: translateY(-100px) scale(1.5);
-      opacity: 0.5;
-    }
-    100% {
-      transform: translateY(-200px) scale(1);
-      opacity: 0;
-    }
-  }
-
-  .animate-particle {
-    animation: particle 15s ease-in-out infinite;
-  }
-
-  @keyframes glow-pulse {
-    0%, 100% { opacity: 0.5; transform: scale(1); }
-    50% { opacity: 0.7; transform: scale(1.2); }
-  }
-
-  .animate-glow-pulse {
-    animation: glow-pulse 10s ease-in-out infinite;
-  }
-
-  .animate-glow-pulse-delayed {
-    animation: glow-pulse 10s ease-in-out infinite;
-    animation-delay: 5s;
-  }
-
-  @keyframes glass-float {
-    0%, 100% {
-      transform: translate(0, 0) rotate(var(--rotation, 0deg));
-      opacity: 0.05;
-    }
-    50% {
-      transform: translate(-20px, 20px) rotate(calc(var(--rotation, 0deg) + 5deg));
-      opacity: 0.08;
-    }
-  }
-
-  .animate-glass-float {
-    animation: glass-float 20s ease-in-out infinite;
-  }
-
-  @keyframes streak {
-    0% { transform: translateY(-100%) scaleY(0); opacity: 0; }
-    50% { transform: translateY(100%) scaleY(2); opacity: 0.5; }
-    100% { transform: translateY(300%) scaleY(0); opacity: 0; }
-  }
-
-  .animate-streak {
-    animation: streak 7s ease-in-out infinite;
-  }
-
-  @keyframes float-dot {
-    0%, 100% {
-      transform: translate(0, 0);
-      opacity: var(--initial-opacity, 0.05);
-    }
-    50% {
-      transform: translate(
-        calc(var(--x-offset, 0) * 30px),
-        calc(var(--y-offset, 0) * 30px)
-      );
-      opacity: calc(var(--initial-opacity, 0.05) * 1.5);
-    }
-  }
-
-  .animate-float-dot {
-    --x-offset: calc(random() * 2 - 1);
-    --y-offset: calc(random() * 2 - 1);
-    --initial-opacity: calc(0.03 + random() * 0.05);
-  }
-
-  @keyframes card-float {
-    0%, 100% {
-      transform: translate(0, 0) rotate(var(--rotation, 15deg));
-      opacity: 0.07;
-    }
-    50% {
-      transform: translate(-15px, 15px) rotate(calc(var(--rotation, 15deg) + 3deg));
-      opacity: 0.09;
-    }
-  }
-
-  .animate-card-float {
-    animation: card-float 18s ease-in-out infinite;
-  }
-
-  @keyframes icon-float {
-    0%, 100% {
-      transform: translate(0, 0) rotate(0deg);
-      opacity: 0.06;
-    }
-    50% {
-      transform: translate(-10px, 10px) rotate(5deg);
-      opacity: 0.08;
-    }
-  }
-
-  .animate-icon-float {
-    animation: icon-float 15s ease-in-out infinite;
-  }
-
-  @keyframes flow-line {
-    0% { transform: translateY(-100%) scaleY(0); opacity: 0; }
-    50% { transform: translateY(100%) scaleY(1.5); opacity: 0.4; }
-    100% { transform: translateY(300%) scaleY(0); opacity: 0; }
-  }
-
-  .animate-flow-line {
-    animation: flow-line 8s ease-in-out infinite;
-  }
-
-  @keyframes data-point {
-    0%, 100% {
-      transform: translate(0, 0) scale(1);
-      opacity: var(--initial-opacity, 0.04);
-    }
-    50% {
-      transform: translate(
-        calc(var(--x-offset, 0) * 25px),
-        calc(var(--y-offset, 0) * 25px)
-      ) scale(1.2);
-      opacity: calc(var(--initial-opacity, 0.04) * 1.5);
-    }
-  }
-
-  .animate-data-point {
-    --x-offset: calc(random() * 2 - 1);
-    --y-offset: calc(random() * 2 - 1);
-    --initial-opacity: calc(0.04 + random() * 0.04);
-  }
-
-  @keyframes pulse-slow {
-    0%, 100% { opacity: 0.03; transform: scale(1); }
-    50% { opacity: 0.05; transform: scale(1.1); }
-  }
-
-  .animate-pulse-slow {
-    animation: pulse-slow 10s ease-in-out infinite;
-  }
-
-  @keyframes security-pulse {
-    0% { transform: translateX(-50%) scale(0.95); opacity: 0.1; }
-    50% { transform: translateX(-50%) scale(1); opacity: 0.05; }
-    100% { transform: translateX(-50%) scale(0.95); opacity: 0.1; }
-  }
-
-  .animate-security-pulse {
-    animation: security-pulse 8s ease-in-out infinite;
-  }
-
-  @keyframes wave {
-    0% { transform: translateX(0) translateY(0) scale(1); }
-    50% { transform: translateX(-2%) translateY(10px) scale(1.02); }
-    100% { transform: translateX(0) translateY(0) scale(1); }
-  }
-
-  .animate-wave {
-    animation: wave 15s ease-in-out infinite;
-  }
-
-  @keyframes fade-in-out {
-    0%, 100% { opacity: 0.04; transform: translateY(0); }
-    50% { opacity: 0.08; transform: translateY(-5px); }
-  }
-
-  .animate-fade-in-out {
-    animation: fade-in-out 6s ease-in-out infinite;
-  }
-
-  @media (max-width: 768px) {
-    .security-circles {
-      transform: scale(0.7);
-    }
-  }
-</style>
 
 

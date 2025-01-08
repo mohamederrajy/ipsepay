@@ -18,11 +18,11 @@
 
   const footerLinks = {
     solutions: [
-      { label: 'Payment Methods', href: '#payment-methods' },
-      { label: 'Advantages', href: '#advantages' },
-      { label: 'Easy Integration', href: '#integration' },
-      { label: 'Pricing', href: '#pricing' },
-      { label: 'Global Payments', href: '#global' }
+      { label: 'Online Payments', href: '/payments/online' },
+      { label: 'Payment Links', href: '/payments/payments-link' },
+      { label: 'Checkout', href: '/payments/checkout' },
+      { label: 'Authentication', href: '/enhancements/authentication' },
+      { label: 'Risk Management', href: '/enhancements/risk' }
     ],
     legal: [
       { label: 'Privacy Policy', href: '/privacy' },
@@ -31,12 +31,12 @@
       { label: 'Security', href: '/security' },
       { label: 'Cookie Settings', href: '/cookies' }
     ],
-    company: [
-      { label: 'About Us', href: '/about' },
-      { label: 'Careers', href: '/careers' },
-      { label: 'Blog', href: '/blog' },
-      { label: 'Contact', href: '/contact' },
-      { label: 'FAQs', href: '/faqs' }
+    industries: [
+      { label: 'Digital Businesses', href: '/industries/digital-businesses' },
+      { label: 'Mobility', href: '/industries/mobility' },
+      { label: 'Retail', href: '/industries/retail' },
+      { label: 'Platforms', href: '/industries/platform-payments' },
+      { label: 'SaaS', href: '/industries/saas-platforms' }
     ]
   };
 

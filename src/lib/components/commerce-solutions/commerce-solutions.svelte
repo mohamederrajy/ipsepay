@@ -1,19 +1,46 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   
+  let activeTab = 'Overview';
   let isVisible = false;
   onMount(() => isVisible = true);
 
-  const stats = [
-    { value: '45%', label: 'Revenue Growth', trend: '+12.5%' },
-    { value: '2.4M', label: 'Total Sales', trend: '+8.1%' },
-    { value: '98%', label: 'Satisfaction', trend: '+5.2%' }
+  const tabs = [
+    { id: 'Overview', label: 'Overview' },
+    { id: 'Analytics', label: 'Analytics' },
+    { id: 'Reports', label: 'Reports' },
+    { id: 'Settings', label: 'Settings' }
   ];
 
-  const chartData = Array(10).fill(0).map(() => ({
-    current: 30 + Math.random() * 70,
-    previous: 30 + Math.random() * 70
+  // Dynamic data generation
+  const generateData = () => Array(24).fill(0).map(() => ({
+    value: Math.floor(Math.random() * 100),
+    time: new Date().toLocaleTimeString()
   }));
+
+  let chartData = generateData();
+  let currentValue = '$48,562.20';
+  let currentGrowth = '+12.5%';
+
+  // Update data periodically
+  onMount(() => {
+    const interval = setInterval(() => {
+      chartData = [...chartData.slice(1), {
+        value: Math.floor(Math.random() * 100),
+        time: new Date().toLocaleTimeString()
+      }];
+      currentValue = `$${(48000 + Math.random() * 2000).toFixed(2)}`;
+      currentGrowth = `+${(10 + Math.random() * 5).toFixed(1)}%`;
+    }, 3000);
+
+    return () => clearInterval(interval);
+  });
+
+  const stats = [
+    { value: '45%', label: 'Revenue Growth', trend: '+12.5%', color: 'green' },
+    { value: '2.4M', label: 'Total Sales', trend: '+8.1%', color: 'blue' },
+    { value: '98%', label: 'Satisfaction', trend: '+5.2%', color: 'purple' }
+  ];
 </script>
 
 <section class="relative py-12 sm:py-16 lg:py-32">
@@ -82,212 +109,138 @@
         </div>
       </div>
 
-      <!-- Right Side - Added minimal spacing -->
-      <div class="relative mt-6 sm:mt-8 lg:mt-0 w-[calc(100%-1rem)] sm:w-full 
-                  mx-auto sm:max-w-full overflow-hidden">
-        <!-- Main Analytics Card - Small side spacing on mobile -->
-        <div class="bg-white rounded-lg sm:rounded-xl lg:rounded-2xl shadow-lg 
-                    sm:shadow-xl p-2 sm:p-4 lg:p-8 border border-gray-100">
-          <!-- Enhanced Header -->
-          <div class="space-y-4 sm:space-y-6 mb-4 sm:mb-6 lg:mb-8">
-            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 items-start sm:items-center 
-                        justify-between">
-              <div class="w-full sm:w-auto text-center sm:text-left">
-                <h3 class="text-sm sm:text-base lg:text-lg font-semibold text-[#32325d] 
-                           flex items-center justify-center sm:justify-start gap-2">
-                  Revenue Analytics
-                  <span class="inline-flex items-center px-1.5 sm:px-2.5 py-0.5 rounded-full 
-                               text-[10px] sm:text-xs font-medium bg-green-100 text-green-800">
-                    Live
-                  </span>
-                </h3>
-                <p class="text-[11px] sm:text-xs lg:text-sm text-gray-500 mt-0.5">
-                  Last 30 days performance
-                </p>
-              </div>
-              
-              <!-- Enhanced Controls -->
-              <div class="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
-                <select class="w-full sm:w-auto px-2 sm:px-3 lg:px-4 py-1.5 sm:py-2 
-                               text-xs lg:text-sm font-medium text-[#32325d] bg-gray-50 
-                               rounded-lg border border-gray-200 focus:outline-none 
-                               focus:ring-2 focus:ring-[#605bff]/20">
-                  <option>Last 30 days</option>
-                  <option>Last 90 days</option>
-                  <option>This year</option>
-                </select>
-                <button class="w-full sm:w-auto px-2 sm:px-3 lg:px-4 py-1.5 sm:py-2 
-                               text-xs lg:text-sm font-medium text-[#605bff] 
-                               bg-[#605bff]/5 rounded-lg hover:bg-[#605bff]/10 
+      <!-- Right Section - Responsive Browser Style Analytics Dashboard -->
+      <div class="relative mt-6 sm:mt-8 lg:mt-0 w-full max-w-[calc(100%-1rem)] sm:max-w-full mx-auto">
+        <!-- Browser-like Window -->
+        <div class="bg-[#f0f1f4] rounded-xl shadow-lg overflow-hidden">
+          <!-- Browser Controls Bar -->
+          <div class="bg-[#e4e5e7] px-3 sm:px-4 py-2 flex items-center">
+            <!-- Browser Controls -->
+            <div class="flex gap-1 sm:gap-1.5 items-center">
+              <div class="w-2 sm:w-3 h-2 sm:h-3 rounded-full bg-[#ff5f57]"></div>
+              <div class="w-2 sm:w-3 h-2 sm:h-3 rounded-full bg-[#febc2e]"></div>
+              <div class="w-2 sm:w-3 h-2 sm:h-3 rounded-full bg-[#28c840]"></div>
+            </div>
+          </div>
+
+          <!-- Browser Content Area -->
+          <div class="bg-white p-3 sm:p-4 lg:p-6">
+            <div class="space-y-4 sm:space-y-6">
+              <!-- Dashboard Header -->
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0">
+                <div>
+                  <div class="text-xs sm:text-sm font-medium text-[#32325d]/70 flex items-center gap-2">
+                    Analytics Overview
+                    <span class="inline-flex items-center px-1.5 sm:px-2 py-0.5 rounded-full text-[10px] sm:text-xs 
+                               font-medium bg-green-100 text-green-800">
+                      Live
+                    </span>
+                  </div>
+                  <div class="text-xl sm:text-2xl font-bold text-[#32325d] transition-all duration-300">
+                    {currentValue}
+                    <span class="text-xs sm:text-sm font-medium text-green-500 ml-2">{currentGrowth}</span>
+                  </div>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  {#each ['1H', '1D', '1W', '1M'] as period}
+                    <button class="px-2 sm:px-3 py-1 sm:py-1.5 text-[10px] sm:text-xs rounded-lg 
+                               {period === '1D' ? 'bg-[#605bff] text-white' : 'text-[#32325d]/70 hover:bg-[#605bff]/10'}
                                transition-all duration-300">
-                  <span class="flex items-center justify-center gap-1.5 sm:gap-2">
-                    <svg class="w-3 h-3 sm:w-4 sm:h-4" fill="none" viewBox="0 0 24 24" 
-                         stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-                    </svg>
-                    Export
-                  </span>
-                </button>
+                      {period}
+                    </button>
+                  {/each}
+                </div>
               </div>
-            </div>
 
-            <!-- Enhanced Tabs -->
-            <div class="flex gap-2 sm:gap-4 lg:gap-6 border-b border-gray-100 
-                        overflow-x-auto hide-scrollbar -mx-3 px-3 sm:mx-0 sm:px-0">
-              {#each ['Overview', 'Revenue', 'Orders', 'Customers'] as tab, i}
-                <button class="px-2 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium 
-                               whitespace-nowrap text-gray-500 hover:text-[#605bff] 
-                               transition-colors relative group 
-                               {i === 0 ? 'text-[#605bff]' : ''}">
-                  {tab}
-                  {#if i === 0}
-                    <div class="absolute bottom-0 left-0 w-full h-0.5 bg-[#605bff]"></div>
-                  {/if}
-                  <div class="absolute bottom-0 left-0 w-full h-0.5 bg-[#605bff] 
-                             scale-x-0 group-hover:scale-x-100 transition-transform 
-                             duration-300 origin-left"></div>
-                </button>
-              {/each}
-            </div>
-          </div>
+              <!-- Dynamic Chart -->
+              <div class="relative h-32 sm:h-40">
+                <!-- Gradient Background -->
+                <div class="absolute inset-0 bg-gradient-to-t from-[#605bff]/5 to-transparent rounded-lg"></div>
+                
+                <!-- Enhanced Chart -->
+                <svg class="w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 40">
+                  <!-- Grid Lines -->
+                  {#each Array(5) as _, i}
+                    <line x1="0" y1={i * 10} x2="100" y2={i * 10} 
+                          stroke="#605bff" stroke-width="0.1" stroke-dasharray="1 1"/>
+                  {/each}
+                  
+                  <!-- Dynamic Chart Line -->
+                  {#key chartData}
+                    <path d={`M ${chartData.map((d, i) => 
+                      `${(i * 100) / (chartData.length - 1)} ${40 - (d.value * 30) / 100}`).join(' L ')}`}
+                          fill="none" stroke="#605bff" stroke-width="0.5"
+                          class="animate-draw"/>
+                            
+                  <!-- Chart Area -->
+                  <path d={`M 0 40 ${chartData.map((d, i) => 
+                    `L ${(i * 100) / (chartData.length - 1)} ${40 - (d.value * 30) / 100}`).join(' ')} L 100 40`}
+                        fill="url(#gradient)" opacity="0.2"/>
+                              
+                  <!-- Data Points -->
+                  {#each chartData as point, i}
+                    <circle cx={(i * 100) / (chartData.length - 1)} 
+                            cy={40 - (point.value * 30) / 100} 
+                            r="0.5" fill="#605bff" 
+                            class="animate-pulse"/>
+                  {/each}
+                {/key}
+                </svg>
+                
+                <!-- Enhanced Gradient -->
+                <defs>
+                  <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" style="stop-color:#605bff;stop-opacity:0.4"/>
+                    <stop offset="100%" style="stop-color:#605bff;stop-opacity:0"/>
+                  </linearGradient>
+                </defs>
+              </div>
 
-          <!-- Enhanced Chart Area -->
-          <div class="relative h-[140px] sm:h-[180px] lg:h-[280px] mb-3 sm:mb-4 lg:mb-6 
-                      group overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-t from-[#605bff]/5 to-transparent 
-                        rounded-lg transition-opacity duration-300 opacity-50 
-                        group-hover:opacity-100"></div>
-            
-            <!-- Responsive Chart Lines -->
-            <div class="relative h-full flex items-end gap-1 sm:gap-2 lg:gap-3 px-1">
-              {#each Array(12) as _, i}
-                <div class="relative flex-1 group/bar cursor-pointer">
-                  <div class="absolute bottom-0 w-full h-[120px] sm:h-[160px] 
-                              bg-[#605bff]/10 rounded-t-lg transition-all duration-300 
-                              group-hover/bar:h-[140px] sm:group-hover/bar:h-[180px]"></div>
-                  <div class="absolute bottom-0 w-full bg-[#605bff] rounded-t-lg 
-                              transition-all duration-300 group-hover/bar:opacity-100 
-                              opacity-80 hover:shadow-lg hover:shadow-[#605bff]/20"
-                       style="height: {30 + Math.random() * 90}px"></div>
-                  <!-- Enhanced Tooltip -->
-                  <div class="absolute -top-8 sm:-top-12 left-1/2 -translate-x-1/2 
-                              bg-[#32325d] text-white px-2 sm:px-3 py-1 sm:py-1.5 
-                              rounded-lg text-[10px] sm:text-xs opacity-0 
-                              group-hover/bar:opacity-100 transition-all duration-300
-                              group-hover/bar:-translate-y-1 shadow-lg whitespace-nowrap">
-                    <div class="font-semibold">${(Math.random() * 10000).toFixed(0)}</div>
-                    <div class="text-[8px] sm:text-[10px] opacity-75">
-                      +{(Math.random() * 20).toFixed(1)}%
+              <!-- Stats Grid -->
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-6">
+                {#each stats as stat}
+                  <div class="p-3 sm:p-4 rounded-lg bg-gray-50 hover:bg-gray-100 
+                              transition-all duration-300 cursor-pointer">
+                    <div class="text-lg sm:text-xl font-bold text-[#32325d]">{stat.value}</div>
+                    <div class="text-xs sm:text-sm text-[#32325d]/70">{stat.label}</div>
+                    <div class="text-[10px] sm:text-xs text-green-500 mt-1 sm:mt-2 flex items-center gap-1">
+                      <svg class="w-2 sm:w-3 h-2 sm:h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                      </svg>
+                      {stat.trend}
                     </div>
-                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 
-                               translate-y-1/2 rotate-45 w-1.5 sm:w-2 h-1.5 sm:h-2 
-                               bg-[#32325d]"></div>
                   </div>
-                </div>
-              {/each}
-            </div>
-
-            <!-- Enhanced Time Labels -->
-            <div class="flex justify-between mt-2 sm:mt-4 text-[10px] sm:text-xs lg:text-sm">
-              {#each ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] as day}
-                <span class="px-1 sm:px-2 py-0.5 sm:py-1 rounded-md transition-colors 
-                           duration-300 hover:bg-[#605bff]/5 hover:text-[#605bff] 
-                           cursor-pointer">
-                  {day}
-                </span>
-              {/each}
-            </div>
-          </div>
-
-          <!-- Enhanced Stats Grid -->
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 lg:gap-6">
-            {#each [
-              { label: 'Total Revenue', value: '$487,239', trend: '+12.5%' },
-              { label: 'Avg. Order Value', value: '$149.99', trend: '+8.3%' },
-              { label: 'Conversion Rate', value: '3.42%', trend: '+2.1%' }
-            ] as stat}
-              <div class="bg-gray-50 rounded-lg sm:rounded-xl p-2 sm:p-3 lg:p-4 
-                          transition-all duration-300 group hover:bg-white 
-                          hover:-translate-y-1 hover:shadow-lg cursor-pointer
-                          border border-transparent hover:border-[#605bff]/20">
-                <div class="flex items-start justify-between mb-1 sm:mb-2">
-                  <p class="text-xs sm:text-sm text-gray-500 group-hover:text-[#605bff] 
-                           transition-colors">{stat.label}</p>
-                  <div class="w-6 sm:w-8 h-6 sm:h-8 rounded-lg bg-[#605bff]/10 
-                             flex items-center justify-center group-hover:bg-[#605bff]/20 
-                             transition-colors">
-                    <svg class="w-3 sm:w-4 h-3 sm:h-4 text-[#605bff]" viewBox="0 0 24 24" 
-                         fill="none" stroke="currentColor" stroke-width="2">
-                      <path stroke-linecap="round" stroke-linejoin="round" 
-                            d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
-                    </svg>
-                  </div>
-                </div>
-                <div class="flex items-baseline gap-1 sm:gap-2">
-                  <span class="text-sm sm:text-base lg:text-xl font-semibold text-[#32325d] 
-                             group-hover:text-[#605bff] transition-colors">
-                    {stat.value}
-                  </span>
-                  <span class="text-[10px] sm:text-xs font-medium text-green-500 
-                             flex items-center gap-0.5 sm:gap-1">
-                    <svg class="w-2 sm:w-3 h-2 sm:h-3" viewBox="0 0 24 24" fill="none" 
-                         stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                            d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
-                    </svg>
-                    {stat.trend}
-                  </span>
-                </div>
+                {/each}
               </div>
-            {/each}
+
+              <!-- Activity Indicators -->
+              <div class="flex items-center justify-between px-2 py-3 sm:py-4 bg-gray-50 rounded-lg">
+                {#each Array(6) as _, i}
+                  <div class="w-1 sm:w-1.5 h-6 sm:h-8 rounded-full bg-[#605bff]/20 overflow-hidden">
+                    <div class="w-full bg-[#605bff] animate-activity"
+                         style="height: {30 + Math.random() * 70}%; animation-delay: {i * 0.2}s">
+                    </div>
+                  </div>
+                {/each}
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- Update notification positioning -->
-        <!-- Sales Increase Alert -->
-        <div class="absolute -right-1 sm:-right-8 top-4 sm:top-8 transform 
-                    translate-x-1/2 w-auto lg:w-64 animate-float">
-          <div class="bg-white rounded-xl p-3 sm:p-4 shadow-lg border border-gray-100
-                      transition-all duration-500 hover:-translate-y-1 hover:shadow-xl">
-            <div class="flex items-center gap-3 mb-3">
-              <div class="w-10 sm:w-8 h-10 sm:h-8 rounded-xl sm:rounded-lg 
-                          bg-green-500/10 flex items-center justify-center">
-                <svg class="w-5 sm:w-4 h-5 sm:h-4 text-green-500" viewBox="0 0 24 24" 
-                     fill="none" stroke="currentColor">
+        <!-- Floating Card - Hidden on mobile, visible on larger screens -->
+        <div class="hidden sm:block absolute -right-4 top-10 transform translate-x-1/2 w-64 animate-float">
+          <div class="bg-white rounded-xl p-4 shadow-lg">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center">
+                <svg class="w-5 h-5 text-green-500" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
                         d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
                 </svg>
               </div>
-              <span class="text-base sm:text-sm font-medium text-[#32325d]">
-                Sales Increase
-              </span>
+              <span class="text-sm font-medium text-[#32325d]">Real-time Update</span>
             </div>
-            <div class="text-3xl sm:text-2xl font-bold text-[#32325d] mb-1">+24.5%</div>
-            <p class="text-sm sm:text-xs text-gray-500">Compared to last month</p>
-          </div>
-        </div>
-
-        <!-- Revenue Update Alert -->
-        <div class="absolute -left-1 sm:-left-8 bottom-4 sm:bottom-8 transform 
-                    -translate-x-1/2 w-auto lg:w-64 animate-float">
-          <div class="bg-white rounded-xl p-3 sm:p-4 shadow-lg border border-gray-100
-                      transition-all duration-500 hover:-translate-y-1 hover:shadow-xl">
-            <div class="flex items-center gap-3 mb-3">
-              <div class="w-10 sm:w-8 h-10 sm:h-8 rounded-xl sm:rounded-lg 
-                          bg-[#605bff]/10 flex items-center justify-center">
-                <svg class="w-5 sm:w-4 h-5 sm:h-4 text-[#605bff]" viewBox="0 0 24 24" 
-                     fill="none" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-              </div>
-              <span class="text-base sm:text-sm font-medium text-[#32325d]">
-                Revenue Update
-              </span>
-            </div>
-            <div class="text-3xl sm:text-2xl font-bold text-[#32325d] mb-1">$12.4M</div>
-            <p class="text-sm sm:text-xs text-gray-500">Total revenue this quarter</p>
+            <div class="text-2xl font-bold text-[#32325d]">+24.5%</div>
           </div>
         </div>
       </div>
@@ -296,28 +249,32 @@
 </section>
 
 <style>
-  @keyframes shimmer {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
+  @keyframes draw {
+    to { stroke-dashoffset: 0; }
+  }
+
+  @keyframes activity {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(0.7); }
   }
 
   @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+    0%, 100% { transform: translate(50%, 0); }
+    50% { transform: translate(50%, -10px); }
   }
 
-  @keyframes gradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+  .animate-draw {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw 2s ease-out forwards;
   }
 
-  /* Add hide-scrollbar utility */
-  .hide-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+  .animate-activity {
+    animation: activity 2s ease-in-out infinite;
+    transform-origin: bottom;
   }
-  .hide-scrollbar::-webkit-scrollbar {
-    display: none;
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
   }
 </style>
