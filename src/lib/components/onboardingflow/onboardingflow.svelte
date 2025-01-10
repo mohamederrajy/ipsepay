@@ -1,341 +1,242 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import { spring } from 'svelte/motion';
   import { fade, fly } from 'svelte/transition';
-  import { onMount } from 'svelte';
 
-  let isVisible = false;
-  let activeSection = 0;
-
-  const onboardingFlow = [
+  const steps = [
     {
-      title: 'Account Setup',
-      icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" 
+      title: 'Create Account',
+      description: 'Set up your business profile',
+      icon: `<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
                     d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
             </svg>`,
-      features: [
-        {
-          title: 'IpsePay Dashboard',
-          description: 'Your command center for payments',
-          progress: 85,
-          status: 'active',
-          highlight: 'Real-time Analytics'
-        },
-        {
-          title: 'Business Profile',
-          description: 'Smart profile setup wizard',
-          progress: 60,
-          status: 'active',
-          highlight: 'AI-Assisted'
-        },
-        {
-          title: 'Security Shield',
-          description: 'Advanced security protocols',
-          progress: 40,
-          status: 'pending',
-          highlight: 'Bank-Grade'
-        }
-      ],
-      bgGradient: 'from-[#605bff]/5 to-[#605bff]/10',
-      color: '#605bff',
-      stats: { completed: '85%', timeLeft: '~5 mins' }
+      progress: 0
     },
     {
-      title: 'Smart Verification',
-      icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" 
+      title: 'Verify Identity',
+      description: 'Quick security check',
+      icon: `<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
                     d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
             </svg>`,
-      features: [
-        {
-          title: 'Instant KYC',
-          description: 'AI-powered verification',
-          progress: 30,
-          status: 'pending',
-          highlight: '2-Min Process'
-        },
-        {
-          title: 'Smart Docs',
-          description: 'Automated document processing',
-          progress: 0,
-          status: 'pending',
-          highlight: 'Auto-Scan'
-        },
-        {
-          title: 'Global Compliance',
-          description: 'Multi-region support',
-          progress: 0,
-          status: 'pending',
-          highlight: '200+ Countries'
-        }
-      ],
-      bgGradient: 'from-[#32325d]/5 to-[#32325d]/10',
-      color: '#32325d',
-      stats: { completed: '30%', timeLeft: '~10 mins' }
+      progress: 0
     },
     {
-      title: 'Payment Suite',
-      icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" 
-                    d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/>
+      title: 'Connect Bank',
+      description: 'Link your payment method',
+      icon: `<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                    d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
             </svg>`,
-      features: [
-        {
-          title: 'Smart Payments',
-          description: 'Intelligent routing system',
-          progress: 0,
-          status: 'locked',
-          highlight: 'Auto-Optimize'
-        },
-        {
-          title: 'Instant Payouts',
-          description: 'Real-time settlements',
-          progress: 0,
-          status: 'locked',
-          highlight: '24/7 Active'
-        },
-        {
-          title: 'Dynamic Pricing',
-          description: 'Smart fee optimization',
-          progress: 0,
-          status: 'locked',
-          highlight: 'Save Up to 30%'
-        }
-      ],
-      bgGradient: 'from-[#00A3FF]/5 to-[#00A3FF]/10',
-      color: '#00A3FF',
-      stats: { completed: '0%', timeLeft: '~15 mins' }
+      progress: 0
     }
   ];
 
-  const progress = spring(0);
   let currentStep = 0;
+  let progressValue = spring(0);
+  let autoProgress = true;
 
-  function updateProgress(index: number) {
-    currentStep = index;
-    progress.set(index / (onboardingFlow.length - 1));
+  function resetProgress() {
+    currentStep = 0;
+    steps.forEach(step => step.progress = 0);
+    progressValue.set(0);
+  }
+
+  function nextStep() {
+    if (currentStep < steps.length - 1) {
+      currentStep++;
+      steps[currentStep - 1].progress = 100;
+      updateProgress();
+    } else {
+      // Loop back to start
+      setTimeout(() => {
+        resetProgress();
+      }, 1000);
+    }
+  }
+
+  function updateProgress() {
+    const totalProgress = steps.reduce((acc, step) => acc + step.progress, 0);
+    progressValue.set(totalProgress / (steps.length * 100));
   }
 
   onMount(() => {
-    isVisible = true;
+    if (autoProgress) {
+      const interval = setInterval(() => {
+        if (currentStep < steps.length) {
+          steps[currentStep].progress += 10; // Slower progress
+          if (steps[currentStep].progress >= 100) {
+            nextStep();
+          }
+          updateProgress();
+        }
+      }, 800); // Slightly slower interval
+
+      return () => clearInterval(interval);
+    }
   });
 </script>
 
-<section class="relative overflow-hidden py-8 sm:py-16 lg:py-24">
-  <!-- Enhanced Modern iOS-style Background -->
-  <div class="absolute inset-0">
-    <!-- Dynamic Base Layer -->
-    <div class="absolute inset-0 bg-gradient-to-br from-gray-50/90 via-white/95 to-gray-50/90"></div>
-    
-    <!-- Enhanced Blur Elements -->
-    <div class="absolute inset-0 overflow-hidden">
-      <!-- Primary Glow -->
-      <div class="absolute top-0 -right-1/4 w-[1200px] h-[1200px]
-                  bg-gradient-to-br from-[#605bff]/20 via-purple-400/10 to-transparent 
-                  rounded-full blur-[120px] backdrop-blur-3xl animate-slow-spin"></div>
-      
-      <!-- Secondary Glow -->
-      <div class="absolute -bottom-1/4 -left-1/4 w-[1200px] h-[1200px]
-                  bg-gradient-to-tr from-[#32325d]/15 via-blue-300/10 to-transparent 
-                  rounded-full blur-[150px] backdrop-blur-3xl animate-slow-spin-reverse"></div>
-      
-      <!-- Accent Glows -->
-      <div class="absolute top-1/4 left-1/4 w-[600px] h-[600px]
-                  bg-gradient-to-tr from-pink-500/10 via-purple-300/10 to-transparent 
-                  rounded-full blur-[80px] animate-pulse-slow"></div>
-      
-      <div class="absolute bottom-1/4 right-1/4 w-[500px] h-[500px]
-                  bg-gradient-to-br from-blue-400/10 via-cyan-300/10 to-transparent 
-                  rounded-full blur-[100px] animate-pulse-slow-delay"></div>
-    </div>
-
-    <!-- Modern Frosted Glass -->
-    <div class="absolute inset-0">
-      <div class="absolute inset-0 backdrop-blur-[100px] bg-white/30"></div>
-      <div class="absolute inset-0 bg-gradient-to-br from-white/50 via-transparent to-white/50 
-                  backdrop-blur-3xl"></div>
-    </div>
-    
-    <!-- Enhanced Grid -->
-    <div class="absolute inset-0">
-      <div class="absolute inset-0 bg-[url('/images/grid.svg')] opacity-[0.03]"></div>
-      <div class="absolute inset-0 bg-gradient-to-b from-white/80 via-transparent to-white/80"></div>
-    </div>
-
-    <!-- Light Rays -->
-    <div class="absolute inset-0">
-      <div class="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b 
-                  from-transparent via-purple-500/10 to-transparent blur-[2px]"></div>
-      <div class="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b 
-                  from-transparent via-blue-500/10 to-transparent blur-[2px]"></div>
-    </div>
-  </div>
-
-  <div class="relative container mx-auto px-4 sm:px-6 lg:px-8">
-    <!-- Title Section -->
-    <div class="max-w-3xl mx-auto text-center mb-8 sm:mb-12 lg:mb-16">
-      <div class="inline-flex items-center gap-1.5 sm:gap-3 rounded-full bg-white/90 
-                  p-1 sm:p-1.5 pr-3 sm:pr-4 backdrop-blur-xl border border-white/20 
-                  shadow-xl hover:shadow-2xl transition-all duration-300 
-                  mb-4 sm:mb-6 animate-float">
-        <span class="rounded-full bg-gradient-to-r from-[#605bff] to-[#605bff]/90 
-                     px-2 sm:px-3 py-1 text-xs sm:text-sm font-medium text-white 
+<section class="relative overflow-hidden py-6 sm:py-12 lg:py-20">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Enhanced Title Section -->
+    <div class="max-w-4xl mx-auto text-center mb-6 sm:mb-12 lg:mb-16">
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-1.5 sm:gap-3 rounded-full 
+                  bg-white hover:bg-gray-50 backdrop-blur-xl 
+                  p-1.5 pr-3 sm:pr-6 border border-gray-200 mb-4 sm:mb-6 
+                  shadow-lg transition-all duration-300
+                  text-[11px] sm:text-sm">
+        <span class="rounded-full bg-[#605bff] px-2 sm:px-4 py-1 sm:py-1.5 
+                     font-semibold text-white shadow-lg shadow-[#605bff]/20 
                      relative overflow-hidden">
-          <span class="relative z-10">IpsePay</span>
-          <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 
-                      to-transparent animate-shimmer"></div>
+          <span class="relative z-10">New</span>
+          <div class="absolute inset-0 bg-gradient-to-r from-transparent 
+                      via-white/20 to-transparent animate-shimmer"></div>
         </span>
-        <span class="text-[10px] sm:text-xs font-medium text-[#32325d]">Gateway Setup</span>
+        <span class="font-bold text-[#32325d] flex items-center gap-1 sm:gap-2 tracking-wide">
+          Account Setup
+          <div class="relative flex">
+            <span class="absolute inline-flex h-1.5 w-1.5 sm:h-2 sm:w-2 
+                         rounded-full bg-[#605bff] animate-ping opacity-75"></span>
+            <span class="relative inline-flex h-1.5 w-1.5 sm:h-2 sm:w-2 
+                         rounded-full bg-[#605bff]"></span>
+          </div>
+        </span>
       </div>
 
-      <h2 class="text-2xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-3 sm:mb-4 
-                 text-[#32325d] px-2">
-        <span class="whitespace-normal sm:whitespace-nowrap">Activate Your</span>
+      <!-- Title and Subtitle -->
+      <h1 class="text-2xl sm:text-4xl lg:text-6xl font-bold text-[#32325d] mb-3 sm:mb-4 
+                 tracking-tight leading-[1.1] px-4 sm:px-0">
+        Complete Your
         <span class="relative inline-block mt-1 sm:mt-0 sm:ml-2">
-          <span class="bg-gradient-to-r from-[#605bff] to-[#32325d] bg-clip-text 
-                       text-transparent animate-gradient">IpsePay Account</span>
+          <span class="relative z-10 bg-gradient-to-r from-[#605bff] to-[#8b7fff] 
+                       bg-clip-text text-transparent">Setup</span>
+          <div class="absolute -bottom-2 left-0 right-0 h-3 
+                      bg-gradient-to-r from-[#605bff] to-[#8b7fff] 
+                      opacity-20 blur-lg transform -rotate-1"></div>
         </span>
-      </h2>
+      </h1>
       
       <p class="text-sm sm:text-base lg:text-lg text-[#32325d]/70 max-w-2xl mx-auto 
-                leading-relaxed px-4">
-        Get started with IpsePay's global payment solutions
+                leading-relaxed px-4 sm:px-0">
+        Follow these simple steps to get started with your payment gateway integration
       </p>
     </div>
 
-    <!-- Steps Section -->
-    <div class="max-w-5xl mx-auto">
-      <div class="relative">
-        <!-- Progress Line -->
-        <div class="absolute left-[20px] sm:left-[45px] top-0 bottom-0 w-px bg-gray-200">
-          <div class="h-full bg-[#605bff] transition-all duration-500"
-               style="height: {$progress * 100}%"></div>
+    <!-- Enhanced Progress Section -->
+    <div class="max-w-2xl mx-auto">
+      <!-- Progress Bar -->
+      <div class="relative mb-8 sm:mb-12 px-4 sm:px-0">
+        <div class="h-1.5 sm:h-2 bg-gradient-to-r from-gray-100 via-gray-50 to-gray-100 
+                    rounded-full shadow-inner">
+          <div class="absolute top-0 left-0 h-full rounded-full 
+                      bg-gradient-to-r from-[#605bff] via-[#8b7fff] to-[#605bff]
+                      transition-all duration-300 ease-in-out
+                      shadow-[0_0_12px_rgba(96,91,255,0.3)]"
+               style="width: {$progressValue * 100}%">
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent 
+                        via-white/30 to-transparent animate-shimmer-fast"></div>
+          </div>
         </div>
-
-        <!-- Steps -->
-        <div class="relative space-y-6 sm:space-y-8">
-          {#each onboardingFlow as section, index}
-            <div class="relative pl-12 sm:pl-24 pb-6 sm:pb-8 group"
-                 in:fly={{ y: 20, duration: 400, delay: index * 100 }}>
-              <!-- Interactive Step Header -->
-              <button class="group w-full text-left mb-4 sm:mb-6 transition-all duration-300
-                           hover:transform hover:-translate-y-1"
-                      on:click={() => updateProgress(index)}>
-                <div class="flex items-center gap-3 sm:gap-4">
-                  <div class="absolute left-0 flex items-center justify-center 
-                             w-8 h-8 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl 
-                             bg-white/95 shadow-xl border border-white/20
-                             backdrop-blur-xl transition-all duration-300
-                             group-hover:shadow-2xl group-hover:scale-110
-                             {index <= currentStep ? `text-[${section.color}]` : 'text-gray-400'}">
-                    {@html section.icon}
-                  </div>
-                  <div>
-                    <h3 class="text-base sm:text-xl font-semibold text-[#32325d] 
-                               group-hover:text-[#605bff] transition-colors duration-300">
-                      {section.title}
-                    </h3>
-                    <p class="text-xs sm:text-sm text-[#32325d]/60">
-                      {section.stats.completed} complete • {section.stats.timeLeft} remaining
-                    </p>
-                  </div>
-                </div>
-              </button>
-
-              <!-- Enhanced Feature Grid -->
-              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
-                {#each section.features as feature}
-                  <div class="relative bg-white/95 rounded-lg sm:rounded-xl p-4 sm:p-6 
-                             shadow-xl border border-white/20 backdrop-blur-xl
-                             transition-all duration-500 group/card
-                             hover:shadow-2xl hover:-translate-y-1">
-                    <div class="mb-3 sm:mb-4">
-                      <h4 class="text-sm sm:text-base font-medium text-[#32325d] 
-                                group-hover/card:text-[#605bff] transition-colors duration-300">
-                        {feature.title}
-                      </h4>
-                      <p class="text-xs sm:text-sm text-[#32325d]/60">{feature.description}</p>
-                    </div>
-
-                    <!-- Progress Bar -->
-                    <div class="h-1 sm:h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                      <div class="h-full bg-gradient-to-r from-[#605bff] to-[#8b7fff] 
-                                transition-all duration-500 shadow-lg shadow-[#605bff]/20"
-                           style="width: {feature.progress}%"></div>
-                    </div>
-
-                    <!-- Status Badge -->
-                    <div class="absolute top-2 sm:top-4 right-2 sm:right-4">
-                      {#if feature.status === 'active'}
-                        <span class="px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs 
-                                   font-medium bg-[#605bff]/10 text-[#605bff] animate-pulse">
-                          Active
-                        </span>
-                      {:else if feature.status === 'locked'}
-                        <span class="px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs 
-                                   font-medium bg-[#32325d]/10 text-[#32325d]/40">
-                          Locked
-                        </span>
-                      {/if}
-                    </div>
-
-                    <!-- Feature Highlight -->
-                    <div class="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 
-                               text-[10px] sm:text-xs font-medium text-[#605bff]/60
-                               opacity-0 group-hover/card:opacity-100 transition-opacity duration-300">
-                      {feature.highlight}
-                    </div>
-                  </div>
-                {/each}
-              </div>
-            </div>
-          {/each}
+        
+        <div class="absolute -right-2 top-1/2 transform translate-x-full -translate-y-1/2 
+                    ml-4 text-xs sm:text-sm font-medium text-[#32325d]/70">
+          {Math.round($progressValue * 100)}%
         </div>
       </div>
-    </div>
 
-    <!-- Navigation -->
-    <div class="flex justify-between max-w-5xl mx-auto mt-8 sm:mt-12 pt-6 sm:pt-8 
-                border-t border-white/10 px-4 sm:px-0">
-      <button class="px-4 sm:px-6 py-2 text-sm sm:text-base rounded-lg border-2 
-                     border-[#605bff] text-[#605bff] font-medium transition-all duration-300
-                     hover:bg-[#605bff]/5 hover:shadow-lg hover:shadow-[#605bff]/10
-                     disabled:opacity-50 disabled:cursor-not-allowed"
-              disabled={currentStep === 0}
-              on:click={() => updateProgress(currentStep - 1)}>
-        Previous
-      </button>
-      <button class="px-4 sm:px-6 py-2 text-sm sm:text-base rounded-lg 
-                     bg-gradient-to-r from-[#605bff] to-[#8b7fff]
-                     text-white font-medium transition-all duration-300
-                     hover:shadow-lg hover:shadow-[#605bff]/20 hover:-translate-y-0.5
-                     disabled:opacity-50 disabled:cursor-not-allowed"
-              disabled={currentStep === onboardingFlow.length - 1}
-              on:click={() => updateProgress(currentStep + 1)}>
-        Continue
-      </button>
+      <!-- Steps -->
+      <div class="space-y-4 sm:space-y-6 px-4 sm:px-0">
+        {#each steps as step, index}
+          <div class="relative {index === currentStep ? 'opacity-100' : 'opacity-60'} 
+                      transition-opacity duration-300"
+               in:fly={{ y: 20, duration: 300, delay: index * 100 }}>
+            <div class="flex items-center gap-3 sm:gap-4 bg-white rounded-xl p-3 sm:p-4 
+                        border border-gray-100 shadow-lg hover:shadow-xl
+                        transition-all duration-300">
+              <!-- Icon -->
+              <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-[#605bff]/10 
+                          flex items-center justify-center text-[#605bff]">
+                {@html step.icon}
+              </div>
+
+              <!-- Content -->
+              <div class="flex-grow min-w-0">
+                <h3 class="text-base sm:text-lg font-semibold text-[#32325d] truncate">
+                  {step.title}
+                </h3>
+                <p class="text-xs sm:text-sm text-[#32325d]/60 truncate">
+                  {step.description}
+                </p>
+              </div>
+
+              <!-- Progress Circle -->
+              <div class="flex-shrink-0 w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 
+                          {step.progress === 100 ? 'border-green-500 bg-green-50' : 
+                           index === currentStep ? 'border-[#605bff] animate-pulse' : 
+                           'border-gray-200'} 
+                          flex items-center justify-center">
+                {#if step.progress === 100}
+                  <svg class="w-3 h-3 sm:w-4 sm:h-4 text-green-500" fill="none" viewBox="0 0 24 24" 
+                       stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                          d="M5 13l4 4L19 7"/>
+                  </svg>
+                {:else if index === currentStep}
+                  <span class="text-[10px] sm:text-xs font-medium text-[#605bff]">
+                    {step.progress}%
+                  </span>
+                {/if}
+              </div>
+            </div>
+
+            {#if index < steps.length - 1}
+              <div class="absolute left-5 sm:left-6 top-full h-4 sm:h-6 w-px bg-gray-200"></div>
+            {/if}
+          </div>
+        {/each}
+      </div>
     </div>
   </div>
 </section>
 
 <style>
-  @keyframes ping {
-    75%, 100% {
-      transform: scale(2);
-      opacity: 0;
-    }
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
   }
 
-  .animate-ping {
-    animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+  .animate-shimmer {
+    animation: shimmer 2.5s infinite;
   }
 
+  @keyframes shimmer-fast {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  .animate-shimmer-fast {
+    animation: shimmer-fast 1.5s infinite linear;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Progress bar glow effect */
   @keyframes glow {
-    0%, 100% { box-shadow: 0 0 20px rgba(96, 91, 255, 0.3); }
-    50% { box-shadow: 0 0 40px rgba(96, 91, 255, 0.6); }
+    0%, 100% { box-shadow: 0 0 10px rgba(96, 91, 255, 0.3); }
+    50% { box-shadow: 0 0 20px rgba(96, 91, 255, 0.5); }
   }
 
-  .animate-glow {
-    animation: glow 2s ease-in-out infinite;
+  .progress-glow {
+    animation: glow 2s infinite;
   }
 </style>

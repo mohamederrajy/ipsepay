@@ -8,6 +8,7 @@
     import SaasFooter from '$lib/components/footers/saas-footer.svelte';
     import TidioChat from '$lib/components/TidioChat.svelte';
     import BackToTop from '$lib/components/back-to-top.svelte';
+    import WhatsAppButton from '$lib/components/WhatsAppButton.svelte';
 
 
     import {onMount} from "svelte";
@@ -26,6 +27,7 @@
     <meta content="coderthemes" name="author"/>
     <link rel="shortcut icon" href="/favicon.ico"/>
 </svelte:head>
+<WhatsAppButton phoneNumber="+212639048285" message="Hello! I have a question about IpsePay." />
 
 <slot/>
 <TidioChat />

@@ -99,8 +99,24 @@
   });
 </script>
 
-<div class="min-h-screen flex relative overflow-hidden" on:mousemove={handleMouseMove}>
-  <!-- Left Section -->
+<div class="min-h-screen flex flex-col lg:flex-row relative overflow-hidden" on:mousemove={handleMouseMove}>
+  <!-- Mobile Header (visible only on mobile) -->
+  <div class="lg:hidden w-full px-4 py-6 bg-white border-b border-gray-100">
+    <div class="flex justify-between items-center">
+      <a href="/" class="transition-transform hover:scale-[1.02] active:scale-[0.98] duration-200">
+        <img src="/images/lgopis.png" alt="IpsePay" class="h-6" />
+      </a>
+      <a href="/account/signup" 
+         class="group flex items-center gap-2 px-3 py-2 bg-white/80 backdrop-blur-md 
+                rounded-xl border border-gray-200 hover:border-[#605bff]/20 
+                text-sm transition-all duration-300">
+        <span class="text-gray-600">New to IpsePay?</span>
+        <span class="text-[#605bff] font-medium">Sign up</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Left Section (hidden on mobile) -->
   <div class="hidden lg:flex lg:w-[60%] relative">
     <!-- Interactive Background -->
     <div class="absolute inset-0 pointer-events-none">
@@ -283,11 +299,21 @@
     </div>
   </div>
 
-  <!-- Right Section - Login Form -->
-  <div class="w-full lg:w-[40%] p-3 flex items-center justify-center min-h-screen bg-gradient-to-b from-white to-gray-50/50">
-    <div class="w-full max-w-[500px] pt-3 px-6 relative">
-      <!-- Enhanced Header -->
-      <div class="text-center mb-8">
+  <!-- Right Section -->
+  <div class="w-full lg:w-[40%] flex flex-col items-center min-h-[calc(100vh-76px)] lg:min-h-screen bg-gradient-to-b from-white to-gray-50/50">
+    <!-- Form Container -->
+    <div class="w-full max-w-[500px] px-3 sm:px-4 lg:p-3 flex-shrink-0 flex flex-col items-center justify-center flex-1 mt-4 sm:mt-6 lg:mt-0">
+      <!-- Mobile Welcome Text -->
+      <div class="lg:hidden text-center mb-8 sm:mb-10 mt-4 sm:mt-6">
+        <h1 class="text-[20px] sm:text-[26px] font-bold mb-1.5 text-gray-900 flex items-center justify-center gap-2">
+          Welcome Back 
+          <span class="animate-wave inline-block">👋</span>
+        </h1>
+        <p class="text-[12px] sm:text-[15px] text-gray-600">Sign in to your account</p>
+      </div>
+
+      <!-- Desktop Header (keep unchanged with secure login badge) -->
+      <div class="hidden lg:block text-center mb-8">
         <div class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#605bff]/10 to-purple-500/10 
                     rounded-full mb-3 hover:from-[#605bff]/20 hover:to-purple-500/20 transition-all duration-300">
           <div class="flex space-x-1">
@@ -307,45 +333,48 @@
       </div>
 
       <!-- Form Card -->
-      <div class="bg-white shadow-lg rounded-2xl border border-gray-100 p-8">
-        <form class="space-y-6">
+      <div class="w-full bg-white shadow-lg rounded-xl sm:rounded-2xl border border-gray-100 p-4 sm:p-6 lg:p-8">
+        <form class="space-y-4 sm:space-y-6">
           <!-- Email Input -->
           <div class="form-group">
-            <label class="text-gray-900 text-sm font-semibold mb-2 block">Email address</label>
+            <label class="text-gray-900 text-[13px] sm:text-[15px] font-semibold mb-1.5 sm:mb-2 block">Email address</label>
             <div class="relative">
-              <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                <svg class="h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+              <div class="absolute inset-y-0 left-0 pl-3.5 sm:pl-4 flex items-center pointer-events-none">
+                <svg class="h-[18px] w-[18px] sm:h-5 sm:w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                 </svg>
               </div>
-              <input type="email" class="modern-input pl-12" placeholder="you@example.com" required />
+              <input type="email" 
+                     class="modern-input pl-11 sm:pl-12" 
+                     placeholder="you@example.com" 
+                     required />
             </div>
           </div>
 
           <!-- Password Input -->
           <div class="form-group">
-            <label class="text-gray-900 text-sm font-semibold mb-2 block">Password</label>
+            <label class="text-gray-900 text-[13px] sm:text-[15px] font-semibold mb-1.5 sm:mb-2 block">Password</label>
             <div class="relative">
-              <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                <svg class="h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+              <div class="absolute inset-y-0 left-0 pl-3.5 sm:pl-4 flex items-center pointer-events-none">
+                <svg class="h-[18px] w-[18px] sm:h-5 sm:w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
                 </svg>
               </div>
               <input 
-                type={showPassword ? "text" : "password"} 
-                class="modern-input pl-12" 
+                type={showPassword ? "text" : "password"}
+                class="modern-input pl-11 sm:pl-12" 
                 placeholder="Enter your password" 
                 required 
               />
               <button 
                 type="button"
-                class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-[#605bff] transition-colors duration-300"
+                class="absolute right-3.5 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-[#605bff] transition-colors duration-300"
                 on:click={() => showPassword = !showPassword}
               >
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-[18px] h-[18px] sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
                   <path d={showPassword ? 
                     "M15 12a3 3 0 11-6 0 3 3 0 016 0z M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" :
-                    "M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"} 
+                    "M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88"} 
                   />
                 </svg>
               </button>
@@ -358,25 +387,27 @@
               <input
                 id="remember"
                 type="checkbox"
-                class="h-4 w-4 rounded border-gray-300 text-[#605bff] focus:ring-[#605bff]/20"
+                class="h-3.5 w-3.5 sm:h-4 sm:w-4 rounded border-gray-300 text-[#605bff] focus:ring-[#605bff]/20"
               />
-              <label for="remember" class="ml-2 block text-sm text-gray-700 font-medium">
+              <label for="remember" class="ml-2 block text-[12px] sm:text-[14px] text-gray-700 font-medium">
                 Remember me
               </label>
             </div>
-            <a href="/account/forgot-password" class="text-sm font-medium text-[#605bff] hover:text-[#605bff]/80">
+            <a href="/account/forgot-password" class="text-[12px] sm:text-[14px] font-medium text-[#605bff] hover:text-[#605bff]/80">
               Forgot password?
             </a>
           </div>
 
           <!-- Login Button -->
-          <button 
-            type="submit" 
-            class="w-full bg-gradient-to-r from-[#605bff] to-[#8b7aff] text-white px-7 py-3 rounded-xl
-                   font-medium flex items-center justify-center gap-2 shadow-lg shadow-[#605bff]/25
-                   hover:shadow-xl hover:shadow-[#605bff]/30 transform hover:-translate-y-0.5
-                   transition-all duration-300 group text-sm"
-          >
+          <button type="submit" 
+                  class="w-full bg-gradient-to-r from-[#605bff] to-[#8b7aff] text-white 
+                         px-5 sm:px-7 py-2.5 sm:py-3 rounded-xl
+                         font-medium flex items-center justify-center gap-2 
+                         shadow-lg shadow-[#605bff]/25
+                         hover:shadow-xl hover:shadow-[#605bff]/30 
+                         transform hover:-translate-y-0.5
+                         transition-all duration-300 group 
+                         text-[13px] sm:text-sm">
             Sign in
             <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" 
                  viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -413,25 +444,102 @@
         </div>
       </div>
     </div>
+
+    <!-- Mobile Features (below form) -->
+    <div class="lg:hidden w-full px-3 sm:px-4 pb-6 sm:pb-8 mt-6 sm:mt-8 bg-gray-50/50">
+      <div class="max-w-[500px] mx-auto">
+        <div class="grid grid-cols-2 gap-2.5 sm:gap-4">
+          <div class="p-3 sm:p-4 bg-white/80 backdrop-blur-sm rounded-xl border border-gray-100 hover:border-[#605bff]/20 transition-all duration-300 group">
+            <div class="flex items-start space-x-2.5 sm:space-x-3">
+              <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#605bff]/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-[#605bff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-[13px] sm:text-[15px] font-semibold text-gray-900 mb-0.5">Enterprise Security</h3>
+                <p class="text-[11px] sm:text-[13px] text-gray-600">Bank-grade encryption</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-3 sm:p-4 bg-white/80 backdrop-blur-sm rounded-xl border border-gray-100 hover:border-[#605bff]/20 transition-all duration-300 group">
+            <div class="flex items-start space-x-2.5 sm:space-x-3">
+              <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#605bff]/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-[#605bff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-[13px] sm:text-[15px] font-semibold text-gray-900 mb-0.5">Global Coverage</h3>
+                <p class="text-[11px] sm:text-[13px] text-gray-600">150+ Countries</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-3 sm:p-4 bg-white/80 backdrop-blur-sm rounded-xl border border-gray-100 hover:border-[#605bff]/20 transition-all duration-300 group">
+            <div class="flex items-start space-x-2.5 sm:space-x-3">
+              <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#605bff]/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-[#605bff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-[13px] sm:text-[15px] font-semibold text-gray-900 mb-0.5">Instant Setup</h3>
+                <p class="text-[11px] sm:text-[13px] text-gray-600">Go live in minutes</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-3 sm:p-4 bg-white/80 backdrop-blur-sm rounded-xl border border-gray-100 hover:border-[#605bff]/20 transition-all duration-300 group">
+            <div class="flex items-start space-x-2.5 sm:space-x-3">
+              <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#605bff]/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-[#605bff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-[13px] sm:text-[15px] font-semibold text-gray-900 mb-0.5">24/7 Support</h3>
+                <p class="text-[11px] sm:text-[13px] text-gray-600">Always here to help</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trust Indicators -->
+        <div class="mt-4 sm:mt-6 flex items-center gap-2">
+          <div class="flex -space-x-1.5 sm:-space-x-2">
+            {#each Array(4) as _, i}
+              <div class="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-gradient-to-r from-[#605bff] to-purple-500 border-[1.5px] sm:border-2 border-white flex items-center justify-center text-white text-[9px] sm:text-[11px]">
+                ✓
+              </div>
+            {/each}
+          </div>
+          <p class="text-[11px] sm:text-[13px] text-gray-600">
+            Trusted by <span class="font-semibold text-gray-900">10,000+</span> businesses
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
 <style>
-  /* Include all the styles from the signup page */
+  /* Update input styles for better mobile responsiveness */
   .modern-input {
-    @apply w-full h-[60px] pl-14 pr-12 bg-white
+    @apply w-full h-[42px] sm:h-[48px] bg-white
            border border-gray-200 rounded-xl
            focus:outline-none focus:ring-2 
            focus:ring-[#605bff]/20 focus:border-[#605bff]
            text-gray-900 placeholder-gray-400 
            transition-all duration-200
-           hover:border-[#605bff]/40 text-[16px] 
-           leading-normal tracking-tight
+           hover:border-[#605bff]/40 text-[13px] sm:text-[15px]
+           leading-normal tracking-tight pr-10 sm:pr-11
            hover:bg-white focus:bg-white font-medium;
   }
 
   .modern-input::placeholder {
-    @apply text-gray-400 text-[14px] font-normal;
+    @apply text-gray-400 text-[12px] sm:text-[14px] font-normal;
   }
 
   /* ... (rest of the styles from signup page) ... */

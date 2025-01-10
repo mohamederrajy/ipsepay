@@ -46,12 +46,56 @@
   // Add phone prefix state
   let selectedPhonePrefix = null;
   
-  // Phone prefixes data
-  const phonePrefixes = countries.map(country => ({
-    value: country.idd.root + (country.idd.suffixes?.[0] || ''),
-    label: `${country.flag} ${country.idd.root}${country.idd.suffixes?.[0] || ''}`,
-    flag: country.flag
-  })).sort((a, b) => a.value.localeCompare(b.value));
+  // Phone prefixes data with proper formatting
+  const phonePrefixes = countries
+    .map(country => {
+      try {
+        // Only proceed if country has idd data
+        if (country.idd && country.idd.root) {
+          // Get the root (always exists if idd exists)
+          const root = country.idd.root;
+          
+          // Handle countries with multiple suffixes or no suffix
+          let prefixes = [];
+          if (country.idd.suffixes && country.idd.suffixes.length > 0) {
+            // Create an entry for each suffix
+            prefixes = country.idd.suffixes.map(suffix => ({
+              value: `${root}${suffix}`,
+              label: `${country.flag || '🏳️'} ${root}${suffix}`,
+              flag: country.flag || '🏳️',
+              country: country.name.common
+            }));
+          } else {
+            // Countries with no suffix, just use root
+            prefixes = [{
+              value: root,
+              label: `${country.flag || '🏳️'} ${root}`,
+              flag: country.flag || '🏳️',
+              country: country.name.common
+            }];
+          }
+          return prefixes;
+        }
+        return null;
+      } catch (error) {
+        console.error(`Error processing country: ${country.name?.common}`, error);
+        return null;
+      }
+    })
+    .filter(Boolean) // Remove null entries
+    .flat() // Flatten array of arrays
+    .filter(prefix => prefix.value.startsWith('+')) // Ensure all prefixes start with +
+    .sort((a, b) => {
+      // Sort by prefix number (removing the + and converting to number)
+      const numA = Number(a.value.replace('+', ''));
+      const numB = Number(b.value.replace('+', ''));
+      return numA - numB;
+    });
+
+  // Filter out duplicate prefixes while keeping the first occurrence
+  const uniquePrefixes = phonePrefixes.filter((prefix, index, self) =>
+    index === self.findIndex((p) => p.value === prefix.value)
+  );
 
   // Email validation function
   function isValidEmail(email) {
@@ -531,236 +575,256 @@
   }
 </script>
 <div class="min-h-screen flex flex-col lg:flex-row relative overflow-hidden">
-  <!-- Left Section - Hide on mobile -->
-  <div class="hidden lg:flex lg:w-[60%] relative">
-    <!-- Interactive Background - Now only affects left side -->
-    <div class="absolute inset-0 pointer-events-none">
-      <!-- Gradient Orbs -->
-      <div class="absolute inset-0 opacity-50"
-           style="background: radial-gradient(circle at {mouseX * 100}% {mouseY * 100}%, 
-                  rgba(96, 91, 255, 0.1), 
-                  transparent 40%),
-                  radial-gradient(circle at {100 - mouseX * 100}% {100 - mouseY * 100}%, 
-                  rgba(111, 76, 255, 0.1), 
-                  transparent 40%);">
-      </div>
-      
-      <!-- Animated Grid -->
-      <div class="absolute inset-0 opacity-[0.07]"
-           style="background-image: linear-gradient(#605bff 1px, transparent 1px),
-                  linear-gradient(to right, #605bff 1px, transparent 1px);
-                  background-size: 40px 40px;
-                  transform: perspective(1000px) rotateX({mouseY * 5}deg) rotateY({mouseX * 5}deg);
-                  transition: transform 0.1s ease-out;">
+  <!-- Left Section - Remove hidden class and adjust for mobile -->
+  <div class="w-full lg:w-[60%] relative">
+    <!-- Left Section Content -->
+    <div class="w-full lg:hidden p-4 sm:p-6 bg-white border-b border-gray-100">
+      <!-- Mobile Header - Adjust spacing and sizing -->
+      <nav class="flex justify-between items-center mb-4">
+        <a href="/" class="hover:opacity-80 transition-opacity">
+          <img src="/images/lgopis.png" alt="IpsePay" class="h-7" />
+        </a>
+        
+        <a href="/account/login" 
+           class="group flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-2 sm:py-2.5 
+                  bg-white/80 backdrop-blur-md rounded-lg sm:rounded-xl border border-gray-200
+                  hover:border-[#605bff]/40 hover:bg-white/90 
+                  transition-all duration-200">
+          <span class="text-[13px] sm:text-sm font-medium text-gray-600 hidden sm:inline">Already have an account?</span>
+          <span class="text-[13px] sm:text-sm font-medium text-gray-600 sm:hidden">Have an account?</span>
+          <span class="text-[13px] sm:text-sm font-medium text-[#605bff] group-hover:text-[#605bff]/80">Sign in</span>
+        </a>
+      </nav>
+
+      <!-- Mobile Hero Content -->
+      <div class="space-y-4 text-center">
+        <!-- Title and Description -->
+        <h1 class="text-2xl font-bold tracking-tight leading-tight">
+          <span class="text-gray-900/80">Start Your</span><br />
+          <span class="bg-clip-text text-transparent bg-gradient-to-r from-[#605bff] to-purple-500">
+            Payment Journey
+          </span>
+        </h1>
+        
+        <p class="text-sm text-gray-600 mx-auto max-w-sm">
+          Join our global network of businesses and experience secure and fast payments.
+        </p>
       </div>
     </div>
 
-    <!-- Rest of left section content -->
-    <div class="w-full p-12 flex flex-col relative z-10">
-      <!-- Header -->
-      <div class="w-full flex flex-col h-full">
-        <nav class="flex justify-between items-center mb-8">
-          <img src="/images/lgopis.png" alt="IpsePay" class="h-8" />
-          <a href="/account/login" 
-             class="group flex items-center gap-2 px-5 py-2.5 bg-white/80 backdrop-blur-md 
-                    rounded-xl border border-white/20 hover:border-[#605bff]/20 
-                    transition-all duration-300 shadow-lg shadow-[#605bff]/5">
-            <span class="text-sm font-medium text-gray-600">Already have an account?</span>
-            <span class="text-[#605bff] font-medium relative">
-              Sign in
-              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#605bff] 
-                           group-hover:w-full transition-all duration-300"></span>
-            </span>
-            <!-- Arrow icon -->
-            <svg class="w-4 h-4 text-[#605bff] transform group-hover:translate-x-1 transition-transform" 
-                 viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                    d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          </a>
-        </nav>
+    <!-- Desktop Left Section - Keep existing code but hide on mobile -->
+    <div class="hidden lg:flex lg:w-full relative">
+      <!-- Interactive Background -->
+      <div class="absolute inset-0 pointer-events-none">
+        <!-- Gradient Orbs -->
+        <div class="absolute inset-0 opacity-50"
+             style="background: radial-gradient(circle at {mouseX * 100}% {mouseY * 100}%, 
+                    rgba(96, 91, 255, 0.1), 
+                    transparent 40%),
+                    radial-gradient(circle at {100 - mouseX * 100}% {100 - mouseY * 100}%, 
+                    rgba(111, 76, 255, 0.1), 
+                    transparent 40%);">
+        </div>
+        
+        <!-- Animated Grid -->
+        <div class="absolute inset-0 opacity-[0.07]"
+             style="background-image: linear-gradient(#605bff 1px, transparent 1px),
+                    linear-gradient(to right, #605bff 1px, transparent 1px);
+                    background-size: 40px 40px;
+                    transform: perspective(1000px) rotateX({mouseY * 5}deg) rotateY({mouseX * 5}deg);
+                    transition: transform 0.1s ease-out;">
+        </div>
+      </div>
 
-        <!-- Main Content -->
-        <div class="flex-1 flex flex-col justify-between max-w-xl h-full">
-          <!-- Modern Title Section -->
-          <div class="mb-6">
-            <!-- Modern Animated Badge -->
-            <div class="inline-flex items-center gap-3 px-4 py-2 bg-gradient-to-r from-[#605bff]/5 to-purple-500/5 
-                        rounded-full mb-5 border border-[#605bff]/10">
-              <div class="flex items-center gap-2">
-                <svg class="w-3 h-3 text-[#605bff]" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
-                  <path fill="white" d="M11 14.414L7.586 11 6 12.586l5 5 8-8L17.586 8z"/>
+      <!-- Content Section -->
+      <div class="w-full p-12 flex flex-col relative z-10">
+        <!-- Header -->
+        <div class="w-full flex flex-col h-full">
+          <nav class="flex justify-between items-center mb-6 lg:mb-8">
+            <a href="/" class="hover:opacity-80 transition-opacity">
+              <img src="/images/lgopis.png" alt="IpsePay" class="h-6 lg:h-8" />
+            </a>
+            <a href="/account/login" 
+               class="group flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 
+                      bg-white/80 backdrop-blur-md rounded-xl border border-gray-200
+                      hover:border-[#605bff]/40 hover:bg-white/90 
+                      transition-all duration-200">
+              <span class="text-xs sm:text-sm font-medium text-gray-600">Already have an account?</span>
+              <span class="text-xs sm:text-sm font-medium text-[#605bff] group-hover:text-[#605bff]/80">Sign in</span>
+            </a>
+          </nav>
+
+          <!-- Main Content - Adjusted title size and spacing -->
+          <div class="flex-1 flex flex-col justify-between max-w-xl h-full">
+            <div class="mb-4 lg:mb-6">
+              <!-- Modern Animated Badge -->
+              <div class="inline-flex items-center gap-3 px-4 py-2 bg-gradient-to-r from-[#605bff]/5 to-purple-500/5 
+                          rounded-full mb-5 border border-[#605bff]/10">
+                <div class="flex items-center gap-2">
+                  <svg class="w-3 h-3 text-[#605bff]" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                    <path fill="white" d="M11 14.414L7.586 11 6 12.586l5 5 8-8L17.586 8z"/>
+                  </svg>
+                  <div class="h-3 w-[1px] bg-[#605bff]/20"></div>
+                  <span class="text-sm font-medium bg-gradient-to-r from-[#605bff] to-purple-500 
+                               bg-clip-text text-transparent">IpsePay Platform</span>
+                </div>
+              </div>
+
+              <!-- Enhanced Dynamic Title -->
+              <div class="space-y-3">
+                <div class="relative">
+                  <h1 class="text-[2rem] lg:text-[3.25rem] font-bold tracking-tight leading-[1.1]">
+                    <span class="text-gray-900/80">Start Your</span>
+                    <br />
+                    <div class="relative inline-flex items-center">
+                      <span class="bg-clip-text text-transparent bg-gradient-to-r from-[#605bff] to-purple-500 
+                                   animate-gradient">Payment Journey</span>
+                      <div class="absolute -right-12 top-0 flex items-center gap-1">
+                        <span class="text-2xl animate-bounce-slow delay-100">✨</span>
+                        <span class="text-xl animate-bounce-slow delay-300">✨</span>
+                      </div>
+                    </div>
+                  </h1>
+                </div>
+                
+                <!-- Modern Subtitle with Highlight -->
+                <p class="text-base text-gray-500 flex items-center gap-2">
+                  Join 
+                  <span class="inline-flex items-center px-2 py-1 bg-[#605bff]/5 rounded-md 
+                                   text-sm font-medium text-[#605bff]">10,000+</span>
+                  businesses using our secure platform
+                </p>
+              </div>
+            </div>
+            
+            <!-- Description -->
+            <p class="text-lg text-gray-600 mb-12 relative">
+              Join our global network of businesses and experience 
+              <span class="inline-flex items-center px-2 py-1 bg-green-50 text-green-700 rounded-md text-sm font-medium">
+                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
-                <div class="h-3 w-[1px] bg-[#605bff]/20"></div>
-                <span class="text-sm font-medium bg-gradient-to-r from-[#605bff] to-purple-500 
-                             bg-clip-text text-transparent">IpsePay Platform</span>
+                secure
+              </span>
+              and
+              <span class="inline-flex items-center px-2 py-1 bg-blue-50 text-blue-700 rounded-md text-sm font-medium">
+                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                fast
+              </span>
+              payments.
+            </p>
+
+            <!-- Feature Grid - Adjusted for mobile -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:gap-4 mb-4 lg:mb-6">
+              <div class="p-3 lg:p-5 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:border-[#605bff]/20 transition-all duration-300 group">
+                <div class="flex items-start space-x-4">
+                  <div class="w-12 h-12 rounded-full bg-[#605bff]/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-6 h-6 text-[#605bff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-base font-semibold text-gray-900 mb-1">Enterprise Security</h3>
+                    <p class="text-sm text-gray-600">Bank-grade encryption and compliance</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-3 lg:p-5 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:border-[#605bff]/20 transition-all duration-300 group">
+                <div class="flex items-start space-x-4">
+                  <div class="w-12 h-12 rounded-full bg-[#605bff]/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-6 h-6 text-[#605bff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-base font-semibold text-gray-900 mb-1">Global Coverage</h3>
+                    <p class="text-sm text-gray-600">Accept payments worldwide</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-3 lg:p-5 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:border-[#605bff]/20 transition-all duration-300 group">
+                <div class="flex items-start space-x-4">
+                  <div class="w-12 h-12 rounded-full bg-[#605bff]/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-6 h-6 text-[#605bff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-base font-semibold text-gray-900 mb-1">Instant Setup</h3>
+                    <p class="text-sm text-gray-600">Go live in minutes</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-3 lg:p-5 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:border-[#605bff]/20 transition-all duration-300 group">
+                <div class="flex items-start space-x-4">
+                  <div class="w-12 h-12 rounded-full bg-[#605bff]/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-6 h-6 text-[#605bff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-base font-semibold text-gray-900 mb-1">24/7 Support</h3>
+                    <p class="text-sm text-gray-600">Always here to help</p>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <!-- Enhanced Dynamic Title -->
-            <div class="space-y-3">
-              <div class="relative">
-                <h1 class="text-[3.25rem] font-bold tracking-tight leading-[1.1]">
-                  <span class="text-gray-900/80">Start Your</span>
-                  <br />
-                  <div class="relative inline-flex items-center">
-                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-[#605bff] to-purple-500 
-                                 animate-gradient">Payment Journey</span>
-                    <div class="absolute -right-12 top-0 flex items-center gap-1">
-                      <span class="text-2xl animate-bounce-slow delay-100">✨</span>
-                      <span class="text-xl animate-bounce-slow delay-300">✨</span>
-                    </div>
+            <!-- Trust Badge -->
+            <div class="flex items-center gap-2 mb-6">
+              <div class="flex -space-x-2">
+                {#each Array(4) as _, i}
+                  <div class="w-8 h-8 rounded-full bg-gradient-to-r from-[#605bff] to-purple-500 border-2 border-white flex items-center justify-center text-white text-xs">
+                    ✓
                   </div>
-                </h1>
+                {/each}
               </div>
-              
-              <!-- Modern Subtitle with Highlight -->
-              <p class="text-base text-gray-500 flex items-center gap-2">
-                Join 
-                <span class="inline-flex items-center px-2 py-1 bg-[#605bff]/5 rounded-md 
-                                 text-sm font-medium text-[#605bff]">10,000+</span>
-                businesses using our secure platform
+              <p class="text-sm text-gray-600">
+                Trusted by <span class="font-semibold text-gray-900">10,000+</span> businesses worldwide
               </p>
             </div>
           </div>
-          
-          <!-- Enhanced Description -->
-          <p class="text-lg text-gray-600 mb-12 relative">
-            Join our global network of businesses and experience 
-            <span class="inline-flex items-center px-2 py-1 bg-green-50 text-green-700 rounded-md text-sm font-medium">
-              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-              secure
-            </span>
-            and
-            <span class="inline-flex items-center px-2 py-1 bg-blue-50 text-blue-700 rounded-md text-sm font-medium">
-              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-              fast
-            </span>
-            payments.
-          </p>
-
-          <!-- Modern Feature Grid -->
-          <div class="grid grid-cols-2 gap-4 mb-6">
-            <div class="p-5 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:border-[#605bff]/20 transition-all duration-300 group">
-              <div class="flex items-start space-x-4">
-                <div class="w-12 h-12 rounded-full bg-[#605bff]/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <svg class="w-6 h-6 text-[#605bff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="text-base font-semibold text-gray-900 mb-1">Enterprise Security</h3>
-                  <p class="text-sm text-gray-600">Bank-grade encryption and compliance</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="p-5 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:border-[#605bff]/20 transition-all duration-300 group">
-              <div class="flex items-start space-x-4">
-                <div class="w-12 h-12 rounded-full bg-[#605bff]/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <svg class="w-6 h-6 text-[#605bff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="text-base font-semibold text-gray-900 mb-1">Global Coverage</h3>
-                  <p class="text-sm text-gray-600">Accept payments worldwide</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="p-5 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:border-[#605bff]/20 transition-all duration-300 group">
-              <div class="flex items-start space-x-4">
-                <div class="w-12 h-12 rounded-full bg-[#605bff]/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <svg class="w-6 h-6 text-[#605bff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="text-base font-semibold text-gray-900 mb-1">Instant Setup</h3>
-                  <p class="text-sm text-gray-600">Go live in minutes</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="p-5 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:border-[#605bff]/20 transition-all duration-300 group">
-              <div class="flex items-start space-x-4">
-                <div class="w-12 h-12 rounded-full bg-[#605bff]/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <svg class="w-6 h-6 text-[#605bff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="text-base font-semibold text-gray-900 mb-1">24/7 Support</h3>
-                  <p class="text-sm text-gray-600">Always here to help</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Trust Badge -->
-          <div class="flex items-center gap-2 mb-6">
-            <div class="flex -space-x-2">
-              {#each Array(4) as _, i}
-                <div class="w-8 h-8 rounded-full bg-gradient-to-r from-[#605bff] to-purple-500 border-2 border-white flex items-center justify-center text-white text-xs">
-                  ✓
-                </div>
-              {/each}
-            </div>
-            <p class="text-sm text-gray-600">
-              Trusted by <span class="font-semibold text-gray-900">10,000+</span> businesses worldwide
-            </p>
-          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Right Section - Form Area -->
-  <div class="fixed top-0 left-0 w-full z-50">
-    <div class="h-1.5 bg-gray-100">
-      <div class="h-full bg-[#605bff] transition-all duration-500 ease-in-out"
-           style="width: {(formStep / 2) * 100}%">
-        <div class="absolute right-0 top-1/2 transform -translate-y-1/2">
-          <div class="w-3 h-3 bg-[#605bff] rounded-full animate-pulse"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="w-full lg:w-[70%] p-3 flex items-start justify-center min-h-screen bg-gradient-to-b from-white to-gray-50/50">
-    <div class="w-full max-w-[1200px] relative scale-[0.92]">
-      <!-- Secure Registration Badge -->
-      <div class="text-center mb-3 pt-4">
-        <div class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#605bff]/10 to-purple-500/10 
-                    rounded-full mb-3 hover:from-[#605bff]/20 hover:to-purple-500/20 transition-all duration-300">
+  <!-- Right Section - Form -->
+  <div class="w-full lg:w-[70%] p-1 sm:p-2 flex items-start justify-start min-h-screen bg-gradient-to-b from-white to-gray-50/50">
+    <div class="w-full max-w-[1200px] relative scale-100 lg:scale-[0.92]">
+      <!-- Secure Registration Badge - Reduced margins -->
+      <div class="text-center mb-2">
+        <div class="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 bg-gradient-to-r from-[#605bff]/10 
+                    to-purple-500/10 rounded-full mb-2 hover:from-[#605bff]/20 hover:to-purple-500/20 
+                    transition-all duration-300">
           <div class="flex space-x-1">
             {#each Array(3) as _, i}
               <div class="w-1.5 h-1.5 rounded-full bg-[#605bff] animate-pulse" 
                    style="animation-delay: {i * 200}ms"></div>
             {/each}
           </div>
-          <span class="text-sm font-semibold text-[#605bff]">Secure Registration</span>
+          <span class="text-xs sm:text-sm font-semibold text-[#605bff]">Secure Registration</span>
         </div>
         
-        <h2 class="text-3xl font-bold mb-2 text-gray-900 flex items-center justify-center gap-2">
+        <h2 class="text-2xl sm:text-3xl font-bold mb-1 text-gray-900 flex items-center justify-center gap-2">
           Create Account 
           <span class="animate-crawl inline-block">👋</span>
         </h2>
-        <p class="text-sm text-gray-600">Complete your profile to get started</p>
+        <p class="text-xs sm:text-sm text-gray-600">Complete your profile to get started</p>
       </div>
-
-      <!-- Progress Bar -->
-      <div class="relative w-full mb-8">
-        <!-- Progress bar and steps container -->
-        <div class="relative flex items-center justify-between px-10">
+      
+      <!-- Progress Bar - Updated for mobile responsiveness -->
+      <div class="relative w-full mb-6 sm:mb-8">
+        <!-- Progress bar and steps container - Adjusted padding -->
+        <div class="relative flex items-center justify-between px-4 sm:px-10">
           <!-- Background line -->
-          <div class="absolute left-16 right-16 top-1/2 -translate-y-1/2 h-1 
+          <div class="absolute left-8 sm:left-16 right-8 sm:right-16 top-1/2 -translate-y-1/2 h-1 
                       bg-gray-100 rounded-full overflow-hidden">
             <!-- Animated progress -->
             <div class="h-full bg-gradient-to-r from-[#605bff] to-[#8b7aff] 
@@ -772,18 +836,16 @@
             </div>
           </div>
 
-          <!-- Steps with icons -->
+          <!-- Steps with icons - Adjusted sizes -->
           {#each Array(2) as _, i}
             <div class="relative z-10">
-              <!-- Step circle -->
+              <!-- Step circle - Responsive sizing -->
               <div class="relative">
                 <!-- Main circle -->
-                <div class="w-16 h-16 rounded-full flex items-center justify-center
+                <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center
                             transition-all duration-500 border-[3px]
                             transform hover:scale-105 bg-white
-                            {i + 1 <= formStep 
-                              ? 'border-[#605bff]' 
-                              : 'border-gray-200'}"
+                            {i + 1 <= formStep ? 'border-[#605bff]' : 'border-gray-200'}"
                      style="box-shadow: 0 0 0 8px {i + 1 <= formStep ? 'rgb(96 91 255 / 0.08)' : 'rgb(243 244 246)'}">
                   
                   {#if i + 1 < formStep}
@@ -824,7 +886,7 @@
       </div>
 
       <!-- Form Card -->
-      <div class="bg-white shadow-lg rounded-2xl border border-gray-100 p-6 max-w-3xl mx-auto space-y-6 pt-2">
+      <div class="bg-white shadow-lg rounded-2xl border border-gray-100 p-4 sm:p-6 max-w-3xl mx-auto space-y-4 sm:space-y-6 pt-2">
         <form class="relative">
           {#if formStep === 1}
             <!-- Step 1: Personal Information -->
@@ -910,12 +972,12 @@
 
                   <!-- Phone -->
                   <div class="form-group">
-                    <label class="form-label" for="phone">Phone number</label>
+                    <label class="form-label">Phone number</label>
                     <div class="flex gap-2">
                       <!-- Phone Prefix Select -->
-                      <div class="w-32">
+                      <div class="w-32 relative">
                         <Select
-                          items={phonePrefixes}
+                          items={uniquePrefixes}
                           bind:value={selectedPhonePrefix}
                           class="phone-prefix-select"
                           placeholder="+1"
@@ -923,6 +985,7 @@
                             <div class="flex items-center gap-2 py-1">
                               <span class="text-lg">${item.flag}</span>
                               <span class="font-medium">${item.value}</span>
+                              <span class="text-gray-500 text-sm">${item.country}</span>
                             </div>
                           `}
                           selectedComponent={({ item }) => `
@@ -935,33 +998,20 @@
                       </div>
 
                       <!-- Phone Number Input -->
-                      <div class="flex-1 relative">
-                        <div class="input-wrapper">
-                          <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                          </svg>
-                          <input
-                            type="tel"
-                            id="phone"
-                            class="modern-input {errors.phone ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' : ''}"
-                            placeholder="(123) 456-7890"
-                            bind:value={formData.phone}
-                            on:input={handlePhoneInput}
-                            maxlength="12"
-                            required
-                          />
-                        </div>
-                        {#if errors.phone}
-                          <span class="text-xs text-red-500 mt-1 absolute -bottom-5">{errors.phone}</span>
-                        {/if}
+                      <div class="input-wrapper flex-1">
+                        <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+                        </svg>
+                        <input
+                          type="tel"
+                          class="modern-input {errors.phone ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' : ''}"
+                          placeholder="(555) 000-0000"
+                          bind:value={formData.phone}
+                          on:input={handlePhoneInput}
+                          required
+                        />
                       </div>
                     </div>
-                    
-                    <!-- Helper text -->
-                    <span class="text-xs text-gray-500 mt-1">
-                      Format: XXX-XXX-XXXX
-                    </span>
                   </div>
 
                   <!-- Password -->
@@ -1143,9 +1193,9 @@
                   </div>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
-                  <!-- Street Address -->
-                  <div class="form-group col-span-2">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <!-- Street Address - Full width on all screens -->
+                  <div class="form-group col-span-1 sm:col-span-2">
                     <label class="form-label">Street address</label>
                     <div class="input-wrapper">
                       <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -1162,7 +1212,7 @@
                   </div>
 
                   <!-- City -->
-                  <div class="form-group">
+                  <div class="form-group col-span-1">
                     <label class="form-label">City</label>
                     <div class="input-wrapper">
                       <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -1179,7 +1229,7 @@
                   </div>
 
                   <!-- State -->
-                  <div class="form-group">
+                  <div class="form-group col-span-1">
                     <label class="form-label">State</label>
                     <div class="input-wrapper">
                       <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -1196,7 +1246,7 @@
                   </div>
 
                   <!-- ZIP -->
-                  <div class="form-group">
+                  <div class="form-group col-span-1">
                     <label class="form-label">ZIP code</label>
                     <div class="input-wrapper">
                       <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -1213,7 +1263,7 @@
                   </div>
 
                   <!-- Country -->
-                  <div class="form-group">
+                  <div class="form-group col-span-1">
                     <label class="form-label">Country</label>
                     <div class="input-wrapper select-wrapper">
                       <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -1288,6 +1338,61 @@
             </div>
           {/if}
         </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Features Section - Show after form -->
+  <div class="lg:hidden px-4 py-8 bg-gray-50/50">
+    <div class="space-y-6">
+      <!-- Section Title -->
+      <div class="text-center">
+        <h3 class="text-xl font-bold text-gray-900">Why Choose IpsePay?</h3>
+        <p class="text-sm text-gray-600 mt-1">Trusted by businesses worldwide</p>
+      </div>
+
+      <!-- Feature Grid -->
+      <div class="grid grid-cols-2 gap-3">
+        {#each features as feature}
+          <div class="p-3 bg-white/80 backdrop-blur-sm rounded-xl border border-gray-100">
+            <div class="flex flex-col gap-2">
+              <div class="w-8 h-8 rounded-full bg-[#605bff]/10 flex items-center justify-center">
+                <!-- Feature icons (using existing SVGs) -->
+                {#if feature.title === 'Lightning Fast'}
+                  <svg class="w-4 h-4 text-[#605bff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                {:else if feature.title === 'Bank-Grade Security'}
+                  <svg class="w-4 h-4 text-[#605bff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                {:else if feature.title === 'Global Coverage'}
+                  <svg class="w-4 h-4 text-[#605bff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                {:else if feature.title === 'Real-time Analytics'}
+                  <svg class="w-4 h-4 text-[#605bff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                  </svg>
+                {/if}
+              </div>
+              <div>
+                <h3 class="text-sm font-semibold text-gray-900">{feature.title}</h3>
+                <p class="text-xs text-gray-600">{feature.description}</p>
+              </div>
+            </div>
+          </div>
+        {/each}
+      </div>
+
+      <!-- Stats Section -->
+      <div class="flex justify-around py-4 border-t border-gray-100">
+        {#each stats as stat}
+          <div class="text-center">
+            <div class="text-lg font-bold text-gray-900">{stat.value}</div>
+            <div class="text-xs text-gray-600">{stat.label}</div>
+          </div>
+        {/each}
       </div>
     </div>
   </div>
@@ -1673,7 +1778,7 @@
   }
 
   :global(.phone-prefix-select .selectContainer) {
-    @apply border border-gray-200 rounded-xl;
+    @apply h-[60px] border border-gray-200 rounded-xl;
   }
 
   :global(.phone-prefix-select .selectContainer:hover) {
@@ -1681,7 +1786,19 @@
   }
 
   :global(.phone-prefix-select .selectContainer input) {
-    @apply h-[60px] px-4;
+    @apply h-[60px] px-3;
+  }
+
+  :global(.phone-prefix-select .selectedItem) {
+    @apply px-3;
+  }
+
+  :global(.phone-prefix-select .listContainer) {
+    @apply rounded-xl border border-gray-100 shadow-lg mt-1;
+  }
+
+  :global(.phone-prefix-select .listItem) {
+    @apply px-3 py-2 hover:bg-[#605bff]/5 transition-colors duration-200;
   }
 
   /* Enhanced country select styles */
@@ -1738,6 +1855,25 @@
   .verification-input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+  }
+
+  /* Modern Input Styles for Mobile */
+  .modern-input {
+    @apply w-full h-[50px] sm:h-[60px] pl-10 sm:pl-14 pr-4 sm:pr-5 bg-white
+           border border-gray-200 rounded-xl
+           focus:outline-none focus:ring-2 
+           focus:ring-[#605bff]/20 focus:border-[#605bff]
+           text-gray-900 placeholder-gray-400 
+           transition-all duration-200
+           hover:border-[#605bff]/40 text-sm sm:text-base
+           leading-normal tracking-tight
+           hover:bg-white focus:bg-white font-medium;
+  }
+
+  .input-icon {
+    @apply absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 
+           w-4 sm:w-5 h-4 sm:h-5 text-[#605bff]/70 stroke-[1.5]
+           transition-all duration-200 pointer-events-none;
   }
 </style>
 

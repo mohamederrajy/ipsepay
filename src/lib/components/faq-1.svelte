@@ -49,19 +49,6 @@
 </script>
 
 <section class="relative overflow-hidden py-16 sm:py-24 lg:py-32">
-  <!-- Responsive Background -->
-  <div class="absolute inset-0 bg-[#fafafa]">
-    <div class="absolute inset-0 bg-[url('/images/grid.svg')] opacity-[0.3]"></div>
-    <div class="absolute inset-0">
-      <div class="absolute top-0 right-0 w-[600px] sm:w-[1200px] h-[600px] sm:h-[1200px] 
-                  bg-gradient-to-br from-[#605bff]/10 via-purple-100/10 to-transparent 
-                  rounded-full blur-2xl sm:blur-3xl transform rotate-12 animate-pulse"></div>
-      <div class="absolute bottom-0 left-0 w-[500px] sm:w-[1000px] h-[500px] sm:h-[1000px] 
-                  bg-gradient-to-tr from-[#32325d]/5 via-[#605bff]/5 to-transparent 
-                  rounded-full blur-2xl sm:blur-3xl transform -rotate-12 animate-pulse"></div>
-    </div>
-  </div>
-
   <div class="relative container mx-auto px-4 transition-all duration-1000 
               {isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}">
     <!-- Responsive Header -->
@@ -92,52 +79,56 @@
       </h2>
     </div>
 
-    <!-- Responsive FAQ Items -->
-    <div class="max-w-3xl mx-auto space-y-3 sm:space-y-4">
+    <!-- Enhanced FAQ Items with Better Icons -->
+    <div class="max-w-3xl mx-auto space-y-4">
       {#each faqs as faq, i}
-        <div class="bg-white/95 backdrop-blur-xl rounded-2xl sm:rounded-3xl 
-                    border border-white/20 shadow-xl hover:shadow-2xl 
-                    transition-all duration-300">
+        <div class="bg-white rounded-xl border border-gray-100 shadow-sm 
+                    hover:shadow-md transition-all duration-300">
           <button 
-            class="w-full text-left px-4 sm:px-8 py-4 sm:py-6 
-                   flex items-center justify-between gap-4"
+            class="w-full text-left px-6 py-5 flex items-center justify-between gap-4"
             on:click={() => toggleFaq(i)}
           >
-            <span class="font-semibold text-base sm:text-lg text-[#32325d] 
-                         leading-tight">{faq.q}</span>
-            <div class="flex-shrink-0 h-6 w-6 sm:h-8 sm:w-8 rounded-full 
-                        bg-gradient-to-br from-[#605bff]/5 to-[#605bff]/10 
-                        flex items-center justify-center transition-all duration-300 
-                        {faq.isOpen ? 'rotate-180 bg-[#605bff]' : ''}">
+            <span class="font-medium text-[#32325d] text-lg">{faq.q}</span>
+            
+            <!-- Enhanced Icon Design -->
+            <div class="flex-shrink-0 w-8 h-8 rounded-full 
+                        bg-gradient-to-b from-[#605bff]/5 to-[#605bff]/10
+                        flex items-center justify-center
+                        transition-all duration-300 ease-in-out
+                        {faq.isOpen ? 'bg-[#605bff] shadow-lg shadow-[#605bff]/20' : 'hover:bg-[#605bff]/20'}">
               <svg 
-                class="w-4 h-4 sm:w-5 sm:h-5 {faq.isOpen ? 'text-white' : 'text-[#605bff]'}" 
-                viewBox="0 0 20 20" 
-                fill="currentColor"
+                class="w-4 h-4 transition-all duration-300
+                       {faq.isOpen ? 'text-white rotate-180' : 'text-[#605bff]'}" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                stroke-width="2.5" 
+                stroke-linecap="round" 
+                stroke-linejoin="round"
               >
-                <path fill-rule="evenodd" 
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
+                <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
             </div>
           </button>
+          
           {#if faq.isOpen}
-            <div class="px-4 sm:px-8 pb-4 sm:pb-6" transition:slide={{ duration: 300 }}>
-              <p class="text-sm sm:text-base text-[#32325d]/70 leading-relaxed">{faq.a}</p>
+            <div class="px-6 pb-5" transition:slide={{ duration: 200 }}>
+              <div class="pt-3 border-t border-gray-100">
+                <p class="text-[#32325d]/70 leading-relaxed">{faq.a}</p>
+              </div>
             </div>
           {/if}
         </div>
       {/each}
     </div>
 
-    <!-- Responsive Contact Link -->
-    <div class="text-center mt-12 sm:mt-16">
+    <!-- Simplified Contact Link -->
+    <div class="text-center mt-12">
       <a href="/contact" 
-         class="inline-flex items-center gap-2 sm:gap-3 rounded-full bg-white/90 
-                px-6 sm:px-8 py-3 sm:py-4 backdrop-blur-xl border border-white/20 
-                shadow-xl hover:shadow-2xl transition-all duration-300 
-                text-sm sm:text-base group">
-        <span class="text-[#32325d]">Still have questions?</span>
-        <span class="text-[#605bff] font-medium group-hover:translate-x-1 
-                     transition-transform">
+         class="inline-flex items-center gap-2 text-[#605bff] hover:text-[#32325d] 
+                transition-colors duration-200 font-medium">
+        Still have questions? 
+        <span class="group-hover:translate-x-1 transition-transform">
           Contact Us →
         </span>
       </a>
@@ -146,6 +137,17 @@
 </section>
 
 <style>
+  /* Add smooth rotation animation */
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(180deg);
+    }
+  }
+
+  /* Keep existing animations */
   @keyframes shimmer {
     0% { transform: translateX(-100%); }
     100% { transform: translateX(100%); }
@@ -176,8 +178,9 @@
   }
 
   button:focus {
-    outline: 2px solid #605bff;
-    outline-offset: 2px;
+    outline: none;
+    ring: 2px solid #605bff;
+    ring-offset: 2px;
   }
 
   /* Add touch target improvements for mobile */
