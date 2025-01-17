@@ -149,7 +149,7 @@
 
     <!-- Main Content Section -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 mb-16">
-      <!-- Newsletter Section with Enhanced Design -->
+      <!-- Contact Us Section with Enhanced Design -->
       <div class="lg:col-span-5">
         <div class="bg-gradient-to-br from-white to-gray-50/50 rounded-2xl p-8 border border-gray-100/80 
                     hover:shadow-lg transition-all duration-300">
@@ -158,40 +158,56 @@
               <span class="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-[#605bff] opacity-75"></span>
               <span class="relative inline-flex rounded-full h-2 w-2 bg-[#605bff]"></span>
             </span>
-            <span class="text-sm font-medium text-[#605bff]">Newsletter</span>
+            <span class="text-sm font-medium text-[#605bff]">Contact Us</span>
           </div>
           <h3 class="text-xl font-semibold text-gray-900 mb-2">
-            Join Our Newsletter
+            Get in Touch
           </h3>
           <p class="text-gray-600 text-sm mb-4">
-            Get the latest updates on payment technology and industry insights.
+            Have questions? We're here to help with your payment solutions.
           </p>
-          <form class="space-y-3" on:submit={handleSubscribe}>
-            <input 
-              type="email"
-              bind:value={email}
-              placeholder="Enter your work email"
-              class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-[#605bff] focus:ring focus:ring-[#605bff]/20 transition-all duration-200"
-              required
-            />
-            <button 
-              type="submit"
-              class="w-full px-4 py-2.5 bg-[#605bff] text-white rounded-xl hover:bg-[#4f4cce] transition-all duration-200 flex items-center justify-center gap-2"
-              disabled={isSubmitting}
-            >
-              {#if isSubmitting}
-                <svg class="animate-spin h-4 w-4" viewBox="0 0 24 24">
-                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"/>
-                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
-                </svg>
-              {:else}
-                Subscribe
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                </svg>
-              {/if}
-            </button>
-          </form>
+          <div class="space-y-4">
+            <div class="flex items-center gap-3 group">
+              <div class="w-10 h-10 rounded-xl bg-[#605bff]/10 flex items-center justify-center 
+                          group-hover:bg-[#605bff] transition-colors duration-200">
+                <i class="fas fa-envelope text-[#605bff] group-hover:text-white transition-colors duration-200"></i>
+              </div>
+              <div>
+                <p class="text-sm font-medium text-gray-900">Email Us</p>
+                <a href="mailto:support@ipsepay.com" 
+                   class="text-sm text-gray-600 hover:text-[#605bff] transition-colors duration-200">
+                  support@ipsepay.com
+                </a>
+              </div>
+            </div>
+            
+            <div class="flex items-center gap-3 group">
+              <div class="w-10 h-10 rounded-xl bg-[#605bff]/10 flex items-center justify-center 
+                          group-hover:bg-[#605bff] transition-colors duration-200">
+                <i class="fas fa-phone text-[#605bff] group-hover:text-white transition-colors duration-200"></i>
+              </div>
+              <div>
+                <p class="text-sm font-medium text-gray-900">Call Us</p>
+                <a href="tel:+1234567890" 
+                   class="text-sm text-gray-600 hover:text-[#605bff] transition-colors duration-200">
+                  +1 (234) 567-890
+                </a>
+              </div>
+            </div>
+            
+            <div class="flex items-center gap-3 group">
+              <div class="w-10 h-10 rounded-xl bg-[#605bff]/10 flex items-center justify-center 
+                          group-hover:bg-[#605bff] transition-colors duration-200">
+                <i class="fas fa-map-marker-alt text-[#605bff] group-hover:text-white transition-colors duration-200"></i>
+              </div>
+              <div>
+                <p class="text-sm font-medium text-gray-900">Visit Us</p>
+                <p class="text-sm text-gray-600">
+                  123 Payment Street, Financial District
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 

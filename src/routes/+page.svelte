@@ -28,6 +28,7 @@
     import CustomerExpectations from "$lib/components/customer-expectations/customer-expectations.svelte";
     import Futeurs from "$lib/components/brands-partners/brands-partner.svelte";
     import Prtners from "$lib/components/partners/partners.svelte";
+    import RiskPayment from "$lib/components/riskpayment/riskpayment.svelte";
  
 
 
@@ -40,7 +41,9 @@
  <!--<<Futeurs/>-->
 
   <!--<ScrollingImages/>-->
-    <SmartSimple/>
+   
+    <RiskPayment/>
+      <!--<<SmartSimple/>-->
   <OnlinePayments/>
   <PayMethoes/>
   <PayoutTime/>
