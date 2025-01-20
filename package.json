@@ -35,6 +35,7 @@
     "aos": "^2.3.4",
     "bcryptjs": "^2.4.3",
     "country-flag-icons": "^1.5.13",
+    "date-fns": "^4.1.0",
     "glightbox": "^3.3.0",
     "jarallax": "^2.2.0",
     "mapbox-gl": "^3.9.2",

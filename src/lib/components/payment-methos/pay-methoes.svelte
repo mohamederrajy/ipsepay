@@ -1,12 +1,13 @@
 <script lang="ts">
   import { page } from "$app/stores";
-  import { onMount } from 'svelte';
-  $: routeTd = $page.route.id;
+  import { onMount, onDestroy } from 'svelte';
+  import { fade, slide } from 'svelte/transition';
+
+  $: routeId = $page.route.id;
 
   let isVisible = false;
-  onMount(() => {
-    isVisible = true;
-  });
+  let activeMethodIndex = 0;
+  let interval: ReturnType<typeof setInterval>;
 
   const paymentMethods = [
     { 
@@ -40,7 +41,7 @@
     },
     { 
       name: 'Alternative Payments', 
-      icon: '/images/brands/Discover.png',
+      icon: '/images/brands/usdt.png',
       description: 'Expand your reach with local and alternative payment methods worldwide', 
       stat: '150+', 
       label: 'Payment Methods',
@@ -50,6 +51,30 @@
       features: ['Local Methods', 'Bank Transfers', 'Crypto Ready']
     }
   ];
+
+  function startAutoRotation() {
+    interval = setInterval(() => {
+      activeMethodIndex = (activeMethodIndex + 1) % paymentMethods.length;
+    }, 3000); // Rotate every 3 seconds
+  }
+
+  function handleMethodClick(index: number) {
+    activeMethodIndex = index;
+    // Reset interval to prevent immediate switch after click
+    if (interval) clearInterval(interval);
+    startAutoRotation();
+  }
+
+  onMount(() => {
+    isVisible = true;
+    startAutoRotation();
+  });
+
+  onDestroy(() => {
+    if (interval) clearInterval(interval);
+  });
+
+  $: activeMethod = paymentMethods[activeMethodIndex];
 </script>
 
 <section class="relative overflow-hidden py-16 sm:py-24 lg:py-32">

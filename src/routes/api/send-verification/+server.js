@@ -2,262 +2,305 @@ import { json } from '@sveltejs/kit';
 import nodemailer from 'nodemailer';
 import { PRIVATE_EMAIL_USER, PRIVATE_EMAIL_PASS, PRIVATE_EMAIL_FROM } from '$env/static/private';
 
-// Add debug logging
-console.log('Email configuration:', {
-  user: PRIVATE_EMAIL_USER,
-  from: PRIVATE_EMAIL_FROM,
-  // Don't log the actual password
-  hasPassword: !!PRIVATE_EMAIL_PASS
+// First, let's test the environment variables
+console.log('Email Configuration Check:', {
+  hasUser: !!PRIVATE_EMAIL_USER,
+  hasPass: !!PRIVATE_EMAIL_PASS,
+  hasFrom: !!PRIVATE_EMAIL_FROM,
+  userEmail: PRIVATE_EMAIL_USER, // Log the actual email for verification
 });
 
-const transporter = nodemailer.createTransport({
-  host: 'smtp.zoho.com',
-  port: 465,
-  secure: true,
-  auth: {
+// Add more detailed logging
+console.log('Email Configuration:', {
     user: PRIVATE_EMAIL_USER,
-    pass: PRIVATE_EMAIL_PASS
-  },
-  debug: true, // Enable debug logging
-  logger: true  // Enable logger
+    from: PRIVATE_EMAIL_FROM,
+    hasPassword: !!PRIVATE_EMAIL_PASS
 });
 
-// Test the connection immediately
-try {
-  transporter.verify(function(error, success) {
-    if (error) {
-      console.error('SMTP Verification Error:', error);
-    } else {
-      console.log('SMTP Connection Success:', success);
+// Create transporter with the working configuration
+const transporter = nodemailer.createTransport({
+    host: 'smtp.zoho.com',
+    port: 465,
+    secure: true,
+    auth: {
+        user: PRIVATE_EMAIL_USER,
+        pass: PRIVATE_EMAIL_PASS
     }
-  });
-} catch (error) {
-  console.error('SMTP Setup Error:', error);
-}
+});
 
+// Store verification codes in memory
 const verificationCodes = new Map();
 
 export async function POST({ request }) {
-  console.log('Received verification request');
-  
-  try {
-    const { email, code } = await request.json();
-    
-    console.log('Request data:', { email, hasCode: !!code });
-
-    if (!email || !code) {
-      console.error('Validation Error: Missing email or code');
-      return json({ 
-        error: 'Missing required fields',
-        details: { email: !email, code: !code }
-      }, { status: 400 });
-    }
-
-    // Store code before attempting to send email
-    verificationCodes.set(email, {
-      code,
-      timestamp: Date.now()
-    });
-
-    console.log('Preparing to send email');
-
-    const mailOptions = {
-      from: {
-        name: 'IpsePay',
-        address: PRIVATE_EMAIL_FROM
-      },
-      to: email,
-      subject: 'IpsePay - Verify Your Email',
-      html: `
-        <!DOCTYPE html>
-        <html>
-          <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-          </head>
-          <body style="margin: 0; padding: 0; background-color: #f9fafb; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
-            <div style="max-width: 600px; margin: 0 auto; padding: 40px 20px;">
-              <div style="background: white; border-radius: 24px; padding: 48px 40px; box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.08);
-                          font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
-                <!-- Modern Brand Header -->
-                <div style="text-align: center; margin-bottom: 40px;">
-                  <div style="display: inline-flex; flex-direction: column; align-items: center;">
-                    <div style="position: relative; padding: 20px 32px; overflow: hidden;">
-                      <!-- Main Title -->
-                      <h1 style="margin: 0; font-size: 36px; font-weight: 900; color: #605bff;
-                                 position: relative; z-index: 2; letter-spacing: -1px;
-                                 font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
-                        IPSEPAY
-                      </h1>
-                      
-                      <!-- Decorative Background Elements -->
-                      <div style="position: absolute; top: 50%; left: 0; right: 0; height: 2px; 
-                                  background: linear-gradient(to right, 
-                                    rgba(96, 91, 255, 0), 
-                                    rgba(96, 91, 255, 0.2), 
-                                    rgba(96, 91, 255, 0)
-                                  ); 
-                                  transform: translateY(-50%);"></div>
-                      
-                      <!-- Subtitle Container -->
-                      <div style="margin-top: 12px; position: relative; z-index: 2;">
-                        <div style="display: inline-flex; align-items: center; gap: 10px;
-                                    padding: 6px 12px; border-radius: 100px;
-                                    background: rgba(96, 91, 255, 0.05);
-                                    border: 1px solid rgba(96, 91, 255, 0.1);">
-                          <span style="width: 3px; height: 3px; background: #605bff; border-radius: 50%;"></span>
-                          <span style="color: #605bff; font-size: 11px; font-weight: 600; 
-                                       letter-spacing: 1.5px; text-transform: uppercase;">
-                            Secure Payments
-                          </span>
-                          <span style="width: 3px; height: 3px; background: #605bff; border-radius: 50%;"></span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                <!-- Modern Divider -->
-                <div style="height: 2px; background: linear-gradient(to right, rgba(96, 91, 255, 0.1), rgba(139, 122, 255, 0.1)); 
-                            border-radius: 2px; margin-bottom: 40px;"></div>
-                
-                <!-- Enhanced Content -->
-                <div style="text-align: center;">
-                  <h1 style="color: #32325d; font-size: 28px; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.5px;">
-                    Verify your email address
-                  </h1>
-                  <p style="color: #32325d; opacity: 0.8; font-size: 16px; line-height: 1.6; margin-bottom: 40px;">
-                    Thanks for signing up for IpsePay! Please use the verification code below to complete your registration.
-                  </p>
-                  
-                  <!-- Modern Verification Code Box -->
-                  <div style="background: linear-gradient(135deg, rgba(96, 91, 255, 0.03), rgba(139, 122, 255, 0.03));
-                              border: 1px solid rgba(96, 91, 255, 0.08); border-radius: 16px; 
-                              padding: 32px; margin-bottom: 40px; backdrop-filter: blur(8px);">
-                    <div style="color: #605bff; font-size: 40px; font-weight: 700; letter-spacing: 8px; margin: 0;">
-                      ${code}
-                    </div>
-                    <div style="color: #32325d; opacity: 0.7; font-size: 14px; margin-top: 16px; font-weight: 500;">
-                      Code expires in 3 minutes
-                    </div>
-                  </div>
-                  
-                  <!-- Enhanced Security Notice -->
-                  <div style="background: #fffbeb; border: 1px solid rgba(251, 146, 60, 0.1); 
-                              border-radius: 12px; padding: 16px; margin-bottom: 40px;">
-                    <p style="color: #32325d; font-size: 14px; margin: 0; display: flex; align-items: center; 
-                              justify-content: center; gap: 8px;">
-                      <span style="font-size: 16px;">�</span>
-                      <strong>Security Notice:</strong> If you didn't request this code, please ignore this email.
-                    </p>
-                  </div>
-
-                  <!-- Modern Help Text -->
-                  <p style="color: #32325d; opacity: 0.8; font-size: 14px; margin-bottom: 40px; line-height: 1.6;">
-                    Need help? Contact our support team at 
-                    <a href="mailto:support@ipsepay.com" 
-                       style="color: #605bff; text-decoration: none; font-weight: 600; 
-                              border-bottom: 1px solid rgba(96, 91, 255, 0.2);">
-                      support@ipsepay.com
-                    </a>
-                  </p>
-                </div>
-                
-                <!-- Modern Footer -->
-                <div style="text-align: center; border-top: 1px solid rgba(229, 231, 235, 0.5); 
-                            padding-top: 32px; margin-top: 32px;">
-                  <p style="color: #9ca3af; font-size: 14px; margin: 4px 0; font-weight: 500;">
-                    © ${new Date().getFullYear()} IpsePay. All rights reserved.
-                  </p>
-                  <div style="margin-top: 16px; display: flex; justify-content: center; gap: 16px;">
-                    <a href="https://ipsepay.com/terms" 
-                       style="color: #605bff; text-decoration: none; font-size: 14px; font-weight: 500;">Terms</a>
-                    <span style="color: #e5e7eb;">•</span>
-                    <a href="https://ipsepay.com/privacy" 
-                       style="color: #605bff; text-decoration: none; font-size: 14px; font-weight: 500;">Privacy</a>
-                    <span style="color: #e5e7eb;">•</span>
-                    <a href="https://ipsepay.com/contact" 
-                       style="color: #605bff; text-decoration: none; font-size: 14px; font-weight: 500;">Contact</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </body>
-        </html>
-      `
-    };
-
-    console.log('Attempting to send email');
-
     try {
-      const info = await transporter.sendMail(mailOptions);
-      console.log('Email sent successfully:', info.messageId);
-      return json({ success: true, messageId: info.messageId });
-    } catch (emailError) {
-      console.error('Email sending error:', emailError);
-      throw new Error(`Email sending failed: ${emailError.message}`);
-    }
+        const { email, code } = await request.json();
+        console.log('Sending verification code to:', email);
 
-  } catch (error) {
-    console.error('Server error:', error);
-    return json({ 
-      error: 'Failed to send verification code',
-      details: error.message,
-      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
-    }, { status: 500 });
-  }
+        // Store the code with timestamp
+        verificationCodes.set(email, {
+            code,
+            timestamp: Date.now()
+        });
+
+        const mailOptions = {
+            from: PRIVATE_EMAIL_FROM,
+            to: email,
+            subject: 'Verify Your IpsePay Account',
+            html: `
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Your IpsePay Account</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f5;">
+    <table role="presentation" style="width: 100%; border: none; border-spacing: 0; background-color: #f4f4f5; padding: 40px 0;">
+        <tr>
+            <td align="center" style="padding: 0;">
+                <table role="presentation" style="width: 600px; border: none; border-spacing: 0; text-align: left; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                    <!-- Modern Header -->
+                    <tr>
+                        <td style="padding: 0;">
+                            <div style="background: linear-gradient(135deg, #605bff 0%, #8b7aff 100%); padding: 40px 40px; text-align: center;">
+                                <h1 style="margin: 0; font-size: 32px; font-weight: 800; color: #ffffff; letter-spacing: -0.5px;">
+                                    IPSE<span style="font-weight: 300;">PAY</span>
+                                </h1>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <!-- Main Content -->
+                    <tr>
+                        <td style="padding: 48px 40px;">
+                            <table role="presentation" style="width: 100%; border: none; border-spacing: 0;">
+                                <tr>
+                                    <td>
+                                        <h2 style="margin: 0 0 24px; font-size: 24px; font-weight: 700; color: #1f2937; letter-spacing: -0.5px;">
+                                            Verify your email address
+                                        </h2>
+                                        
+                                        <p style="margin: 0 0 32px; font-size: 16px; line-height: 24px; color: #4b5563;">
+                                            Welcome to IpsePay! Use this verification code to complete your registration and secure your account.
+                                        </p>
+
+                                        <!-- Modern Verification Code Box -->
+                                        <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-radius: 16px; padding: 32px; margin: 32px 0; text-align: center; border: 1px solid #e2e8f0;">
+                                            <p style="margin: 0 0 16px; font-size: 14px; color: #64748b; text-transform: uppercase; letter-spacing: 1px;">
+                                                Your verification code
+                                            </p>
+                                            <div style="font-size: 36px; font-weight: 700; letter-spacing: 8px; color: #605bff; font-family: monospace; background: -webkit-linear-gradient(45deg, #605bff, #8b7aff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                                                ${code}
+                                            </div>
+                                            <p style="margin: 16px 0 0; font-size: 14px; color: #94a3b8;">
+                                                Expires in 3 minutes
+                                            </p>
+                                        </div>
+
+                                        <!-- Security Notice -->
+                                        <div style="padding: 24px; background-color: #eff6ff; border-radius: 12px; margin-top: 32px;">
+                                            <p style="margin: 0; font-size: 14px; line-height: 20px; color: #3b82f6;">
+                                                🔒 For your security, never share this code with anyone. IpsePay representatives will never ask for your verification code.
+                                            </p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Modern Footer -->
+                    <tr>
+                        <td style="padding: 32px 40px; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);">
+                            <table role="presentation" style="width: 100%; border: none; border-spacing: 0;">
+                                <tr>
+                                    <td style="padding: 0; text-align: center;">
+                                        <p style="margin: 0 0 16px; font-size: 14px; color: #64748b;">
+                                            © ${new Date().getFullYear()} IpsePay. All rights reserved.
+                                        </p>
+                                        <div style="margin: 0 0 24px;">
+                                            <a href="https://ipsepay.com/privacy" style="color: #605bff; text-decoration: none; font-size: 14px; margin: 0 12px;">Privacy</a>
+                                            <span style="color: #cbd5e1;">•</span>
+                                            <a href="https://ipsepay.com/terms" style="color: #605bff; text-decoration: none; font-size: 14px; margin: 0 12px;">Terms</a>
+                                            <span style="color: #cbd5e1;">•</span>
+                                            <a href="https://ipsepay.com/contact" style="color: #605bff; text-decoration: none; font-size: 14px; margin: 0 12px;">Support</a>
+                                        </div>
+                                        <p style="margin: 0; font-size: 12px; color: #94a3b8; line-height: 18px;">
+                                            This is an automated message. Please do not reply to this email.<br>
+                                            IpsePay Inc. • Baghdad, Iraq
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+            `
+        };
+
+        const result = await transporter.sendMail(mailOptions);
+        console.log('Verification email sent:', result.messageId);
+
+        return json({
+            success: true,
+            messageId: result.messageId,
+            message: 'Verification code sent successfully'
+        });
+
+    } catch (error) {
+        console.error('Failed to send verification email:', error);
+        return json({
+            success: false,
+            error: 'Failed to send verification code',
+            details: error.message
+        }, { status: 500 });
+    }
 }
 
 // Verification endpoint
 export async function PUT({ request }) {
-  try {
-    const { email, code } = await request.json();
-    
-    console.log('Verifying code for:', email);
+    try {
+        const { email, code } = await request.json();
+        console.log('Verifying code for:', email);
 
-    const storedData = verificationCodes.get(email);
+        const storedData = verificationCodes.get(email);
+        
+        if (!storedData) {
+            return json({ 
+                success: false,
+                error: 'No verification code found. Please request a new code.' 
+            }, { status: 400 });
+        }
 
-    if (!storedData) {
-      console.log('No verification code found for:', email);
-      return json(
-        { error: 'No verification code found. Please request a new code.' },
-        { status: 400 }
-      );
+        // Check if code is expired (3 minutes)
+        if (Date.now() - storedData.timestamp > 180000) {
+            verificationCodes.delete(email);
+            return json({ 
+                success: false,
+                error: 'Verification code has expired. Please request a new code.' 
+            }, { status: 400 });
+        }
+
+        // Verify code
+        if (storedData.code !== code) {
+            return json({ 
+                success: false,
+                error: 'Invalid verification code.' 
+            }, { status: 400 });
+        }
+
+        // Code is valid - remove it from storage
+        verificationCodes.delete(email);
+
+        return json({
+            success: true,
+            message: 'Email verified successfully'
+        });
+
+    } catch (error) {
+        console.error('Verification error:', error);
+        return json({
+            success: false,
+            error: 'Verification failed',
+            details: error.message
+        }, { status: 500 });
     }
+}
 
-    // Check if code is expired (3 minutes)
-    if (Date.now() - storedData.timestamp > 180000) {
-      console.log('Code expired for:', email);
-      verificationCodes.delete(email);
-      return json(
-        { error: 'Verification code has expired. Please request a new code.' },
-        { status: 400 }
-      );
+// Add this test function
+async function testZohoConnection() {
+    try {
+        console.log('Testing Zoho Mail configuration...');
+        console.log('Email User:', PRIVATE_EMAIL_USER);
+        console.log('Email From:', PRIVATE_EMAIL_FROM);
+        console.log('Password exists:', !!PRIVATE_EMAIL_PASS);
+
+        const testTransporter = nodemailer.createTransport({
+            host: 'smtp.zoho.com',
+            port: 465,
+            secure: true,
+            auth: {
+                user: PRIVATE_EMAIL_USER,
+                pass: PRIVATE_EMAIL_PASS
+            },
+            debug: true // Enable debug logging
+        });
+
+        console.log('Testing SMTP connection...');
+        const verifyResult = await testTransporter.verify();
+        console.log('SMTP Verification result:', verifyResult);
+        
+        return {
+            success: true,
+            message: 'Zoho Mail configuration is valid'
+        };
+    } catch (error) {
+        console.error('Zoho Mail configuration error:', {
+            name: error.name,
+            message: error.message,
+            code: error.code,
+            command: error.command
+        });
+        return {
+            success: false,
+            error: error.message,
+            details: {
+                name: error.name,
+                code: error.code,
+                command: error.command
+            }
+        };
     }
+}
 
-    // Verify code
-    if (storedData.code !== code) {
-      console.log('Invalid code provided for:', email);
-      return json(
-        { error: 'Invalid verification code. Please try again.' },
-        { status: 400 }
-      );
+// Try this alternative configuration if the current one isn't working
+const alternativeTransporter = nodemailer.createTransport({
+    host: 'smtp.zoho.com',
+    port: 587,
+    secure: false, // Try false for TLS
+    auth: {
+        user: PRIVATE_EMAIL_USER,
+        pass: PRIVATE_EMAIL_PASS
+    },
+    tls: {
+        rejectUnauthorized: false // Only use this in development
     }
+});
 
-    // Clear the code after successful verification
-    verificationCodes.delete(email);
-    console.log('Code verified successfully for:', email);
+// Test both configurations
+async function testBothConfigurations() {
+    try {
+        console.log('Testing SSL configuration (port 465)...');
+        const sslResult = await testZohoConnection();
+        console.log('SSL test result:', sslResult);
 
-    return json({ 
-      success: true,
-      message: 'Email verified successfully'
-    });
-  } catch (error) {
-    console.error('Verification error:', error);
-    return json(
-      { error: 'Verification failed. Please try again.' },
-      { status: 500 }
-    );
-  }
+        console.log('Testing TLS configuration (port 587)...');
+        const tlsResult = await alternativeTransporter.verify();
+        console.log('TLS test result:', tlsResult);
+
+        return {
+            ssl: sslResult,
+            tls: tlsResult
+        };
+    } catch (error) {
+        console.error('Configuration test error:', error);
+        return {
+            error: error.message,
+            details: {
+                name: error.name,
+                code: error.code
+            }
+        };
+    }
+}
+
+// Update the GET endpoint to test both configurations
+export async function GET() {
+    const testResults = await testBothConfigurations();
+    return json(testResults);
 } 

@@ -3,6 +3,7 @@
   import Select from 'svelte-select';
   import countries from 'world-countries';
   import { fade } from 'svelte/transition';
+  import { format } from 'date-fns';
   
   let selectContainer;
   let dropdownOpen = false;
@@ -30,6 +31,7 @@
     email: '',
     phone: '',
     password: '',
+    birthDate: '', // Add this line
     streetAddress: '',
     city: '',
     state: '',
@@ -46,32 +48,29 @@
   // Add phone prefix state
   let selectedPhonePrefix = null;
   
-  // Phone prefixes data with proper formatting
+  // First, update the phone prefixes data formatting
   const phonePrefixes = countries
     .map(country => {
       try {
-        // Only proceed if country has idd data
         if (country.idd && country.idd.root) {
-          // Get the root (always exists if idd exists)
           const root = country.idd.root;
-          
-          // Handle countries with multiple suffixes or no suffix
           let prefixes = [];
+          
           if (country.idd.suffixes && country.idd.suffixes.length > 0) {
-            // Create an entry for each suffix
             prefixes = country.idd.suffixes.map(suffix => ({
               value: `${root}${suffix}`,
-              label: `${country.flag || '🏳️'} ${root}${suffix}`,
+              label: `${country.flag} ${root}${suffix}`,
               flag: country.flag || '🏳️',
-              country: country.name.common
+              code: `${root}${suffix}`,
+              search: `${root}${suffix} ${country.name.common}`
             }));
           } else {
-            // Countries with no suffix, just use root
             prefixes = [{
               value: root,
-              label: `${country.flag || '🏳️'} ${root}`,
+              label: `${country.flag} ${root}`,
               flag: country.flag || '🏳️',
-              country: country.name.common
+              code: root,
+              search: `${root} ${country.name.common}`
             }];
           }
           return prefixes;
@@ -82,17 +81,16 @@
         return null;
       }
     })
-    .filter(Boolean) // Remove null entries
-    .flat() // Flatten array of arrays
-    .filter(prefix => prefix.value.startsWith('+')) // Ensure all prefixes start with +
+    .filter(Boolean)
+    .flat()
+    .filter(prefix => prefix.value.startsWith('+'))
     .sort((a, b) => {
-      // Sort by prefix number (removing the + and converting to number)
       const numA = Number(a.value.replace('+', ''));
       const numB = Number(b.value.replace('+', ''));
       return numA - numB;
     });
 
-  // Filter out duplicate prefixes while keeping the first occurrence
+  // Keep existing uniquePrefixes definition
   const uniquePrefixes = phonePrefixes.filter((prefix, index, self) =>
     index === self.findIndex((p) => p.value === prefix.value)
   );
@@ -104,6 +102,7 @@
   }
 
   function showError(message) {
+    console.error('Error:', message);
     showNotification(message, 'error');
   }
 
@@ -163,6 +162,21 @@
       errors.password = 'Password is too weak';
       isValid = false;
     }
+    if (!formData.birthDate?.trim()) {
+      errors.birthDate = 'Birth date is required';
+      isValid = false;
+    } else {
+      // Check if user is at least 18 years old
+      const birthDate = new Date(formData.birthDate);
+      const today = new Date();
+      const age = today.getFullYear() - birthDate.getFullYear();
+      const monthDiff = today.getMonth() - birthDate.getMonth();
+      
+      if (age < 18 || (age === 18 && monthDiff < 0)) {
+        errors.birthDate = 'You must be at least 18 years old';
+        isValid = false;
+      }
+    }
 
     if (!isValid) {
       showError('Please fill in all required fields correctly');
@@ -175,30 +189,49 @@
     errors = {};
     let isValid = true;
 
+    // Log form data for debugging
+    console.log('Form Data:', formData);
+    console.log('Selected Country:', selectedCountry);
+
+    // Validate each field and log the results
     if (!formData.streetAddress?.trim()) {
       errors.streetAddress = 'Street address is required';
       isValid = false;
+      console.log('Street address invalid');
     }
+    
     if (!formData.city?.trim()) {
       errors.city = 'City is required';
       isValid = false;
+      console.log('City invalid');
     }
+    
     if (!formData.state?.trim()) {
       errors.state = 'State is required';
       isValid = false;
+      console.log('State invalid');
     }
+    
     if (!formData.zip?.trim()) {
       errors.zip = 'ZIP code is required';
       isValid = false;
+      console.log('ZIP invalid');
     }
-    if (!formData.country) {
+    
+    if (!selectedCountry) {
       errors.country = 'Country is required';
       isValid = false;
+      console.log('Country invalid');
     }
-    if (!formData.terms) {
-      errors.terms = 'You must accept the terms and conditions';
-      isValid = false;
-    }
+    
+    // Remove terms validation since it's not required by the API
+    // if (!formData.terms) {
+    //   errors.terms = 'You must accept the terms and conditions';
+    //   isValid = false;
+    // }
+
+    console.log('Validation errors:', errors);
+    console.log('Is form valid:', isValid);
 
     if (!isValid) {
       showError('Please fill in all required fields');
@@ -215,10 +248,54 @@
     }
   }
 
-  function handleSubmit() {
+  async function handleSubmit() {
+    console.log('Starting form submission');
+    
     if (validateStep2()) {
-      // Handle form submission
-      console.log('Form submitted:', formData);
+      try {
+        isLoading = true;
+        
+        // Format data exactly as per the example
+        const apiData = {
+          email: formData.email.trim().toLowerCase(),
+          fullName: `${formData.firstName.trim()} ${formData.lastName.trim()}`,
+          phoneNumber: selectedPhonePrefix?.value + formData.phone.replace(/\D/g, ''),
+          birthDate: formData.birthDate,
+          password: formData.password,
+          country: selectedCountry?.label,
+          city: formData.city.trim(),
+          countryCode: selectedPhonePrefix?.value,
+          postalCode: formData.zip.trim(),
+          address: formData.streetAddress.trim()
+        };
+
+        console.log('API Request Data:', apiData);
+
+        const response = await fetch('https://api.ipsepay.com/auth/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(apiData)
+        });
+
+        const data = await response.json();
+        console.log('API Response:', data);
+
+        if (!response.ok) {
+          throw new Error(data.message || 'Failed to create account');
+        }
+
+        showNotification('Account created successfully!', 'success');
+        window.location.href = '/account/login';
+
+      } catch (error) {
+        console.error('Registration error:', error);
+        showNotification(error.message || 'Failed to create account', 'error');
+      } finally {
+        isLoading = false;
+      }
     }
   }
 
@@ -364,10 +441,10 @@
     5: 'bg-green-500'
   }[passwordStrength];
 
-  // Update verification states
+  // Add verification state variables
+  let isVerifying = false;
   let verificationCode = '';
   let sentVerificationCode = '';
-  let isVerifying = false;
   let verificationError = '';
   let timeLeft = 0;
   let resendTimer;
@@ -375,170 +452,119 @@
 
   // Function to generate verification code
   function generateVerificationCode() {
-    return Math.floor(100000 + Math.random() * 900000).toString();
+      return Math.floor(100000 + Math.random() * 900000).toString();
   }
 
   // Function to send verification code
   async function sendVerificationCode() {
-    try {
-      isSendingCode = true;
-      verificationError = '';
-      sentVerificationCode = generateVerificationCode();
-      
-      console.log('Sending verification request for:', formData.email);
-      
-      const response = await fetch('/api/send-verification', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          email: formData.email,
-          code: sentVerificationCode
-        })
-      });
+      try {
+          isSendingCode = true;
+          verificationError = '';
+          sentVerificationCode = generateVerificationCode();
+          
+          console.log('Starting verification process for:', formData.email);
 
-      const data = await response.json();
+          const response = await fetch('/api/send-verification', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                  email: formData.email,
+                  code: sentVerificationCode
+              })
+          });
 
-      if (!response.ok) {
-        console.error('Server response:', data);
-        throw new Error(data.details || data.error || 'Failed to send verification code');
+          const data = await response.json();
+          console.log('Server response:', data);
+
+          if (!response.ok) {
+              throw new Error(data.error || data.details || 'Failed to send verification code');
+          }
+
+          isVerifying = true;
+          timeLeft = 180;
+          startResendTimer();
+          
+          showNotification('Verification code sent to your email', 'success');
+      } catch (error) {
+          console.error('Verification error:', {
+              message: error.message,
+              name: error.name,
+              stack: error.stack
+          });
+          showError(`Failed to send code: ${error.message}`);
+          isVerifying = false;
+      } finally {
+          isSendingCode = false;
       }
-
-      // Set verification UI state
-      isVerifying = true;
-      timeLeft = 180;
-      startResendTimer();
-      
-      showNotification('Verification code sent to your email', 'success');
-    } catch (error) {
-      console.error('Verification error:', error);
-      showError(`Failed to send verification code: ${error.message}`);
-      isVerifying = false;
-    } finally {
-      isSendingCode = false;
-    }
-  }
-
-  // Timer for resend cooldown
-  function startResendTimer() {
-    clearInterval(resendTimer);
-    resendTimer = setInterval(() => {
-      if (timeLeft > 0) {
-        timeLeft--;
-      } else {
-        clearInterval(resendTimer);
-      }
-    }, 1000);
-  }
-
-  // Format remaining time
-  function formatTime(seconds) {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins}:${secs.toString().padStart(2, '0')}`;
   }
 
   // Verify code
   async function verifyCode() {
     try {
-      // Get all verification inputs and their values
-      const inputs = document.querySelectorAll('.verification-input');
-      const enteredCode = Array.from(inputs)
-        .map(input => input.value)
-        .join('');
+        if (!verificationCode || verificationCode.length !== 6) {
+            throw new Error('Please enter the complete verification code');
+        }
 
-      console.log('Entered code:', enteredCode);
-      console.log('Sent code:', sentVerificationCode);
+        const response = await fetch('/api/send-verification', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: formData.email,
+                code: verificationCode
+            })
+        });
 
-      if (!enteredCode || enteredCode.length !== 6) {
-        throw new Error('Please enter the complete verification code');
-      }
+        const data = await response.json();
+        console.log('Verification response:', data);
 
-      // Compare with the code we sent
-      if (enteredCode === sentVerificationCode) {
-        // Clear verification UI and proceed
-        isVerifying = false;
-        clearInterval(resendTimer);
-        formStep = 2;
-        showNotification('Email verified successfully', 'success');
-      } else {
-        throw new Error('Invalid verification code');
-      }
+        if (!response.ok) {
+            throw new Error(data.error || 'Verification failed');
+        }
+
+        if (data.success) {
+            isVerifying = false;
+            clearInterval(resendTimer);
+            formStep = 2;
+            showNotification('Email verified successfully', 'success');
+        } else {
+            throw new Error(data.error || 'Verification failed');
+        }
     } catch (error) {
-      verificationError = error.message;
-      showError(error.message);
-      
-      // Clear input fields on error
-      document.querySelectorAll('.verification-input').forEach(input => {
-        input.value = '';
-      });
-      // Focus first input
-      document.querySelector('.verification-input')?.focus();
+        console.error('Verification error:', error);
+        verificationError = error.message;
+        showError(error.message);
     }
+}
+
+  // Timer for resend cooldown
+  function startResendTimer() {
+      clearInterval(resendTimer);
+      resendTimer = setInterval(() => {
+          if (timeLeft > 0) {
+              timeLeft--;
+          } else {
+              clearInterval(resendTimer);
+          }
+      }, 1000);
   }
 
-  // Update the handleVerificationInput function
-  function handleVerificationInput(event, index) {
-    const input = event.target;
-    const value = input.value;
-
-    // Clear error when user starts typing
-    verificationError = '';
-
-    // Only allow numbers
-    if (!/^\d*$/.test(value)) {
-      input.value = '';
-      return;
-    }
-
-    // Auto advance to next input
-    if (value && index < 5) {
-      const nextInput = document.querySelectorAll('.verification-input')[index + 1];
-      if (nextInput) {
-        nextInput.focus();
-      }
-    }
-
-    // Check if all inputs are filled
-    const allInputs = document.querySelectorAll('.verification-input');
-    const isComplete = Array.from(allInputs).every(input => input.value.length === 1);
-    
-    if (isComplete) {
-      const enteredCode = Array.from(allInputs)
-        .map(input => input.value)
-        .join('');
-      
-      if (enteredCode.length === 6) {
-        verifyCode();
-      }
-    }
+  // Format remaining time
+  function formatTime(seconds) {
+      const mins = Math.floor(seconds / 60);
+      const secs = seconds % 60;
+      return `${mins}:${secs.toString().padStart(2, '0')}`;
   }
 
-  // Handle backspace
-  function handleVerificationKeydown(event, index) {
-    if (event.key === 'Backspace' && !event.target.value && index > 0) {
-      const prevInput = document.querySelectorAll('.verification-input')[index - 1];
-      if (prevInput) {
-        prevInput.focus();
-      }
-    }
-  }
-
+  // Add cleanup on unmount
   onMount(() => {
-    const interval = setInterval(() => {
-      activeTestimonial = (activeTestimonial + 1) % testimonials.length;
-    }, 5000);
-
-    return () => clearInterval(interval);
+      return () => clearInterval(resendTimer);
   });
 
-  // Cleanup on unmount
-  onMount(() => {
-    return () => clearInterval(resendTimer);
-  });
-
-  // Update Continue button to show loading state
+  // Add this to your template
   $: isNextButtonDisabled = formStep === 1 && isSendingCode;
 
   // Add this notification function
@@ -573,6 +599,108 @@
       }, 0);
     }
   }
+
+  // Add this binding to update formData when country is selected
+  $: if (selectedCountry) {
+    formData.country = selectedCountry.label;
+  } else {
+    formData.country = null;
+  }
+
+  // Add reactive statement to log form data changes
+  $: {
+    console.log('Form data updated:', formData);
+  }
+
+  // Add this to help with debugging
+  onMount(() => {
+    console.log('Environment check:', {
+        mode: import.meta.env.MODE,
+        dev: import.meta.env.DEV,
+        prod: import.meta.env.PROD
+    });
+  });
+
+  let showDatePicker = false;
+  let selectedDate = null;
+  
+  // Function to format date for display
+  function formatDate(date) {
+      return date ? format(new Date(date), 'MMM dd, yyyy') : '';
+  }
+
+  // Function to check if date is in the past
+  function isPastDate(date) {
+      return new Date(date) < new Date();
+  }
+
+  // Function to handle date selection
+  function handleDateSelect(date) {
+      selectedDate = date.toISOString().split('T')[0];
+      formData.birthDate = selectedDate;
+      showDatePicker = false;
+  }
+
+  // Add these variables to your existing script
+  let currentMonth = new Date().getMonth();
+  let currentYear = new Date().getFullYear();
+  
+  const months = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+  
+  // Generate years (100 years back from current year)
+  const years = Array.from({ length: 100 }, (_, i) => currentYear - i);
+
+  function getDaysInMonth(year, month) {
+      const firstDay = new Date(year, month, 1);
+      const lastDay = new Date(year, month + 1, 0);
+      const days = [];
+      
+      // Add previous month's days
+      const firstDayOfWeek = firstDay.getDay();
+      for (let i = firstDayOfWeek - 1; i >= 0; i--) {
+          const date = new Date(year, month, -i);
+          days.push({
+              date: date,
+              dayOfMonth: date.getDate(),
+              isCurrentMonth: false,
+              isSelectable: isPastDate(date),
+              isSelected: selectedDate && date.toDateString() === new Date(selectedDate).toDateString()
+          });
+      }
+      
+      // Add current month's days
+      for (let i = 1; i <= lastDay.getDate(); i++) {
+          const date = new Date(year, month, i);
+          days.push({
+              date: date,
+              dayOfMonth: i,
+              isCurrentMonth: true,
+              isSelectable: isPastDate(date),
+              isSelected: selectedDate && date.toDateString() === new Date(selectedDate).toDateString()
+          });
+      }
+      
+      // Add next month's days to complete the grid
+      const remainingDays = 42 - days.length; // 6 rows * 7 days = 42
+      for (let i = 1; i <= remainingDays; i++) {
+          const date = new Date(year, month + 1, i);
+          days.push({
+              date: date,
+              dayOfMonth: i,
+              isCurrentMonth: false,
+              isSelectable: isPastDate(date),
+              isSelected: selectedDate && date.toDateString() === new Date(selectedDate).toDateString()
+          });
+      }
+      
+      return days;
+  }
+
+  // Add reactive statement to update calendar when month/year changes
+  $: calendarDays = getDaysInMonth(currentYear, currentMonth);
 </script>
 <div class="min-h-screen flex flex-col lg:flex-row relative overflow-hidden">
   <!-- Left Section - Remove hidden class and adjust for mobile -->
@@ -799,25 +927,7 @@
   <div class="w-full lg:w-[70%] p-1 sm:p-2 flex items-start justify-start min-h-screen bg-gradient-to-b from-white to-gray-50/50">
     <div class="w-full max-w-[1200px] relative scale-100 lg:scale-[0.92]">
       <!-- Secure Registration Badge - Reduced margins -->
-      <div class="text-center mb-2">
-        <div class="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 bg-gradient-to-r from-[#605bff]/10 
-                    to-purple-500/10 rounded-full mb-2 hover:from-[#605bff]/20 hover:to-purple-500/20 
-                    transition-all duration-300">
-          <div class="flex space-x-1">
-            {#each Array(3) as _, i}
-              <div class="w-1.5 h-1.5 rounded-full bg-[#605bff] animate-pulse" 
-                   style="animation-delay: {i * 200}ms"></div>
-            {/each}
-          </div>
-          <span class="text-xs sm:text-sm font-semibold text-[#605bff]">Secure Registration</span>
-        </div>
-        
-        <h2 class="text-2xl sm:text-3xl font-bold mb-1 text-gray-900 flex items-center justify-center gap-2">
-          Create Account 
-          <span class="animate-crawl inline-block">👋</span>
-        </h2>
-        <p class="text-xs sm:text-sm text-gray-600">Complete your profile to get started</p>
-      </div>
+      
       
       <!-- Progress Bar - Updated for mobile responsiveness -->
       <div class="relative w-full mb-6 sm:mb-8">
@@ -973,44 +1083,117 @@
                   <!-- Phone -->
                   <div class="form-group">
                     <label class="form-label">Phone number</label>
-                    <div class="flex gap-2">
-                      <!-- Phone Prefix Select -->
-                      <div class="w-32 relative">
+                    <div class="flex">
+                      <!-- Modern Country Code Select -->
+                      <div class="w-[150px]"> <!-- Increased width further to ensure full visibility -->
                         <Select
                           items={uniquePrefixes}
                           bind:value={selectedPhonePrefix}
                           class="phone-prefix-select"
-                          placeholder="+1"
+                          placeholder="+1 🇺🇸"
                           itemComponent={({ item }) => `
-                            <div class="flex items-center gap-2 py-1">
-                              <span class="text-lg">${item.flag}</span>
-                              <span class="font-medium">${item.value}</span>
-                              <span class="text-gray-500 text-sm">${item.country}</span>
+                            <div class="flex items-center justify-between w-full px-3 py-2.5">
+                              <div class="flex items-center gap-2.5 min-w-0">
+                                <span class="text-lg flex-shrink-0">${item.flag}</span>
+                                <span class="font-medium text-gray-900 whitespace-nowrap">${item.code}</span>
+                              </div>
                             </div>
                           `}
                           selectedComponent={({ item }) => `
-                            <div class="flex items-center gap-2">
-                              <span class="text-lg">${item.flag}</span>
-                              <span class="font-medium">${item.value}</span>
+                            <div class="flex items-center justify-center gap-2 w-full">
+                              <span class="text-lg flex-shrink-0">${item.flag}</span>
+                              <span class="font-medium whitespace-nowrap overflow-visible">${item.code}</span>
                             </div>
                           `}
                         />
                       </div>
 
-                      <!-- Phone Number Input -->
-                      <div class="input-wrapper flex-1">
-                        <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
-                        </svg>
+                      <!-- Phone Input -->
+                      <div class="flex-1 -ml-[1px]">
                         <input
                           type="tel"
-                          class="modern-input {errors.phone ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' : ''}"
+                          class="modern-input rounded-l-none {errors.phone ? 'border-red-500' : ''}"
                           placeholder="(555) 000-0000"
                           bind:value={formData.phone}
                           on:input={handlePhoneInput}
                           required
                         />
                       </div>
+                    </div>
+                  </div>
+
+                  <!-- Replace the existing birth date input with this -->
+                  <div class="relative col-span-1 sm:col-span-2">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        Birth Date
+                    </label>
+                    <div class="relative">
+                        <button
+                            type="button"
+                            class="w-full h-[60px] bg-white px-6 py-3.5 rounded-xl border-2 border-gray-200
+                                   hover:border-[#605bff] focus:border-[#605bff] focus:ring-4 
+                                   focus:ring-[#605bff]/20 transition-all duration-200
+                                   text-left flex items-center justify-between"
+                            on:click={() => showDatePicker = !showDatePicker}
+                        >
+                            <span class="text-[16px] font-medium {selectedDate ? 'text-gray-900' : 'text-gray-400'}">
+                                {selectedDate ? formatDate(selectedDate) : 'Select your birth date'}
+                            </span>
+                            <svg class="w-5 h-5 text-gray-400 flex-shrink-0 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                        </button>
+
+                        {#if showDatePicker}
+                            <div class="absolute z-50 mt-2 p-4 bg-white rounded-xl shadow-lg border border-gray-100 w-[320px]">
+                                <!-- Month and Year Selection -->
+                                <div class="flex justify-between items-center mb-4">
+                                    <select
+                                        bind:value={currentMonth}
+                                        class="px-2 py-1 border border-gray-200 rounded-lg text-sm font-medium text-gray-700 focus:outline-none focus:border-[#605bff]"
+                                    >
+                                        {#each months as month, i}
+                                            <option value={i}>{month}</option>
+                                        {/each}
+                                    </select>
+
+                                    <select
+                                        bind:value={currentYear}
+                                        class="px-2 py-1 border border-gray-200 rounded-lg text-sm font-medium text-gray-700 focus:outline-none focus:border-[#605bff]"
+                                    >
+                                        {#each years as year}
+                                            <option value={year}>{year}</option>
+                                        {/each}
+                                    </select>
+                                </div>
+
+                                <!-- Calendar Grid -->
+                                <div class="grid grid-cols-7 gap-1">
+                                    <!-- Day labels -->
+                                    {#each ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'] as day}
+                                        <div class="text-center text-sm font-medium text-gray-400 py-1">
+                                            {day}
+                                        </div>
+                                    {/each}
+
+                                    <!-- Calendar days -->
+                                    {#each getDaysInMonth(currentYear, currentMonth) as day}
+                                        <button
+                                            type="button"
+                                            class="p-2 text-sm rounded-lg hover:bg-[#605bff]/5 transition-colors
+                                                   {day.isCurrentMonth ? 'text-gray-700' : 'text-gray-400'}
+                                                   {day.isSelected ? 'bg-[#605bff] text-white hover:bg-[#605bff]' : ''}
+                                                   {!day.isSelectable ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}"
+                                            disabled={!day.isSelectable}
+                                            on:click={() => handleDateSelect(day.date)}
+                                        >
+                                            {day.dayOfMonth}
+                                        </button>
+                                    {/each}
+                                </div>
+                            </div>
+                        {/if}
                     </div>
                   </div>
 
@@ -1325,13 +1508,25 @@
                   <button 
                     type="submit" 
                     on:click|preventDefault={handleSubmit}
+                    disabled={isLoading}
                     class="w-2/3 bg-gradient-to-r from-[#605bff] to-[#8b7aff] text-white 
-                           px-7 py-3 rounded-xl font-medium flex items-center justify-center gap-2"
+                           px-7 py-3 rounded-xl font-medium flex items-center justify-center gap-2
+                           disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Create Account
-                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                      <path d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
+                    {#if isLoading}
+                      <div class="flex items-center gap-2">
+                        <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Creating Account...
+                      </div>
+                    {:else}
+                      Create Account
+                      <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
+                    {/if}
                   </button>
                 </div>
               </div>
@@ -1461,133 +1656,6 @@
                transition-all duration-300 ease-in-out"
         style="animation: notification-progress 5s linear;"
       ></div>
-    </div>
-  </div>
-{/if}
-
-<!-- Add verification UI after email validation -->
-{#if isVerifying}
-  <div class="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50">
-    <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 shadow-xl 
-                border border-gray-100 space-y-6 relative overflow-hidden">
-      <!-- Decorative gradient background -->
-      <div class="absolute inset-0 opacity-5">
-        <div class="absolute inset-0" 
-             style="background: radial-gradient(circle at top right, #605bff, transparent 50%),
-                    radial-gradient(circle at bottom left, #8b7aff, transparent 50%);">
-        </div>
-      </div>
-
-      <div class="relative space-y-6">
-        <!-- Header with icon -->
-        <div class="text-center space-y-2">
-          <div class="inline-flex items-center justify-center w-16 h-16 rounded-full 
-                      bg-[#605bff]/10 mb-4">
-            <svg class="w-8 h-8 text-[#605bff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
-          </div>
-          <h3 class="text-2xl font-bold text-gray-900">Verify your email</h3>
-          <p class="text-gray-600">
-            We've sent a verification code to<br>
-            <span class="font-medium text-gray-900">{formData.email}</span>
-          </p>
-        </div>
-
-        <!-- Verification Input -->
-        <div class="flex flex-col items-center gap-6">
-          <div class="flex gap-3 justify-center">
-            {#each Array(6) as _, i}
-              <input
-                type="text"
-                maxlength="1"
-                class="verification-input w-12 h-14 text-center text-xl font-bold rounded-xl
-                       border-2 border-gray-200 
-                       focus:border-[#605bff] focus:ring-4 focus:ring-[#605bff]/20 
-                       transition-all duration-200
-                       {verificationError ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' : ''}
-                       hover:border-[#605bff]/40"
-                on:input={(e) => handleVerificationInput(e, i)}
-                on:keydown={(e) => handleVerificationKeydown(e, i)}
-                inputmode="numeric"
-                pattern="\d*"
-              />
-            {/each}
-          </div>
-
-          {#if verificationError}
-            <div class="flex items-center gap-2 text-red-500">
-              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                      d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-              </svg>
-              <span class="text-sm font-medium">{verificationError}</span>
-            </div>
-          {/if}
-
-          <!-- Timer and Resend -->
-          <div class="text-center space-y-3">
-            {#if timeLeft > 0}
-              <div class="text-sm text-gray-600">
-                Resend code in <span class="font-medium text-[#605bff]">{formatTime(timeLeft)}</span>
-              </div>
-            {:else}
-              <button
-                on:click={sendVerificationCode}
-                disabled={isSendingCode}
-                class="text-[#605bff] hover:text-[#605bff]/80 font-medium
-                       disabled:opacity-50 disabled:cursor-not-allowed
-                       inline-flex items-center gap-2 transition-colors"
-              >
-                {#if isSendingCode}
-                  <svg class="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg>
-                  Sending...
-                {:else}
-                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                          d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                  </svg>
-                  Resend verification code
-                {/if}
-              </button>
-            {/if}
-          </div>
-
-          <!-- Verify Button -->
-          <button
-            on:click={verifyCode}
-            class="w-full bg-gradient-to-r from-[#605bff] to-[#8b7aff] text-white
-                   px-7 py-4 rounded-xl font-medium flex items-center justify-center gap-2
-                   hover:opacity-90 transition-opacity"
-          >
-            Verify Email
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-            </svg>
-          </button>
-
-          <!-- Change Email -->
-          <button
-            on:click={() => {
-              isVerifying = false;
-              clearInterval(resendTimer);
-            }}
-            class="text-sm text-gray-500 hover:text-gray-700 transition-colors
-                   flex items-center gap-2"
-          >
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                    d="M11 17l-5-5m0 0l5-5m-5 5h12" />
-            </svg>
-            Change email address
-          </button>
-        </div>
-      </div>
     </div>
   </div>
 {/if}
@@ -1771,109 +1839,182 @@
   /* Add styles for phone prefix select */
   :global(.phone-prefix-select) {
     --height: 60px;
-    --border-radius: 0.75rem;
+    --border-radius: 0.75rem 0 0 0.75rem;
     --border-color: #e5e7eb;
     --border-hover-color: rgba(96, 91, 255, 0.4);
     --background: white;
   }
 
   :global(.phone-prefix-select .selectContainer) {
-    @apply h-[60px] border border-gray-200 rounded-xl;
+    @apply h-[60px] border border-gray-200 rounded-l-xl rounded-r-none
+           bg-white/80 backdrop-blur-sm transition-all duration-200
+           overflow-visible;
   }
 
   :global(.phone-prefix-select .selectContainer:hover) {
-    @apply border-[#605bff]/40;
+    @apply border-[#605bff]/40 bg-white;
   }
 
-  :global(.phone-prefix-select .selectContainer input) {
-    @apply h-[60px] px-3;
-  }
-
-  :global(.phone-prefix-select .selectedItem) {
-    @apply px-3;
+  :global(.phone-prefix-select .selectContainer:focus-within) {
+    @apply border-[#605bff] ring-2 ring-[#605bff]/20 bg-white;
   }
 
   :global(.phone-prefix-select .listContainer) {
-    @apply rounded-xl border border-gray-100 shadow-lg mt-1;
+    @apply mt-1 rounded-xl border border-gray-100 shadow-lg 
+           bg-white/95 backdrop-blur-xl
+           min-w-[180px] max-h-[280px] overflow-y-auto;
   }
 
   :global(.phone-prefix-select .listItem) {
-    @apply px-3 py-2 hover:bg-[#605bff]/5 transition-colors duration-200;
+    @apply hover:bg-[#605bff]/5 transition-all duration-200
+           border-l-2 border-transparent;
   }
 
-  /* Enhanced country select styles */
-  :global(.modern-select) {
-    --height: 60px;
-    --border-radius: 0.75rem;
-    --border-color: #e5e7eb;
-    --border-hover-color: rgba(96, 91, 255, 0.4);
-    --background: white;
-    --font-size: 16px;
-    --padding: 0.75rem 1rem;
+  :global(.phone-prefix-select .listItem.selected) {
+    @apply bg-[#605bff]/10 border-l-2 border-[#605bff];
   }
 
-  :global(.modern-select .selectContainer) {
-    @apply border border-gray-200 rounded-xl transition-all duration-200;
+  :global(.phone-prefix-select .selectedItem) {
+    @apply px-2 flex items-center justify-center h-[60px] w-full overflow-visible;
   }
 
-  :global(.modern-select .selectContainer:hover) {
-    @apply border-[#605bff]/40;
+  :global(.phone-prefix-select input) {
+    @apply text-sm font-medium overflow-visible whitespace-nowrap;
   }
 
-  :global(.modern-select .selectContainer input) {
-    @apply h-[60px] pl-14 pr-4;
+  /* Modern scrollbar */
+  :global(.phone-prefix-select .listContainer::-webkit-scrollbar) {
+    @apply w-1.5;
   }
 
-  :global(.modern-select .listContainer) {
-    @apply rounded-xl border border-gray-100 shadow-lg mt-1;
+  :global(.phone-prefix-select .listContainer::-webkit-scrollbar-track) {
+    @apply bg-transparent;
   }
 
-  :global(.modern-select .listItem) {
-    @apply px-4 py-2 hover:bg-[#605bff]/5 transition-colors duration-200;
+  :global(.phone-prefix-select .listContainer::-webkit-scrollbar-thumb) {
+    @apply bg-gray-200 rounded-full hover:bg-gray-300 transition-colors;
   }
 
-  :global(.modern-select .selectedItem) {
-    @apply pl-14 flex items-center h-[60px];
+  /* Search input styling */
+  :global(.phone-prefix-select .selectContainer input::placeholder) {
+    @apply text-gray-400;
   }
 
-  :global(.modern-select .clearSelect) {
-    @apply p-1 hover:bg-gray-100 rounded-lg transition-colors duration-200;
+  /* Ensure no text gets cut off */
+  :global(.phone-prefix-select .value-container) {
+    @apply overflow-visible;
   }
 
-  :global(.modern-select .listItem.selected) {
-    @apply bg-[#605bff]/5 text-[#605bff];
-  }
-
-  /* Verification input styles */
-  .verification-input {
-    @apply w-12 h-12 text-center text-lg font-semibold rounded-xl 
-           border border-gray-200 focus:border-[#605bff] 
-           focus:ring-2 focus:ring-[#605bff]/20 transition-all;
-  }
-
-  .verification-input::-webkit-outer-spin-button,
-  .verification-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-
-  /* Modern Input Styles for Mobile */
-  .modern-input {
-    @apply w-full h-[50px] sm:h-[60px] pl-10 sm:pl-14 pr-4 sm:pr-5 bg-white
-           border border-gray-200 rounded-xl
-           focus:outline-none focus:ring-2 
-           focus:ring-[#605bff]/20 focus:border-[#605bff]
-           text-gray-900 placeholder-gray-400 
-           transition-all duration-200
-           hover:border-[#605bff]/40 text-sm sm:text-base
-           leading-normal tracking-tight
-           hover:bg-white focus:bg-white font-medium;
-  }
-
-  .input-icon {
-    @apply absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 
-           w-4 sm:w-5 h-4 sm:h-5 text-[#605bff]/70 stroke-[1.5]
-           transition-all duration-200 pointer-events-none;
+  :global(.phone-prefix-select .selectedItem > *) {
+    @apply overflow-visible whitespace-nowrap;
   }
 </style>
+
+<!-- Add this verification modal to your template -->
+{#if isVerifying}
+    <div class="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 shadow-xl" 
+             transition:fade={{ duration: 200 }}>
+            <!-- Header with Icon -->
+            <div class="text-center mb-8">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full 
+                            bg-[#605bff]/10 mb-4">
+                    <svg class="w-8 h-8 text-[#605bff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900">Verify your email</h3>
+                <p class="text-gray-600 mt-2">
+                    We've sent a verification code to<br>
+                    <span class="font-medium text-gray-900">{formData.email}</span>
+                </p>
+            </div>
+
+            <!-- Verification Code Input -->
+            <div class="mb-8">
+                <div class="flex justify-center gap-2">
+                    {#each Array(6) as _, i}
+                        <input
+                            type="text"
+                            maxlength="1"
+                            class="w-12 h-14 text-center text-xl font-bold rounded-xl
+                                   border-2 border-gray-200 focus:border-[#605bff] focus:ring-4 
+                                   focus:ring-[#605bff]/20 transition-all duration-200
+                                   {verificationError ? 'border-red-300 focus:border-red-500 focus:ring-red-200' : ''}"
+                            on:input={(e) => {
+                                const value = e.target.value;
+                                if (value) {
+                                    verificationCode = verificationCode.slice(0, i) + value + verificationCode.slice(i + 1);
+                                    if (i < 5 && value) {
+                                        e.target.nextElementSibling?.focus();
+                                    }
+                                }
+                            }}
+                            on:keydown={(e) => {
+                                if (e.key === 'Backspace' && !e.target.value) {
+                                    verificationCode = verificationCode.slice(0, i) + verificationCode.slice(i + 1);
+                                    e.target.previousElementSibling?.focus();
+                                }
+                            }}
+                            value={verificationCode[i] || ''}
+                        />
+                    {/each}
+                </div>
+
+                {#if verificationError}
+                    <div class="flex items-center justify-center gap-2 mt-3 text-red-500">
+                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                        <span class="text-sm font-medium">{verificationError}</span>
+                    </div>
+                {/if}
+            </div>
+
+            <!-- Timer and Resend -->
+            <div class="text-center mb-6">
+                {#if timeLeft > 0}
+                    <p class="text-sm text-gray-600">
+                        Request new code in <span class="font-medium text-[#605bff]">{formatTime(timeLeft)}</span>
+                    </p>
+                {:else}
+                    <button
+                        on:click={sendVerificationCode}
+                        disabled={isSendingCode}
+                        class="text-[#605bff] text-sm font-medium hover:text-[#605bff]/80 
+                               disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                    >
+                        {#if isSendingCode}
+                            <span class="flex items-center justify-center gap-2">
+                                <svg class="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                Sending new code...
+                            </span>
+                        {:else}
+                            Resend verification code
+                        {/if}
+                    </button>
+                {/if}
+            </div>
+
+            <!-- Verify Button -->
+            <button
+                on:click={verifyCode}
+                class="w-full bg-gradient-to-r from-[#605bff] to-[#8b7aff] text-white 
+                       px-6 py-3.5 rounded-xl font-medium flex items-center justify-center 
+                       gap-2 hover:opacity-90 transition-opacity"
+            >
+                Verify Email
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+            </button>
+        </div>
+    </div>
+{/if}
 

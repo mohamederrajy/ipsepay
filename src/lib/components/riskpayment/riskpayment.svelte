@@ -12,7 +12,7 @@
   };
 
   let mounted = false;
-  let activeIndex = 0;
+  let selectedMethod: string | null = null;
   let interval: ReturnType<typeof setInterval>;
 
   const contactInfo = [
@@ -33,11 +33,18 @@
     }
   ];
 
+  function startAutoSelection() {
+    let currentIndex = 0;
+    interval = setInterval(() => {
+      selectedMethod = paymentMethods.left[currentIndex].name;
+      currentIndex = (currentIndex + 1) % paymentMethods.left.length;
+    }, 2000); // Changes every 2 seconds
+  }
+
   onMount(() => {
     mounted = true;
-    interval = setInterval(() => {
-      activeIndex = (activeIndex + 1) % 3;
-    }, 2000);
+    selectedMethod = paymentMethods.left[0].name; // Start with first method
+    startAutoSelection();
   });
 
   onDestroy(() => {
@@ -341,23 +348,30 @@
 
           <!-- Payment Methods -->
           <div class="mt-8 sm:mt-16 space-y-3 sm:space-y-4">
-            {#each paymentMethods.left as method, i}
+            {#each paymentMethods.left as method}
               {#if mounted}
                 <div class="transform transition-all duration-500">
-                  <div class="bg-white p-5 rounded-xl border border-gray-100
-                             shadow-md hover:shadow-lg transition-all duration-300
-                             flex items-center justify-between group
-                             hover:border-[#605bff]/20">
+                  <button 
+                    on:click={() => selectMethod(method.name)}
+                    class="w-full bg-white p-5 rounded-xl border border-gray-100
+                           shadow-md hover:shadow-lg transition-all duration-300
+                           flex items-center justify-between group
+                           hover:border-[#605bff]/20 cursor-pointer
+                           {selectedMethod === method.name ? 'border-[#605bff] scale-[1.02]' : ''}"
+                  >
                     <div class="flex items-center gap-4">
                       <div class="w-12 h-12 rounded-lg bg-gray-50 p-2 
                                   group-hover:bg-[#605bff]/5 transition-colors 
-                                  flex items-center justify-center">
+                                  flex items-center justify-center
+                                  {selectedMethod === method.name ? 'bg-[#605bff]/10' : ''}">
                         <img src={method.logo} alt={method.name} 
                              class="h-8 w-auto object-contain" />
                       </div>
                       <span class="text-[#32325d] font-medium">{method.name}</span>
                     </div>
-                    {#if i === activeIndex}
+                    
+                    <!-- Check Icon -->
+                    {#if selectedMethod === method.name}
                       <div class="w-6 h-6 rounded-full bg-[#605bff] flex items-center justify-center
                                  shadow-lg shadow-[#605bff]/25"
                            in:scale={{ duration: 200 }}>
@@ -367,15 +381,18 @@
                           <polyline points="20 6 9 17 4 12"></polyline>
                         </svg>
                       </div>
+                    {:else}
+                      <div class="w-6 h-6 rounded-full border-2 border-gray-200 
+                                 group-hover:border-[#605bff]/50 transition-colors"></div>
                     {/if}
-                  </div>
+                  </button>
                 </div>
               {/if}
             {/each}
           </div>
 
           <!-- Smart Routing Engine -->
-          <div class="mt-6 sm:mt-8">
+          <div class="mt-8">
             <div class="bg-gradient-to-r from-[#605bff] to-[#605bff]/90 
                         rounded-xl p-6 text-white text-center relative
                         transform hover:scale-[1.02] transition-transform duration-300
@@ -383,6 +400,9 @@
               <div class="space-y-1">
                 <div class="text-sm font-medium opacity-90">POWERED BY</div>
                 <div class="text-xl font-bold">SMART ROUTING ENGINE</div>
+                {#if selectedMethod}
+                  <div class="text-sm mt-2 opacity-90">Selected: {selectedMethod}</div>
+                {/if}
               </div>
               <!-- Animated Pulse Effect -->
               <div class="absolute -bottom-2 -right-2">
