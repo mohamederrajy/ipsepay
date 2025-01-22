@@ -45,93 +45,102 @@ export async function POST({ request }) {
         const mailOptions = {
             from: PRIVATE_EMAIL_FROM,
             to: email,
-            subject: 'Verify Your IpsePay Account',
+            subject: 'Welcome to IpsePay - Verify Your Account',
             html: `
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verify Your IpsePay Account</title>
+    <title>IpsePay - Account Verification</title>
 </head>
-<body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f5;">
-    <table role="presentation" style="width: 100%; border: none; border-spacing: 0; background-color: #f4f4f5; padding: 40px 0;">
+<body style="margin: 0; padding: 0; font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif; background-color: #f8fafc;">
+    <table role="presentation" style="width: 100%; border: none; border-spacing: 0; background-color: #f8fafc; padding: 40px 20px;">
         <tr>
             <td align="center" style="padding: 0;">
-                <table role="presentation" style="width: 600px; border: none; border-spacing: 0; text-align: left; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                <table role="presentation" style="width: 100%; max-width: 600px; border: none; border-spacing: 0; text-align: left; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);">
                     <!-- Modern Header -->
                     <tr>
-                        <td style="padding: 0;">
-                            <div style="background: linear-gradient(135deg, #605bff 0%, #8b7aff 100%); padding: 40px 40px; text-align: center;">
-                                <h1 style="margin: 0; font-size: 32px; font-weight: 800; color: #ffffff; letter-spacing: -0.5px;">
-                                    IPSE<span style="font-weight: 300;">PAY</span>
-                                </h1>
-                            </div>
+                        <td style="padding: 48px 48px 40px; text-align: center; background: linear-gradient(to right, #605bff, #8b7aff);">
+                            <h1 style="margin: 0; font-size: 32px; font-weight: 800; color: #ffffff; letter-spacing: -0.5px;">
+                                IPSE<span style="font-weight: 400;">PAY</span>
+                            </h1>
+                            <p style="margin: 16px 0 0; font-size: 16px; color: rgba(255, 255, 255, 0.9);">
+                                Secure Payment Solutions
+                            </p>
                         </td>
                     </tr>
-                    
+
                     <!-- Main Content -->
                     <tr>
-                        <td style="padding: 48px 40px;">
-                            <table role="presentation" style="width: 100%; border: none; border-spacing: 0;">
-                                <tr>
-                                    <td>
-                                        <h2 style="margin: 0 0 24px; font-size: 24px; font-weight: 700; color: #1f2937; letter-spacing: -0.5px;">
-                                            Verify your email address
-                                        </h2>
-                                        
-                                        <p style="margin: 0 0 32px; font-size: 16px; line-height: 24px; color: #4b5563;">
-                                            Welcome to IpsePay! Use this verification code to complete your registration and secure your account.
-                                        </p>
+                        <td style="padding: 48px;">
+                            <div style="text-align: center; margin-bottom: 40px;">
+                                <h2 style="margin: 0 0 16px; font-size: 24px; font-weight: 700; color: #1e293b; letter-spacing: -0.5px;">
+                                    Complete Your Verification
+                                </h2>
+                                <p style="margin: 0; font-size: 16px; line-height: 24px; color: #64748b;">
+                                    Enter this verification code to get started with IpsePay
+                                </p>
+                            </div>
 
-                                        <!-- Modern Verification Code Box -->
-                                        <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-radius: 16px; padding: 32px; margin: 32px 0; text-align: center; border: 1px solid #e2e8f0;">
-                                            <p style="margin: 0 0 16px; font-size: 14px; color: #64748b; text-transform: uppercase; letter-spacing: 1px;">
-                                                Your verification code
-                                            </p>
-                                            <div style="font-size: 36px; font-weight: 700; letter-spacing: 8px; color: #605bff; font-family: monospace; background: -webkit-linear-gradient(45deg, #605bff, #8b7aff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                                                ${code}
-                                            </div>
-                                            <p style="margin: 16px 0 0; font-size: 14px; color: #94a3b8;">
-                                                Expires in 3 minutes
-                                            </p>
-                                        </div>
+                            <!-- Modern Code Display -->
+                            <div style="margin: 32px 0; padding: 32px; background-color: #f8fafc; border: 2px dashed #e2e8f0; border-radius: 12px; text-align: center;">
+                                <p style="margin: 0 0 16px; text-transform: uppercase; font-size: 13px; font-weight: 600; letter-spacing: 2px; color: #64748b;">
+                                    Your Verification Code
+                                </p>
+                                <div style="font-family: 'SF Mono', SFMono-Regular, Consolas, monospace; font-size: 36px; font-weight: 700; letter-spacing: 8px; color: #605bff;">
+                                    ${code}
+                                </div>
+                                <p style="margin: 16px 0 0; font-size: 14px; color: #94a3b8;">
+                                    Code expires in 3 minutes
+                                </p>
+                            </div>
 
-                                        <!-- Security Notice -->
-                                        <div style="padding: 24px; background-color: #eff6ff; border-radius: 12px; margin-top: 32px;">
-                                            <p style="margin: 0; font-size: 14px; line-height: 20px; color: #3b82f6;">
-                                                🔒 For your security, never share this code with anyone. IpsePay representatives will never ask for your verification code.
-                                            </p>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
+                            <!-- Security Notice -->
+                            <div style="margin-top: 32px; padding: 24px; background-color: #f1f5f9; border-left: 4px solid #605bff; border-radius: 8px;">
+                                <div style="display: flex; align-items: center;">
+                                    <p style="margin: 0; font-size: 14px; line-height: 20px; color: #475569;">
+                                        <strong style="color: #1e293b;">Security Notice:</strong><br>
+                                        Never share this code with anyone. IpsePay representatives will never ask for your verification code.
+                                    </p>
+                                </div>
+                            </div>
                         </td>
                     </tr>
 
                     <!-- Modern Footer -->
                     <tr>
-                        <td style="padding: 32px 40px; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);">
+                        <td style="padding: 40px 48px; background-color: #f8fafc; border-top: 1px solid #e2e8f0;">
                             <table role="presentation" style="width: 100%; border: none; border-spacing: 0;">
                                 <tr>
                                     <td style="padding: 0; text-align: center;">
-                                        <p style="margin: 0 0 16px; font-size: 14px; color: #64748b;">
+                                        <div style="margin-bottom: 24px;">
+                                            <a href="https://ipsepay.com/privacy" style="display: inline-block; padding: 8px 16px; color: #605bff; text-decoration: none; font-size: 14px; font-weight: 500;">Privacy</a>
+                                            <a href="https://ipsepay.com/terms" style="display: inline-block; padding: 8px 16px; color: #605bff; text-decoration: none; font-size: 14px; font-weight: 500;">Terms</a>
+                                            <a href="https://ipsepay.com/contact" style="display: inline-block; padding: 8px 16px; color: #605bff; text-decoration: none; font-size: 14px; font-weight: 500;">Support</a>
+                                        </div>
+                                        <p style="margin: 0 0 8px; font-size: 14px; color: #64748b; font-weight: 500;">
                                             © ${new Date().getFullYear()} IpsePay. All rights reserved.
                                         </p>
-                                        <div style="margin: 0 0 24px;">
-                                            <a href="https://ipsepay.com/privacy" style="color: #605bff; text-decoration: none; font-size: 14px; margin: 0 12px;">Privacy</a>
-                                            <span style="color: #cbd5e1;">•</span>
-                                            <a href="https://ipsepay.com/terms" style="color: #605bff; text-decoration: none; font-size: 14px; margin: 0 12px;">Terms</a>
-                                            <span style="color: #cbd5e1;">•</span>
-                                            <a href="https://ipsepay.com/contact" style="color: #605bff; text-decoration: none; font-size: 14px; margin: 0 12px;">Support</a>
-                                        </div>
-                                        <p style="margin: 0; font-size: 12px; color: #94a3b8; line-height: 18px;">
+                                        <p style="margin: 0; font-size: 13px; color: #94a3b8; line-height: 20px;">
                                             This is an automated message. Please do not reply to this email.<br>
                                             IpsePay Inc. • Baghdad, Iraq
                                         </p>
                                     </td>
                                 </tr>
                             </table>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Additional Footer Text -->
+                <table role="presentation" style="width: 100%; max-width: 600px; border: none; border-spacing: 0; text-align: center; margin-top: 24px;">
+                    <tr>
+                        <td style="padding: 0;">
+                            <p style="margin: 0; font-size: 13px; color: #64748b; line-height: 20px;">
+                                Please add <span style="color: #1e293b; font-weight: 500;">${PRIVATE_EMAIL_FROM}</span> to your address book<br>
+                                to ensure our emails reach your inbox.
+                            </p>
                         </td>
                     </tr>
                 </table>
