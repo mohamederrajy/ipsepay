@@ -7,7 +7,7 @@ module.exports = {
         // "node_modules/@frostui/tailwindcss/dist/*.js",
         'node_modules/preline/preline.js',
     ],
-    darkMode: ['class'],
+    darkMode: 'class',
     theme: {
 
         container: {

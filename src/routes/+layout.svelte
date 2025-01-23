@@ -13,11 +13,22 @@
 
     import {onMount} from "svelte";
     import AOS from "aos";
+    import { page } from '$app/stores';
+    import { browser } from '$app/environment';
+
+    $: ({ user, isAuthenticated } = $page.data);
 
     onMount(() => {
         setTimeout(() => {
             AOS.init();
         }, 500);
+        if (browser) {
+            // Sync server session with localStorage
+            if (isAuthenticated && user) {
+                localStorage.setItem('authToken', user.token);
+                localStorage.setItem('user', JSON.stringify(user));
+            }
+        }
     });
 </script>
 

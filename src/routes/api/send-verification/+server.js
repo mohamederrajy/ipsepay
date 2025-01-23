@@ -45,14 +45,14 @@ export async function POST({ request }) {
         const mailOptions = {
             from: PRIVATE_EMAIL_FROM,
             to: email,
-            subject: 'Welcome to IpsePay - Verify Your Account',
+            subject: 'Verify Your IpsePay Account',
             html: `
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IpsePay - Account Verification</title>
+    <title>Welcome to IpsePay - Email Verification</title>
 </head>
 <body style="margin: 0; padding: 0; font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif; background-color: #f8fafc;">
     <table role="presentation" style="width: 100%; border: none; border-spacing: 0; background-color: #f8fafc; padding: 40px 20px;">

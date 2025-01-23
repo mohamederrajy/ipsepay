@@ -15,6 +15,17 @@ declare global {
   }
 }
 
+declare global {
+    interface Window {
+        userSession?: {
+            user: any;
+            isVerified: boolean;
+            token: string;
+            isAuthenticated: boolean;
+        } | null;
+    }
+}
+
 // declare global "glightbox";
 
 export { }
