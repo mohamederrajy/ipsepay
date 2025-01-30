@@ -173,14 +173,10 @@
 
   async function handleSubmit(event: SubmitEvent) {
     event.preventDefault();
-    console.log('🎯 Login attempt started for email:', email);
     
     try {
       isLoading = true;
       errorMessage = '';
-
-      console.log('🌐 Making API request to:', `${PUBLIC_API_URL}/auth/login`);
-      console.log('📤 Sending data:', { email, password: '****' });
 
       const response = await fetch(`${PUBLIC_API_URL}/auth/login`, {
         method: 'POST',
@@ -192,72 +188,39 @@
 
       const result = await response.json();
       
-      // Log raw response
-      console.log('📥 Raw API Response:', result);
-      
-      console.log('📨 Login response status:', {
-        status: response.status,
-        ok: response.ok,
-      });
-
       if (!response.ok) {
-        console.log('❌ Response not OK:', result.message);
         throw new Error(result.message || 'Login failed');
       }
 
       if (result.accessToken && result.user) {
-        console.group('✅ Login Successful');
-        console.log('🔑 Access Token:', result.accessToken);
-        console.log('👤 User Data:', result.user);
-        console.groupEnd();
+        // 1. Set cookies with domain to allow access from dashboard subdomain
+        document.cookie = `authToken=${result.accessToken}; path=/; domain=.ipsepay.com; secure; samesite=strict`;
+        document.cookie = `userData=${JSON.stringify(result.user)}; path=/; domain=.ipsepay.com; secure; samesite=strict`;
 
-        // Test localStorage before setting
-        console.log('💾 Testing localStorage access...');
-        try {
-          localStorage.setItem('test', 'test');
-          localStorage.removeItem('test');
-          console.log('✅ localStorage is accessible');
-        } catch (e) {
-          console.error('❌ localStorage error:', e);
-        }
+        // 2. Store in localStorage (backup)
+        localStorage.setItem('authToken', result.accessToken);
+        localStorage.setItem('userData', JSON.stringify(result.user));
 
-        // Set localStorage with logging
-        try {
-          localStorage.setItem('authToken', result.accessToken);
-          localStorage.setItem('user', JSON.stringify(result.user));
-          console.log('✅ Data saved to localStorage');
-        } catch (e) {
-          console.error('❌ Error saving to localStorage:', e);
-        }
-
-        // Verify localStorage data
-        console.group('📋 Verifying localStorage data');
-        console.log('Token:', localStorage.getItem('authToken'));
-        console.log('User:', localStorage.getItem('user'));
-        console.groupEnd();
-
-        // Create and log session data
+        // 3. Create session data object
         const sessionData = {
           token: result.accessToken,
           user: result.user,
           timestamp: new Date().toISOString()
         };
-        console.log('🔄 Prepared session data:', sessionData);
 
-        // Log redirect attempt
-        console.log('🚀 Attempting redirect to dashboard...');
-        window.location.href = 'https://dashboard.ipsepay.com';
-      } else {
-        console.warn('⚠️ Invalid response structure:', result);
-        throw new Error('Invalid response from server');
+        // 4. Encode session data for URL
+        const encodedSession = btoa(JSON.stringify(sessionData));
+
+        // 5. Redirect to dashboard with session data
+        const dashboardUrl = new URL('https://dashboard.ipsepay.com');
+        dashboardUrl.searchParams.append('session', encodedSession);
+        
+        console.log('Redirecting with session data:', sessionData);
+        window.location.href = dashboardUrl.toString();
       }
 
     } catch (err) {
-      console.group('❌ Login Error');
-      console.error('Error details:', err);
-      console.error('Stack:', err.stack);
-      console.groupEnd();
-      
+      console.error('Login error:', err);
       errorMessage = err instanceof Error ? err.message : 'Login failed';
       isLoading = false;
     }
