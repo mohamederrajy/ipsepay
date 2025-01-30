@@ -107,32 +107,42 @@
 
   // Aggressive session check and redirect
   async function checkAndRedirect() {
-    if (!browser) return;
+    if (!browser) {
+        console.log('⏭️ Skipping redirect check - not in browser');
+        return;
+    }
     
+    console.log('🔍 Checking for existing session...');
     try {
-      const token = localStorage.getItem('authToken');
-      const userStr = localStorage.getItem('user');
-      
-      if (token && userStr) {
-        const user = JSON.parse(userStr);
-        if (user?.email) {
-          console.log('✅ Valid session found - Redirecting to dashboard');
-          document.body.style.display = 'none'; // Prevent content flash
-          window.location.replace('/dashboard');
-          return true;
+        const token = localStorage.getItem('authToken');
+        const userStr = localStorage.getItem('user');
+        
+        console.log('📊 Found in localStorage:', {
+            hasToken: !!token,
+            hasUser: !!userStr
+        });
+        
+        if (token && userStr) {
+            const user = JSON.parse(userStr);
+            console.log('👤 Found user data:', user);
+            if (user?.email) {
+                console.log('✅ Valid session found - Redirecting');
+                window.location.replace('/dashboard');
+                return true;
+            }
         }
-      }
-      return false;
+        return false;
     } catch (err) {
-      console.error('Session check error:', err);
-      localStorage.clear();
-      return false;
+        console.error('❌ Session check error:', err);
+        localStorage.clear();
+        return false;
     } finally {
-      isLoading = false;
+        isLoading = false;
     }
   }
 
   onMount(() => {
+    console.log('🔄 Component mounted');
     checkAndRedirect();
 
     console.log('\n🔍 Checking client-side session');
@@ -163,10 +173,14 @@
 
   async function handleSubmit(event: SubmitEvent) {
     event.preventDefault();
+    console.log('🎯 Login attempt started for email:', email);
     
     try {
       isLoading = true;
       errorMessage = '';
+
+      console.log('🌐 Making API request to:', `${PUBLIC_API_URL}/auth/login`);
+      console.log('📤 Sending data:', { email, password: '****' });
 
       const response = await fetch(`${PUBLIC_API_URL}/auth/login`, {
         method: 'POST',
@@ -178,34 +192,72 @@
 
       const result = await response.json();
       
-      console.log('📨 Login response:', {
+      // Log raw response
+      console.log('📥 Raw API Response:', result);
+      
+      console.log('📨 Login response status:', {
         status: response.status,
-        ok: response.ok
+        ok: response.ok,
       });
 
       if (!response.ok) {
+        console.log('❌ Response not OK:', result.message);
         throw new Error(result.message || 'Login failed');
       }
 
       if (result.accessToken && result.user) {
-        console.log('✅ Login successful - Setting session');
+        console.group('✅ Login Successful');
+        console.log('🔑 Access Token:', result.accessToken);
+        console.log('👤 User Data:', result.user);
+        console.groupEnd();
 
-        // Set cookies
-        document.cookie = `authToken=Bearer ${result.accessToken}; path=/`;
-        document.cookie = `user=${JSON.stringify(result.user)}; path=/`;
+        // Test localStorage before setting
+        console.log('💾 Testing localStorage access...');
+        try {
+          localStorage.setItem('test', 'test');
+          localStorage.removeItem('test');
+          console.log('✅ localStorage is accessible');
+        } catch (e) {
+          console.error('❌ localStorage error:', e);
+        }
 
-        // Set localStorage
-        localStorage.setItem('authToken', result.accessToken);
-        localStorage.setItem('user', JSON.stringify(result.user));
+        // Set localStorage with logging
+        try {
+          localStorage.setItem('authToken', result.accessToken);
+          localStorage.setItem('user', JSON.stringify(result.user));
+          console.log('✅ Data saved to localStorage');
+        } catch (e) {
+          console.error('❌ Error saving to localStorage:', e);
+        }
 
-        console.log('🔄 Redirecting to dashboard');
-        window.location.href = '/dashboard';
+        // Verify localStorage data
+        console.group('📋 Verifying localStorage data');
+        console.log('Token:', localStorage.getItem('authToken'));
+        console.log('User:', localStorage.getItem('user'));
+        console.groupEnd();
+
+        // Create and log session data
+        const sessionData = {
+          token: result.accessToken,
+          user: result.user,
+          timestamp: new Date().toISOString()
+        };
+        console.log('🔄 Prepared session data:', sessionData);
+
+        // Log redirect attempt
+        console.log('🚀 Attempting redirect to dashboard...');
+        window.location.href = 'https://dashboard.ipsepay.com';
       } else {
+        console.warn('⚠️ Invalid response structure:', result);
         throw new Error('Invalid response from server');
       }
 
     } catch (err) {
-      console.error('❌ Login error:', err);
+      console.group('❌ Login Error');
+      console.error('Error details:', err);
+      console.error('Stack:', err.stack);
+      console.groupEnd();
+      
       errorMessage = err instanceof Error ? err.message : 'Login failed';
       isLoading = false;
     }
