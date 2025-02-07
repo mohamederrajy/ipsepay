@@ -125,16 +125,57 @@
 </script>
 
 <section class="relative overflow-hidden py-16 sm:py-24 lg:py-32">
-  <!-- Background -->
-  <div class="absolute inset-0 bg-[#fafafa]">
-    <div class="absolute inset-0 bg-[url('/images/grid.svg')] opacity-[0.3]"></div>
-    <div class="absolute inset-0">
-      <div class="absolute top-0 right-0 w-[1200px] h-[1200px] 
-                  bg-gradient-to-br from-[#605bff]/10 via-purple-100/10 to-transparent 
-                  rounded-full blur-3xl transform rotate-12 animate-pulse"></div>
-      <div class="absolute bottom-0 left-0 w-[1000px] h-[1000px] 
-                  bg-gradient-to-tr from-[#32325d]/5 via-[#605bff]/5 to-transparent 
-                  rounded-full blur-3xl transform -rotate-12 animate-pulse"></div>
+  <!-- Professional Modern Background -->
+  <div class="absolute inset-0">
+    <!-- Base gradient -->
+    <div class="absolute inset-0 bg-gradient-to-b from-white via-[#fafafa] to-[#f5f5f5]"></div>
+    
+    <!-- Animated mesh gradient -->
+    <div class="absolute inset-0 opacity-75"
+         style="background: linear-gradient(45deg, 
+                  rgba(96, 91, 255, 0.03) 0%, 
+                  rgba(96, 91, 255, 0.03) 1%, 
+                  transparent 1%
+                ) center / 3rem 3rem,
+                linear-gradient(-45deg, 
+                  rgba(96, 91, 255, 0.03) 0%, 
+                  rgba(96, 91, 255, 0.03) 1%, 
+                  transparent 1%
+                ) center / 3rem 3rem;">
+    </div>
+
+    <!-- Floating orbs -->
+    <div class="absolute inset-0 overflow-hidden">
+      <!-- Primary orb -->
+      <div class="absolute -top-[40%] -right-[10%] w-[80%] h-[80%] rounded-full
+                  bg-gradient-to-br from-[#605bff]/10 via-[#605bff]/5 to-transparent 
+                  blur-3xl animate-float-slow transform rotate-12"
+           style="animation-duration: 15s;">
+      </div>
+      
+      <!-- Secondary orb -->
+      <div class="absolute -bottom-[40%] -left-[10%] w-[80%] h-[80%] rounded-full
+                  bg-gradient-to-tr from-[#32325d]/8 via-[#605bff]/5 to-transparent 
+                  blur-3xl animate-float-slow transform -rotate-12"
+           style="animation-duration: 18s; animation-delay: -5s;">
+      </div>
+
+      <!-- Accent orbs -->
+      <div class="absolute top-[20%] left-[10%] w-[20%] h-[20%] rounded-full
+                  bg-gradient-to-r from-purple-500/5 to-transparent 
+                  blur-2xl animate-pulse"
+           style="animation-duration: 10s;">
+      </div>
+      <div class="absolute bottom-[30%] right-[20%] w-[15%] h-[15%] rounded-full
+                  bg-gradient-to-l from-blue-500/5 to-transparent 
+                  blur-2xl animate-pulse"
+           style="animation-duration: 12s; animation-delay: -3s;">
+      </div>
+    </div>
+
+    <!-- Noise texture overlay -->
+    <div class="absolute inset-0 opacity-[0.15] mix-blend-overlay"
+         style="background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj4NCjxmaWx0ZXIgaWQ9ImEiIHg9IjAiIHk9IjAiPg0KPGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIvPg0KPC9maWx0ZXI+DQo8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgZmlsdGVyPSJ1cmwoI2EpIiBvcGFjaXR5PSIwLjA1Ii8+DQo8L3N2Zz4=');">
     </div>
   </div>
 
@@ -351,5 +392,16 @@
 
   .animate-slide-in {
     animation: slide-in 0.6s ease-out forwards;
+  }
+
+  @keyframes float-slow {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(1%, 1%) rotate(2deg); }
+    50% { transform: translate(-1%, 2%) rotate(-1deg); }
+    75% { transform: translate(-2%, -1%) rotate(1deg); }
+  }
+
+  .animate-float-slow {
+    animation: float-slow 20s ease-in-out infinite;
   }
 </style>

@@ -78,15 +78,52 @@
   }
 </script>
 
-<footer class="relative overflow-hidden bg-gradient-to-b from-gray-50/50 via-white to-white pt-24 pb-12">
-  <!-- Enhanced Background with Animation -->
+<footer class="relative overflow-hidden pt-24 pb-12">
+  <!-- Enhanced Modern Background -->
   <div class="absolute inset-0">
-    <div class="absolute inset-0 bg-[url('/images/grid.svg')] bg-center opacity-[0.2]"></div>
-    <div class="absolute inset-0 bg-gradient-to-br from-[#605bff]/5 via-purple-100/5 to-transparent animate-gradient"></div>
-    <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#605bff]/20 to-transparent"></div>
-    <!-- Animated Shapes -->
-    <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-[#605bff]/5 rounded-full blur-3xl animate-float"></div>
-    <div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-purple-100/10 rounded-full blur-3xl animate-float-delayed"></div>
+    <!-- Refined base gradient -->
+    <div class="absolute inset-0 bg-gradient-to-b from-white via-[#fafafa]/80 to-[#f8f8f8]"></div>
+    
+    <!-- Subtle grid pattern -->
+    <div class="absolute inset-0"
+         style="background-image: 
+            linear-gradient(rgba(96, 91, 255, 0.02) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(96, 91, 255, 0.02) 1px, transparent 1px);
+          background-size: 40px 40px;">
+    </div>
+
+    <!-- Enhanced floating elements -->
+    <div class="absolute inset-0 overflow-hidden">
+      <!-- Primary gradient sphere -->
+      <div class="absolute -top-1/4 -right-1/4 w-1/2 h-1/2
+                  bg-gradient-to-br from-[#605bff]/10 via-[#605bff]/5 to-transparent 
+                  blur-3xl animate-float-slow rounded-full"
+           style="animation-duration: 20s;">
+      </div>
+      
+      <!-- Secondary gradient sphere -->
+      <div class="absolute -bottom-1/4 -left-1/4 w-1/2 h-1/2
+                  bg-gradient-to-tr from-[#32325d]/5 via-[#605bff]/5 to-transparent 
+                  blur-3xl animate-float-slow rounded-full"
+           style="animation-duration: 25s; animation-delay: -10s;">
+      </div>
+
+      <!-- Accent elements -->
+      <div class="absolute top-1/3 left-1/4 w-32 h-32
+                  bg-gradient-to-r from-[#605bff]/10 to-transparent 
+                  blur-2xl animate-pulse rounded-full"
+           style="animation-duration: 8s;">
+      </div>
+      <div class="absolute bottom-1/3 right-1/4 w-24 h-24
+                  bg-gradient-to-l from-[#32325d]/10 to-transparent 
+                  blur-2xl animate-pulse rounded-full"
+           style="animation-duration: 10s; animation-delay: -2s;">
+      </div>
+    </div>
+
+    <!-- Top border gradient -->
+    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r 
+                from-transparent via-[#605bff]/20 to-transparent"></div>
   </div>
 
   <div class="relative container mx-auto px-4">
@@ -337,6 +374,25 @@
   .animate-float-delayed {
     animation: float 6s ease-in-out infinite;
     animation-delay: -3s;
+  }
+
+  @keyframes float-slow {
+    0%, 100% { 
+      transform: translate(0, 0) rotate(0deg) scale(1); 
+    }
+    25% { 
+      transform: translate(2%, 2%) rotate(1deg) scale(1.01); 
+    }
+    50% { 
+      transform: translate(-1%, 3%) rotate(-1deg) scale(0.99); 
+    }
+    75% { 
+      transform: translate(-2%, -1%) rotate(0.5deg) scale(1.01); 
+    }
+  }
+
+  .animate-float-slow {
+    animation: float-slow 20s ease-in-out infinite;
   }
 
   @media (max-width: 768px) {

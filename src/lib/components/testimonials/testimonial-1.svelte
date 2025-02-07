@@ -105,17 +105,53 @@
 </script>
 
 <section class="relative overflow-hidden py-16 sm:py-24 lg:py-32">
-  <!-- Enhanced Responsive Background -->
-  <div class="absolute inset-0 bg-[#fafafa]">
-    <div class="absolute inset-0 bg-[url('/images/grid.svg')] opacity-[0.3]"></div>
-    <div class="absolute inset-0">
-      <div class="absolute top-0 right-0 w-[600px] sm:w-[1200px] h-[600px] sm:h-[1200px] 
-                  bg-gradient-to-br from-[#605bff]/10 via-purple-100/10 to-transparent 
-                  rounded-full blur-2xl sm:blur-3xl transform rotate-12 animate-pulse"></div>
-      <div class="absolute bottom-0 left-0 w-[500px] sm:w-[1000px] h-[500px] sm:h-[1000px] 
-                  bg-gradient-to-tr from-[#32325d]/5 via-[#605bff]/5 to-transparent 
-                  rounded-full blur-2xl sm:blur-3xl transform -rotate-12 animate-pulse"></div>
+  <!-- Enhanced Modern Background -->
+  <div class="absolute inset-0">
+    <!-- Refined base gradient -->
+    <div class="absolute inset-0 bg-gradient-to-b from-white via-[#fafafa]/80 to-[#f8f8f8]"></div>
+    
+    <!-- Subtle grid pattern -->
+    <div class="absolute inset-0"
+         style="background-image: 
+            linear-gradient(rgba(96, 91, 255, 0.02) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(96, 91, 255, 0.02) 1px, transparent 1px);
+          background-size: 40px 40px;">
     </div>
+
+    <!-- Enhanced floating elements -->
+    <div class="absolute inset-0 overflow-hidden">
+      <!-- Large gradient sphere -->
+      <div class="absolute -top-1/4 -right-1/4 w-1/2 h-1/2
+                  bg-gradient-to-br from-[#605bff]/10 via-[#605bff]/5 to-transparent 
+                  blur-3xl animate-float-slow rounded-full"
+           style="animation-duration: 20s;">
+      </div>
+      
+      <!-- Complementary sphere -->
+      <div class="absolute -bottom-1/4 -left-1/4 w-1/2 h-1/2
+                  bg-gradient-to-tr from-[#32325d]/5 via-[#605bff]/5 to-transparent 
+                  blur-3xl animate-float-slow rounded-full"
+           style="animation-duration: 25s; animation-delay: -10s;">
+      </div>
+
+      <!-- Subtle accent elements -->
+      <div class="absolute top-1/3 left-1/4 w-32 h-32
+                  bg-gradient-to-r from-[#605bff]/10 to-transparent 
+                  blur-2xl animate-pulse rounded-full"
+           style="animation-duration: 8s;">
+      </div>
+      <div class="absolute bottom-1/3 right-1/4 w-24 h-24
+                  bg-gradient-to-l from-[#32325d]/10 to-transparent 
+                  blur-2xl animate-pulse rounded-full"
+           style="animation-duration: 10s; animation-delay: -2s;">
+      </div>
+    </div>
+
+    <!-- Refined gradient overlays for testimonial slider -->
+    <div class="absolute inset-x-0 top-0 h-32 
+                bg-gradient-to-b from-[#fafafa] to-transparent"></div>
+    <div class="absolute inset-x-0 bottom-0 h-32 
+                bg-gradient-to-t from-[#fafafa] to-transparent"></div>
   </div>
 
   <!-- Responsive Content Container -->
@@ -316,5 +352,25 @@
 
   .animate-float {
     animation: float 3s ease-in-out infinite;
+  }
+
+  /* Add these new animations to your existing styles */
+  @keyframes float-slow {
+    0%, 100% { 
+      transform: translate(0, 0) rotate(0deg) scale(1); 
+    }
+    25% { 
+      transform: translate(2%, 2%) rotate(1deg) scale(1.01); 
+    }
+    50% { 
+      transform: translate(-1%, 3%) rotate(-1deg) scale(0.99); 
+    }
+    75% { 
+      transform: translate(-2%, -1%) rotate(0.5deg) scale(1.01); 
+    }
+  }
+
+  .animate-float-slow {
+    animation: float-slow 20s ease-in-out infinite;
   }
 </style>
