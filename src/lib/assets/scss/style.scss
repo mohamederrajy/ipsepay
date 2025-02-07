@@ -6,17 +6,19 @@ Email: support@coderthemes.com
 File: style Css File
 */
 
+// Configuration and variables first
+@use "sass:math";
+@use "sass:color";
+
+// Custom modules
+@use "custom/reboot";
+@use "custom/helper";
+@use "custom/navbar";
+@use "custom/gallery";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-// Custom
-@import "custom/reboot";
-@import "custom/helper";
-@import "custom/navbar";
-@import "custom/gallery";
-
 
 .bg-primary {
    

@@ -325,6 +325,100 @@
     </div>
   </section>
 
+  <!-- How Pricing Works Section -->
+  <section class="py-24 bg-gradient-to-b from-gray-50/50 to-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <div class="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-white shadow-sm border border-gray-100">
+          <span class="text-sm font-medium text-[#605bff]">Simple Steps</span>
+          <div class="w-2 h-2 ml-2 rounded-full bg-[#605bff] animate-pulse"></div>
+        </div>
+        
+        <h2 class="text-3xl md:text-4xl font-semibold mb-4">
+          Start Your Journey with IpsePay
+        </h2>
+        <p class="text-gray-500">
+          Get started with our platform in three simple steps
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 md:gap-12 max-w-6xl mx-auto">
+        <!-- Choose Plan -->
+        <div class="text-center group">
+          <div class="bg-[#3935d2]/10 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6
+                      group-hover:scale-110 transition-transform duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20.91 8.84L8.56 2.23a1.93 1.93 0 0 0-1.81 0L3.1 4.13a2.12 2.12 0 0 0-.05 3.69l12.22 6.93a2 2 0 0 0 1.94 0L21 12.51a2.12 2.12 0 0 0-.09-3.67Z"></path>
+              <path d="m3.09 8.84 12.35-6.61a1.93 1.93 0 0 1 1.81 0l3.65 1.9a2.12 2.12 0 0 1 .05 3.69l-12.22 6.93a2 2 0 0 1-1.94 0L3 12.51a2.12 2.12 0 0 1 .09-3.67Z"></path>
+              <line x1="12" y1="22" x2="12" y2="13"></line>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3 group-hover:text-[#605bff] transition-colors duration-300">
+            Choose Your Plan
+          </h3>
+          <p class="text-gray-500">
+            Select the perfect plan that matches your business needs and scale
+          </p>
+        </div>
+
+        <!-- Quick Setup -->
+        <div class="text-center group relative">
+          <div class="hidden md:block absolute top-12 -left-16 w-24">
+            <img src="/images/arrow-top.png" alt="arrow" class="w-full scale-y-[-1]" />
+          </div>
+          <div class="bg-[#3935d2]/10 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6
+                      group-hover:scale-110 transition-transform duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3 group-hover:text-[#605bff] transition-colors duration-300">
+            Quick Setup
+          </h3>
+          <p class="text-gray-500">
+            Complete our simple verification process and set up your account
+          </p>
+        </div>
+
+        <!-- Start Processing -->
+        <div class="text-center group relative">
+          <div class="hidden md:block absolute top-12 -left-16 w-24">
+            <img src="/images/arrow-top.png" alt="arrow" class="w-full" />
+          </div>
+          <div class="bg-[#3935d2]/10 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6
+                      group-hover:scale-110 transition-transform duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+              <line x1="9" y1="9" x2="9.01" y2="9"></line>
+              <line x1="15" y1="9" x2="15.01" y2="9"></line>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3 group-hover:text-[#605bff] transition-colors duration-300">
+            Start Processing
+          </h3>
+          <p class="text-gray-500">
+            Begin accepting payments and growing your business globally
+          </p>
+        </div>
+      </div>
+
+      <!-- CTA Button -->
+      <div class="text-center mt-12">
+        <button 
+          class="inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-[#605bff] text-white 
+                 font-medium hover:bg-[#4f4ad3] transition-all duration-300 hover:scale-105"
+          on:click={() => goto('/account/signup')}
+        >
+          Get Started Now
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
   <!-- Features Section -->
   <section class="py-24 bg-gradient-to-b from-gray-50/50 to-white">
     <div class="container mx-auto px-4">

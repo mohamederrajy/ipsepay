@@ -6,5 +6,8 @@ Email: support@coderthemes.com
 File: Icons Css File
 */
 
-// Icons
-@import "icons/fontawesome";
+// Import modules first
+@use "sass:math";
+@use "icons/fontawesome";
+
+// Any other icon-related styles below
