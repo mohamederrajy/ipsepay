@@ -214,17 +214,51 @@
   </div>
 </section>
 
-<!-- Second Section -->
+<!-- Streamline Payment Experience Section -->
 <section class="py-16 md:py-24 relative overflow-hidden">
-  <!-- Enhanced Background -->
-  <div class="absolute inset-0 bg-gradient-to-b from-[#605bff]/5 via-white to-white">
-    <!-- Decorative Grid -->
-    <div class="absolute inset-0 bg-[url('/images/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+  <!-- Modern Background -->
+  <div class="absolute inset-0">
+    <!-- Base gradient -->
+    <div class="absolute inset-0 bg-gradient-to-b from-[#f8faff] via-white to-[#f0f4ff]"></div>
     
-    <!-- Gradient Blobs -->
-    <div class="absolute top-0 left-1/4 w-96 h-96 bg-[#605bff]/10 rounded-full filter blur-3xl animate-blob"></div>
-    <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-100 rounded-full filter blur-3xl animate-blob animation-delay-2000"></div>
-    <div class="absolute top-1/2 left-1/2 w-96 h-96 bg-blue-100 rounded-full filter blur-3xl animate-blob animation-delay-4000"></div>
+    <!-- Mesh gradient overlay -->
+    <div class="absolute inset-0 opacity-40"
+         style="background: radial-gradient(circle at top right, #605bff08, transparent 50%),
+                          radial-gradient(circle at bottom left, #32325d05, transparent 50%);">
+    </div>
+
+    <!-- Modern grid pattern -->
+    <div class="absolute inset-0"
+         style="background-image: 
+            linear-gradient(rgba(96, 91, 255, 0.015) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(96, 91, 255, 0.015) 1px, transparent 1px);
+          background-size: 60px 60px;
+          background-position: center center;">
+    </div>
+
+    <!-- Floating elements -->
+    <div class="absolute inset-0 overflow-hidden">
+      <!-- Glass morphism effect -->
+      <div class="absolute top-20 right-20 w-96 h-96 
+                  bg-gradient-to-br from-white/10 to-[#605bff]/5 
+                  backdrop-blur-3xl rounded-full 
+                  animate-float-slow"
+           style="animation-duration: 18s;">
+      </div>
+
+      <!-- Modern accent blobs -->
+      <div class="absolute bottom-40 left-20 w-80 h-80 
+                  bg-gradient-to-tr from-[#605bff]/10 via-[#32325d]/5 to-transparent 
+                  blur-3xl rounded-full animate-float-slow opacity-60"
+           style="animation-duration: 22s; animation-delay: -5s;">
+      </div>
+
+      <!-- Light streaks -->
+      <div class="absolute top-1/3 left-1/4 w-full h-px 
+                  bg-gradient-to-r from-transparent via-[#605bff]/10 to-transparent 
+                  rotate-45 blur-sm">
+      </div>
+    </div>
   </div>
 
   <div class="container relative z-10">

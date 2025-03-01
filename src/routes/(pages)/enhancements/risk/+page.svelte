@@ -8,158 +8,219 @@
 </script>
 
 <!-- Revenue Protection Section -->
-<section class="relative overflow-hidden bg-white py-24">
-    <div class="absolute inset-0 bg-gradient-to-b from-white via-[#605bff]/5 to-white">
-      <div class="absolute inset-0 bg-[url('/images/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+<section class="relative overflow-hidden py-24">
+  <!-- Modern Background -->
+  <div class="absolute inset-0">
+    <!-- Base gradient -->
+    <div class="absolute inset-0 bg-gradient-to-b from-[#f8faff] via-white to-[#f0f4ff]"></div>
+    
+    <!-- Mesh gradient overlay -->
+    <div class="absolute inset-0 opacity-40"
+         style="background: radial-gradient(circle at top right, #605bff08, transparent 50%),
+                          radial-gradient(circle at bottom left, #32325d05, transparent 50%);">
     </div>
-  
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="grid lg:grid-cols-2 gap-16 items-center">
-        <!-- Left Content -->
-        <div class="space-y-8">
-          <!-- Badge -->
-          <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full 
-                      bg-[#605bff]/5 border border-[#605bff]/10 
-                      shadow-sm transition-all duration-500">
-            <div class="w-5 h-5 rounded-full bg-[#605bff] flex items-center justify-center">
-              <svg class="w-3 h-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                      d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-              </svg>
-            </div>
-            <span class="text-sm font-medium text-[#605bff] tracking-wide">REVENUEPROTECT</span>
-          </div>
-  
-          <h2 class="text-4xl sm:text-5xl font-medium text-[#32325d] leading-[1.2]">
-            Strike the right balance between
-            <span class="bg-gradient-to-r from-[#605bff] to-[#605bff]/80 bg-clip-text text-transparent">
-              risk and revenue
-            </span>
-          </h2>
-  
-          <p class="text-xl text-[#32325d]/70">
-            Discover a fraud detection and prevention solution powered by network-wide insights and machine learning technology.
-          </p>
-  
-          <div class="pt-4">
-            <a href="/contact" 
-               class="inline-block px-8 py-4 rounded-xl bg-[#605bff] text-white font-medium
-                      hover:bg-[#605bff]/90 transition-colors duration-300">
-              Get in touch
-            </a>
-          </div>
-        </div>
-  
-        <!-- Right Content - Image with longer aspect ratio -->
-        <div class="relative">
-          <div class="absolute -inset-4 bg-gradient-to-r from-[#605bff]/10 to-transparent rounded-3xl blur-xl"></div>
-          
-          <div class="relative rounded-2xl overflow-hidden h-[600px] sm:h-[700px]">
-            <img src="/images/risk.webp" 
-                 alt="Revenue Protection" 
-                 class="w-full h-full rounded-2xl shadow-xl transform hover:scale-105 transition-transform duration-500"
-                 style="object-fit: cover; object-position: center;" />
-            
-            <div class="absolute inset-0 bg-gradient-to-tr from-[#605bff]/10 via-transparent to-transparent"></div>
-          </div>
-  
-          <!-- Enhanced Decorative Elements -->
-          <div class="absolute -top-8 -right-8 w-32 h-32 bg-[#605bff]/10 rounded-full blur-2xl animate-pulse"></div>
-          <div class="absolute -bottom-12 -left-12 w-40 h-40 bg-[#605bff]/10 rounded-full blur-2xl animate-pulse animation-delay-2000"></div>
-        </div>
+
+    <!-- Modern grid pattern -->
+    <div class="absolute inset-0"
+         style="background-image: 
+            linear-gradient(rgba(96, 91, 255, 0.015) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(96, 91, 255, 0.015) 1px, transparent 1px);
+          background-size: 60px 60px;
+          background-position: center center;">
+    </div>
+
+    <!-- Floating elements -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute top-20 right-20 w-96 h-96 
+                  bg-gradient-to-br from-white/10 to-[#605bff]/5 
+                  backdrop-blur-3xl rounded-full 
+                  animate-float-slow">
+      </div>
+      <div class="absolute bottom-40 left-20 w-80 h-80 
+                  bg-gradient-to-tr from-[#605bff]/10 via-[#32325d]/5 to-transparent 
+                  blur-3xl rounded-full animate-float-slow opacity-60">
       </div>
     </div>
-  </section>
-
-  <!-- Features Section -->
-<section class="relative overflow-hidden bg-white py-24">
-    <div class="absolute inset-0 bg-gradient-to-b from-white via-[#605bff]/5 to-white">
-      <div class="absolute inset-0 bg-[url('/images/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
-    </div>
-  
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="grid md:grid-cols-3 gap-8 lg:gap-12">
-        <!-- Save time and effort -->
-        <div class="relative p-6 rounded-2xl bg-white/50 backdrop-blur-sm border border-white/10
-                    hover:bg-white/80 transition-all duration-300 hover:shadow-lg group">
-          <div class="absolute -inset-4 bg-gradient-to-r from-[#605bff]/10 to-transparent rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
-          <div class="relative">
-            <!-- Icon -->
-            <div class="w-12 h-12 rounded-xl bg-[#605bff]/10 flex items-center justify-center mb-6">
-              <svg class="w-6 h-6 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" 
-                      d="M15 3h4a2 2 0 0 1 2 2v4M21 15v4a2 2 0 0 1-2 2h-4M9 21H5a2 2 0 0 1-2-2v-4M3 9V5a2 2 0 0 1 2-2h4"/>
-              </svg>
-            </div>
-  
-            <h3 class="text-xl font-semibold text-[#32325d] mb-3">
-              Save time and effort
-            </h3>
-  
-            <p class="text-[#32325d]/70">
-              Use machine learning to automate part of the risk assessment.
-            </p>
-          </div>
-        </div>
-  
-        <!-- Increase revenue -->
-        <div class="relative p-6 rounded-2xl bg-white/50 backdrop-blur-sm border border-white/10
-                    hover:bg-white/80 transition-all duration-300 hover:shadow-lg group">
-          <div class="absolute -inset-4 bg-gradient-to-r from-[#605bff]/10 to-transparent rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
-          <div class="relative">
-            <!-- Icon -->
-            <div class="w-12 h-12 rounded-xl bg-[#605bff]/10 flex items-center justify-center mb-6">
-              <svg class="w-6 h-6 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" 
-                      d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
-              </svg>
-            </div>
-  
-            <h3 class="text-xl font-semibold text-[#32325d] mb-3">
-              Increase revenue
-            </h3>
-  
-            <p class="text-[#32325d]/70">
-              Make informed decisions on payments with network-wide insights.
-            </p>
-          </div>
-        </div>
-  
-        <!-- Fraud protection -->
-        <div class="relative p-6 rounded-2xl bg-white/50 backdrop-blur-sm border border-white/10
-                    hover:bg-white/80 transition-all duration-300 hover:shadow-lg group">
-          <div class="absolute -inset-4 bg-gradient-to-r from-[#605bff]/10 to-transparent rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
-          <div class="relative">
-            <!-- Icon -->
-            <div class="w-12 h-12 rounded-xl bg-[#605bff]/10 flex items-center justify-center mb-6">
-              <svg class="w-6 h-6 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" 
-                      d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-              </svg>
-            </div>
-  
-            <h3 class="text-xl font-semibold text-[#32325d] mb-3">
-              Fraud protection
-            </h3>
-  
-            <p class="text-[#32325d]/70">
-              Address unique risks and protect your business with customizable risk rules.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  
-
-<!-- Network Graph Analysis Section -->
-<section class="relative overflow-hidden bg-white py-24">
-  <div class="absolute inset-0 bg-gradient-to-b from-white via-[#605bff]/5 to-white">
-    <div class="absolute inset-0 bg-[url('/images/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
   </div>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+  <div class="container relative z-10">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <!-- Left Content -->
+      <div class="space-y-8">
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full 
+                    bg-[#605bff]/5 border border-[#605bff]/10 
+                    shadow-sm transition-all duration-500">
+          <div class="w-5 h-5 rounded-full bg-[#605bff] flex items-center justify-center">
+            <svg class="w-3 h-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          </div>
+          <span class="text-sm font-medium text-[#605bff] tracking-wide">REVENUEPROTECT</span>
+        </div>
+  
+        <h2 class="text-4xl sm:text-5xl font-medium text-[#32325d] leading-[1.2]">
+          Strike the right balance between
+          <span class="bg-gradient-to-r from-[#605bff] to-[#605bff]/80 bg-clip-text text-transparent">
+            risk and revenue
+          </span>
+        </h2>
+  
+        <p class="text-xl text-[#32325d]/70">
+          Discover a fraud detection and prevention solution powered by network-wide insights and machine learning technology.
+        </p>
+  
+        <div class="pt-4">
+          <a href="/contact" 
+             class="inline-block px-8 py-4 rounded-xl bg-[#605bff] text-white font-medium
+                    hover:bg-[#605bff]/90 transition-colors duration-300">
+            Get in touch
+          </a>
+        </div>
+      </div>
+  
+      <!-- Right Content - Image with longer aspect ratio -->
+      <div class="relative">
+        <div class="absolute -inset-4 bg-gradient-to-r from-[#605bff]/10 to-transparent rounded-3xl blur-xl"></div>
+        
+        <div class="relative rounded-2xl overflow-hidden h-[600px] sm:h-[700px]">
+          <img src="/images/risk.webp" 
+               alt="Revenue Protection" 
+               class="w-full h-full rounded-2xl shadow-xl transform hover:scale-105 transition-transform duration-500"
+               style="object-fit: cover; object-position: center;" />
+          
+          <div class="absolute inset-0 bg-gradient-to-tr from-[#605bff]/10 via-transparent to-transparent"></div>
+        </div>
+  
+        <!-- Enhanced Decorative Elements -->
+        <div class="absolute -top-8 -right-8 w-32 h-32 bg-[#605bff]/10 rounded-full blur-2xl animate-pulse"></div>
+        <div class="absolute -bottom-12 -left-12 w-40 h-40 bg-[#605bff]/10 rounded-full blur-2xl animate-pulse animation-delay-2000"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="relative overflow-hidden py-24">
+  <!-- Modern Background -->
+  <div class="absolute inset-0">
+    <!-- Base gradient -->
+    <div class="absolute inset-0 bg-gradient-to-b from-white via-[#fafbff] to-white"></div>
+    
+    <!-- Mesh gradient overlay -->
+    <div class="absolute inset-0 opacity-30"
+         style="background: radial-gradient(circle at 0% 0%, #605bff05, transparent 50%),
+                          radial-gradient(circle at 100% 100%, #32325d05, transparent 50%);">
+    </div>
+
+    <!-- Subtle grid -->
+    <div class="absolute inset-0"
+         style="background-image: 
+            linear-gradient(rgba(96, 91, 255, 0.01) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(96, 91, 255, 0.01) 1px, transparent 1px);
+          background-size: 40px 40px;">
+    </div>
+  </div>
+
+  <div class="container relative z-10">
+    <div class="grid md:grid-cols-3 gap-8 lg:gap-12">
+      <!-- Save time and effort -->
+      <div class="relative p-6 rounded-2xl bg-white/50 backdrop-blur-sm border border-white/10
+                  hover:bg-white/80 transition-all duration-300 hover:shadow-lg group">
+        <div class="absolute -inset-4 bg-gradient-to-r from-[#605bff]/10 to-transparent rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div class="relative">
+          <!-- Icon -->
+          <div class="w-12 h-12 rounded-xl bg-[#605bff]/10 flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" 
+                    d="M15 3h4a2 2 0 0 1 2 2v4M21 15v4a2 2 0 0 1-2 2h-4M9 21H5a2 2 0 0 1-2-2v-4M3 9V5a2 2 0 0 1 2-2h4"/>
+            </svg>
+          </div>
+  
+          <h3 class="text-xl font-semibold text-[#32325d] mb-3">
+            Save time and effort
+          </h3>
+  
+          <p class="text-[#32325d]/70">
+            Use machine learning to automate part of the risk assessment.
+          </p>
+        </div>
+      </div>
+  
+      <!-- Increase revenue -->
+      <div class="relative p-6 rounded-2xl bg-white/50 backdrop-blur-sm border border-white/10
+                  hover:bg-white/80 transition-all duration-300 hover:shadow-lg group">
+        <div class="absolute -inset-4 bg-gradient-to-r from-[#605bff]/10 to-transparent rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div class="relative">
+          <!-- Icon -->
+          <div class="w-12 h-12 rounded-xl bg-[#605bff]/10 flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" 
+                    d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+            </svg>
+          </div>
+  
+          <h3 class="text-xl font-semibold text-[#32325d] mb-3">
+            Increase revenue
+          </h3>
+  
+          <p class="text-[#32325d]/70">
+            Make informed decisions on payments with network-wide insights.
+          </p>
+        </div>
+      </div>
+  
+      <!-- Fraud protection -->
+      <div class="relative p-6 rounded-2xl bg-white/50 backdrop-blur-sm border border-white/10
+                  hover:bg-white/80 transition-all duration-300 hover:shadow-lg group">
+        <div class="absolute -inset-4 bg-gradient-to-r from-[#605bff]/10 to-transparent rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div class="relative">
+          <!-- Icon -->
+          <div class="w-12 h-12 rounded-xl bg-[#605bff]/10 flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" 
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          </div>
+  
+          <h3 class="text-xl font-semibold text-[#32325d] mb-3">
+            Fraud protection
+          </h3>
+  
+          <p class="text-[#32325d]/70">
+            Address unique risks and protect your business with customizable risk rules.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Network Graph Analysis Section -->
+<section class="relative overflow-hidden py-24">
+  <!-- Modern Background -->
+  <div class="absolute inset-0">
+    <!-- Base gradient -->
+    <div class="absolute inset-0 bg-gradient-to-b from-[#f8faff] via-white to-[#f0f4ff]"></div>
+    
+    <!-- Enhanced mesh gradient -->
+    <div class="absolute inset-0"
+         style="background: 
+           radial-gradient(circle at 20% 0%, rgba(96, 91, 255, 0.08) 0%, transparent 50%),
+           radial-gradient(circle at 80% 100%, rgba(50, 50, 93, 0.05) 0%, transparent 50%);">
+    </div>
+
+    <!-- Modern grid pattern -->
+    <div class="absolute inset-0"
+         style="background-image: 
+            linear-gradient(rgba(96, 91, 255, 0.015) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(96, 91, 255, 0.015) 1px, transparent 1px);
+          background-size: 50px 50px;">
+    </div>
+  </div>
+
+  <div class="container relative z-10">
     <div class="grid lg:grid-cols-2 gap-16 items-center">
       <!-- Left Content - Enhanced Network Graph Interface -->
       <div class="relative order-2 lg:order-1">
@@ -336,12 +397,28 @@
   }
 </style>
 <!-- Risk Profile Section -->
-<section class="relative overflow-hidden bg-white py-24">
-  <div class="absolute inset-0 bg-gradient-to-b from-white via-[#605bff]/5 to-white">
-    <div class="absolute inset-0 bg-[url('/images/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+<section class="relative overflow-hidden py-24">
+  <!-- Modern Background -->
+  <div class="absolute inset-0">
+    <!-- Base gradient -->
+    <div class="absolute inset-0 bg-gradient-to-b from-white via-[#fafbff] to-white"></div>
+    
+    <!-- Modern mesh gradient -->
+    <div class="absolute inset-0 opacity-30"
+         style="background: radial-gradient(circle at 100% 0%, #605bff05, transparent 50%),
+                          radial-gradient(circle at 0% 100%, #32325d05, transparent 50%);">
+    </div>
+
+    <!-- Subtle modern grid -->
+    <div class="absolute inset-0"
+         style="background-image: 
+            linear-gradient(rgba(96, 91, 255, 0.01) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(96, 91, 255, 0.01) 1px, transparent 1px);
+          background-size: 45px 45px;">
+    </div>
   </div>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+  <div class="container relative z-10">
     <div class="grid lg:grid-cols-2 gap-16 items-center">
       <!-- Left Content -->
       <div class="space-y-8">
@@ -475,12 +552,28 @@
   </div>
 </section>
 <!-- Enhancement Options Section -->
-<section class="relative overflow-hidden bg-white py-24">
-  <div class="absolute inset-0 bg-gradient-to-b from-white via-[#605bff]/5 to-white">
-    <div class="absolute inset-0 bg-[url('/images/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+<section class="relative overflow-hidden py-24">
+  <!-- Modern Background -->
+  <div class="absolute inset-0">
+    <!-- Base gradient -->
+    <div class="absolute inset-0 bg-gradient-to-b from-[#f8faff] via-white to-[#f0f4ff]"></div>
+    
+    <!-- Mesh gradient overlay -->
+    <div class="absolute inset-0 opacity-40"
+         style="background: radial-gradient(circle at top left, #605bff08, transparent 50%),
+                          radial-gradient(circle at bottom right, #32325d05, transparent 50%);">
+    </div>
+
+    <!-- Refined grid -->
+    <div class="absolute inset-0"
+         style="background-image: 
+            linear-gradient(rgba(96, 91, 255, 0.02) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(96, 91, 255, 0.02) 1px, transparent 1px);
+          background-size: 50px 50px;">
+    </div>
   </div>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+  <div class="container relative z-10">
     <!-- Section Header -->
     <h2 class="text-4xl sm:text-5xl font-medium text-[#32325d] text-center mb-16">
       Explore ways to 

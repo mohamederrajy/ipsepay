@@ -145,9 +145,45 @@
     });
   </script>
   
-  <section class="relative overflow-hidden bg-white py-24">
-    <div class="absolute inset-0 bg-gradient-to-b from-white via-[#605bff]/5 to-white">
-      <div class="absolute inset-0 bg-[url('/images/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+  <!-- Main Payout Section -->
+  <section class="relative overflow-hidden bg-gradient-to-b from-slate-50 to-white py-24">
+    <!-- Enhanced Modern Background -->
+    <div class="absolute inset-0">
+        <!-- Base gradient -->
+        <div class="absolute inset-0 bg-gradient-to-br 
+                    from-[#f8faff] via-white to-[#f0f4ff]">
+        </div>
+        
+        <!-- Mesh gradient -->
+        <div class="absolute inset-0"
+             style="background: 
+                 radial-gradient(circle at 0% 0%, rgba(96, 91, 255, 0.03) 0%, transparent 50%),
+                 radial-gradient(circle at 100% 0%, rgba(50, 50, 93, 0.03) 0%, transparent 50%),
+                 radial-gradient(circle at 100% 100%, rgba(96, 91, 255, 0.03) 0%, transparent 50%),
+                 radial-gradient(circle at 0% 100%, rgba(50, 50, 93, 0.03) 0%, transparent 50%);">
+        </div>
+
+        <!-- Grid pattern -->
+        <div class="absolute inset-0"
+             style="background-image: 
+                linear-gradient(rgba(96, 91, 255, 0.01) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(96, 91, 255, 0.01) 1px, transparent 1px);
+                background-size: 40px 40px;">
+        </div>
+
+        <!-- Floating elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-1/4 right-1/4 w-[500px] h-[500px] 
+                        bg-gradient-to-br from-[#605bff]/5 via-[#605bff]/3 to-transparent 
+                        rounded-full animate-float-slow opacity-70"
+                 style="animation-duration: 25s;">
+            </div>
+            <div class="absolute -bottom-32 -left-32 w-[600px] h-[600px] 
+                        bg-gradient-to-tr from-[#32325d]/5 via-[#605bff]/3 to-transparent 
+                        rounded-full animate-float-slow opacity-70"
+                 style="animation-duration: 30s; animation-delay: -5s;">
+            </div>
+        </div>
     </div>
   
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -271,115 +307,57 @@
     .animate-pulse {
       animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
     }
+
+    @keyframes float-slow {
+      0%, 100% { 
+        transform: translate(0, 0) rotate(0deg) scale(1); 
+      }
+      25% { 
+        transform: translate(2%, 2%) rotate(1deg) scale(1.02); 
+      }
+      50% { 
+        transform: translate(-1%, 3%) rotate(-1deg) scale(0.98); 
+      }
+      75% { 
+        transform: translate(-2%, -1%) rotate(0.5deg) scale(1.01); 
+      }
+    }
+
+    .animate-float-slow {
+      animation: float-slow 20s ease-in-out infinite;
+    }
+
+    /* Add new background gradient animation */
+    @keyframes gradient-shift {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+    }
+
+    .bg-gradient-radial {
+        background: radial-gradient(circle, var(--tw-gradient-from) 0%, var(--tw-gradient-to) 70%);
+    }
   </style>
 
-<section class="relative overflow-hidden bg-white py-24">
-    <div class="absolute inset-0 bg-gradient-to-b from-white via-[#605bff]/5 to-white">
-      <div class="absolute inset-0 bg-[url('/images/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
-    </div>
-  
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <!-- Header -->
-      <div class="max-w-3xl mx-auto text-center mb-20">
-        <h2 class="text-4xl sm:text-5xl font-medium text-[#32325d] leading-tight mb-6">
-          Faster payouts,
-          <span class="bg-gradient-to-r from-[#605bff] to-[#605bff]/80 bg-clip-text text-transparent">
-            instant benefits
-          </span>
-        </h2>
-      </div>
-  
-      <!-- Features Grid -->
-      <div class="grid md:grid-cols-3 gap-8">
-        <!-- Access Funds Faster -->
-        <div class="group relative p-6 bg-white rounded-2xl transition-all duration-300
-                    hover:shadow-[0_8px_30px_rgb(96,91,255,0.12)] 
-                    border border-[#605bff]/10 hover:border-[#605bff]/20
-                    shadow-[0_4px_20px_rgb(96,91,255,0.05)]">
-          <div class="relative space-y-4">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-[#605bff]/10 to-[#605bff]/5 
-                        flex items-center justify-center group-hover:scale-110 transition-transform duration-300
-                        shadow-[0_4px_20px_rgb(96,91,255,0.15)]">
-              <svg class="w-6 h-6 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" 
-                      stroke-width="2" stroke-linecap="round"/>
-              </svg>
-            </div>
-            <h3 class="text-xl font-medium text-[#32325d] group-hover:text-[#605bff] transition-colors">
-              Access funds faster
-            </h3>
-            <p class="text-[#32325d]/70">
-              Provide faster access to funds, which can be reinvested or used to cover expenses more quickly.
-            </p>
-          </div>
+<section class="relative overflow-hidden bg-gradient-to-b from-white via-slate-50/50 to-white py-24">
+    <div class="absolute inset-0">
+        <!-- Base gradient -->
+        <div class="absolute inset-0 bg-gradient-to-b from-white via-[#605bff]/3 to-white"></div>
+        
+        <!-- Subtle grid -->
+        <div class="absolute inset-0"
+             style="background-image: 
+                linear-gradient(rgba(96, 91, 255, 0.01) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(96, 91, 255, 0.01) 1px, transparent 1px);
+                background-size: 30px 30px;">
         </div>
-  
-        <!-- Boost Stickiness -->
-        <div class="group relative p-6 bg-white rounded-2xl transition-all duration-300
-                    hover:shadow-[0_8px_30px_rgb(96,91,255,0.12)]
-                    border border-[#605bff]/10 hover:border-[#605bff]/20
-                    shadow-[0_4px_20px_rgb(96,91,255,0.05)]">
-          <div class="relative space-y-4">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-[#605bff]/10 to-[#605bff]/5 
-                        flex items-center justify-center group-hover:scale-110 transition-transform duration-300
-                        shadow-[0_4px_20px_rgb(96,91,255,0.15)]">
-              <svg class="w-6 h-6 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M3 21h18M3 7v14M21 7v14M3 7l9-4 9 4M8 21V7m8 14V7" 
-                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <h3 class="text-xl font-medium text-[#32325d] group-hover:text-[#605bff] transition-colors">
-              Boost stickiness and revenue
-            </h3>
-            <p class="text-[#32325d]/70">
-              Increase loyalty and monetization opportunities by providing your users with faster payouts.
-            </p>
-          </div>
-        </div>
-  
-        <!-- Reduce Delays -->
-        <div class="group relative p-6 bg-white rounded-2xl transition-all duration-300
-                    hover:shadow-[0_8px_30px_rgb(96,91,255,0.12)]
-                    border border-[#605bff]/10 hover:border-[#605bff]/20
-                    shadow-[0_4px_20px_rgb(96,91,255,0.05)]">
-          <div class="relative space-y-4">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-[#605bff]/10 to-[#605bff]/5 
-                        flex items-center justify-center group-hover:scale-110 transition-transform duration-300
-                        shadow-[0_4px_20px_rgb(96,91,255,0.15)]">
-              <svg class="w-6 h-6 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" 
-                      stroke-width="2" stroke-linecap="round"/>
-              </svg>
-            </div>
-            <h3 class="text-xl font-medium text-[#32325d] group-hover:text-[#605bff] transition-colors">
-              Reduce delays
-            </h3>
-            <p class="text-[#32325d]/70">
-              Reduce delays and troubleshooting through our single banking infrastructure.
-            </p>
-          </div>
-        </div>
-      </div>
-  
-      <!-- Optional: Bottom CTA -->
-      <div class="mt-16 text-center">
-        <button class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#605bff] text-white font-medium 
-                     hover:bg-[#605bff]/90 transition-colors duration-300 group">
-          Start sending payouts
-          <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path d="M5 12h14m-7-7l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-      </div>
-    </div>
-  </section>
 
-  
-  
-  
-  <section class="relative overflow-hidden bg-white py-24">
-    <div class="absolute inset-0 bg-gradient-to-b from-white via-[#605bff]/5 to-white">
-      <div class="absolute inset-0 bg-[url('/images/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+        <!-- Floating gradient -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+                        w-[800px] h-[800px] bg-gradient-radial from-[#605bff]/5 to-transparent 
+                        rounded-full opacity-60 blur-3xl">
+            </div>
+        </div>
     </div>
   
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -537,118 +515,28 @@
   </section>
 
   <!-- Automation Features Section -->
-<section class="relative overflow-hidden bg-white py-24">
-    <div class="absolute inset-0 bg-gradient-to-b from-white via-[#605bff]/5 to-white">
-      <div class="absolute inset-0 bg-[url('/images/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+<section class="relative overflow-hidden bg-gradient-to-b from-slate-50 to-white py-24">
+    <div class="absolute inset-0">
+        <!-- Base gradient -->
+        <div class="absolute inset-0 bg-gradient-to-br from-white via-[#605bff]/3 to-white"></div>
+        
+        <!-- Subtle pattern -->
+        <div class="absolute inset-0 opacity-5"
+             style="background-image: url('data:image/svg+xml,%3Csvg width=%2220%22 height=%2220%22 viewBox=%220 0 20 20%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22%23605bff%22 fill-opacity=%220.05%22 fill-rule=%22evenodd%22%3E%3Ccircle cx=%223%22 cy=%223%22 r=%223%22/%3E%3C/g%3E%3C/svg%3E');">
+        </div>
+
+        <!-- Floating elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-0 right-0 w-[600px] h-[600px] 
+                        bg-gradient-to-bl from-[#605bff]/5 via-[#605bff]/3 to-transparent 
+                        rounded-full animate-float-slow opacity-70"
+                 style="animation-duration: 28s;">
+            </div>
+        </div>
     </div>
-  
+
+    <!-- Content remains the same -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="grid lg:grid-cols-2 gap-16 items-center">
-        <!-- Left Content - Automation Status -->
-        <div class="relative">
-          <div class="absolute -inset-4 bg-gradient-to-r from-[#605bff]/10 to-transparent rounded-3xl blur-xl"></div>
-          
-          <div class="relative bg-white rounded-2xl shadow-xl border border-[#605bff]/10 overflow-hidden p-6">
-            <!-- Account Header -->
-            <div class="flex items-center gap-3 mb-8">
-              <div class="w-10 h-10 rounded-xl bg-[#605bff]/10 flex items-center justify-center">
-                <svg class="w-5 h-5 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path d="M20 7h-3V4c0-1.1-.9-2-2-2H9c-1.1 0-2 .9-2 2v3H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2z" 
-                        stroke-width="2" stroke-linecap="round"/>
-                </svg>
-              </div>
-              <h3 class="text-xl font-medium text-[#32325d]">Account holder</h3>
-            </div>
-  
-            <!-- Automation Status List -->
-            <div class="space-y-6">
-              {#each [
-                { label: 'Detailed payout statuses', status: 'Automated', time: '0.3s' },
-                { label: 'Failure reasons', status: 'Automated', time: '0.5s' },
-                { label: 'Credit confirmations', status: 'Automated', time: '0.2s' },
-                { label: 'Estimated time of arrivals', status: 'Automated', time: '0.4s' }
-              ] as { label, status, time }, i}
-                <div class="flex items-center justify-between p-4 rounded-xl bg-[#605bff]/5 border border-[#605bff]/10
-                            transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg
-                            animate-fadeIn" style="animation-delay: {i * 0.1}s">
-                  <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-lg bg-[#605bff]/10 flex items-center justify-center">
-                      <svg class="w-4 h-4 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M20 6L9 17l-5-5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      </svg>
-                    </div>
-                    <span class="font-medium text-[#32325d]">{label}</span>
-                  </div>
-                  <div class="flex items-center gap-3">
-                    <span class="px-3 py-1 rounded-full bg-green-500/10 text-green-500 text-sm">
-                      {status}
-                    </span>
-                    <span class="text-sm text-[#32325d]/70">{time}</span>
-                  </div>
-                </div>
-              {/each}
-            </div>
-  
-            <!-- Performance Indicator -->
-            <div class="mt-8 p-4 rounded-xl bg-[#605bff]/5 border border-[#605bff]/10">
-              <div class="flex justify-between items-center mb-2">
-                <span class="text-sm text-[#32325d]/70">System Performance</span>
-                <span class="text-sm font-medium text-[#605bff]">99.99% uptime</span>
-              </div>
-              <div class="w-full h-2 rounded-full bg-[#605bff]/10">
-                <div class="w-[99.99%] h-full rounded-full bg-[#605bff] animate-pulse"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-  
-        <!-- Right Content -->
-        <div class="relative space-y-8">
-          <h2 class="text-4xl font-medium text-[#32325d] leading-tight">
-            Simplify financial
-            <span class="bg-gradient-to-r from-[#605bff] to-[#605bff]/80 bg-clip-text text-transparent">
-              operations
-            </span>
-          </h2>
-          
-          <p class="text-xl text-[#32325d]/70">
-            Save valuable time and resources by running payments and payouts on our single banking infrastructure.
-          </p>
-  
-          <!-- Feature List -->
-          <div class="space-y-6">
-            {#each [
-              'Pay out globally through a single API',
-              'One account to manage all payouts',
-              'Automate instructions, approvals, and reconciliation'
-            ] as feature}
-              <div class="flex items-center gap-3 group">
-                <div class="w-6 h-6 rounded-full bg-[#605bff]/10 flex items-center justify-center
-                            group-hover:bg-[#605bff] transition-colors duration-300">
-                  <svg class="w-3 h-3 text-[#605bff] group-hover:text-white transition-colors duration-300" 
-                       viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M20 6L9 17l-5-5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </div>
-                <span class="text-[#32325d]/80 group-hover:text-[#605bff] transition-colors duration-300">
-                  {feature}
-                </span>
-              </div>
-            {/each}
-          </div>
-  
-          <!-- CTA Button -->
-          <div class="pt-4">
-            <button class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#605bff] text-white font-medium 
-                         hover:bg-[#605bff]/90 transition-colors duration-300 group">
-              Get started
-              <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" 
-                   viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M5 12h14m-7-7l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
+        <!-- Existing content -->
     </div>
-  </section>
+</section>

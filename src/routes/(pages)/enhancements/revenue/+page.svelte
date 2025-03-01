@@ -1,266 +1,354 @@
 <!-- RevenueAccelerate Section -->
-<section class="relative overflow-hidden bg-white py-24">
-    <div class="absolute inset-0 bg-gradient-to-b from-white via-[#605bff]/5 to-white">
-      <div class="absolute inset-0 bg-[url('/images/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+<section class="relative overflow-hidden bg-gradient-to-b from-slate-50 to-white py-24">
+  <div class="absolute inset-0">
+    <!-- Base gradient -->
+    <div class="absolute inset-0 bg-gradient-to-br from-[#f8faff] via-white to-[#f0f4ff]"></div>
+    
+    <!-- Mesh gradient -->
+    <div class="absolute inset-0"
+         style="background: 
+             radial-gradient(circle at 0% 0%, rgba(96, 91, 255, 0.03) 0%, transparent 50%),
+             radial-gradient(circle at 100% 0%, rgba(50, 50, 93, 0.03) 0%, transparent 50%),
+             radial-gradient(circle at 100% 100%, rgba(96, 91, 255, 0.03) 0%, transparent 50%),
+             radial-gradient(circle at 0% 100%, rgba(50, 50, 93, 0.03) 0%, transparent 50%);">
     </div>
-  
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="grid lg:grid-cols-2 gap-16 items-center">
-        <!-- Left Content -->
-        <div class="space-y-8">
-          <!-- Badge -->
-          <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full 
-                      bg-[#605bff]/5 border border-[#605bff]/10 
-                      shadow-sm transition-all duration-500">
-            <div class="w-5 h-5 rounded-full bg-[#605bff] flex items-center justify-center">
-              <svg class="w-3 h-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" 
-                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <span class="text-sm font-medium text-[#605bff] tracking-wide">REVENUEACCELERATE</span>
-          </div>
-  
-          <h2 class="text-4xl sm:text-5xl font-medium text-[#32325d] leading-[1.2]">
-            Unlock more revenue using
-            <span class="bg-gradient-to-r from-[#605bff] to-[#605bff]/80 bg-clip-text text-transparent">
-              data and machine learning
-            </span>
-          </h2>
-  
-          <p class="text-xl text-[#32325d]/70">
-            Discover the tools that enable the best possible user experience when it comes to payments. You'll squeeze more revenue out of every transaction and never miss a moment to convert your customers again.
-          </p>
-  
-          <div class="pt-4">
-            <a href="/contact" 
-               class="inline-block px-8 py-4 rounded-xl bg-[#605bff] text-white font-medium
-                      hover:bg-[#605bff]/90 transition-colors duration-300">
-              Learn more
-            </a>
-          </div>
-        </div>
-  
-        <!-- Right Content - Image with matching height -->
-        <div class="relative order-first lg:order-last">
-          <div class="absolute -inset-4 bg-gradient-to-r from-[#605bff]/10 to-transparent rounded-3xl blur-xl"></div>
-          
-          <div class="relative rounded-2xl overflow-hidden">
-            <!-- Changed to fixed height to match other sections -->
-            <div class="relative h-[600px] sm:h-[700px] rounded-2xl overflow-hidden bg-gradient-to-b from-[#605bff]/5">
-              <!-- Image with object-position to control focus -->
-              <img 
-                src="/images/reven.webp" 
-                alt="Revenue Acceleration Dashboard" 
-                class="w-full h-full object-cover object-center rounded-2xl transform hover:scale-105 transition-transform duration-700"
-              />
-              
-              <!-- Glass Effect Overlay -->
-              <div class="absolute inset-0 bg-gradient-to-t from-[#605bff]/10 to-transparent opacity-60"></div>
-              
-              <!-- Decorative Elements -->
-              <div class="absolute -top-8 -right-8 w-64 h-64 bg-[#605bff]/10 rounded-full blur-3xl"></div>
-              <div class="absolute -bottom-12 -left-12 w-64 h-64 bg-[#605bff]/10 rounded-full blur-3xl"></div>
-            </div>
-          </div>
-  
-          <!-- Enhanced Decorative Elements -->
-          <div class="absolute -top-8 -right-8 w-32 h-32 bg-[#605bff]/10 rounded-full blur-2xl animate-pulse"></div>
-          <div class="absolute -bottom-12 -left-12 w-40 h-40 bg-[#605bff]/10 rounded-full blur-2xl animate-pulse animation-delay-2000"></div>
-          
-          <!-- Additional Light Effects -->
-          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/2 h-1/2 bg-[#605bff]/20 rounded-full blur-3xl animate-pulse"></div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Benefits Section -->
-<section class="relative overflow-hidden bg-white py-24">
-    <div class="absolute inset-0 bg-gradient-to-b from-white via-[#605bff]/5 to-white">
-      <div class="absolute inset-0 bg-[url('/images/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+    <!-- Grid pattern -->
+    <div class="absolute inset-0"
+         style="background-image: 
+            linear-gradient(rgba(96, 91, 255, 0.01) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(96, 91, 255, 0.01) 1px, transparent 1px);
+            background-size: 40px 40px;">
     </div>
-  
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="grid md:grid-cols-3 gap-16">
-        <!-- Increase authorization rates -->
-        <div class="relative group">
-          <div class="absolute -inset-4 bg-gradient-to-r from-[#605bff]/10 to-transparent rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
-          <div class="relative space-y-6">
-            <!-- Icon -->
-            <div class="w-12 h-12 rounded-xl bg-[#605bff]/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-              <svg class="w-6 h-6 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-  
-            <h3 class="text-xl font-medium text-[#32325d]">
-              Increase authorization rates
-            </h3>
-  
-            <p class="text-[#32325d]/70">
-              Our proprietary machine learning model learns from platform wide data and optimizes for highest auth rates.
-            </p>
-          </div>
-        </div>
-  
-        <!-- Reduce involuntary churn -->
-        <div class="relative group">
-          <div class="absolute -inset-4 bg-gradient-to-r from-[#605bff]/10 to-transparent rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
-          <div class="relative space-y-6">
-            <!-- Icon -->
-            <div class="w-12 h-12 rounded-xl bg-[#605bff]/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-              <svg class="w-6 h-6 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M3 10h18M7 15h1m4 0h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" 
-                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-  
-            <h3 class="text-xl font-medium text-[#32325d]">
-              Reduce involuntary churn
-            </h3>
-  
-            <p class="text-[#32325d]/70">
-              Card information is always kept up-to-date and declined transactions are re-attempted at optimal times.
-            </p>
-          </div>
-        </div>
-  
-        <!-- Lower payment costs -->
-        <div class="relative group">
-          <div class="absolute -inset-4 bg-gradient-to-r from-[#605bff]/10 to-transparent rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
-          <div class="relative space-y-6">
-            <!-- Icon -->
-            <div class="w-12 h-12 rounded-xl bg-[#605bff]/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-              <svg class="w-6 h-6 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" 
-                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-  
-            <h3 class="text-xl font-medium text-[#32325d]">
-              Lower payment costs
-            </h3>
-  
-            <p class="text-[#32325d]/70">
-              Optimize for lower costs wherever possible while improving authorization rates.
-            </p>
-          </div>
-        </div>
+
+    <!-- Floating elements -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute top-1/4 right-1/4 w-[500px] h-[500px] 
+                  bg-gradient-to-br from-[#605bff]/5 via-[#605bff]/3 to-transparent 
+                  rounded-full animate-float-slow opacity-70"
+           style="animation-duration: 25s;">
+      </div>
+      <div class="absolute -bottom-32 -left-32 w-[600px] h-[600px] 
+                  bg-gradient-to-tr from-[#32325d]/5 via-[#605bff]/3 to-transparent 
+                  rounded-full animate-float-slow opacity-70"
+           style="animation-duration: 30s; animation-delay: -5s;">
       </div>
     </div>
-  </section>
-  <!-- Checkout Optimization Section -->
-<section class="relative overflow-hidden bg-white py-24">
-    <div class="absolute inset-0 bg-gradient-to-b from-white via-[#605bff]/5 to-white">
-      <div class="absolute inset-0 bg-[url('/images/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
-    </div>
-  
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <!-- Section Header -->
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <h2 class="text-4xl sm:text-5xl font-medium text-[#32325d] leading-[1.2] mb-6">
-          Optimize every transaction from
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <!-- Left Content -->
+      <div class="space-y-8">
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full 
+                    bg-[#605bff]/5 border border-[#605bff]/10 
+                    shadow-sm transition-all duration-500">
+          <div class="w-5 h-5 rounded-full bg-[#605bff] flex items-center justify-center">
+            <svg class="w-3 h-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" 
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span class="text-sm font-medium text-[#605bff] tracking-wide">REVENUEACCELERATE</span>
+        </div>
+
+        <h2 class="text-4xl sm:text-5xl font-medium text-[#32325d] leading-[1.2]">
+          Unlock more revenue using
           <span class="bg-gradient-to-r from-[#605bff] to-[#605bff]/80 bg-clip-text text-transparent">
-            checkout to recovery
+            data and machine learning
           </span>
         </h2>
+
         <p class="text-xl text-[#32325d]/70">
-          The all-in-one payments optimization toolkit that gets the most out of every transaction at each point of the payment journey.
+          Discover the tools that enable the best possible user experience when it comes to payments. You'll squeeze more revenue out of every transaction and never miss a moment to convert your customers again.
         </p>
+
+        <div class="pt-4">
+          <a href="/contact" 
+             class="inline-block px-8 py-4 rounded-xl bg-[#605bff] text-white font-medium
+                    hover:bg-[#605bff]/90 transition-colors duration-300">
+            Learn more
+          </a>
+        </div>
       </div>
-  
-      <div class="grid lg:grid-cols-2 gap-16 items-center">
-        <!-- Left Content -->
-        <div class="space-y-8">
-          <h3 class="text-3xl font-medium text-[#32325d]">Checkout</h3>
-          <p class="text-xl text-[#32325d]/70">
-            Create frictionless shopping experiences by asking shoppers to authenticate only when needed and easily reduce customer drop-off rates.
+
+      <!-- Right Content - Image with matching height -->
+      <div class="relative order-first lg:order-last">
+        <div class="absolute -inset-4 bg-gradient-to-r from-[#605bff]/10 to-transparent rounded-3xl blur-xl"></div>
+        
+        <div class="relative rounded-2xl overflow-hidden">
+          <!-- Changed to fixed height to match other sections -->
+          <div class="relative h-[600px] sm:h-[700px] rounded-2xl overflow-hidden bg-gradient-to-b from-[#605bff]/5">
+            <!-- Image with object-position to control focus -->
+            <img 
+              src="/images/reven.webp" 
+              alt="Revenue Acceleration Dashboard" 
+              class="w-full h-full object-cover object-center rounded-2xl transform hover:scale-105 transition-transform duration-700"
+            />
+            
+            <!-- Glass Effect Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-[#605bff]/10 to-transparent opacity-60"></div>
+            
+            <!-- Decorative Elements -->
+            <div class="absolute -top-8 -right-8 w-64 h-64 bg-[#605bff]/10 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-12 -left-12 w-64 h-64 bg-[#605bff]/10 rounded-full blur-3xl"></div>
+          </div>
+        </div>
+
+        <!-- Enhanced Decorative Elements -->
+        <div class="absolute -top-8 -right-8 w-32 h-32 bg-[#605bff]/10 rounded-full blur-2xl animate-pulse"></div>
+        <div class="absolute -bottom-12 -left-12 w-40 h-40 bg-[#605bff]/10 rounded-full blur-2xl animate-pulse animation-delay-2000"></div>
+        
+        <!-- Additional Light Effects -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/2 h-1/2 bg-[#605bff]/20 rounded-full blur-3xl animate-pulse"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Benefits Section -->
+<section class="relative overflow-hidden bg-gradient-to-b from-slate-50 to-white py-24">
+  <div class="absolute inset-0">
+    <!-- Base gradient -->
+    <div class="absolute inset-0 bg-gradient-to-br from-[#f8faff] via-white to-[#f0f4ff]"></div>
+    
+    <!-- Mesh gradient -->
+    <div class="absolute inset-0"
+         style="background: 
+             radial-gradient(circle at 0% 0%, rgba(96, 91, 255, 0.03) 0%, transparent 50%),
+             radial-gradient(circle at 100% 0%, rgba(50, 50, 93, 0.03) 0%, transparent 50%),
+             radial-gradient(circle at 100% 100%, rgba(96, 91, 255, 0.03) 0%, transparent 50%),
+             radial-gradient(circle at 0% 100%, rgba(50, 50, 93, 0.03) 0%, transparent 50%);">
+    </div>
+
+    <!-- Grid pattern -->
+    <div class="absolute inset-0"
+         style="background-image: 
+            linear-gradient(rgba(96, 91, 255, 0.01) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(96, 91, 255, 0.01) 1px, transparent 1px);
+            background-size: 40px 40px;">
+    </div>
+
+    <!-- Floating elements -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute top-1/4 right-1/4 w-[500px] h-[500px] 
+                  bg-gradient-to-br from-[#605bff]/5 via-[#605bff]/3 to-transparent 
+                  rounded-full animate-float-slow opacity-70"
+           style="animation-duration: 25s;">
+      </div>
+      <div class="absolute -bottom-32 -left-32 w-[600px] h-[600px] 
+                  bg-gradient-to-tr from-[#32325d]/5 via-[#605bff]/3 to-transparent 
+                  rounded-full animate-float-slow opacity-70"
+           style="animation-duration: 30s; animation-delay: -5s;">
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="grid md:grid-cols-3 gap-16">
+      <!-- Increase authorization rates -->
+      <div class="relative group">
+        <div class="absolute -inset-4 bg-gradient-to-r from-[#605bff]/10 to-transparent rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div class="relative space-y-6">
+          <!-- Icon -->
+          <div class="w-12 h-12 rounded-xl bg-[#605bff]/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+            <svg class="w-6 h-6 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+
+          <h3 class="text-xl font-medium text-[#32325d]">
+            Increase authorization rates
+          </h3>
+
+          <p class="text-[#32325d]/70">
+            Our proprietary machine learning model learns from platform wide data and optimizes for highest auth rates.
           </p>
-  
-          <!-- Feature List -->
-          <div class="space-y-6">
-            <div class="flex items-start gap-4">
-              <div class="w-5 h-5 rounded-full bg-[#605bff]/10 flex items-center justify-center mt-1">
-                <svg class="w-3 h-3 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path d="M5 13l4 4L19 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <div>
-                <h4 class="text-lg font-medium text-[#32325d] mb-2">Authentication Engine:</h4>
-                <p class="text-[#32325d]/70">
-                  Automatically determines whether a bank needs to authenticate a shopper and if so, how to do it.
-                </p>
-              </div>
+        </div>
+      </div>
+
+      <!-- Reduce involuntary churn -->
+      <div class="relative group">
+        <div class="absolute -inset-4 bg-gradient-to-r from-[#605bff]/10 to-transparent rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div class="relative space-y-6">
+          <!-- Icon -->
+          <div class="w-12 h-12 rounded-xl bg-[#605bff]/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+            <svg class="w-6 h-6 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M3 10h18M7 15h1m4 0h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" 
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+
+          <h3 class="text-xl font-medium text-[#32325d]">
+            Reduce involuntary churn
+          </h3>
+
+          <p class="text-[#32325d]/70">
+            Card information is always kept up-to-date and declined transactions are re-attempted at optimal times.
+          </p>
+        </div>
+      </div>
+
+      <!-- Lower payment costs -->
+      <div class="relative group">
+        <div class="absolute -inset-4 bg-gradient-to-r from-[#605bff]/10 to-transparent rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div class="relative space-y-6">
+          <!-- Icon -->
+          <div class="w-12 h-12 rounded-xl bg-[#605bff]/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+            <svg class="w-6 h-6 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" 
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+
+          <h3 class="text-xl font-medium text-[#32325d]">
+            Lower payment costs
+          </h3>
+
+          <p class="text-[#32325d]/70">
+            Optimize for lower costs wherever possible while improving authorization rates.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Checkout Optimization Section -->
+<section class="relative overflow-hidden bg-gradient-to-b from-slate-50 to-white py-24">
+  <div class="absolute inset-0">
+    <!-- Base gradient -->
+    <div class="absolute inset-0 bg-gradient-to-b from-white via-[#605bff]/3 to-white"></div>
+    
+    <!-- Subtle grid -->
+    <div class="absolute inset-0"
+         style="background-image: 
+            linear-gradient(rgba(96, 91, 255, 0.01) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(96, 91, 255, 0.01) 1px, transparent 1px);
+            background-size: 30px 30px;">
+    </div>
+
+    <!-- Floating gradient -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+                  w-[800px] h-[800px] bg-gradient-radial from-[#605bff]/5 to-transparent 
+                  rounded-full opacity-60 blur-3xl">
+      </div>
+      <!-- Additional floating element -->
+      <div class="absolute bottom-0 right-0 w-[500px] h-[500px] 
+                  bg-gradient-to-bl from-[#605bff]/5 via-[#605bff]/3 to-transparent 
+                  rounded-full animate-float-slow opacity-70"
+           style="animation-duration: 25s;">
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-4xl sm:text-5xl font-medium text-[#32325d] leading-[1.2] mb-6">
+        Optimize every transaction from
+        <span class="bg-gradient-to-r from-[#605bff] to-[#605bff]/80 bg-clip-text text-transparent">
+          checkout to recovery
+        </span>
+      </h2>
+      <p class="text-xl text-[#32325d]/70">
+        The all-in-one payments optimization toolkit that gets the most out of every transaction at each point of the payment journey.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <!-- Left Content -->
+      <div class="space-y-8">
+        <h3 class="text-3xl font-medium text-[#32325d]">Checkout</h3>
+        <p class="text-xl text-[#32325d]/70">
+          Create frictionless shopping experiences by asking shoppers to authenticate only when needed and easily reduce customer drop-off rates.
+        </p>
+
+        <!-- Feature List -->
+        <div class="space-y-6">
+          <div class="flex items-start gap-4">
+            <div class="w-5 h-5 rounded-full bg-[#605bff]/10 flex items-center justify-center mt-1">
+              <svg class="w-3 h-3 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M5 13l4 4L19 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <h4 class="text-lg font-medium text-[#32325d] mb-2">Authentication Engine:</h4>
+              <p class="text-[#32325d]/70">
+                Automatically determines whether a bank needs to authenticate a shopper and if so, how to do it.
+              </p>
             </div>
           </div>
         </div>
-  
-        <!-- Right Content - Dynamic Authentication Interface -->
+      </div>
+
+      <!-- Right Content - Dynamic Authentication Interface -->
+      <div class="relative">
+        <div class="absolute -inset-4 bg-gradient-to-r from-[#605bff]/10 to-transparent rounded-3xl blur-xl"></div>
+        
         <div class="relative">
-          <div class="absolute -inset-4 bg-gradient-to-r from-[#605bff]/10 to-transparent rounded-3xl blur-xl"></div>
-          
-          <div class="relative">
-            <!-- Phone Frame -->
-            <div class="relative w-[320px] mx-auto">
-              <!-- Authentication Screen -->
-              <div class="bg-white rounded-3xl overflow-hidden shadow-2xl border border-[#605bff]/10">
-                <!-- Back Button -->
-                <div class="flex items-center gap-2 p-6 border-b border-[#605bff]/10">
-                  <svg class="w-5 h-5 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M19 12H5m7 7l-7-7 7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
+          <!-- Phone Frame -->
+          <div class="relative w-[320px] mx-auto">
+            <!-- Authentication Screen -->
+            <div class="bg-white rounded-3xl overflow-hidden shadow-2xl border border-[#605bff]/10">
+              <!-- Back Button -->
+              <div class="flex items-center gap-2 p-6 border-b border-[#605bff]/10">
+                <svg class="w-5 h-5 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M19 12H5m7 7l-7-7 7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+
+              <!-- Authentication Content -->
+              <div class="p-6 space-y-8">
+                <div class="text-center space-y-4">
+                  <div class="w-16 h-16 bg-[#605bff]/10 rounded-full mx-auto flex items-center justify-center">
+                    <svg class="w-8 h-8 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                      <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v8a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" 
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <h3 class="text-2xl font-medium text-[#32325d]">Purchase authentication</h3>
+                  <p class="text-[#32325d]/70">
+                    Your online payment is being secured using Your Bank. Please verify your identity.
+                  </p>
                 </div>
-  
-                <!-- Authentication Content -->
-                <div class="p-6 space-y-8">
-                  <div class="text-center space-y-4">
-                    <div class="w-16 h-16 bg-[#605bff]/10 rounded-full mx-auto flex items-center justify-center">
-                      <svg class="w-8 h-8 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" 
+
+                <!-- Face ID Section -->
+                <div class="bg-[#605bff]/5 rounded-xl p-6 text-center space-y-4">
+                  <div class="w-20 h-20 mx-auto relative">
+                    <div class="absolute inset-0 bg-[#605bff]/20 rounded-xl animate-ping"></div>
+                    <div class="relative bg-[#605bff]/10 rounded-xl p-4">
+                      <svg class="w-12 h-12 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M9 10h.01M15 10h.01M12 2a8 8 0 0 0-8 8v12l6.07-3.35a8 8 0 0 1 3.86-1 8 8 0 0 1 3.86 1L24 22V10a8 8 0 0 0-8-8h-4z" 
                               stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                       </svg>
                     </div>
-                    <h3 class="text-2xl font-medium text-[#32325d]">Purchase authentication</h3>
-                    <p class="text-[#32325d]/70">
-                      Your online payment is being secured using Your Bank. Please verify your identity.
-                    </p>
                   </div>
-  
-                  <!-- Face ID Section -->
-                  <div class="bg-[#605bff]/5 rounded-xl p-6 text-center space-y-4">
-                    <div class="w-20 h-20 mx-auto relative">
-                      <div class="absolute inset-0 bg-[#605bff]/20 rounded-xl animate-ping"></div>
-                      <div class="relative bg-[#605bff]/10 rounded-xl p-4">
-                        <svg class="w-12 h-12 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                          <path d="M9 10h.01M15 10h.01M12 2a8 8 0 0 0-8 8v12l6.07-3.35a8 8 0 0 1 3.86-1 8 8 0 0 1 3.86 1L24 22V10a8 8 0 0 0-8-8h-4z" 
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                      </div>
-                    </div>
-                    <span class="text-[#32325d]">Face ID</span>
-                  </div>
-  
-                  <!-- Bank Logo -->
-                  <div class="flex justify-center">
-                    <div class="bg-[#605bff] text-white rounded-lg px-4 py-2">
-                      <span class="font-medium">Your Bank</span>
-                    </div>
+                  <span class="text-[#32325d]">Face ID</span>
+                </div>
+
+                <!-- Bank Logo -->
+                <div class="flex justify-center">
+                  <div class="bg-[#605bff] text-white rounded-lg px-4 py-2">
+                    <span class="font-medium">Your Bank</span>
                   </div>
                 </div>
               </div>
-  
-              <!-- Decorative Elements -->
-              <div class="absolute -top-8 -right-8 w-32 h-32 bg-[#605bff]/10 rounded-full blur-2xl animate-pulse"></div>
-              <div class="absolute -bottom-12 -left-12 w-40 h-40 bg-[#605bff]/10 rounded-full blur-2xl animate-pulse"></div>
             </div>
+
+            <!-- Decorative Elements -->
+            <div class="absolute -top-8 -right-8 w-32 h-32 bg-[#605bff]/10 rounded-full blur-2xl animate-pulse"></div>
+            <div class="absolute -bottom-12 -left-12 w-40 h-40 bg-[#605bff]/10 rounded-full blur-2xl animate-pulse"></div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Routing Section -->
+<!-- Routing Section -->
 <script>
   import { onMount } from 'svelte';
   let matrix = Array(6).fill().map(() => Array(12).fill(0));
@@ -323,9 +411,41 @@
   });
 </script>
 
-<section class="relative overflow-hidden bg-white py-24">
-  <div class="absolute inset-0 bg-gradient-to-b from-white via-[#605bff]/5 to-white">
-    <div class="absolute inset-0 bg-[url('/images/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+<section class="relative overflow-hidden bg-gradient-to-b from-slate-50 to-white py-24">
+  <div class="absolute inset-0">
+    <!-- Base gradient -->
+    <div class="absolute inset-0 bg-gradient-to-br from-[#f8faff] via-white to-[#f0f4ff]"></div>
+    
+    <!-- Mesh gradient -->
+    <div class="absolute inset-0"
+         style="background: 
+             radial-gradient(circle at 0% 0%, rgba(96, 91, 255, 0.03) 0%, transparent 50%),
+             radial-gradient(circle at 100% 0%, rgba(50, 50, 93, 0.03) 0%, transparent 50%),
+             radial-gradient(circle at 100% 100%, rgba(96, 91, 255, 0.03) 0%, transparent 50%),
+             radial-gradient(circle at 0% 100%, rgba(50, 50, 93, 0.03) 0%, transparent 50%);">
+    </div>
+
+    <!-- Grid pattern -->
+    <div class="absolute inset-0"
+         style="background-image: 
+            linear-gradient(rgba(96, 91, 255, 0.01) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(96, 91, 255, 0.01) 1px, transparent 1px);
+            background-size: 40px 40px;">
+    </div>
+
+    <!-- Floating elements -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute top-1/4 right-1/4 w-[500px] h-[500px] 
+                  bg-gradient-to-br from-[#605bff]/5 via-[#605bff]/3 to-transparent 
+                  rounded-full animate-float-slow opacity-70"
+           style="animation-duration: 25s;">
+      </div>
+      <div class="absolute -bottom-32 -left-32 w-[600px] h-[600px] 
+                  bg-gradient-to-tr from-[#32325d]/5 via-[#605bff]/3 to-transparent 
+                  rounded-full animate-float-slow opacity-70"
+           style="animation-duration: 30s; animation-delay: -5s;">
+      </div>
+    </div>
   </div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -454,9 +574,41 @@
 </section>
 
 <!-- Messaging Section -->
-<section class="relative overflow-hidden bg-white py-24">
-  <div class="absolute inset-0 bg-gradient-to-b from-white via-[#605bff]/5 to-white">
-    <div class="absolute inset-0 bg-[url('/images/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+<section class="relative overflow-hidden bg-gradient-to-b from-slate-50 to-white py-24">
+  <div class="absolute inset-0">
+    <!-- Base gradient -->
+    <div class="absolute inset-0 bg-gradient-to-br from-[#f8faff] via-white to-[#f0f4ff]"></div>
+    
+    <!-- Mesh gradient -->
+    <div class="absolute inset-0"
+         style="background: 
+             radial-gradient(circle at 0% 0%, rgba(96, 91, 255, 0.03) 0%, transparent 50%),
+             radial-gradient(circle at 100% 0%, rgba(50, 50, 93, 0.03) 0%, transparent 50%),
+             radial-gradient(circle at 100% 100%, rgba(96, 91, 255, 0.03) 0%, transparent 50%),
+             radial-gradient(circle at 0% 100%, rgba(50, 50, 93, 0.03) 0%, transparent 50%);">
+    </div>
+
+    <!-- Grid pattern -->
+    <div class="absolute inset-0"
+         style="background-image: 
+            linear-gradient(rgba(96, 91, 255, 0.01) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(96, 91, 255, 0.01) 1px, transparent 1px);
+            background-size: 40px 40px;">
+    </div>
+
+    <!-- Floating elements -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute top-1/4 right-1/4 w-[500px] h-[500px] 
+                  bg-gradient-to-br from-[#605bff]/5 via-[#605bff]/3 to-transparent 
+                  rounded-full animate-float-slow opacity-70"
+           style="animation-duration: 25s;">
+      </div>
+      <div class="absolute -bottom-32 -left-32 w-[600px] h-[600px] 
+                  bg-gradient-to-tr from-[#32325d]/5 via-[#605bff]/3 to-transparent 
+                  rounded-full animate-float-slow opacity-70"
+           style="animation-duration: 30s; animation-delay: -5s;">
+      </div>
+    </div>
   </div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -601,6 +753,25 @@
 </section>
 
 <style>
+  @keyframes float-slow {
+    0%, 100% { 
+      transform: translate(0, 0) rotate(0deg) scale(1); 
+    }
+    25% { 
+      transform: translate(2%, 2%) rotate(1deg) scale(1.02); 
+    }
+    50% { 
+      transform: translate(-1%, 3%) rotate(-1deg) scale(0.98); 
+    }
+    75% { 
+      transform: translate(-2%, -1%) rotate(0.5deg) scale(1.01); 
+    }
+  }
+
+  .animate-float-slow {
+    animation: float-slow 20s ease-in-out infinite;
+  }
+
   @keyframes shimmer {
     0% { background-position: 200% 0; }
     100% { background-position: -200% 0; }

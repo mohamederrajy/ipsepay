@@ -74,9 +74,44 @@
   });
 </script>
 
-<section class="relative overflow-hidden bg-white py-24">
-  <div class="absolute inset-0 bg-gradient-to-b from-white via-[#605bff]/5 to-white">
-    <div class="absolute inset-0 bg-[url('/images/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+<section class="relative overflow-hidden bg-gradient-to-b from-slate-50 to-white py-24">
+  <!-- Enhanced Modern Background -->
+  <div class="absolute inset-0">
+    <!-- Base gradient -->
+    <div class="absolute inset-0 bg-gradient-to-br 
+                from-[#f8faff] via-white to-[#f0f4ff]">
+    </div>
+    
+    <!-- Mesh gradient -->
+    <div class="absolute inset-0"
+         style="background: 
+           radial-gradient(circle at 0% 0%, rgba(96, 91, 255, 0.03) 0%, transparent 50%),
+           radial-gradient(circle at 100% 0%, rgba(50, 50, 93, 0.03) 0%, transparent 50%),
+           radial-gradient(circle at 100% 100%, rgba(96, 91, 255, 0.03) 0%, transparent 50%),
+           radial-gradient(circle at 0% 100%, rgba(50, 50, 93, 0.03) 0%, transparent 50%);">
+    </div>
+
+    <!-- Grid pattern -->
+    <div class="absolute inset-0"
+         style="background-image: 
+            linear-gradient(rgba(96, 91, 255, 0.01) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(96, 91, 255, 0.01) 1px, transparent 1px);
+          background-size: 40px 40px;">
+    </div>
+
+    <!-- Floating elements -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute top-1/4 right-1/4 w-[500px] h-[500px] 
+                  bg-gradient-to-br from-[#605bff]/5 via-[#605bff]/3 to-transparent 
+                  rounded-full animate-float-slow opacity-70"
+           style="animation-duration: 25s;">
+      </div>
+      <div class="absolute -bottom-32 -left-32 w-[600px] h-[600px] 
+                  bg-gradient-to-tr from-[#32325d]/5 via-[#605bff]/3 to-transparent 
+                  rounded-full animate-float-slow opacity-70"
+           style="animation-duration: 30s; animation-delay: -5s;">
+      </div>
+    </div>
   </div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -204,12 +239,58 @@
     0% { background-position: 200% 0; }
     100% { background-position: -200% 0; }
   }
+
+  @keyframes float-slow {
+    0%, 100% { 
+      transform: translate(0, 0) rotate(0deg) scale(1); 
+    }
+    25% { 
+      transform: translate(2%, 2%) rotate(1deg) scale(1.02); 
+    }
+    50% { 
+      transform: translate(-1%, 3%) rotate(-1deg) scale(0.98); 
+    }
+    75% { 
+      transform: translate(-2%, -1%) rotate(0.5deg) scale(1.01); 
+    }
+  }
+
+  .animate-float-slow {
+    animation: float-slow 20s ease-in-out infinite;
+  }
+
+  /* Add new background gradient animation */
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .bg-gradient-radial {
+    background: radial-gradient(circle, var(--tw-gradient-from) 0%, var(--tw-gradient-to) 70%);
+  }
 </style>
 
 <!-- Features Section -->
-<section class="relative overflow-hidden bg-white py-24">
-  <div class="absolute inset-0 bg-gradient-to-b from-white via-[#605bff]/5 to-white">
-    <div class="absolute inset-0 bg-[url('/images/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+<section class="relative overflow-hidden bg-gradient-to-b from-white via-slate-50/50 to-white py-24">
+  <div class="absolute inset-0">
+    <!-- Base gradient -->
+    <div class="absolute inset-0 bg-gradient-to-b from-white via-[#605bff]/3 to-white"></div>
+    
+    <!-- Subtle grid -->
+    <div class="absolute inset-0"
+         style="background-image: 
+            linear-gradient(rgba(96, 91, 255, 0.01) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(96, 91, 255, 0.01) 1px, transparent 1px);
+            background-size: 30px 30px;">
+    </div>
+
+    <!-- Floating gradient -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+                  w-[800px] h-[800px] bg-gradient-radial from-[#605bff]/5 to-transparent 
+                  rounded-full opacity-60 blur-3xl">
+      </div>
+    </div>
   </div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -339,9 +420,26 @@
   </div>
 </section>
 <!-- Account Types Section -->
-<section class="relative overflow-hidden bg-white py-24">
-  <div class="absolute inset-0 bg-gradient-to-b from-white via-[#605bff]/5 to-white">
-    <div class="absolute inset-0 bg-[url('/images/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+<section class="relative overflow-hidden bg-gradient-to-b from-white via-slate-50/50 to-white py-24">
+  <div class="absolute inset-0">
+    <!-- Base gradient -->
+    <div class="absolute inset-0 bg-gradient-to-b from-white via-[#605bff]/3 to-white"></div>
+    
+    <!-- Subtle grid -->
+    <div class="absolute inset-0"
+         style="background-image: 
+            linear-gradient(rgba(96, 91, 255, 0.01) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(96, 91, 255, 0.01) 1px, transparent 1px);
+            background-size: 30px 30px;">
+    </div>
+
+    <!-- Floating gradient -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+                  w-[800px] h-[800px] bg-gradient-radial from-[#605bff]/5 to-transparent 
+                  rounded-full opacity-60 blur-3xl">
+      </div>
+    </div>
   </div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -532,11 +630,43 @@
 </section>
 
 <!-- Balance Account Section -->
-<section class="relative overflow-hidden bg-white py-24">
-    <div class="absolute inset-0 bg-gradient-to-b from-white via-[#605bff]/5 to-white">
-      <div class="absolute inset-0 bg-[url('/images/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+<section class="relative overflow-hidden bg-gradient-to-b from-slate-50 to-white py-24">
+    <div class="absolute inset-0">
+        <!-- Base gradient -->
+        <div class="absolute inset-0 bg-gradient-to-br from-[#f8faff] via-white to-[#f0f4ff]"></div>
+        
+        <!-- Mesh gradient -->
+        <div class="absolute inset-0"
+             style="background: 
+                 radial-gradient(circle at 0% 0%, rgba(96, 91, 255, 0.03) 0%, transparent 50%),
+                 radial-gradient(circle at 100% 0%, rgba(50, 50, 93, 0.03) 0%, transparent 50%),
+                 radial-gradient(circle at 100% 100%, rgba(96, 91, 255, 0.03) 0%, transparent 50%),
+                 radial-gradient(circle at 0% 100%, rgba(50, 50, 93, 0.03) 0%, transparent 50%);">
+        </div>
+
+        <!-- Grid pattern -->
+        <div class="absolute inset-0"
+             style="background-image: 
+                linear-gradient(rgba(96, 91, 255, 0.01) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(96, 91, 255, 0.01) 1px, transparent 1px);
+                background-size: 40px 40px;">
+        </div>
+
+        <!-- Floating elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-1/4 right-1/4 w-[500px] h-[500px] 
+                        bg-gradient-to-br from-[#605bff]/5 via-[#605bff]/3 to-transparent 
+                        rounded-full animate-float-slow opacity-70"
+                 style="animation-duration: 25s;">
+            </div>
+            <div class="absolute -bottom-32 -left-32 w-[600px] h-[600px] 
+                        bg-gradient-to-tr from-[#32325d]/5 via-[#605bff]/3 to-transparent 
+                        rounded-full animate-float-slow opacity-70"
+                 style="animation-duration: 30s; animation-delay: -5s;">
+            </div>
+        </div>
     </div>
-  
+
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="grid lg:grid-cols-2 gap-16 items-center">
         <!-- Left Content -->
@@ -742,11 +872,26 @@
   </section>
 
   <!-- Financial Operations Section -->
-<section class="relative overflow-hidden bg-white py-24">
-    <div class="absolute inset-0 bg-gradient-to-b from-white via-[#605bff]/5 to-white">
-      <div class="absolute inset-0 bg-[url('/images/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+<section class="relative overflow-hidden bg-gradient-to-b from-slate-50 to-white py-24">
+    <div class="absolute inset-0">
+        <!-- Base gradient -->
+        <div class="absolute inset-0 bg-gradient-to-br from-white via-[#605bff]/3 to-white"></div>
+        
+        <!-- Subtle pattern -->
+        <div class="absolute inset-0 opacity-5"
+             style="background-image: url('data:image/svg+xml,%3Csvg width=%2220%22 height=%2220%22 viewBox=%220 0 20 20%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22%23605bff%22 fill-opacity=%220.05%22 fill-rule=%22evenodd%22%3E%3Ccircle cx=%223%22 cy=%223%22 r=%223%22/%3E%3C/g%3E%3C/svg%3E');">
+        </div>
+
+        <!-- Floating elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-0 right-0 w-[600px] h-[600px] 
+                        bg-gradient-to-bl from-[#605bff]/5 via-[#605bff]/3 to-transparent 
+                        rounded-full animate-float-slow opacity-70"
+                 style="animation-duration: 28s;">
+            </div>
+        </div>
     </div>
-  
+
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <!-- Header -->
       <div class="max-w-3xl mx-auto text-center mb-20">

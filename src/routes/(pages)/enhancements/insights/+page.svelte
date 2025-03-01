@@ -128,9 +128,44 @@
     });
   </script>
 <!-- Customer Area Insights Section -->
-<section class="relative overflow-hidden bg-white py-24">
-  <div class="absolute inset-0 bg-gradient-to-b from-white via-[#605bff]/5 to-white">
-    <div class="absolute inset-0 bg-[url('/images/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+<section class="relative overflow-hidden bg-gradient-to-b from-slate-50 to-white py-24">
+  <!-- Enhanced Modern Background -->
+  <div class="absolute inset-0">
+    <!-- Base gradient -->
+    <div class="absolute inset-0 bg-gradient-to-br 
+                from-[#f8faff] via-white to-[#f0f4ff]">
+    </div>
+    
+    <!-- Mesh gradient -->
+    <div class="absolute inset-0"
+         style="background: 
+           radial-gradient(circle at 0% 0%, rgba(96, 91, 255, 0.03) 0%, transparent 50%),
+           radial-gradient(circle at 100% 0%, rgba(50, 50, 93, 0.03) 0%, transparent 50%),
+           radial-gradient(circle at 100% 100%, rgba(96, 91, 255, 0.03) 0%, transparent 50%),
+           radial-gradient(circle at 0% 100%, rgba(50, 50, 93, 0.03) 0%, transparent 50%);">
+    </div>
+
+    <!-- Grid pattern -->
+    <div class="absolute inset-0"
+         style="background-image: 
+            linear-gradient(rgba(96, 91, 255, 0.01) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(96, 91, 255, 0.01) 1px, transparent 1px);
+            background-size: 40px 40px;">
+    </div>
+
+    <!-- Floating elements -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute top-1/4 right-1/4 w-[500px] h-[500px] 
+                  bg-gradient-to-br from-[#605bff]/5 via-[#605bff]/3 to-transparent 
+                  rounded-full animate-float-slow opacity-70"
+           style="animation-duration: 25s;">
+      </div>
+      <div class="absolute -bottom-32 -left-32 w-[600px] h-[600px] 
+                  bg-gradient-to-tr from-[#32325d]/5 via-[#605bff]/3 to-transparent 
+                  rounded-full animate-float-slow opacity-70"
+           style="animation-duration: 30s; animation-delay: -5s;">
+      </div>
+    </div>
   </div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -227,238 +262,274 @@
 </section>
 
 <!-- Features Section -->
-<section class="relative overflow-hidden bg-white py-24">
-    <div class="absolute inset-0 bg-gradient-to-b from-white via-[#605bff]/5 to-white">
-      <div class="absolute inset-0 bg-[url('/images/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+<section class="relative overflow-hidden bg-gradient-to-b from-white via-slate-50/50 to-white py-24">
+  <div class="absolute inset-0">
+    <!-- Base gradient -->
+    <div class="absolute inset-0 bg-gradient-to-b from-white via-[#605bff]/3 to-white"></div>
+    
+    <!-- Subtle grid -->
+    <div class="absolute inset-0"
+         style="background-image: 
+            linear-gradient(rgba(96, 91, 255, 0.01) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(96, 91, 255, 0.01) 1px, transparent 1px);
+            background-size: 30px 30px;">
     </div>
-  
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="grid md:grid-cols-3 gap-16">
-        <!-- Understand your customers -->
-        <div class="relative group">
-          <div class="absolute -inset-4 bg-gradient-to-r from-[#605bff]/10 to-transparent rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
-          <div class="relative space-y-6">
-            <!-- Icon -->
-            <div class="w-12 h-12 rounded-xl bg-[#605bff]/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-              <svg class="w-6 h-6 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zm14 4v-2m0 0v-2m0 2h-2m2 0h2" 
-                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-  
-            <h3 class="text-xl font-medium text-[#32325d]">
-              Understand your customers
-            </h3>
-  
-            <p class="text-[#32325d]/70">
-              Get insights into channel performance and real time payment behavior.
-            </p>
+
+    <!-- Floating gradient -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+                  w-[800px] h-[800px] bg-gradient-radial from-[#605bff]/5 to-transparent 
+                  rounded-full opacity-60 blur-3xl">
+      </div>
+      <!-- Additional floating element -->
+      <div class="absolute bottom-0 right-0 w-[500px] h-[500px] 
+                  bg-gradient-to-bl from-[#605bff]/5 via-[#605bff]/3 to-transparent 
+                  rounded-full animate-float-slow opacity-70"
+           style="animation-duration: 25s;">
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="grid md:grid-cols-3 gap-16">
+      <!-- Understand your customers -->
+      <div class="relative group">
+        <div class="absolute -inset-4 bg-gradient-to-r from-[#605bff]/10 to-transparent rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div class="relative space-y-6">
+          <!-- Icon -->
+          <div class="w-12 h-12 rounded-xl bg-[#605bff]/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+            <svg class="w-6 h-6 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zm14 4v-2m0 0v-2m0 2h-2m2 0h2" 
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
           </div>
+  
+          <h3 class="text-xl font-medium text-[#32325d]">
+            Understand your customers
+          </h3>
+  
+          <p class="text-[#32325d]/70">
+            Get insights into channel performance and real time payment behavior.
+          </p>
         </div>
+      </div>
   
-        <!-- Easy user management -->
-        <div class="relative group">
-          <div class="absolute -inset-4 bg-gradient-to-r from-[#605bff]/10 to-transparent rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
-          <div class="relative space-y-6">
-            <!-- Icon -->
-            <div class="w-12 h-12 rounded-xl bg-[#605bff]/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-              <svg class="w-6 h-6 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" 
-                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-  
-            <h3 class="text-xl font-medium text-[#32325d]">
-              Easy user management
-            </h3>
-  
-            <p class="text-[#32325d]/70">
-              Assign users to manage risk, perform refunds, add payment methods, and more.
-            </p>
+      <!-- Easy user management -->
+      <div class="relative group">
+        <div class="absolute -inset-4 bg-gradient-to-r from-[#605bff]/10 to-transparent rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div class="relative space-y-6">
+          <!-- Icon -->
+          <div class="w-12 h-12 rounded-xl bg-[#605bff]/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+            <svg class="w-6 h-6 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" 
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
           </div>
+  
+          <h3 class="text-xl font-medium text-[#32325d]">
+            Easy user management
+          </h3>
+  
+          <p class="text-[#32325d]/70">
+            Assign users to manage risk, perform refunds, add payment methods, and more.
+          </p>
         </div>
+      </div>
   
-        <!-- Analyze across channels -->
-        <div class="relative group">
-          <div class="absolute -inset-4 bg-gradient-to-r from-[#605bff]/10 to-transparent rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
-          <div class="relative space-y-6">
-            <!-- Icon -->
-            <div class="w-12 h-12 rounded-xl bg-[#605bff]/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-              <svg class="w-6 h-6 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M8 18a2 2 0 100-4 2 2 0 000 4zM12 6a2 2 0 100-4 2 2 0 000 4zM16 18a2 2 0 100-4 2 2 0 000 4z" 
-                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M8.5 6.5l3-3M15.5 6.5l-3-3M8.5 17.5l7-7" 
-                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-  
-            <h3 class="text-xl font-medium text-[#32325d]">
-              Analyze across channels
-            </h3>
-  
-            <p class="text-[#32325d]/70">
-              Connect your online and offline payments for a true unified commerce view.
-            </p>
+      <!-- Analyze across channels -->
+      <div class="relative group">
+        <div class="absolute -inset-4 bg-gradient-to-r from-[#605bff]/10 to-transparent rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div class="relative space-y-6">
+          <!-- Icon -->
+          <div class="w-12 h-12 rounded-xl bg-[#605bff]/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+            <svg class="w-6 h-6 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M8 18a2 2 0 100-4 2 2 0 000 4zM12 6a2 2 0 100-4 2 2 0 000 4zM16 18a2 2 0 100-4 2 2 0 000 4z" 
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M8.5 6.5l3-3M15.5 6.5l-3-3M8.5 17.5l7-7" 
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
           </div>
+  
+          <h3 class="text-xl font-medium text-[#32325d]">
+            Analyze across channels
+          </h3>
+  
+          <p class="text-[#32325d]/70">
+            Connect your online and offline payments for a true unified commerce view.
+          </p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
 <!-- Operations & Analytics Section -->
-<section class="relative overflow-hidden bg-white py-24">
-    <div class="absolute inset-0 bg-gradient-to-b from-white via-[#605bff]/5 to-white">
-      <div class="absolute inset-0 bg-[url('/images/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+<section class="relative overflow-hidden bg-gradient-to-b from-white via-slate-50/50 to-white py-24">
+  <div class="absolute inset-0">
+    <!-- Base gradient -->
+    <div class="absolute inset-0 bg-gradient-to-b from-white via-[#605bff]/3 to-white"></div>
+    
+    <!-- Subtle grid -->
+    <div class="absolute inset-0"
+         style="background-image: 
+            linear-gradient(rgba(96, 91, 255, 0.01) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(96, 91, 255, 0.01) 1px, transparent 1px);
+            background-size: 30px 30px;">
     </div>
-  
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <!-- Section Header -->
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <h2 class="text-4xl sm:text-5xl font-medium text-[#32325d] leading-[1.2] mb-6">
-          Make meaningful
-          <span class="bg-gradient-to-r from-[#605bff] to-[#605bff]/80 bg-clip-text text-transparent">
-            decisions
-          </span>
-        </h2>
-        <p class="text-xl text-[#32325d]/70">
-          With all of your business data at your fingertips, finding out revenue generated by each channel and the number of payments made with each payment method will be a breeze.
-        </p>
+
+    <!-- Floating gradient -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+                  w-[800px] h-[800px] bg-gradient-radial from-[#605bff]/5 to-transparent 
+                  rounded-full opacity-60 blur-3xl">
       </div>
-  
-      <div class="grid lg:grid-cols-2 gap-16 items-center">
-        <!-- Left Content -->
-        <div class="space-y-8">
-          <h3 class="text-3xl font-medium text-[#32325d]">Simplify your operations</h3>
-          <p class="text-xl text-[#32325d]/70">
-            Automate the management of your payment data while automating manual processes so you have more time to run your business.
-          </p>
-  
-          <!-- Feature List -->
-          <div class="space-y-4">
-            {#each [
-              'Understand and predict your cash flow.',
-              'Manage chargebacks and risk.',
-              'Export or connect data to third-party systems.',
-              'Manage your payment terminals.'
-            ] as feature}
-              <div class="flex items-center gap-3 group">
-                <div class="w-5 h-5 rounded-full bg-[#605bff]/10 flex items-center justify-center 
-                            group-hover:bg-[#605bff]/20 transition-colors">
-                  <svg class="w-3 h-3 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M5 13l4 4L19 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </div>
-                <span class="text-[#32325d]/70 group-hover:text-[#32325d] transition-colors">{feature}</span>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-4xl sm:text-5xl font-medium text-[#32325d] leading-[1.2] mb-6">
+        Make meaningful
+        <span class="bg-gradient-to-r from-[#605bff] to-[#605bff]/80 bg-clip-text text-transparent">
+          decisions
+        </span>
+      </h2>
+      <p class="text-xl text-[#32325d]/70">
+        With all of your business data at your fingertips, finding out revenue generated by each channel and the number of payments made with each payment method will be a breeze.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <!-- Left Content -->
+      <div class="space-y-8">
+        <h3 class="text-3xl font-medium text-[#32325d]">Simplify your operations</h3>
+        <p class="text-xl text-[#32325d]/70">
+          Automate the management of your payment data while automating manual processes so you have more time to run your business.
+        </p>
+
+        <!-- Feature List -->
+        <div class="space-y-4">
+          {#each [
+            'Understand and predict your cash flow.',
+            'Manage chargebacks and risk.',
+            'Export or connect data to third-party systems.',
+            'Manage your payment terminals.'
+          ] as feature}
+            <div class="flex items-center gap-3 group">
+              <div class="w-5 h-5 rounded-full bg-[#605bff]/10 flex items-center justify-center 
+                          group-hover:bg-[#605bff]/20 transition-colors">
+                <svg class="w-3 h-3 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M5 13l4 4L19 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
               </div>
-            {/each}
-          </div>
+              <span class="text-[#32325d]/70 group-hover:text-[#32325d] transition-colors">{feature}</span>
+            </div>
+          {/each}
         </div>
-  
-        <!-- Right Content - Dynamic Dashboard -->
-        <div class="relative">
-          <div class="absolute -inset-4 bg-gradient-to-r from-[#605bff]/10 to-transparent rounded-3xl blur-xl"></div>
-          
-          <div class="relative bg-white rounded-2xl shadow-xl border border-[#605bff]/10 overflow-hidden
-                      transform hover:scale-[1.02] transition-all duration-500">
-            <!-- Dashboard Header -->
-            <div class="flex items-center justify-between p-6 border-b border-[#605bff]/10">
-              <div class="flex items-center gap-3">
-                <div class="w-2 h-2 rounded-full bg-[#605bff] animate-pulse"></div>
-                <h4 class="text-lg font-medium text-[#32325d]">Welcome back, Julie!</h4>
-              </div>
-              <div class="flex items-center gap-4">
-                <div class="flex items-center gap-2 text-sm text-[#32325d]/70 relative group">
-                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" 
-                          stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  <span>System messages ({notifications})</span>
-                  {#if notifications > 0}
-                    <div class="absolute -top-1 -right-1 w-3 h-3 bg-[#605bff] rounded-full animate-ping"></div>
-                  {/if}
-                </div>
+      </div>
+
+      <!-- Right Content - Dynamic Dashboard -->
+      <div class="relative">
+        <div class="absolute -inset-4 bg-gradient-to-r from-[#605bff]/10 to-transparent rounded-3xl blur-xl"></div>
+        
+        <div class="relative bg-white rounded-2xl shadow-xl border border-[#605bff]/10 overflow-hidden
+                    transform hover:scale-[1.02] transition-all duration-500">
+          <!-- Dashboard Header -->
+          <div class="flex items-center justify-between p-6 border-b border-[#605bff]/10">
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 rounded-full bg-[#605bff] animate-pulse"></div>
+              <h4 class="text-lg font-medium text-[#32325d]">Welcome back, Julie!</h4>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="flex items-center gap-2 text-sm text-[#32325d]/70 relative group">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" 
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>System messages ({notifications})</span>
+                {#if notifications > 0}
+                  <div class="absolute -top-1 -right-1 w-3 h-3 bg-[#605bff] rounded-full animate-ping"></div>
+                {/if}
               </div>
             </div>
-  
-            <!-- Dashboard Content -->
-            <div class="p-6 space-y-6">
-              <!-- Stats Grid -->
-              <div class="grid grid-cols-3 gap-4">
-                {#each [
-                  { 
-                    label: "Today's revenue", 
-                    value: `EUR ${currentRevenue.toFixed(2)}`, 
-                    delta: `${currentRevenue > 16000 ? '+' : ''}${((currentRevenue - 16000) / 160).toFixed(1)}%` 
-                  },
-                  { 
-                    label: "Pending payments", 
-                    value: pendingPayments, 
-                    delta: `${pendingPayments > 78 ? '+' : ''}${((pendingPayments - 78) / 0.78).toFixed(1)}%` 
-                  },
-                  { 
-                    label: "Open disputes", 
-                    value: openDisputes, 
-                    delta: `${openDisputes > 23 ? '+' : ''}${((openDisputes - 23) / 0.23).toFixed(1)}%` 
-                  }
-                ] as stat}
-                  <div class="p-4 rounded-xl bg-[#605bff]/5 hover:bg-[#605bff]/10 transition-all duration-300
-                              transform hover:scale-105">
-                    <div class="text-sm text-[#32325d]/70 mb-2">{stat.label}</div>
-                    <div class="text-lg font-medium text-[#32325d] transition-all">
-                      {stat.value}
-                      <div class="text-sm {stat.delta.includes('+') ? 'text-green-500' : 'text-red-500'}">
-                        {stat.delta}
-                      </div>
+          </div>
+
+          <!-- Dashboard Content -->
+          <div class="p-6 space-y-6">
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-3 gap-4">
+              {#each [
+                { 
+                  label: "Today's revenue", 
+                  value: `EUR ${currentRevenue.toFixed(2)}`, 
+                  delta: `${currentRevenue > 16000 ? '+' : ''}${((currentRevenue - 16000) / 160).toFixed(1)}%` 
+                },
+                { 
+                  label: "Pending payments", 
+                  value: pendingPayments, 
+                  delta: `${pendingPayments > 78 ? '+' : ''}${((pendingPayments - 78) / 0.78).toFixed(1)}%` 
+                },
+                { 
+                  label: "Open disputes", 
+                  value: openDisputes, 
+                  delta: `${openDisputes > 23 ? '+' : ''}${((openDisputes - 23) / 0.23).toFixed(1)}%` 
+                }
+              ] as stat}
+                <div class="p-4 rounded-xl bg-[#605bff]/5 hover:bg-[#605bff]/10 transition-all duration-300
+                            transform hover:scale-105">
+                  <div class="text-sm text-[#32325d]/70 mb-2">{stat.label}</div>
+                  <div class="text-lg font-medium text-[#32325d] transition-all">
+                    {stat.value}
+                    <div class="text-sm {stat.delta.includes('+') ? 'text-green-500' : 'text-red-500'}">
+                      {stat.delta}
                     </div>
                   </div>
-                {/each}
+                </div>
+              {/each}
+            </div>
+
+            <!-- Chart Section -->
+            <div class="bg-[#605bff]/5 rounded-xl p-6">
+              <div class="flex items-center justify-between mb-4">
+                <h5 class="font-medium text-[#32325d]">Insights overview</h5>
+                <div class="flex gap-2">
+                  {#each ['1 week', '1 month', '1 year', 'All'] as period}
+                    <button 
+                      class="px-3 py-1 rounded-lg text-sm transition-all duration-300
+                             {period === selectedPeriod 
+                               ? 'bg-[#605bff] text-white shadow-lg scale-105' 
+                               : 'text-[#32325d]/70 hover:bg-[#605bff]/10'}"
+                      on:click={() => changePeriod(period)}
+                    >
+                      {period}
+                    </button>
+                  {/each}
+                </div>
               </div>
-  
-              <!-- Chart Section -->
-              <div class="bg-[#605bff]/5 rounded-xl p-6">
-                <div class="flex items-center justify-between mb-4">
-                  <h5 class="font-medium text-[#32325d]">Insights overview</h5>
-                  <div class="flex gap-2">
-                    {#each ['1 week', '1 month', '1 year', 'All'] as period}
-                      <button 
-                        class="px-3 py-1 rounded-lg text-sm transition-all duration-300
-                               {period === selectedPeriod 
-                                 ? 'bg-[#605bff] text-white shadow-lg scale-105' 
-                                 : 'text-[#32325d]/70 hover:bg-[#605bff]/10'}"
-                        on:click={() => changePeriod(period)}
-                      >
-                        {period}
-                      </button>
-                    {/each}
-                  </div>
+              
+              <!-- Dynamic Chart Area -->
+              <div class="h-48 relative">
+                <div class="absolute inset-0 flex items-end justify-between px-2">
+                  {#each chartPoints as point, i}
+                    <div 
+                      class="w-[6%] bg-gradient-to-t from-[#605bff] to-[#605bff]/30 rounded-t-lg
+                             transition-all duration-500 ease-out"
+                      style="height: {point}%; opacity: {isChartAnimating ? 0 : 1}"
+                    >
+                      <div class="w-full h-2 bg-[#605bff] rounded-full -mt-1 opacity-30"></div>
+                    </div>
+                  {/each}
                 </div>
-                
-                <!-- Dynamic Chart Area -->
-                <div class="h-48 relative">
-                  <div class="absolute inset-0 flex items-end justify-between px-2">
-                    {#each chartPoints as point, i}
-                      <div 
-                        class="w-[6%] bg-gradient-to-t from-[#605bff] to-[#605bff]/30 rounded-t-lg
-                               transition-all duration-500 ease-out"
-                        style="height: {point}%; opacity: {isChartAnimating ? 0 : 1}"
-                      >
-                        <div class="w-full h-2 bg-[#605bff] rounded-full -mt-1 opacity-30"></div>
-                      </div>
-                    {/each}
-                  </div>
-                  <div class="absolute bottom-0 left-0 right-0 h-px bg-[#605bff]/20"></div>
-                </div>
+                <div class="absolute bottom-0 left-0 right-0 h-px bg-[#605bff]/20"></div>
               </div>
             </div>
           </div>
-  
-          <!-- Decorative Elements -->
-          <div class="absolute -top-8 -right-8 w-32 h-32 bg-[#605bff]/10 rounded-full blur-2xl animate-pulse"></div>
-          <div class="absolute -bottom-12 -left-12 w-40 h-40 bg-[#605bff]/10 rounded-full blur-2xl animate-pulse"></div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
 <!-- New Analytics Section -->
 <section class="relative overflow-hidden bg-white py-24">
@@ -471,283 +542,232 @@
   <!-- ... Previous analytics code ... -->
 </section>
 
+<!-- Action on your insights Section -->
+<section class="relative overflow-hidden bg-white py-24">
+  <!-- Enhanced Modern Background -->
+  <div class="absolute inset-0">
+    <!-- Enhanced base gradient with special insights-focused colors -->
+    <div class="absolute inset-0 bg-gradient-to-br 
+                from-[#f0f4ff] via-[#fafbff] to-[#f8f9ff]
+                dark:from-[#1a1b3f] dark:via-[#2a2a5a] dark:to-[#1f1f45]">
+    </div>
+    
+    <!-- Enhanced multi-layered mesh gradient with data-focused patterns -->
+    <div class="absolute inset-0"
+         style="background: 
+           radial-gradient(circle at 0% 0%, rgba(96, 91, 255, 0.15) 0%, transparent 50%),
+           radial-gradient(circle at 100% 0%, rgba(50, 50, 93, 0.15) 0%, transparent 50%),
+           radial-gradient(circle at 100% 100%, rgba(96, 91, 255, 0.12) 0%, transparent 50%),
+           radial-gradient(circle at 0% 100%, rgba(50, 50, 93, 0.15) 0%, transparent 50%);">
+    </div>
 
-  
-  <section class="relative overflow-hidden bg-white py-24">
-    <div class="absolute inset-0 bg-gradient-to-b from-white via-[#605bff]/5 to-white">
-      <div class="absolute inset-0 bg-[url('/images/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+    <!-- Enhanced modern grid pattern with data visualization style -->
+    <div class="absolute inset-0"
+         style="background-image: 
+            linear-gradient(rgba(96, 91, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(96, 91, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(rgba(96, 91, 255, 0.02) 2px, transparent 2px);
+          background-size: 50px 50px, 50px 50px, 10px 10px, 10px 10px;
+          background-position: center center;">
     </div>
-  
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="grid lg:grid-cols-2 gap-16 items-center">
-        <!-- Left Content - Analytics Dashboard -->
-        <div class="relative">
-          <div class="absolute -inset-4 bg-gradient-to-r from-[#605bff]/10 to-transparent rounded-3xl blur-xl"></div>
-          
-          <div class="relative bg-white rounded-2xl shadow-xl border border-[#605bff]/10 overflow-hidden">
-            <!-- Dashboard Header -->
-            <div class="p-6 border-b border-[#605bff]/10">
-              <div class="flex items-center justify-between mb-4">
-                <h3 class="text-xl font-medium text-[#32325d]">Payment lifecycle</h3>
-                <!-- Control Buttons -->
-                <div class="flex items-center gap-2">
-                  <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#605bff]/5 text-sm text-[#32325d]">
-                    <span>Jan 1 - Jan 31</span>
-                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                      <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </div>
-                  <button class="p-2 rounded-lg hover:bg-[#605bff]/5 transition-colors">
-                    <svg class="w-5 h-5 text-[#32325d]/70" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                      <path d="M3 4h13M3 8h9M3 12h5m0 0l-2 2m2-2l-2-2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </button>
+
+    <!-- Enhanced floating elements with insights theme -->
+    <div class="absolute inset-0 overflow-hidden">
+      <!-- Primary glass morphism sphere -->
+      <div class="absolute top-1/4 right-1/4 w-[700px] h-[700px] 
+                  bg-gradient-to-br from-[#605bff]/20 via-[#605bff]/15 to-transparent 
+                  backdrop-blur-3xl rounded-full animate-float-slow"
+           style="animation-duration: 28s;">
+      </div>
+
+      <!-- Secondary glass morphism sphere -->
+      <div class="absolute -bottom-32 -left-32 w-[800px] h-[800px] 
+                  bg-gradient-to-tr from-[#32325d]/20 via-[#605bff]/15 to-transparent 
+                  backdrop-blur-2xl rounded-full animate-float-slow"
+           style="animation-duration: 35s; animation-delay: -7s;">
+      </div>
+
+      <!-- Data visualization inspired decorative elements -->
+      <div class="absolute top-1/3 left-1/4 w-40 h-40
+                  bg-gradient-to-r from-[#605bff]/35 to-[#32325d]/25 
+                  blur-3xl rounded-full animate-pulse"
+           style="animation-duration: 10s;">
+      </div>
+    </div>
+
+    <!-- Enhanced light streaks with data flow effect -->
+    <div class="absolute inset-0">
+      <div class="absolute top-1/4 left-0 w-full h-[3px] 
+                  bg-gradient-to-r from-transparent via-[#605bff]/40 to-transparent 
+                  rotate-[15deg] blur-xl">
+      </div>
+      <div class="absolute bottom-1/3 right-0 w-full h-[3px] 
+                  bg-gradient-to-r from-transparent via-[#605bff]/35 to-transparent 
+                  -rotate-[15deg] blur-xl">
+      </div>
+      <!-- Additional data flow streaks -->
+      <div class="absolute top-1/2 left-0 w-full h-[2px] 
+                  bg-gradient-to-r from-transparent via-[#605bff]/30 to-transparent 
+                  rotate-[5deg] blur-xl">
+      </div>
+    </div>
+  </div>
+
+  <!-- Existing content remains unchanged -->
+  <div class="relative container mx-auto px-4 sm:px-6 lg:px-8 z-10">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <!-- Left Content -->
+      <div class="relative">
+        <div class="absolute -inset-4 bg-gradient-to-r from-[#605bff]/10 to-transparent rounded-3xl blur-xl"></div>
+        
+        <div class="relative bg-white rounded-2xl shadow-xl border border-[#605bff]/10 overflow-hidden">
+          <!-- Dashboard Header -->
+          <div class="p-6 border-b border-[#605bff]/10">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-xl font-medium text-[#32325d]">Payment lifecycle</h3>
+              <!-- Control Buttons -->
+              <div class="flex items-center gap-2">
+                <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#605bff]/5 text-sm text-[#32325d]">
+                  <span>Jan 1 - Jan 31</span>
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
                 </div>
-              </div>
-  
-              <!-- Tabs -->
-              <div class="flex gap-1 border-b border-[#605bff]/10">
-                {#each tabs as tab}
-                  <button 
-                    class="px-4 py-2 text-sm transition-all relative {selectedTab === tab ? 'text-[#605bff]' : 'text-[#32325d]/70'}"
-                    on:click={() => selectedTab = tab}
-                  >
-                    {tab}
-                    {#if selectedTab === tab}
-                      <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-[#605bff]"></div>
-                    {/if}
-                  </button>
-                {/each}
+                <button class="p-2 rounded-lg hover:bg-[#605bff]/5 transition-colors">
+                  <svg class="w-5 h-5 text-[#32325d]/70" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M3 4h13M3 8h9M3 12h5m0 0l-2 2m2-2l-2-2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
               </div>
             </div>
   
-            <!-- Analytics Content -->
-            <div class="p-6 space-y-8">
-              <!-- Key Metrics -->
-              <div class="grid grid-cols-4 gap-4">
-                <div class="space-y-2">
-                  <div class="text-sm text-[#32325d]/70">New payments</div>
-                  <div class="text-lg font-medium text-[#32325d]">{newPayments.toLocaleString()}</div>
-                </div>
-                <div class="space-y-2">
-                  <div class="text-sm text-[#32325d]/70">Authorized transactions</div>
-                  <div class="text-lg font-medium text-[#32325d]">{authorizedTransactions.toLocaleString()}</div>
-                </div>
-                <div class="space-y-2">
-                  <div class="text-sm text-[#32325d]/70">Declined transactions</div>
-                  <div class="text-lg font-medium text-[#32325d]">{declinedTransactions.toLocaleString()}</div>
-                </div>
-                <div class="space-y-2">
-                  <div class="text-sm text-[#32325d]/70">Avg ticket value (EUR)</div>
-                  <div class="text-lg font-medium text-[#32325d]">{avgTicketValue.toFixed(2)}</div>
-                </div>
-              </div>
-  
-              <!-- Authorization Rate Chart -->
-              <div class="space-y-4">
-                <div class="flex items-center justify-between">
-                  <h4 class="text-[#32325d] font-medium">Authorization rate</h4>
-                  <div class="flex items-center gap-2 text-sm text-[#32325d]/70">
-                    <div class="w-3 h-3 rounded-full bg-[#605bff]/20"></div>
-                    Includes MPIs
-                  </div>
-                </div>
-                
-                <div class="h-40 relative">
-                  <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                    <path 
-                      d={`M0,${100 - authRateData[0]} ${authRateData.map((point, i) => `L${(i + 1) * (100 / authRateData.length)},${100 - point}`).join(' ')}`}
-                      class="stroke-[#605bff] stroke-2 fill-none"
-                    />
-                    <path 
-                      d={`M0,100 ${authRateData.map((point, i) => `L${(i + 1) * (100 / authRateData.length)},${100 - point}`).join(' ')} L100,100 Z`}
-                      class="fill-[#605bff]/10"
-                    />
-                  </svg>
-                </div>
-              </div>
+            <!-- Tabs -->
+            <div class="flex gap-1 border-b border-[#605bff]/10">
+              {#each tabs as tab}
+                <button 
+                  class="px-4 py-2 text-sm transition-all relative {selectedTab === tab ? 'text-[#605bff]' : 'text-[#32325d]/70'}"
+                  on:click={() => selectedTab = tab}
+                >
+                  {tab}
+                  {#if selectedTab === tab}
+                    <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-[#605bff]"></div>
+                  {/if}
+                </button>
+              {/each}
             </div>
           </div>
-        </div>
   
-        <!-- Right Content -->
-        <div class="space-y-8">
-          <h2 class="text-4xl font-medium text-[#32325d]">
-            Action on your
-            <span class="bg-gradient-to-r from-[#605bff] to-[#605bff]/80 bg-clip-text text-transparent">
-              insights
-            </span>
-          </h2>
-          
-          <p class="text-xl text-[#32325d]/70">
-            Get to know the customer behind each payment with unified data from all of your sales channels and markets.
-          </p>
-  
-          <!-- Feature List -->
-          <div class="space-y-4">
-            {#each features as feature}
-              <div class="flex items-center gap-3 group">
-                <div class="w-5 h-5 rounded-full bg-[#605bff]/10 flex items-center justify-center 
-                            group-hover:bg-[#605bff]/20 transition-colors">
-                  <svg class="w-3 h-3 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M5 13l4 4L19 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </div>
-                <span class="text-[#32325d]/70 group-hover:text-[#32325d] transition-colors">{feature}</span>
+          <!-- Analytics Content -->
+          <div class="p-6 space-y-8">
+            <!-- Key Metrics -->
+            <div class="grid grid-cols-4 gap-4">
+              <div class="space-y-2">
+                <div class="text-sm text-[#32325d]/70">New payments</div>
+                <div class="text-lg font-medium text-[#32325d]">{newPayments.toLocaleString()}</div>
               </div>
-            {/each}
+              <div class="space-y-2">
+                <div class="text-sm text-[#32325d]/70">Authorized transactions</div>
+                <div class="text-lg font-medium text-[#32325d]">{authorizedTransactions.toLocaleString()}</div>
+              </div>
+              <div class="space-y-2">
+                <div class="text-sm text-[#32325d]/70">Declined transactions</div>
+                <div class="text-lg font-medium text-[#32325d]">{declinedTransactions.toLocaleString()}</div>
+              </div>
+              <div class="space-y-2">
+                <div class="text-sm text-[#32325d]/70">Avg ticket value (EUR)</div>
+                <div class="text-lg font-medium text-[#32325d]">{avgTicketValue.toFixed(2)}</div>
+              </div>
+            </div>
+  
+            <!-- Authorization Rate Chart -->
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <h4 class="text-[#32325d] font-medium">Authorization rate</h4>
+                <div class="flex items-center gap-2 text-sm text-[#32325d]/70">
+                  <div class="w-3 h-3 rounded-full bg-[#605bff]/20"></div>
+                  Includes MPIs
+                </div>
+              </div>
+              
+              <div class="h-40 relative">
+                <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                  <path 
+                    d={`M0,${100 - authRateData[0]} ${authRateData.map((point, i) => `L${(i + 1) * (100 / authRateData.length)},${100 - point}`).join(' ')}`}
+                    class="stroke-[#605bff] stroke-2 fill-none"
+                  />
+                  <path 
+                    d={`M0,100 ${authRateData.map((point, i) => `L${(i + 1) * (100 / authRateData.length)},${100 - point}`).join(' ')} L100,100 Z`}
+                    class="fill-[#605bff]/10"
+                  />
+                </svg>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
- 
   
-  <section class="relative overflow-hidden bg-white py-24">
-    <div class="absolute inset-0 bg-gradient-to-b from-white via-[#605bff]/5 to-white">
-      <div class="absolute inset-0 bg-[url('/images/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
-    </div>
-  
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <!-- Header -->
-      <div class="max-w-3xl">
-        <h1 class="text-4xl font-medium text-[#32325d] mb-4">Take full control</h1>
-        <p class="text-xl text-[#32325d]/70 mb-12">
-          From overview to in depth: all you need to set your account up for success, and analyze and optimize every step of your payments flow.
+      <!-- Right Content -->
+      <div class="space-y-8">
+        <h2 class="text-4xl font-medium text-[#32325d]">
+          Action on your
+          <span class="bg-gradient-to-r from-[#605bff] to-[#605bff]/80 bg-clip-text text-transparent">
+            insights
+          </span>
+        </h2>
+        
+        <p class="text-xl text-[#32325d]/70">
+          Get to know the customer behind each payment with unified data from all of your sales channels and markets.
         </p>
-      </div>
   
-      <!-- Tabs -->
-      <div class="border-b border-[#605bff]/10 mb-12">
-        <div class="flex gap-8">
-          {#each paymentTabs as tab}
-            <button 
-              class="px-1 py-4 text-sm font-medium relative {activePaymentTab === tab ? 'text-[#605bff]' : 'text-[#32325d]/70'}"
-              on:click={() => activePaymentTab = tab}
-            >
-              {tab}
-              {#if activePaymentTab === tab}
-                <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-[#605bff]"></div>
-              {/if}
-            </button>
+        <!-- Feature List -->
+        <div class="space-y-4">
+          {#each features as feature}
+            <div class="flex items-center gap-3 group">
+              <div class="w-5 h-5 rounded-full bg-[#605bff]/10 flex items-center justify-center 
+                          group-hover:bg-[#605bff]/20 transition-colors">
+                <svg class="w-3 h-3 text-[#605bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M5 13l4 4L19 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <span class="text-[#32325d]/70 group-hover:text-[#32325d] transition-colors">{feature}</span>
+            </div>
           {/each}
         </div>
       </div>
-  
-      <div class="grid lg:grid-cols-2 gap-16 items-start">
-        <!-- Left Content -->
-        <div class="space-y-6">
-          <h2 class="text-2xl font-medium text-[#32325d]">Add new payment methods</h2>
-          <p class="text-[#32325d]/70">
-            Effortlessly enable the payment methods your customers know and trust as you grow into new markets.
-          </p>
-  
-          <!-- Payment Methods Grid -->
-          <div class="space-y-4">
-            {#each paymentMethods as method}
-              <button
-                class="w-full p-4 flex items-center justify-between rounded-xl border 
-                       {method.isSelected ? 'border-[#605bff] bg-[#605bff]/5' : 'border-gray-200 hover:border-[#605bff]/50'}
-                       transition-all duration-300"
-                on:click={() => selectMethod(method)}
-              >
-                <div class="flex items-center gap-4">
-                  <div class="text-[#605bff]">
-                    {@html method.icon}
-                  </div>
-                  <div class="text-left">
-                    <div class="font-medium text-[#32325d]">{method.name}</div>
-                    {#if method.status}
-                      <div class="text-sm text-[#32325d]/70">{method.status}</div>
-                    {/if}
-                  </div>
-                </div>
-                <div class="w-5 h-5 rounded-full border-2 border-[#605bff] flex items-center justify-center">
-                  {#if method.isSelected}
-                    <div class="w-3 h-3 rounded-full bg-[#605bff]"></div>
-                  {/if}
-                </div>
-              </button>
-            {/each}
-          </div>
-        </div>
-  
-        <!-- Right Content - Configuration Panel -->
-        <div class="relative">
-          <div class="absolute -inset-4 bg-gradient-to-r from-[#605bff]/10 to-transparent rounded-3xl blur-xl"></div>
-          
-          <div class="relative bg-white rounded-2xl shadow-xl border border-[#605bff]/10 overflow-hidden">
-            <div class="p-6 space-y-6">
-              <div class="flex items-center justify-between">
-                <h3 class="text-xl font-medium text-[#32325d]">Configuration</h3>
-                <div class="flex items-center gap-2">
-                  <div class="w-2 h-2 rounded-full {isConfiguring ? 'bg-green-500 animate-pulse' : 'bg-[#605bff]'}"></div>
-                  <span class="text-sm text-[#32325d]/70">
-                    {isConfiguring ? 'Configuring...' : 'Ready'}
-                  </span>
-                </div>
-              </div>
-  
-              <!-- Configuration Content -->
-              <div class="min-h-[400px] flex items-center justify-center text-[#32325d]/70">
-                {#if selectedMethod}
-                  <div class="animate-fadeIn w-full space-y-6">
-                    <div class="flex items-center gap-4 p-4 rounded-xl bg-[#605bff]/5">
-                      <div class="text-[#605bff]">
-                        {@html selectedMethod.icon}
-                      </div>
-                      <div>
-                        <h4 class="font-medium text-[#32325d]">{selectedMethod.name}</h4>
-                        <p class="text-sm text-[#32325d]/70">Configure payment settings</p>
-                      </div>
-                    </div>
-  
-                    <!-- Configuration Options -->
-                    <div class="space-y-4">
-                      <div class="p-4 rounded-xl bg-[#605bff]/5">
-                        <div class="flex items-center justify-between mb-2">
-                          <span class="font-medium text-[#32325d]">Test Mode</span>
-                          <button class="w-11 h-6 bg-[#605bff] rounded-full relative">
-                            <div class="absolute right-1 top-1 w-4 h-4 bg-white rounded-full transition-transform"></div>
-                          </button>
-                        </div>
-                        <p class="text-sm text-[#32325d]/70">Test your integration before going live</p>
-                      </div>
-  
-                      <div class="grid grid-cols-2 gap-4">
-                        <div class="p-4 rounded-xl bg-[#605bff]/5">
-                          <h5 class="font-medium text-[#32325d] mb-2">Processing Time</h5>
-                          <p class="text-2xl font-medium text-[#605bff]">2.3s</p>
-                        </div>
-                        <div class="p-4 rounded-xl bg-[#605bff]/5">
-                          <h5 class="font-medium text-[#32325d] mb-2">Success Rate</h5>
-                          <p class="text-2xl font-medium text-[#605bff]">99.9%</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                {:else}
-                  Select a payment method to configure
-                {/if}
-              </div>
-            </div>
-          </div>
-  
-          <!-- Decorative Elements -->
-          <div class="absolute -top-8 -right-8 w-32 h-32 bg-[#605bff]/10 rounded-full blur-2xl animate-pulse"></div>
-          <div class="absolute -bottom-12 -left-12 w-40 h-40 bg-[#605bff]/10 rounded-full blur-2xl animate-pulse"></div>
-        </div>
-      </div>
     </div>
-  </section>
-  
-  <style>
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+  </div>
+</section>
+
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  @keyframes float-slow {
+    0%, 100% { 
+      transform: translate(0, 0) rotate(0deg) scale(1); 
     }
-  
-    .animate-fadeIn {
-      animation: fadeIn 0.3s ease-out;
+    25% { 
+      transform: translate(2%, 2%) rotate(1deg) scale(1.02); 
     }
-  </style>
+    50% { 
+      transform: translate(-1%, 3%) rotate(-1deg) scale(0.98); 
+    }
+    75% { 
+      transform: translate(-2%, -1%) rotate(0.5deg) scale(1.01); 
+    }
+  }
+
+  .animate-float-slow {
+    animation: float-slow 20s ease-in-out infinite;
+  }
+
+  .bg-gradient-radial {
+    background: radial-gradient(circle, var(--tw-gradient-from) 0%, var(--tw-gradient-to) 70%);
+  }
+</style>

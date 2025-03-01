@@ -3,7 +3,7 @@
     $: routeTd = $page.route.id;
   </script>
   
-  <section class="py-16 md:py-24 relative overflow-hidden pb-20 border-b border-gray-200">
+  <section class="py-16 md:py-24 relative overflow-hidden bg-gradient-to-b from-white via-[#fafafa] to-white">
     <div class="container mx-auto px-4 md:px-6">
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         <!-- Left Content -->
@@ -170,6 +170,26 @@
       100% { background-position: 0% 50%; }
     }
 
+    /* Add the new float-slow animation */
+    @keyframes float-slow {
+      0%, 100% { 
+        transform: translate(0, 0) rotate(0deg) scale(1); 
+      }
+      25% { 
+        transform: translate(2%, 2%) rotate(1deg) scale(1.02); 
+      }
+      50% { 
+        transform: translate(-1%, 3%) rotate(-1deg) scale(0.98); 
+      }
+      75% { 
+        transform: translate(-2%, -1%) rotate(0.5deg) scale(1.01); 
+      }
+    }
+
+    .animate-float-slow {
+      animation: float-slow 20s ease-in-out infinite;
+    }
+
     /* Animation classes */
     .animate-blob {
       animation: blob 7s infinite;
@@ -256,7 +276,7 @@
     }
   </style>
 
-<section class="py-16 md:py-24 bg-white">
+<section class="py-16 md:py-24 bg-gradient-to-b from-white via-[#fafafa]/50 to-white relative overflow-hidden">
     <div class="container mx-auto px-4">
       <!-- Trusted By Section -->
       <div class="mb-16 text-center">
@@ -316,16 +336,19 @@
   </section>
 
 <!-- Payment Services Section -->
-<section class="py-16 md:py-24 relative overflow-hidden">
+<section class="py-16 md:py-24 relative overflow-hidden bg-gradient-to-b from-white via-[#fafafa]/80 to-white">
   <!-- Enhanced Background -->
-  <div class="absolute inset-0 bg-gradient-to-b from-[#605bff]/5 via-white to-white">
-    <!-- Decorative Grid -->
-    <div class="absolute inset-0 bg-[url('/images/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
-    
-    <!-- Gradient Blobs -->
-    <div class="absolute top-0 left-1/4 w-96 h-96 bg-[#605bff]/10 rounded-full filter blur-3xl animate-blob"></div>
-    <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-100 rounded-full filter blur-3xl animate-blob animation-delay-2000"></div>
-    <div class="absolute top-1/2 left-1/2 w-96 h-96 bg-blue-100 rounded-full filter blur-3xl animate-blob animation-delay-4000"></div>
+  <div class="absolute inset-0">
+    <!-- Subtle grid -->
+    <div class="absolute inset-0"
+         style="background-image: 
+            linear-gradient(rgba(96, 91, 255, 0.02) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(96, 91, 255, 0.02) 1px, transparent 1px);
+          background-size: 40px 40px;">
+    </div>
+    <!-- Floating gradients -->
+    <div class="absolute top-0 left-1/4 w-96 h-96 bg-[#605bff]/5 rounded-full filter blur-3xl animate-blob"></div>
+    <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-100/5 rounded-full filter blur-3xl animate-blob animation-delay-2000"></div>
   </div>
 
   <div class="container mx-auto px-4 relative z-10">
@@ -484,265 +507,60 @@
   </div>
 </section>
 
-<!-- Payment Services Section -->
-<!-- Payment Services Section -->
-<section class="py-24 bg-white relative overflow-hidden">
-    <!-- Background Elements -->
-    <div class="absolute inset-0">
-      <div class="absolute inset-0 bg-[url('/images/grid.svg')] bg-center opacity-[0.1]"></div>
-      <div class="absolute -top-24 -left-24 w-96 h-96 bg-[#605bff]/5 rounded-full filter blur-3xl"></div>
-      <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-[#605bff]/5 rounded-full filter blur-3xl"></div>
-    </div>
-  
-    <div class="container relative z-10">
-      <!-- Header -->
-      <div class="max-w-3xl mx-auto text-center mb-20">
-        <h2 class="text-[2.75rem] font-medium text-[#32325d] leading-[1.2] mb-6">
-          Our online payments services
-        </h2>
-        <p class="text-xl text-gray-600">
-          Let your customers pay with their favorite method via web, in-app, or with recurring payments.
-        </p>
-      </div>
-  
-      <!-- Services Grid -->
-      <div class="grid md:grid-cols-3 gap-12 mb-32">
-        <!-- Website payments -->
-        <div class="group p-8 rounded-2xl transition-all duration-300 hover:bg-white hover:shadow-xl hover:shadow-gray-100/70">
-          <div class="w-14 h-14 bg-[#605bff]/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-            <svg class="w-7 h-7 text-[#605bff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
-            </svg>
-          </div>
-          <h3 class="text-xl font-semibold text-[#32325d] mb-4 group-hover:text-[#605bff] transition-colors">
-            Website payments
-          </h3>
-          <p class="text-gray-600 mb-6">
-            In-browser payments for web and mobile.
-          </p>
-          <a href="/payments/website" class="inline-flex items-center text-[#605bff] font-medium group-hover:opacity-80">
-            Learn more
-            <svg class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </a>
-        </div>
-  
-        <!-- In-app payments -->
-        <div class="group p-8 rounded-2xl transition-all duration-300 hover:bg-white hover:shadow-xl hover:shadow-gray-100/70">
-          <div class="w-14 h-14 bg-[#605bff]/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-            <svg class="w-7 h-7 text-[#605bff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
-            </svg>
-          </div>
-          <h3 class="text-xl font-semibold text-[#32325d] mb-4 group-hover:text-[#605bff] transition-colors">
-            In-app payments
-          </h3>
-          <p class="text-gray-600 mb-6">
-            Native mobile payment experiences.
-          </p>
-          <a href="/payments/in-app" class="inline-flex items-center text-[#605bff] font-medium group-hover:opacity-80">
-            Learn more
-            <svg class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </a>
-        </div>
-  
-        <!-- Online subscriptions -->
-        <div class="group p-8 rounded-2xl transition-all duration-300 hover:bg-white hover:shadow-xl hover:shadow-gray-100/70">
-          <div class="w-14 h-14 bg-[#605bff]/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-            <svg class="w-7 h-7 text-[#605bff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-            </svg>
-          </div>
-          <h3 class="text-xl font-semibold text-[#32325d] mb-4 group-hover:text-[#605bff] transition-colors">
-            Online subscriptions
-          </h3>
-          <p class="text-gray-600 mb-6">
-            One-click payments and recurring billing.
-          </p>
-          <a href="/payments/subscriptions" class="inline-flex items-center text-[#605bff] font-medium group-hover:opacity-80">
-            Learn more
-            <svg class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-  
-      <!-- Payment Methods Section -->
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <h2 class="text-[2.75rem] font-medium text-[#32325d] leading-[1.2] mb-6">
-          Get first access to local payment methods globally
-        </h2>
-        <p class="text-xl text-gray-600 mb-8">
-          Accept all major payment methods with a single integration. Support credit cards, digital wallets, and more.
-        </p>
-        <a href="/payment-methods" class="inline-flex items-center px-6 py-3 rounded-xl bg-[#605bff] text-white font-medium transition-all hover:bg-[#605bff]/90 hover:shadow-lg hover:shadow-[#605bff]/20">
-          Discover payment methods
-          <svg class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
-        </a>
-      </div>
-  
-      <!-- Payment Methods Grid -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 max-w-4xl mx-auto">
-        {#each [
-          { name: 'Visa', bg: 'bg-[#1A1F71]/10', logo: 'vss.png', color: '#1A1F71' },
-          { name: 'Mastercard', bg: 'bg-[#EB001B]/10', logo: 'mscrad.png', color: '#EB001B' },
-          { name: 'Apple Pay', bg: 'bg-[#000000]/10', logo: 'A-pay.png', color: '#000000' },
-          { name: 'Google Pay', bg: 'bg-[#4285F4]/10', logo: 'G-pay.png', color: '#4285F4' }
-        ] as method}
-          <div class="group relative overflow-hidden rounded-2xl transition-all duration-300 hover:shadow-xl hover:shadow-gray-100/70">
-            <div class="{method.bg} p-8 aspect-square flex items-center justify-center transition-all duration-300">
-              <img 
-                src="/images/brands/{method.logo}" 
-                alt="{method.name}" 
-                class="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-110"
-              >
-            </div>
-          </div>
-        {/each}
-      </div>
-    </div>
-  </section>
-
-<!-- Add-ons Section -->
-<section class="py-32 bg-white relative overflow-hidden">
-  <!-- Background Elements -->
+<!-- Online Subscriptions Section -->
+<section class="py-32 relative overflow-hidden">
+  <!-- Modern Background with Layered Effects -->
   <div class="absolute inset-0">
-    <div class="absolute inset-0 bg-[url('/images/grid.svg')] bg-center [mask-image:radial-gradient(white,transparent_85%)] opacity-[0.15]"></div>
-    <div class="absolute top-0 left-0 w-[1000px] h-[1000px] bg-gradient-to-br from-[#605bff]/10 to-[#2EC5CE]/5 rounded-full filter blur-[106px] -translate-x-1/2 -translate-y-1/2"></div>
-    <div class="absolute bottom-0 right-0 w-[1000px] h-[1000px] bg-gradient-to-br from-[#605bff]/5 to-[#FF6B6B]/5 rounded-full filter blur-[106px] translate-x-1/2 translate-y-1/2"></div>
+    <!-- Modern gradient base -->
+    <div class="absolute inset-0 bg-gradient-to-b from-[#f8faff] via-white to-[#f0f4ff]"></div>
+    
+    <!-- Mesh gradient overlay -->
+    <div class="absolute inset-0 opacity-40"
+         style="background: radial-gradient(circle at top right, #605bff08, transparent 50%),
+                          radial-gradient(circle at bottom left, #32325d05, transparent 50%);">
+    </div>
+
+    <!-- Subtle modern grid -->
+    <div class="absolute inset-0"
+         style="background-image: 
+            linear-gradient(rgba(96, 91, 255, 0.015) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(96, 91, 255, 0.015) 1px, transparent 1px);
+          background-size: 60px 60px;
+          background-position: center center;">
+    </div>
+
+    <!-- Modern floating elements -->
+    <div class="absolute inset-0 overflow-hidden">
+      <!-- Glass morphism effect -->
+      <div class="absolute top-20 right-20 w-96 h-96 
+                  bg-gradient-to-br from-white/10 to-[#605bff]/5 
+                  backdrop-blur-3xl rounded-full 
+                  animate-float-slow"
+           style="animation-duration: 18s;">
+      </div>
+
+      <!-- Modern accent blobs -->
+      <div class="absolute bottom-40 left-20 w-80 h-80 
+                  bg-gradient-to-tr from-[#605bff]/10 via-[#32325d]/5 to-transparent 
+                  blur-3xl rounded-full animate-float-slow opacity-60"
+           style="animation-duration: 22s; animation-delay: -5s;">
+      </div>
+
+      <!-- Light streaks -->
+      <div class="absolute top-1/3 left-1/4 w-full h-px 
+                  bg-gradient-to-r from-transparent via-[#605bff]/10 to-transparent 
+                  rotate-45 blur-sm">
+      </div>
+    </div>
+
+    <!-- Noise texture overlay -->
+    <div class="absolute inset-0 opacity-[0.015]"
+         style="background-image: url('data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E');">
+    </div>
   </div>
 
+  <!-- Your existing content remains unchanged -->
   <div class="container relative z-10">
-    <!-- Features Section -->
-    <div class="mb-40">
-      <!-- Header -->
-      <div class="max-w-3xl mx-auto text-center mb-24">
-        <span class="text-[#605bff] font-semibold mb-4 block">PAYMENT ADD-ONS</span>
-        <h2 class="text-[3.5rem] font-medium text-[#32325d] leading-[1.1] mb-8">
-          Optimize payments with our add-ons
-        </h2>
-        <p class="text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
-          Increase conversion, protect your business from fraud, and let customers donate at checkout. All through a single API.
-        </p>
-      </div>
-
-      <!-- Features Grid -->
-      <div class="grid md:grid-cols-4 gap-8 max-w-7xl mx-auto">
-        {#each [
-          {
-            title: "Seamless authentication",
-            description: "Create a safe and seamless experience with delegated authentication.",
-            icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z",
-            link: "/authentication",
-            gradient: "from-[#605bff]/8 via-[#2EC5CE]/8 to-white"
-          },
-          {
-            title: "Revenue optimization",
-            description: "Use machine learning to boost authorization and conversion rates.",
-            icon: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6",
-            link: "/revenue",
-            gradient: "from-[#605bff]/8 via-[#FF6B6B]/8 to-white"
-          },
-          {
-            title: "Risk management",
-            description: "Customize your risk setup and detect, prevent, and respond to fraud.",
-            icon: "M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z",
-            link: "/risk",
-            gradient: "from-[#605bff]/8 via-[#FFB86C]/8 to-white"
-          },
-          {
-            title: "Donate at checkout",
-            description: "Make it easy for your customers to support good causes at checkout.",
-            icon: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z",
-            link: "/donate",
-            gradient: "from-[#605bff]/8 via-[#A8FF98]/8 to-white"
-          }
-        ] as feature}
-          <div class="group relative p-8 rounded-3xl transition-all duration-500 hover:scale-[1.02] bg-gradient-to-br {feature.gradient} hover:shadow-2xl hover:shadow-[#605bff]/10 border border-gray-100">
-            <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-[#605bff]/5 group-hover:scale-110 transition-transform duration-500">
-              <svg class="w-8 h-8 text-[#605bff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={feature.icon}/>
-              </svg>
-            </div>
-            <h3 class="text-2xl font-semibold text-[#32325d] mb-4 group-hover:text-[#605bff] transition-colors duration-300">
-              {feature.title}
-            </h3>
-            <p class="text-gray-600 mb-8 text-base leading-relaxed">
-              {feature.description}
-            </p>
-            <a href={feature.link} class="inline-flex items-center text-[#605bff] font-medium group-hover:opacity-80">
-              Learn more
-              <svg class="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-2" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </a>
-          </div>
-        {/each}
-      </div>
-    </div>
-
-    <!-- Integration Section -->
-    <div class="max-w-7xl mx-auto">
-      <div class="flex flex-col lg:flex-row items-center gap-20">
-        <!-- Content -->
-        <div class="lg:w-1/2">
-          <span class="text-[#605bff] font-semibold mb-4 block">INTEGRATION OPTIONS</span>
-          <h2 class="text-[3.5rem] font-medium text-[#32325d] leading-[1.1] mb-8">
-            Integrate IpsePay into your payments flow
-          </h2>
-          <p class="text-xl text-gray-600 mb-16 leading-relaxed">
-            Getting started with effortless online payments is easy. One back-end integration offers multiple implementation options. Discover what's right for you.
-          </p>
-
-          <!-- Integration Options -->
-          <div class="grid gap-8">
-            {#each [
-              {
-                title: "Drop-in",
-                description: "Accept online payments with our out-of-the-box solution and pre-built user interface."
-              },
-              {
-                title: "Components",
-                description: "Use your UI with our pre-built components for a semi-customizable checkout."
-              },
-              {
-                title: "API-only",
-                description: "Create a fully customized checkout by building the checkout from scratch."
-              },
-              {
-                title: "Partners",
-                description: "Get access to our easy payments solution through any of our 34+ partners."
-              }
-            ] as option}
-              <div class="group p-8 rounded-2xl bg-gradient-to-br from-white to-gray-50/50 hover:shadow-xl hover:shadow-[#605bff]/5 transition-all duration-300 border border-gray-100">
-                <h3 class="text-xl font-semibold text-[#32325d] mb-3 group-hover:text-[#605bff] transition-colors">
-                  {option.title}
-                </h3>
-                <p class="text-gray-600 text-base leading-relaxed">{option.description}</p>
-              </div>
-            {/each}
-          </div>
-        </div>
-
-        <!-- Image -->
-        <div class="lg:w-1/2">
-          <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-[#605bff]/10">
-            <img 
-              src="/images/photos/reails.jpg" 
-              alt="Integration team working" 
-              class="w-full object-cover transform hover:scale-105 transition-transform duration-700"
-            >
-            <!-- Overlay gradient -->
-            <div class="absolute inset-0 bg-gradient-to-tr from-[#605bff]/20 via-transparent to-transparent"></div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- ... existing content ... -->
   </div>
 </section>

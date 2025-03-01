@@ -151,16 +151,45 @@
 
 <main class="pt-20">
   <!-- Hero Section -->
-  <div class="relative overflow-hidden bg-gradient-to-b from-[#605bff]/5 via-white to-white">
-    <!-- Animated Background Elements -->
-    <div class="absolute inset-0 overflow-hidden">
-      <div class="absolute inset-0 bg-[url('/images/grid.svg')] bg-center opacity-20"></div>
-      <div class="absolute top-0 left-1/4 w-96 h-96 bg-[#605bff]/10 rounded-full filter blur-3xl"></div>
-      <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-100 rounded-full filter blur-3xl"></div>
+  <div class="relative overflow-hidden bg-gradient-to-b from-slate-50 to-white">
+    <div class="absolute inset-0">
+      <!-- Base gradient -->
+      <div class="absolute inset-0 bg-gradient-to-br from-[#f8faff] via-white to-[#f0f4ff]"></div>
+      
+      <!-- Mesh gradient -->
+      <div class="absolute inset-0"
+           style="background: 
+               radial-gradient(circle at 0% 0%, rgba(96, 91, 255, 0.03) 0%, transparent 50%),
+               radial-gradient(circle at 100% 0%, rgba(50, 50, 93, 0.03) 0%, transparent 50%),
+               radial-gradient(circle at 100% 100%, rgba(96, 91, 255, 0.03) 0%, transparent 50%),
+               radial-gradient(circle at 0% 100%, rgba(50, 50, 93, 0.03) 0%, transparent 50%);">
+      </div>
+
+      <!-- Grid pattern -->
+      <div class="absolute inset-0"
+           style="background-image: 
+              linear-gradient(rgba(96, 91, 255, 0.01) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(96, 91, 255, 0.01) 1px, transparent 1px);
+              background-size: 40px 40px;">
+      </div>
+
+      <!-- Floating elements -->
+      <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute top-1/4 right-1/4 w-[500px] h-[500px] 
+                    bg-gradient-to-br from-[#605bff]/5 via-[#605bff]/3 to-transparent 
+                    rounded-full animate-float-slow opacity-70"
+             style="animation-duration: 25s;">
+        </div>
+        <div class="absolute -bottom-32 -left-32 w-[600px] h-[600px] 
+                    bg-gradient-to-tr from-[#32325d]/5 via-[#605bff]/3 to-transparent 
+                    rounded-full animate-float-slow opacity-70"
+             style="animation-duration: 30s; animation-delay: -5s;">
+        </div>
+      </div>
     </div>
 
     <!-- Title Content -->
-    <div class="relative container mx-auto px-4 pt-20 pb-32 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16 relative z-10">
       <div class="text-center max-w-3xl mx-auto">
         <div class="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-white shadow-sm border border-gray-100">
           <span class="text-sm font-medium text-[#605bff]">Pricing Plans</span>
